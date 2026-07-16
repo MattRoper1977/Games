@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Games Arcade — Made by Matt</title>
+<meta name="description" content="Bite-sized single-file games — built one game at a time in Teesside.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%230A121C'/%3E%3Crect x='8' y='12' width='24' height='12' rx='3' fill='none' stroke='%23FFD76A' stroke-width='2.5'/%3E%3Ccircle cx='15' cy='18' r='2' fill='%235EEAD4'/%3E%3Crect x='22' y='16' width='7' height='4' rx='2' fill='%23F687B3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,650;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pit:#0A121C; --panel:#101E2B; --panel-lo:#0C1722;
+  --ink:#ECF3F5; --dim:#9DB3BC; --faint:#5F7681;
+  --gold:#FFD76A; --line:rgba(255,255,255,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Space Grotesk',system-ui,sans-serif;color:var(--ink);min-height:100vh;
+  background:
+    radial-gradient(900px 500px at 85% -8%, rgba(94,234,212,.10), transparent 60%),
+    radial-gradient(760px 460px at 0% 108%, rgba(183,148,244,.10), transparent 60%),
+    linear-gradient(180deg,#0E1B27 0%,var(--pit) 55%,#060D14 100%);
+  background-attachment:fixed;
+}
+body.calm *{animation:none !important;transition:none !important}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky;top:0;z-index:20;display:flex;gap:.35rem;justify-content:center;
+  padding:.65rem;backdrop-filter:blur(10px);
+  background:rgba(10,18,28,.8);border-bottom:1px solid var(--line);
+}
+nav a{
+  color:var(--dim);text-decoration:none;font-size:.9rem;font-weight:500;
+  padding:.4rem .9rem;border-radius:999px;transition:background .2s,color .2s;
+}
+nav a:hover,nav a:focus-visible{color:var(--ink);background:rgba(255,255,255,.06)}
+nav a[aria-current="page"]{color:#20160A;background:linear-gradient(180deg,#FFE49A,var(--gold));font-weight:600}
+
+/* ---------- header ---------- */
+header{text-align:center;padding:clamp(1.6rem,5vh,2.6rem) 1.2rem .2rem}
+h1{
+  font-family:'Fraunces',serif;font-weight:650;font-size:clamp(2.2rem,6.4vw,3.6rem);
+  letter-spacing:-.01em;
+  background:linear-gradient(92deg,#5EEAD4 8%,#B794F4 48%,#F6AD55 90%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.strap{margin-top:.4rem;color:var(--dim);font-size:clamp(.92rem,2.2vw,1.05rem)}
+
+/* ---------- gate ---------- */
+.gate{
+  max-width:min(1180px,94vw);margin:1.1rem auto 0;padding:.8rem 1.1rem;
+  border-radius:14px;font-size:.92rem;display:none;align-items:center;gap:.6rem;
+  border:1px solid rgba(255,215,106,.35);background:rgba(255,215,106,.09);color:#FFE9AE;
+}
+.gate.show{display:flex}
+.gate.open{border-color:rgba(94,234,212,.4);background:rgba(94,234,212,.09);color:#BFF5EE}
+
+/* ---------- marquee (signature) ---------- */
+.marquee{
+  position:relative;max-width:min(1180px,94vw);margin:1.3rem auto 0;
+  display:grid;grid-template-columns:minmax(180px,300px) 1fr;
+  border-radius:22px;overflow:hidden;text-decoration:none;color:inherit;
+  background:linear-gradient(120deg,#131F30,#0C1722 65%);
+  border:1px solid color-mix(in srgb, var(--hue, #5EEAD4) 45%, transparent);
+  box-shadow:0 0 0 1px rgba(255,255,255,.03), 0 24px 60px rgba(0,0,0,.5),
+             0 0 44px -8px color-mix(in srgb, var(--hue,#5EEAD4) 35%, transparent);
+  animation:flickerOn 1.4s steps(1,end) 1;
+  transition:transform .3s cubic-bezier(.2,.8,.3,1);
+}
+.marquee:hover,.marquee:focus-visible{transform:translateY(-4px)}
+.marquee:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+@keyframes flickerOn{0%{opacity:0}8%{opacity:1}12%{opacity:.25}18%{opacity:1}26%{opacity:.5}34%,100%{opacity:1}}
+.m-art{
+  position:relative;min-height:190px;display:grid;place-items:center;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 4px),
+    radial-gradient(120% 100% at 30% 20%, color-mix(in srgb, var(--hue,#5EEAD4) 38%, transparent), transparent 70%),
+    linear-gradient(140deg,#182742,#0D1826);
+}
+.m-art .big{font-size:clamp(4.2rem,9vw,6.2rem);filter:drop-shadow(0 10px 26px rgba(0,0,0,.5)) drop-shadow(0 0 30px color-mix(in srgb, var(--hue,#5EEAD4) 60%, transparent))}
+.m-body{padding:1.5rem 1.6rem 1.5rem 1.4rem;display:flex;flex-direction:column;justify-content:center}
+.now{
+  align-self:flex-start;font-size:.68rem;font-weight:700;letter-spacing:.22em;
+  color:#22180B;background:linear-gradient(180deg,#FFE49A,var(--gold));
+  padding:.28rem .7rem;border-radius:999px;margin-bottom:.7rem;
+}
+.m-body h2{font-family:'Fraunces',serif;font-weight:650;font-size:clamp(1.6rem,3.6vw,2.3rem);line-height:1.06;margin-bottom:.45rem}
+.m-body p{color:var(--dim);font-size:.96rem;line-height:1.5;max-width:52ch}
+.m-body .row{display:flex;align-items:center;gap:.8rem;margin-top:1.05rem;flex-wrap:wrap}
+.playbtn{
+  display:inline-flex;align-items:center;gap:.45rem;
+  background:linear-gradient(180deg,#FFE0A8,#F6AD55);color:#3a1c10;
+  padding:.62rem 1.15rem;border-radius:999px;font-weight:600;font-size:.95rem;
+  transition:gap .2s;
+}
+.marquee:hover .playbtn{gap:.7rem}
+.tagchip{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line);padding:.3rem .65rem;border-radius:999px}
+
+/* ---------- controls ---------- */
+.controls{
+  max-width:min(1180px,94vw);margin:1.4rem auto .5rem;
+  display:flex;gap:.55rem;flex-wrap:wrap;align-items:center;
+}
+.search{
+  flex:1;min-width:190px;display:flex;align-items:center;gap:.5rem;
+  background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:.58rem 1rem;
+}
+.search:focus-within{border-color:rgba(94,234,212,.5)}
+.search input{flex:1;background:none;border:0;outline:none;color:var(--ink);font-family:inherit;font-size:.95rem}
+.search input::placeholder{color:var(--faint)}
+.chip{
+  background:var(--panel);border:1px solid var(--line);color:var(--dim);
+  padding:.5rem .95rem;border-radius:999px;font-family:inherit;font-size:.86rem;
+  font-weight:500;cursor:pointer;transition:color .2s,border-color .2s,background .2s;
+}
+.chip:hover{color:var(--ink);border-color:rgba(255,255,255,.25)}
+.chip[aria-pressed="true"]{background:rgba(94,234,212,.13);color:#5EEAD4;border-color:rgba(94,234,212,.55)}
+.chip.gold[aria-pressed="true"]{background:rgba(255,215,106,.13);color:var(--gold);border-color:rgba(255,215,106,.55)}
+.tagrow{max-width:min(1180px,94vw);margin:0 auto .3rem;display:flex;gap:.45rem;flex-wrap:wrap}
+.count{color:var(--faint);font-size:.84rem;margin-left:auto}
+
+/* ---------- cabinet grid ---------- */
+main{max-width:min(1180px,94vw);margin:0 auto;padding:.7rem 0 3rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:.95rem}
+.cab{
+  position:relative;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,var(--panel),var(--panel-lo));
+  border:1px solid color-mix(in srgb, var(--hue,#5EEAD4) 32%, transparent);
+  border-radius:18px;padding:1.05rem;text-decoration:none;color:inherit;overflow:hidden;
+  transition:transform .28s cubic-bezier(.2,.8,.3,1),box-shadow .28s,border-color .28s;
+}
+.cab::after{ /* top marquee strip: each cabinet lit in its own hue */
+  content:"";position:absolute;top:0;left:12%;right:12%;height:3px;border-radius:0 0 6px 6px;
+  background:var(--hue,#5EEAD4);opacity:.65;
+  box-shadow:0 2px 14px 1px color-mix(in srgb, var(--hue,#5EEAD4) 60%, transparent);
+}
+.cab:hover,.cab:focus-within{
+  transform:translateY(-5px);
+  border-color:color-mix(in srgb, var(--hue,#5EEAD4) 70%, transparent);
+  box-shadow:0 16px 40px rgba(0,0,0,.5), 0 0 30px -6px color-mix(in srgb, var(--hue,#5EEAD4) 45%, transparent);
+}
+.cab.featured{grid-column:span 2}
+.tile{
+  width:56px;height:56px;border-radius:15px;display:grid;place-items:center;
+  font-size:1.7rem;margin-bottom:.6rem;
+  background:
+    radial-gradient(80% 80% at 30% 25%, color-mix(in srgb, var(--hue,#5EEAD4) 30%, transparent), transparent 75%),
+    linear-gradient(150deg,#152435,#0C1722);
+  border:1px solid color-mix(in srgb, var(--hue,#5EEAD4) 30%, transparent);
+  filter:drop-shadow(0 4px 14px rgba(0,0,0,.35));
+  transition:transform .25s;
+}
+.cab:hover .tile{transform:rotate(-5deg) scale(1.06)}
+.cab.featured .tile{width:68px;height:68px;font-size:2.1rem}
+.cab h2{font-size:1.02rem;font-weight:600;margin-bottom:.28rem}
+.cab.featured h2{font-family:'Fraunces',serif;font-weight:650;font-size:1.45rem}
+.cab .tag{
+  position:absolute;top:.85rem;right:.85rem;font-size:.66rem;font-weight:600;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--dim);
+  border:1px solid var(--line);padding:.22rem .55rem;border-radius:999px;background:rgba(10,18,28,.55);
+}
+.cab p{font-size:.84rem;line-height:1.45;color:var(--dim);flex:1}
+.cab .go{
+  margin-top:.85rem;align-self:flex-start;display:inline-flex;align-items:center;gap:.4rem;
+  color:color-mix(in srgb, var(--hue,#5EEAD4) 85%, white);
+  font-size:.88rem;font-weight:600;transition:gap .2s;
+}
+.cab:hover .go{gap:.62rem}
+.fav{
+  position:absolute;bottom:.85rem;right:.85rem;
+  background:none;border:0;cursor:pointer;font-size:1.15rem;line-height:1;
+  color:#40586355;color:#405863;transition:color .2s,transform .2s;padding:.2rem;
+}
+.fav:hover{transform:scale(1.2);color:var(--dim)}
+.fav[aria-pressed="true"]{color:var(--gold)}
+.empty{text-align:center;color:var(--dim);padding:3rem 1rem;font-size:.95rem}
+
+/* ---------- footer ---------- */
+footer{
+  text-align:center;padding:0 1.2rem 2rem;color:var(--faint);font-size:.85rem;
+  display:flex;gap:1rem;justify-content:center;align-items:center;flex-wrap:wrap;
+}
+.calmtoggle{
+  background:var(--panel);border:1px solid var(--line);color:var(--dim);
+  padding:.42rem .85rem;border-radius:999px;font-family:inherit;font-size:.8rem;cursor:pointer;
+}
+.calmtoggle[aria-pressed="true"]{color:#5EEAD4;border-color:rgba(94,234,212,.5)}
+
+/* ---------- responsive & motion ---------- */
+@media (max-width:760px){
+  .marquee{grid-template-columns:1fr}
+  .m-art{min-height:150px}
+  .cab.featured{grid-column:span 1}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:.7rem}
+  .cab{padding:.9rem}
+  .cab .tag{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+}
+</style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <a href="https://madebymatt.uk/">Home</a>
+  <a href="https://madebymatt.uk/Lessons/">Lessons</a>
+  <a href="https://madebymatt.uk/Matt-s-Apps-/">Apps</a>
+  <a href="./" aria-current="page">Games</a>
+</nav>
+
+<header>
+  <h1 id="pageTitle">Games Arcade</h1>
+  <p class="strap" id="pageStrap">Bite-sized challenges, infinite fun — built one game at a time.</p>
+</header>
+
+<div class="gate" id="gate" role="status"></div>
+
+<a class="marquee" id="marquee" href="#" hidden>
+  <div class="m-art"><span class="big" id="mIcon" aria-hidden="true">📺</span></div>
+  <div class="m-body">
+    <span class="now">NOW SHOWING</span>
+    <h2 id="mTitle"></h2>
+    <p id="mDesc"></p>
+    <div class="row">
+      <span class="playbtn">Play now <span aria-hidden="true">→</span></span>
+      <span class="tagchip" id="mTag"></span>
+    </div>
+  </div>
+</a>
+
+<div class="controls">
+  <label class="search">
+    <span aria-hidden="true">🔍</span>
+    <input id="q" type="search" placeholder="Search 24 games…" aria-label="Search games">
+  </label>
+  <button class="chip gold" id="favChip" type="button" aria-pressed="false">★ Favourites</button>
+  <button class="chip" id="luckyChip" type="button">🎲 Surprise me</button>
+  <span class="count" id="count"></span>
+</div>
+<div class="tagrow" id="tagRow" role="group" aria-label="Filter by type"></div>
+
+<main>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden>No games match — try a different word, or clear the filters.</p>
+</main>
+
+<footer>
+  <span>🎩 Single-file games · no tracking · no leaderboards</span>
+  <button class="calmtoggle" id="calmBtn" type="button" aria-pressed="false">🌙 Calm mode</button>
+</footer>
+
+<script>
+/* Fallback keeps the page alive if games.json is missing or opened as a local file. */
+const FALLBACK={title:"Games Arcade",
+  strap:"Bite-sized challenges, infinite fun — built one game at a time.",
+  games:[{icon:"🎮",title:"Trail Runner",desc:"A fast-paced reflex runner.",tag:"Reflex",hue:"#5EEAD4",
+    href:"https://mattroper1977.github.io/Lessons/Games/Trail_Runner.html",featured:false,hero:true}]};
+
+const FAV_KEY='mbmArcadeFavs_v1', CALM_KEY='mbmArcadeCalm_v1';
+/* Shared with the Lesson Hub Control Centre when served from madebymatt.uk */
+const ARCADE_END_KEY='progressHubArcadeEnd_v1', GAMES_KEY='progressHubGamesUnlocked_v1';
+
+let GAMES=[], favs=new Set(), favOnly=false, query='', tagFilter='';
+
+function esc(t){const d=document.createElement('div');d.textContent=t??'';return d.innerHTML;}
+function load(k,f){try{const v=localStorage.getItem(k);return v===null?f:v}catch(e){return f}}
+function save(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+try{favs=new Set(JSON.parse(load(FAV_KEY,'[]')))}catch(e){favs=new Set()}
+
+function updateGate(){
+  const gate=document.getElementById('gate');
+  let end=0;try{end=Number(load(ARCADE_END_KEY,'0'))||0}catch(e){}
+  const unlocked=load(GAMES_KEY,'0')==='1', now=Date.now();
+  if(end>now){
+    const mins=Math.max(1,Math.round((end-now)/60000));
+    gate.className='gate show open';
+    gate.textContent='🎮 Arcade is open — about '+mins+' minute'+(mins===1?'':'s')+' left. Enjoy it.';
+  }else if(unlocked){
+    gate.className='gate show open';gate.textContent='🎮 Arcade is open.';
+  }else{
+    gate.className='gate show';
+    gate.textContent='🔒 Your teacher has not opened the Arcade yet — have a look around, and come back when it is time.';
+  }
+}
+
+function buildMarquee(){
+  const hero=GAMES.find(g=>g.hero)||GAMES.find(g=>g.featured)||GAMES[0];
+  const m=document.getElementById('marquee');
+  if(!hero){m.hidden=true;return}
+  m.hidden=false;
+  m.href=hero.href||'#';
+  m.style.setProperty('--hue',hero.hue||'#5EEAD4');
+  document.getElementById('mIcon').textContent=hero.icon||'🎮';
+  document.getElementById('mTitle').textContent=hero.title;
+  document.getElementById('mDesc').textContent=hero.desc;
+  document.getElementById('mTag').textContent=hero.tag||'';
+}
+
+function buildTags(){
+  const row=document.getElementById('tagRow');
+  const tags=[...new Set(GAMES.map(g=>g.tag).filter(Boolean))].sort();
+  row.innerHTML='';
+  tags.forEach(t=>{
+    const b=document.createElement('button');
+    b.className='chip';b.type='button';b.textContent=t;
+    b.setAttribute('aria-pressed','false');
+    b.onclick=()=>{
+      tagFilter = tagFilter===t ? '' : t;
+      [...row.children].forEach(c=>c.setAttribute('aria-pressed', c.textContent===tagFilter ? 'true':'false'));
+      render();
+    };
+    row.appendChild(b);
+  });
+}
+
+function render(){
+  const grid=document.getElementById('grid');
+  const q=query.trim().toLowerCase();
+  const list=GAMES.filter(g=>{
+    if(g.hero) return false;                       /* hero lives in the marquee */
+    if(favOnly && !favs.has(g.title)) return false;
+    if(tagFilter && g.tag!==tagFilter) return false;
+    if(q && !((g.title+' '+g.desc+' '+(g.tag||'')).toLowerCase().includes(q))) return false;
+    return true;
+  });
+  grid.innerHTML='';
+  list.forEach(g=>{
+    const a=document.createElement('a');
+    a.className='cab'+(g.featured?' featured':'');
+    a.href=g.href||'#';
+    a.style.setProperty('--hue',g.hue||'#5EEAD4');
+    a.innerHTML=
+      '<span class="tag">'+esc(g.tag||'')+'</span>'+
+      '<span class="tile" aria-hidden="true">'+esc(g.icon||'🎮')+'</span>'+
+      '<h2>'+esc(g.title)+'</h2>'+
+      '<p>'+esc(g.desc)+'</p>'+
+      '<span class="go">Play now <span aria-hidden="true">→</span></span>';
+    const fav=document.createElement('button');
+    fav.className='fav';fav.type='button';fav.textContent='★';
+    fav.setAttribute('aria-pressed',favs.has(g.title));
+    fav.setAttribute('aria-label','Favourite '+g.title);
+    fav.onclick=(e)=>{e.preventDefault();e.stopPropagation();
+      favs.has(g.title)?favs.delete(g.title):favs.add(g.title);
+      save(FAV_KEY,JSON.stringify([...favs]));render();};
+    a.appendChild(fav);
+    grid.appendChild(a);
+  });
+  document.getElementById('empty').hidden=list.length>0;
+  document.getElementById('count').textContent=list.length+' of '+(GAMES.length-1)+' games';
+}
+
+function init(data){
+  GAMES=data.games||[];
+  if(data.title)document.getElementById('pageTitle').textContent=data.title;
+  if(data.strap)document.getElementById('pageStrap').textContent=data.strap;
+  document.getElementById('q').addEventListener('input',e=>{query=e.target.value;render()});
+  const favChip=document.getElementById('favChip');
+  favChip.onclick=()=>{favOnly=!favOnly;favChip.setAttribute('aria-pressed',favOnly);render()};
+  document.getElementById('luckyChip').onclick=()=>{
+    if(!GAMES.length)return;
+    const g=GAMES[Math.floor(Math.random()*GAMES.length)];
+    if(g.href)location.href=g.href;
+  };
+  const calmBtn=document.getElementById('calmBtn');
+  if(load(CALM_KEY,'0')==='1'){document.body.classList.add('calm');calmBtn.setAttribute('aria-pressed','true')}
+  calmBtn.onclick=()=>{
+    const on=document.body.classList.toggle('calm');
+    calmBtn.setAttribute('aria-pressed',on);save(CALM_KEY,on?'1':'0');
+  };
+  buildMarquee();buildTags();updateGate();
+  setInterval(updateGate,30000);
+  render();
+}
+
+fetch('games.json',{cache:'no-store'})
+  .then(r=>{if(!r.ok)throw 0;return r.json();})
+  .then(init)
+  .catch(()=>init(FALLBACK));
+</script>
+</body>
+</html>
