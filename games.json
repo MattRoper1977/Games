@@ -1,0 +1,246 @@
+{
+  "title": "Games Arcade",
+  "strap": "Bite-sized challenges, infinite fun — built one game at a time.",
+  "games": [
+    {
+      "icon": "🎮",
+      "title": "Trail Runner",
+      "desc": "A fast-paced reflex runner navigating procedural terrain hazards. Ideal for a quick motor-skills reset.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Trail_Runner.html",
+      "tag": "Reflex",
+      "hue": "#5EEAD4",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "🧱",
+      "title": "VoxelCraft",
+      "desc": "A localized 3D sandbox block builder exploring spatial coordinates, geometry, and structural placement.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/voxelcraft.html",
+      "tag": "Sandbox",
+      "hue": "#B794F4",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "🌀",
+      "title": "Vortex",
+      "desc": "A high-intensity tunnel-dodging experience testing rapid peripheral processing and predictive tracking accuracy.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Vortex.html",
+      "tag": "Reflex",
+      "hue": "#F6AD55",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "🌐",
+      "title": "Globe Snake",
+      "desc": "A unique 3D spherical twist on classic mechanics, mapping directional inputs onto non-Euclidean global surfaces.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Globe_Snake (1).html",
+      "tag": "Classic",
+      "hue": "#F687B3",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "⚡",
+      "title": "Neon Snake Overdrive",
+      "desc": "An optimized, high-performance vector snake arena calibrated for fluid mobile and desktop response pathways.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Neon_Snake_Overdrive.html",
+      "tag": "Classic",
+      "hue": "#63B3ED",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "🛡️",
+      "title": "Neon Siege",
+      "desc": "A localized matrix defense challenge requiring calculated tactical placement and rapid prioritization under pressure.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Neon_Siege.html",
+      "tag": "Strategy",
+      "hue": "#68D391",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "🌸",
+      "title": "Neon Garden",
+      "desc": "An ambient, low-arousal pattern-generation loop designed for focus conditioning and cognitive pacing.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Neon_Garden.html",
+      "tag": "Calm",
+      "hue": "#5EEAD4",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "🛰️",
+      "title": "Orbital",
+      "desc": "A physics-based gravitational simulation mapping kinetic momentum, planetary vectors, and circular mechanics.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Orbital.html",
+      "tag": "Physics",
+      "hue": "#B794F4",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "🏁",
+      "title": "Grid Chase",
+      "desc": "A high-speed coordinate grid maze testing rapid directional corrections and immediate geometric mapping layout transitions.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Grid_Chase.html",
+      "tag": "Reflex",
+      "hue": "#F6AD55",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "🔺",
+      "title": "Prism",
+      "desc": "A perspective-shifting puzzle manipulating light angles, alignment paths, and spatial refraction lines.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Prism.html",
+      "tag": "Puzzle",
+      "hue": "#F687B3",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "🪝",
+      "title": "Grapple",
+      "desc": "A momentum-centric physics playground focusing on vector hook connections and conservation of kinetic energy.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Grapple.html",
+      "tag": "Physics",
+      "hue": "#63B3ED",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "⚪",
+      "title": "Marble",
+      "desc": "A tilt-and-gravity simulator testing meticulous physical adjustment, balancing thresholds, and micro-coordination.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Marble.html",
+      "tag": "Physics",
+      "hue": "#68D391",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "⚪",
+      "title": "Slipstream",
+      "desc": "A streamlined rhythmic velocity test tracking uninterrupted forward momentum and rapid gap synchronization.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Slipstream.html",
+      "tag": "Reflex",
+      "hue": "#5EEAD4",
+      "featured": true,
+      "hero": false
+    },
+    {
+      "icon": "⚪",
+      "title": "Slipstream - GP",
+      "desc": "An advanced grand-prix variant of the velocity engine introducing complex velocity paths and tracking scales.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Slipstream_GP.html",
+      "tag": "Reflex",
+      "hue": "#B794F4",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "🔨",
+      "title": "Wrecking Crew",
+      "desc": "A destructive physics environment evaluating structural integrity, mass distributions, and center-of-gravity impacts.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Wrecking_Crew.html",
+      "tag": "Physics",
+      "hue": "#F6AD55",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "✨",
+      "title": "Lumins",
+      "desc": "A Lemmings-style rescue puzzle: assign roles to your Lumins to dig, build and bridge them safely to the exit — complete with a full level editor.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Lumins.html",
+      "tag": "Puzzle",
+      "hue": "#F687B3",
+      "featured": true,
+      "hero": false
+    },
+    {
+      "icon": "📺",
+      "title": "Static",
+      "desc": "The newest addition to the arcade — a fresh reflex-and-focus challenge for quick brain-break sessions.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Static.html",
+      "tag": "Reflex",
+      "hue": "#63B3ED",
+      "featured": false,
+      "hero": true
+    },
+    {
+      "icon": "👻",
+      "title": "One Guy",
+      "desc": "A solo ghost-runner: each attempt races the recorded 'ghost' of the last run on this device, so pupils compete against their own past best rather than each other. Shareable ghost codes let a run be passed on.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/OneGuy.html",
+      "tag": "Reflex",
+      "hue": "#68D391",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "🗼",
+      "title": "The Last Lighthouse",
+      "desc": "A keeper survival game: hold the last lighthouse watch by watch, guiding vessels safely through storms and Tempest conditions. Earn Keeper Marks, build your Keeper Record, and explore the new archipelago map — now updated to v1.1 with portable backup codes so progress can move between devices.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/The_Last_Lighthouse_v1_1_The_Archipelago_Update_FINAL.html",
+      "tag": "Strategy",
+      "hue": "#5EEAD4",
+      "featured": true,
+      "hero": false
+    },
+    {
+      "icon": "🏆",
+      "title": "Kids vs Staff: Showdown",
+      "desc": "Whole-class team quiz: pupils take on the staff across scored rounds. Class-vs-teacher framing — no individual leaderboard.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/KidsVsStaff_Showdown (3).html",
+      "tag": "Class game",
+      "hue": "#B794F4",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "⚽",
+      "title": "World Cup: Road to the Three Lions Final",
+      "desc": "Teacher-driven end-of-term tournament: three nations, possession and steals, stadium codes, a VAR twist and a cooperative England final. Auto-tallied scoring and evidence print included.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/WorldCup_ThreeLions_Final.html",
+      "tag": "Class game",
+      "hue": "#F6AD55",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "🎮",
+      "title": "World Cup v3 — Match Director",
+      "desc": "Run a match as director — Matt's Apps arcade.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/WorldCup_v3_MatchDirector.html",
+      "tag": "Class game",
+      "hue": "#F687B3",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "🎮",
+      "title": "World Cup v5 — Showdown",
+      "desc": "Head-to-head showdown — Matt's Apps arcade.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/WorldCup_v5_Showdown.html",
+      "tag": "Class game",
+      "hue": "#63B3ED",
+      "featured": false,
+      "hero": false
+    },
+    {
+      "icon": "🎮",
+      "title": "Trekkers Trail Runner — Tees Coast",
+      "desc": "Tees Coast edition of Trail Runner.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Trekkers_Trail_Runner_Tees_Coast.html",
+      "tag": "Reflex",
+      "hue": "#68D391",
+      "featured": false,
+      "hero": false
+    }
+  ]
+}
