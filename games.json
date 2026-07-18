@@ -3,6 +3,16 @@
   "strap": "Bite-sized challenges, infinite fun — built one game at a time.",
   "games": [
     {
+      "icon": "🛡️",
+      "title": "Hold the Mark",
+      "desc": "NEW · Built mobile-first for phones and tablets. Defend the Made by Matt mark with brand-shape towers, Harmony combos and a calm-play Focus meter. Five levels, daily challenges, unlockable tower skins and Mark themes — works offline in any orientation.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Hold_the_Mark.html",
+      "tag": "Strategy",
+      "hue": "#F6AD55",
+      "featured": true,
+      "hero": true
+    },
+    {
       "icon": "🎮",
       "title": "Trail Runner",
       "desc": "A fast-paced reflex runner navigating procedural terrain hazards. Ideal for a quick motor-skills reset.",
@@ -169,8 +179,8 @@
       "href": "https://mattroper1977.github.io/Lessons/Games/Static.html",
       "tag": "Reflex",
       "hue": "#63B3ED",
-      "featured": false,
-      "hero": true
+      "featured": true,
+      "hero": false
     },
     {
       "icon": "👻",
