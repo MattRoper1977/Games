@@ -13,6 +13,16 @@
       "hero": true
     },
     {
+      "icon": "🃏",
+      "title": "Glitch Clash",
+      "desc": "BETA · The Glitches return — card against card. Collect 24 Keepers across the brand shapes, mix your trio for Harmony, charge specials, Ascend at low HP and win dramatic beam Clashes across a ten-stage campaign plus a Daily Clash. Gentle by design, offline-friendly, phone-first.",
+      "href": "https://mattroper1977.github.io/Lessons/Games/Glitch_Clash.html",
+      "tag": "Card battle · Beta",
+      "hue": "#A78BFA",
+      "featured": true,
+      "hero": false
+    },
+    {
       "icon": "🎮",
       "title": "Trail Runner",
       "desc": "A fast-paced reflex runner navigating procedural terrain hazards. Ideal for a quick motor-skills reset.",
