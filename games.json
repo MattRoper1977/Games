@@ -3,6 +3,16 @@
   "strap": "Bite-sized challenges, infinite fun — built one game at a time.",
   "games": [
     {
+      "icon": "👾",
+      "title": "Off-Brand",
+      "desc": "NEW · A whodunnit in the brand workshop: six shapes work the line and one (two later on) is a Glitch in disguise. You crack it through movement trails, the scene log and Roll Call statements — and nobody is ever voted out, everything is reversible. Designed for Matt's sweet, adorable niece Clara.",
+      "href": "/Lessons/Games/Off_Brand.html",
+      "tag": "Whodunnit",
+      "hue": "#A78BFA",
+      "featured": true,
+      "hero": true
+    },
+    {
       "icon": "🛡️",
       "title": "Hold the Mark",
       "desc": "NEW · Built mobile-first for phones and tablets. Defend the Made by Matt mark with brand-shape towers, Harmony combos and a calm-play Focus meter. Six levels — including Kerning Run, where the route slides sideways mid-wave — plus thumb gestures, daily challenges, unlockable tower skins and Mark themes. Works offline in any orientation.",
@@ -10,7 +20,7 @@
       "tag": "Strategy",
       "hue": "#F6AD55",
       "featured": true,
-      "hero": true
+      "hero": false
     },
     {
       "icon": "🃏",
