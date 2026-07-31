@@ -5,7 +5,7 @@
     {
       "icon": "👾",
       "title": "Off-Brand",
-      "desc": "NEW · A whodunnit in the brand workshop: six shapes work the line and one (two later on) is a Glitch in disguise. You crack it through movement trails, the scene log and Roll Call statements — and nobody is ever voted out, everything is reversible. Designed for Matt's sweet, adorable niece Clara.",
+      "desc": "A whodunnit in the brand workshop: six shapes work the line and one (two later on) is a Glitch in disguise. You crack it through movement trails, the scene log and Roll Call statements — and nobody is ever voted out, everything is reversible. Designed for Matt's sweet, adorable niece Clara.",
       "href": "/Lessons/Games/Off_Brand.html",
       "tag": "Whodunnit",
       "hue": "#A78BFA",
@@ -15,7 +15,7 @@
     {
       "icon": "📐",
       "title": "Axiom Shift",
-      "desc": "NEW · A one-button rhythm runner where the beat is something you see, not hear — a visible pulse you read instead of music, so it plays in a silent classroom and works for a deaf pupil. Four forms with genuinely different physics (jump, gravity-invert, hold-to-fly, flap), six geometric Propositions, a date-seeded Daily Shift that's the same run for the whole class offline, and the opt-in Axiom Rule for the purists. You never lose — a touch smudges and rewinds to the last checkpoint, and your furthest progress is always kept. Offline, no accounts, no sound.",
+      "desc": "A one-button rhythm runner where the beat is something you see, not hear — a visible pulse you read instead of music, so it plays in a silent classroom and works for a deaf pupil. Four forms with genuinely different physics (jump, gravity-invert, hold-to-fly, flap), six geometric Propositions, a date-seeded Daily Shift that's the same run for the whole class offline, and the opt-in Axiom Rule for the purists. You never lose — a touch smudges and rewinds to the last checkpoint, and your furthest progress is always kept. Offline, no accounts, no sound.",
       "href": "/Lessons/Games/Axiom_Shift.html",
       "tag": "Rhythm",
       "hue": "#5EEAD4",
@@ -25,7 +25,7 @@
     {
       "icon": "✎",
       "title": "Charcoal",
-      "desc": "NEW · A short hide-and-seek round in the Made by Matt studio: six shapes, one quietly smudging finished work back to rough with a stick of charcoal, and one carrying the fixative can — a single spray that seals it. Read the charcoal dust, spend your ink drops on a Blot, a Trace or the Studio lights, and two friends re-ink any shape that's gone rough. You rotate through every role and nothing is ever lost for good. Made with love for Matt's niece Clara ♥.",
+      "desc": "A short hide-and-seek round in the Made by Matt studio: six shapes, one quietly smudging finished work back to rough with a stick of charcoal, and one carrying the fixative can — a single spray that seals it. Read the charcoal dust, spend your ink drops on a Blot, a Trace or the Studio lights, and two friends re-ink any shape that's gone rough. You rotate through every role and nothing is ever lost for good. Made with love for Matt's niece Clara ♥.",
       "href": "/Lessons/Games/Charcoal.html",
       "tag": "Hide & seek",
       "hue": "#D9B44A",
@@ -35,7 +35,7 @@
     {
       "icon": "🛡️",
       "title": "Hold the Mark",
-      "desc": "NEW · Built mobile-first for phones and tablets. Defend the Made by Matt mark with brand-shape towers, Harmony combos and a calm-play Focus meter. Six levels — including Kerning Run, where the route slides sideways mid-wave — plus thumb gestures, daily challenges, unlockable tower skins and Mark themes. Works offline in any orientation.",
+      "desc": "Built mobile-first for phones and tablets. Defend the Made by Matt mark with brand-shape towers, Harmony combos and a calm-play Focus meter. Six levels — including Kerning Run, where the route slides sideways mid-wave — plus thumb gestures, daily challenges, unlockable tower skins and Mark themes. Works offline in any orientation.",
       "href": "/Lessons/Games/Hold_the_Mark.html",
       "tag": "Strategy",
       "hue": "#F6AD55",
@@ -305,7 +305,7 @@
     {
       "icon": "⚽",
       "title": "Apex Kick",
-      "desc": "A single-file browser free-kick game. Swipe to bend the ball, beat the wall and the keeper. Card stats set the physics — never the dice. Works offline.",
+      "desc": "NEW · A single-file browser free-kick game. Drag the marker onto the goal, then flick to strike — bow your drag to bend it past the wall and the keeper. Card stats set the physics, never the dice. Works offline.",
       "href": "/apexkick/",
       "tag": "Sport",
       "hue": "#2F8F6B",
