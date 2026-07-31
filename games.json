@@ -291,6 +291,26 @@
       "hue": "#68D391",
       "featured": false,
       "hero": false
+    },
+    {
+      "icon": "⛏️",
+      "title": "Voxel Frontier",
+      "desc": "Mine, build and explore an endless procedurally generated block world — caves, trees, swimming, per-world saves. Runs offline, right in the browser.",
+      "href": "/voxel/",
+      "tag": "Sandbox",
+      "hue": "#87CEEB",
+      "featured": true,
+      "hero": false
+    },
+    {
+      "icon": "⚽",
+      "title": "Apex Kick",
+      "desc": "A single-file browser free-kick game. Swipe to bend the ball, beat the wall and the keeper. Card stats set the physics — never the dice. Works offline.",
+      "href": "/apexkick/",
+      "tag": "Sport",
+      "hue": "#2F8F6B",
+      "featured": false,
+      "hero": false
     }
   ]
 }
