@@ -23,6 +23,16 @@
       "hero": false
     },
     {
+      "icon": "✎",
+      "title": "Charcoal",
+      "desc": "NEW · A short hide-and-seek round in the Made by Matt studio: six shapes, one quietly smudging finished work back to rough with a stick of charcoal, and one carrying the fixative can — a single spray that seals it. Read the charcoal dust, spend your ink drops on a Blot, a Trace or the Studio lights, and two friends re-ink any shape that's gone rough. You rotate through every role and nothing is ever lost for good. Made with love for Matt's niece Clara ♥.",
+      "href": "/Lessons/Games/Charcoal.html",
+      "tag": "Hide & seek",
+      "hue": "#D9B44A",
+      "featured": true,
+      "hero": false
+    },
+    {
       "icon": "🛡️",
       "title": "Hold the Mark",
       "desc": "NEW · Built mobile-first for phones and tablets. Defend the Made by Matt mark with brand-shape towers, Harmony combos and a calm-play Focus meter. Six levels — including Kerning Run, where the route slides sideways mid-wave — plus thumb gestures, daily challenges, unlockable tower skins and Mark themes. Works offline in any orientation.",
