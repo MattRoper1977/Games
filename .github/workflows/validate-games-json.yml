@@ -1,0 +1,34 @@
+name: Validate games.json
+
+# Enforces the manifest contract whenever games.json (or the validator) changes:
+# one hero, unique ids/slugs/titles/hrefs, complete entries, resolvable hrefs.
+on:
+  push:
+    paths:
+      - 'games.json'
+      - 'tools/validate_games_json.sh'
+      - '.github/workflows/validate-games-json.yml'
+  pull_request:
+    paths:
+      - 'games.json'
+      - 'tools/validate_games_json.sh'
+      - '.github/workflows/validate-games-json.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      # hrefs point into the Lessons repo. Clone it anonymously — it is public,
+      # so this needs no token and no secret, and it works unchanged on forks
+      # and in local runs. (An anonymous HTTPS clone is more robust for the
+      # empty-token case than a second actions/checkout of a different repo.)
+      - name: Fetch the Lessons tree (public, no token)
+        run: git clone --depth 1 https://github.com/MattRoper1977/Lessons.git _lessons
+      - name: Validate games.json
+        run: |
+          chmod +x tools/validate_games_json.sh
+          LESSONS_DIR="$GITHUB_WORKSPACE/_lessons" tools/validate_games_json.sh
