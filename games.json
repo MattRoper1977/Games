@@ -13,6 +13,16 @@
       "hero": true
     },
     {
+      "icon": "📐",
+      "title": "Axiom Shift",
+      "desc": "NEW · A one-button rhythm runner where the beat is something you see, not hear — a visible pulse you read instead of music, so it plays in a silent classroom and works for a deaf pupil. Four forms with genuinely different physics (jump, gravity-invert, hold-to-fly, flap), six geometric Propositions, a date-seeded Daily Shift that's the same run for the whole class offline, and the opt-in Axiom Rule for the purists. You never lose — a touch smudges and rewinds to the last checkpoint, and your furthest progress is always kept. Offline, no accounts, no sound.",
+      "href": "/Lessons/Games/Axiom_Shift.html",
+      "tag": "Rhythm",
+      "hue": "#5EEAD4",
+      "featured": true,
+      "hero": false
+    },
+    {
       "icon": "🛡️",
       "title": "Hold the Mark",
       "desc": "NEW · Built mobile-first for phones and tablets. Defend the Made by Matt mark with brand-shape towers, Harmony combos and a calm-play Focus meter. Six levels — including Kerning Run, where the route slides sideways mid-wave — plus thumb gestures, daily challenges, unlockable tower skins and Mark themes. Works offline in any orientation.",
