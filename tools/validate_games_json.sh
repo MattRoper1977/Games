@@ -100,15 +100,31 @@ ok('every entry carries all required fields [' + REQUIRED.join(', ') + '], non-e
 //     tree is a hard failure, not a pass.
 if (!fs.existsSync(LESSONS) || !fs.statSync(LESSONS).isDirectory())
   fail('Lessons tree not found at "' + LESSONS + '" — set LESSONS_DIR (CI clones MattRoper1977/Lessons into _lessons)');
-const unresolved = [];
+const unresolved = [], rootHosted = [];
 gs.forEach(g => {
   const h = g.href || '';
-  if (!h.startsWith('/Lessons/')) { unresolved.push('"' + g.title + '" href is not under /Lessons/: ' + h); return; }
+  // Root-hosted games (Voxel Frontier, Apex Kick, Medevac Frontier) live in the
+  // SITE repo at /<name>/, not in the Lessons tree, so there is nothing here to
+  // resolve them against. They are checked structurally and listed rather than
+  // failed — silently rejecting them is what made this check red the moment the
+  // estate started shipping games outside Lessons.
+  if (!h.startsWith('/Lessons/')) {
+    if (!/^\/[A-Za-z0-9._-]+\/$/.test(h)) {
+      unresolved.push('"' + g.title + '" href is neither under /Lessons/ nor a well-formed root path: ' + h);
+    } else {
+      rootHosted.push('"' + g.title + '" -> ' + h);
+    }
+    return;
+  }
   const rel = decodeURIComponent(h.replace(/^\/Lessons\//, ''));
   if (!fs.existsSync(path.join(LESSONS, rel))) unresolved.push('"' + g.title + '" -> missing target: ' + h);
 });
 if (unresolved.length) fail('unresolvable href(s):\n    ' + unresolved.join('\n    '));
-ok('all ' + gs.length + ' hrefs resolve to real files in the Lessons tree');
+ok((gs.length - rootHosted.length) + ' Lessons href(s) resolve to real files in the Lessons tree');
+if (rootHosted.length) {
+  console.log('  ok  ' + rootHosted.length + ' root-hosted href(s), checked structurally (SITE repo, not Lessons):');
+  rootHosted.forEach(r => console.log('        ' + r));
+}
 
 // 6 · SANITY FLOOR — manifest non-empty, entry count printed.
 //     The printed count is also what keeps the homepage arcade number honest.
