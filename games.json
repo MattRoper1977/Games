@@ -10,7 +10,8 @@
       "tag": "Whodunnit",
       "hue": "#A78BFA",
       "featured": true,
-      "hero": true
+      "hero": true,
+      "art": "/assets/cards/off-brand.svg"
     },
     {
       "icon": "📐",
@@ -20,7 +21,8 @@
       "tag": "Rhythm",
       "hue": "#5EEAD4",
       "featured": true,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/axiom-shift.svg"
     },
     {
       "icon": "✎",
@@ -30,7 +32,8 @@
       "tag": "Hide & seek",
       "hue": "#D9B44A",
       "featured": true,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/charcoal.svg"
     },
     {
       "icon": "🛡️",
@@ -40,7 +43,8 @@
       "tag": "Strategy",
       "hue": "#F6AD55",
       "featured": true,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/hold-the-mark.webp"
     },
     {
       "icon": "🃏",
@@ -50,7 +54,8 @@
       "tag": "Card battle",
       "hue": "#A78BFA",
       "featured": true,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/glitch-clash.webp"
     },
     {
       "icon": "🎮",
@@ -60,7 +65,8 @@
       "tag": "Reflex",
       "hue": "#5EEAD4",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/trail-runner.svg"
     },
     {
       "icon": "🧱",
@@ -70,7 +76,8 @@
       "tag": "Sandbox",
       "hue": "#B794F4",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/voxelcraft.svg"
     },
     {
       "icon": "🌀",
@@ -80,7 +87,8 @@
       "tag": "Reflex",
       "hue": "#F6AD55",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/vortex.webp"
     },
     {
       "icon": "🌐",
@@ -90,7 +98,8 @@
       "tag": "Classic",
       "hue": "#F687B3",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/globe-snake.webp"
     },
     {
       "icon": "⚡",
@@ -100,7 +109,8 @@
       "tag": "Classic",
       "hue": "#63B3ED",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/neon-snake-overdrive.svg"
     },
     {
       "icon": "🛡️",
@@ -110,7 +120,8 @@
       "tag": "Strategy",
       "hue": "#68D391",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/neon-siege.svg"
     },
     {
       "icon": "🌸",
@@ -120,7 +131,8 @@
       "tag": "Calm",
       "hue": "#5EEAD4",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/neon-garden.svg"
     },
     {
       "icon": "🛰️",
@@ -130,7 +142,8 @@
       "tag": "Physics",
       "hue": "#B794F4",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/orbital.webp"
     },
     {
       "icon": "🏁",
@@ -140,7 +153,8 @@
       "tag": "Reflex",
       "hue": "#F6AD55",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/grid-chase.webp"
     },
     {
       "icon": "🔺",
@@ -150,7 +164,8 @@
       "tag": "Puzzle",
       "hue": "#F687B3",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/prism.svg"
     },
     {
       "icon": "🪝",
@@ -160,7 +175,8 @@
       "tag": "Physics",
       "hue": "#63B3ED",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/grapple.webp"
     },
     {
       "icon": "⚪",
@@ -170,7 +186,8 @@
       "tag": "Physics",
       "hue": "#68D391",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/marble.webp"
     },
     {
       "icon": "⚪",
@@ -180,7 +197,8 @@
       "tag": "Reflex",
       "hue": "#5EEAD4",
       "featured": true,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/slipstream.webp"
     },
     {
       "icon": "⚪",
@@ -190,7 +208,8 @@
       "tag": "Reflex",
       "hue": "#B794F4",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/slipstream-gp.svg"
     },
     {
       "icon": "🔨",
@@ -200,7 +219,8 @@
       "tag": "Physics",
       "hue": "#F6AD55",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/wrecking-crew.svg"
     },
     {
       "icon": "✨",
@@ -210,7 +230,8 @@
       "tag": "Puzzle",
       "hue": "#F687B3",
       "featured": true,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/lumins.webp"
     },
     {
       "icon": "📺",
@@ -220,7 +241,8 @@
       "tag": "Reflex",
       "hue": "#63B3ED",
       "featured": true,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/static.webp"
     },
     {
       "icon": "👻",
@@ -230,7 +252,8 @@
       "tag": "Reflex",
       "hue": "#68D391",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/one-guy.webp"
     },
     {
       "icon": "🗼",
@@ -240,7 +263,8 @@
       "tag": "Strategy",
       "hue": "#5EEAD4",
       "featured": true,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/the-last-lighthouse.svg"
     },
     {
       "icon": "🏆",
@@ -250,7 +274,8 @@
       "tag": "Class game",
       "hue": "#B794F4",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/kids-vs-staff-showdown.webp"
     },
     {
       "icon": "⚽",
@@ -260,7 +285,8 @@
       "tag": "Class game",
       "hue": "#F6AD55",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/world-cup-road-to-the-three-lions-final.webp"
     },
     {
       "icon": "🎮",
@@ -270,7 +296,8 @@
       "tag": "Class game",
       "hue": "#F687B3",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/world-cup-v3-match-director.webp"
     },
     {
       "icon": "🎮",
@@ -280,7 +307,8 @@
       "tag": "Class game",
       "hue": "#63B3ED",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/world-cup-v5-showdown.webp"
     },
     {
       "icon": "🎮",
@@ -290,7 +318,8 @@
       "tag": "Reflex",
       "hue": "#68D391",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/trekkers-trail-runner-tees-coast.svg"
     },
     {
       "icon": "⛏️",
@@ -300,7 +329,8 @@
       "tag": "Sandbox",
       "hue": "#87CEEB",
       "featured": true,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/voxel-frontier.webp"
     },
     {
       "icon": "⚽",
@@ -310,7 +340,8 @@
       "tag": "Physics",
       "hue": "#2F8F6B",
       "featured": false,
-      "hero": false
+      "hero": false,
+      "art": "/assets/cards/apex-kick.webp"
     }
   ]
 }
