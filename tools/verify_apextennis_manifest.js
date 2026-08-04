@@ -1,10 +1,70 @@
 #!/usr/bin/env node
 'use strict';
-const fs=require('fs'),path=require('path');
-const ROOT=path.resolve(__dirname,'..'),FILE=process.env.AT_MANIFEST||path.join(ROOT,'games.json'),ART=path.join(ROOT,'assets/cards/apex-tennis.svg');
+const fs=require('fs'),os=require('os'),path=require('path');
+const ROOT=path.resolve(__dirname,'..');
+const args=process.argv.slice(2),selfTest=args.includes('--self-test');
+const FILE=args.find(x=>x!=='--self-test')||process.env.AT_MANIFEST||path.join(ROOT,'games.json');
+const BASELINE=process.env.APEXPOOL_GAMES_BASELINE||process.env.APEXTENNIS_GAMES_BASELINE||'';
+const ART=path.join(ROOT,'assets/cards/apex-tennis.svg');
 const EXPECT={icon:'🎾',title:'Apex Tennis',desc:'Call the point before the serve, then build it on court. A complete offline tennis game with real rules, three rival styles and an honest Plan Rating.',href:'/apextennis/',tag:'Physics',hue:'#3B6FD4',featured:false,hero:false,art:'/assets/cards/apex-tennis.svg',collection:'Sports'};
-function rgb(h){return[h.slice(1,3),h.slice(3,5),h.slice(5,7)].map(x=>parseInt(x,16))}function dist(a,b){a=rgb(a);b=rgb(b);return Math.hypot(a[0]-b[0],a[1]-b[1],a[2]-b[2])}
-function validate(doc,artText){const errors=[],games=doc.games||[],hits=games.filter(g=>g.title===EXPECT.title||g.href===EXPECT.href);if(games.length!==34)errors.push('count');if(hits.length!==1)errors.push('exactly-once');const g=hits[0]||{};for(const [k,v] of Object.entries(EXPECT))if(g[k]!==v)errors.push('field:'+k);if(!games.every(x=>typeof x.art==='string'&&x.art))errors.push('art-complete');if(new Set(games.map(x=>x.title)).size!==games.length)errors.push('title-unique');if(new Set(games.map(x=>x.href)).size!==games.length)errors.push('href-unique');const sports=games.filter(x=>x.collection==='Sports').map(x=>x.title);if(JSON.stringify(sports)!==JSON.stringify(['Apex Kick','Apex Pool','Apex Golf','Apex Tennis']))errors.push('sports-order');const siblings=['#2F8F6B','#F2A24A','#7C5CFC'];if(!siblings.every(h=>dist(EXPECT.hue,h)>70))errors.push('hue-distance');if(!/viewBox="0 0 640 400"/.test(artText)||!/#3B6FD4/.test(artText)||/<script|(?:xlink:)?href="https?:/i.test(artText))errors.push('art-contract');return errors}
-const doc=JSON.parse(fs.readFileSync(FILE,'utf8')),art=fs.readFileSync(ART,'utf8'),errors=validate(doc,art);if(errors.length){console.error('FAIL manifest — '+errors.join(', '));process.exit(1)}
-console.log('PASS manifest — 34 entries; Apex Tennis exactly once; 4 Sports entries; art complete');console.log('PASS fields — description/head copy exact; /apextennis/; Physics; #3B6FD4');console.log('PASS hue — distances '+['#2F8F6B','#F2A24A','#7C5CFC'].map(h=>dist(EXPECT.hue,h).toFixed(1)).join('/'));
-if(process.argv.includes('--self-test')){const families=[['duplicate',d=>d.games.push({...EXPECT})],['description',d=>d.games.find(x=>x.title===EXPECT.title).desc='rewritten'],['href',d=>d.games.find(x=>x.title===EXPECT.title).href='/Lessons/Apex_Tennis/'],['art',d=>delete d.games.find(x=>x.title===EXPECT.title).art],['hue',d=>d.games.find(x=>x.title===EXPECT.title).hue='#2F8F6B'],['order',d=>{const i=d.games.findIndex(x=>x.title==='Apex Tennis'),x=d.games.splice(i,1)[0],k=d.games.findIndex(x=>x.title==='Apex Kick');d.games.splice(k,0,x)}]];let caught=0;for(const [name,mut] of families){const d=JSON.parse(JSON.stringify(doc));mut(d);if(validate(d,art).length){caught++;console.log('PASS tamper '+name+' rejected')}else console.error('FAIL tamper '+name+' escaped')}if(caught!==families.length)process.exit(1);console.log('ALL '+caught+' MANIFEST MUTATION FAMILIES REJECTED')}
+function same(a,b){return JSON.stringify(a)===JSON.stringify(b)}
+function rgb(h){return[h.slice(1,3),h.slice(3,5),h.slice(5,7)].map(x=>parseInt(x,16))}
+function dist(a,b){a=rgb(a);b=rgb(b);return Math.hypot(a[0]-b[0],a[1]-b[1],a[2]-b[2])}
+function census(games){const out={};for(const g of games)out[g.tag]=(out[g.tag]||0)+1;return out}
+function validate(doc,artText,baseline){
+ const errors=[],games=doc.games||[],before=baseline?.games||null,hits=games.filter(g=>g.title===EXPECT.title||g.href===EXPECT.href),g=hits[0]||{};
+ const expectedCount=before?before.length+1:34;
+ if(games.length!==expectedCount)errors.push('candidate-entry-count-derived');
+ if(hits.length!==1)errors.push('tennis-title-and-href-unique');
+ for(const [k,v] of Object.entries(EXPECT))if(g[k]!==v)errors.push('tennis-schema-and-copy-exact');
+ if(!games.every(x=>typeof x.art==='string'&&x.art))errors.push('all-entries-carry-art');
+ if(new Set(games.map(x=>x.title)).size!==games.length||new Set(games.map(x=>x.href)).size!==games.length)errors.push('all-titles-and-hrefs-unique');
+ const sports=games.filter(x=>x.collection==='Sports').map(x=>x.title);
+ if(!same(sports,['Apex Kick','Apex Pool','Apex Golf','Apex Tennis']))errors.push('sports-membership-exact');
+ const siblings=['#2F8F6B','#F2A24A','#7C5CFC'];
+ if(!siblings.every(h=>dist(EXPECT.hue,h)>70)||(before&&before.some(x=>String(x.hue).toUpperCase()===EXPECT.hue)))errors.push('tennis-hue-distinct-and-new');
+ if(!/viewBox="0 0 640 400"/.test(artText)||!/#3B6FD4/.test(artText)||/<script|(?:xlink:)?href="https?:/i.test(artText))errors.push('art-contract');
+ if(before){
+  const survivors=games.filter(x=>x.title!==EXPECT.title);
+  if(!same(before,survivors))errors.push('all-existing-entries-byte-equivalent');
+  if(games.at(-2)?.title!=='Apex Golf'||games.at(-1)?.title!=='Apex Tennis')errors.push('tennis-appended-after-golf');
+  const tb=census(before),ta=census(games);
+  if(!same(Object.keys(tb).sort(),Object.keys(ta).sort()))errors.push('tag-vocabulary-unchanged');
+  if((ta.Physics||0)!==(tb.Physics||0)+1)errors.push('physics-count-increases-by-one');
+ }
+ const raw=JSON.stringify(doc);
+ if(raw.includes('Apex_Tennis')||raw.includes('/Lessons/Apex_Tennis/'))errors.push('no-lessons-contamination');
+ return [...new Set(errors)];
+}
+const doc=JSON.parse(fs.readFileSync(FILE,'utf8')),art=fs.readFileSync(ART,'utf8'),baseline=BASELINE&&fs.existsSync(BASELINE)?JSON.parse(fs.readFileSync(BASELINE,'utf8')):null;
+if(selfTest){
+ const families=[
+  ['membership','sports-membership-exact',d=>d.games.find(x=>x.title===EXPECT.title).collection='Other'],
+  ['description','tennis-schema-and-copy-exact',d=>d.games.find(x=>x.title===EXPECT.title).desc='rewritten'],
+  ['href','tennis-schema-and-copy-exact',d=>d.games.find(x=>x.title===EXPECT.title).href='/Lessons/Apex_Tennis/'],
+  ['art','all-entries-carry-art',d=>d.games.find(x=>x.title===EXPECT.title).art=''],
+  ['hue','tennis-hue-distinct-and-new',d=>d.games.find(x=>x.title===EXPECT.title).hue='#2F8F6B'],
+  ['duplicate','tennis-title-and-href-unique',d=>d.games.push({...EXPECT})]
+ ];let caught=0;console.log('== Apex Tennis manifest non-vacuity ==');
+ for(const [family,expected,mut] of families){const d=JSON.parse(JSON.stringify(doc));mut(d);const errs=validate(d,art,baseline);if(errs.includes(expected)){caught++;console.log('  PASS  '+family+': rejected by '+expected)}else console.error('  FAIL  '+family+': escaped; '+errs.join(','))}
+ console.log(caught===families.length?'ALL '+caught+' MANIFEST MUTATION FAMILIES REJECTED:`${caught} detected, ${families.length-caught} missed`);process.exit(caught===families.length?0:1);
+}
+const errors=validate(doc,art,baseline);let pass=0,fail=0;function ok(name,condition,detail=''){console.log((condition?'  PASS  ':'  FAIL  ')+name+(detail?'   '+detail:''));condition?pass++:fail++}
+console.log('== Apex Tennis Sports manifest contract ==');
+ok('baseline-entry-count-measured',!baseline||baseline.games.length===33,baseline?String(baseline.games.length):'not supplied');
+ok('candidate-entry-count-derived',!errors.includes('candidate-entry-count-derived'),baseline?`${baseline.games.length} -> ${doc.games.length}`:String(doc.games.length));
+ok('sports-membership-exact',!errors.includes('sports-membership-exact'),doc.games.filter(x=>x.collection==='Sports').map(x=>x.title).join(' | '));
+ok('tennis-title-and-href-unique',!errors.includes('tennis-title-and-href-unique'));
+ok('tennis-schema-and-copy-exact',!errors.includes('tennis-schema-and-copy-exact'));
+ok('all-existing-entries-byte-equivalent',!errors.includes('all-existing-entries-byte-equivalent'));
+ok('tennis-appended-after-golf',!errors.includes('tennis-appended-after-golf'));
+ok('all-entries-carry-art',!errors.includes('all-entries-carry-art'));
+ok('all-titles-and-hrefs-unique',!errors.includes('all-titles-and-hrefs-unique'));
+ok('tag-vocabulary-unchanged',!errors.includes('tag-vocabulary-unchanged'));
+ok('physics-count-increases-by-one',!errors.includes('physics-count-increases-by-one'));
+ok('tennis-hue-distinct-and-new',!errors.includes('tennis-hue-distinct-and-new'),'distances '+['#2F8F6B','#F2A24A','#7C5CFC'].map(h=>dist(EXPECT.hue,h).toFixed(1)).join('/'));
+ok('art-contract',!errors.includes('art-contract'));
+ok('site-relative-house-link',doc.games.find(x=>x.title===EXPECT.title)?.href==='/apextennis/');
+ok('description-is-shipped-meta-copy',doc.games.find(x=>x.title===EXPECT.title)?.desc===EXPECT.desc);
+ok('no-lessons-contamination',!errors.includes('no-lessons-contamination'));
+console.log('='.repeat(68));console.log(fail?`${pass} passed, ${fail} FAILED`:`ALL ${pass} APEX TENNIS MANIFEST CHECKS PASSED`);process.exit(fail?1:0);
