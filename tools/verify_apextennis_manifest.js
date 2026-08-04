@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-const fs=require('fs'),os=require('os'),path=require('path');
+const fs=require('fs'),path=require('path');
 const ROOT=path.resolve(__dirname,'..');
 const args=process.argv.slice(2),selfTest=args.includes('--self-test');
 const FILE=args.find(x=>x!=='--self-test')||process.env.AT_MANIFEST||path.join(ROOT,'games.json');
