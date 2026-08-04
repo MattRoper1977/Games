@@ -21,8 +21,8 @@ function validate(doc,artText,baseline){
  if(!games.every(g=>typeof g.art==='string'&&g.art))errors.push('all-entries-carry-art');
  if(new Set(games.map(g=>g.title)).size!==games.length||new Set(games.map(g=>g.href)).size!==games.length)errors.push('all-titles-and-hrefs-unique');
  if(!same(games.filter(g=>g.collection==='Sports').map(g=>g.title),['Apex Kick','Apex Pool','Apex Golf','Apex Tennis']))errors.push('sports-membership-exact');
- const siblingHues=['#2F8F6B','#F2A24A','#7C5CFC'];
- if(!siblingHues.every(h=>dist(EXPECT.hue,h)>70)||(before&&before.some(g=>String(g.hue).toUpperCase()===EXPECT.hue)))errors.push('tennis-hue-distinct-and-new');
+ const siblingHues=['#2F8F6B','#F2A24A','#7C5CFC'],candidateHue=String(tennis.hue||'').toUpperCase();
+ if(!/^#[0-9A-F]{6}$/.test(candidateHue)||!siblingHues.every(h=>dist(candidateHue,h)>70)||(before&&before.some(g=>String(g.hue).toUpperCase()===candidateHue)))errors.push('tennis-hue-distinct-and-new');
  if(REQUIRE_ART&&(!artText||!/viewBox="0 0 120 96"/.test(artText)||!/#3B6FD4/.test(artText)||/<script|(?:xlink:)?href="https?:/i.test(artText)))errors.push('art-contract');
  if(before){
   if(!same(before,games.filter(g=>g.title!==EXPECT.title)))errors.push('all-existing-entries-byte-equivalent');
