@@ -367,6 +367,18 @@
       "hero": false,
       "art": "/assets/cards/apex-golf.svg",
       "collection": "Sports"
+    },
+    {
+      "icon": "🎾",
+      "title": "Apex Tennis",
+      "desc": "Call the point before the serve, then build it on court. A complete offline tennis game with real rules, three rival styles and an honest Plan Rating.",
+      "href": "/apextennis/",
+      "tag": "Physics",
+      "hue": "#3B6FD4",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/apex-tennis.svg",
+      "collection": "Sports"
     }
   ]
 }

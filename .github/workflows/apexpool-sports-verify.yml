@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'games.json'
+      - 'tools/apply_apextennis_manifest.py'
+      - 'tools/verify_apextennis_manifest.js'
       - 'tools/verify_apexpool_sports_manifest.js'
       - 'tools/verify_apexpool_sports_browser.js'
       - '.github/workflows/apexpool-sports-verify.yml'
@@ -28,28 +30,32 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Capture the current two-game Sports baseline
+      - name: Capture the current 33-entry baseline
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p artifacts/apexpool-sports
-          git show origin/main:games.json > artifacts/apexpool-sports/games-before.json
-          node -e "const d=require('./artifacts/apexpool-sports/games-before.json'); if(!d.games||d.games.length!==32) process.exit(1); console.log('baseline entries='+d.games.length)"
-      - name: Run manifest, idempotency and non-vacuity gates
-        shell: bash
-        env:
-          APEXPOOL_GAMES_BASELINE: artifacts/apexpool-sports/games-before.json
-        run: |
-          set -o pipefail
-          node tools/verify_apexpool_sports_manifest.js | tee artifacts/apexpool-sports/manifest.log
-          node tools/verify_apexpool_sports_manifest.js --self-test | tee artifacts/apexpool-sports/nonvacuity.log
-      # Site merge ceeb5bd763bfe545cc466f0ec80c0394cf098db5 carries the three-game Sports renderer and Golf art.
-      - name: Check out the landed Arcade renderer
+          mkdir -p artifacts/apextennis-sports
+          git show origin/main:games.json > artifacts/apextennis-sports/games-before.json
+          node -e "const d=require('./artifacts/apextennis-sports/games-before.json');if(!d.games||d.games.length!==33)process.exit(1);console.log('baseline entries='+d.games.length)"
+      - name: Check out the paired Arcade renderer and card art
         uses: actions/checkout@v4
         with:
           repository: MattRoper1977/mattroper1977.github.io
-          ref: main
+          ref: codex/apextennis-arcade-sports
           path: site
+      - name: Run manifest, art, idempotency and non-vacuity gates
+        shell: bash
+        env:
+          APEXPOOL_GAMES_BASELINE: artifacts/apextennis-sports/games-before.json
+          APEXTENNIS_ART_FILE: site/assets/cards/apex-tennis.svg
+        run: |
+          set -euo pipefail
+          node --check tools/verify_apextennis_manifest.js
+          node tools/verify_apexpool_sports_manifest.js | tee artifacts/apextennis-sports/manifest.log
+          node tools/verify_apexpool_sports_manifest.js --self-test | tee artifacts/apextennis-sports/nonvacuity.log
+          before=$(sha256sum games.json | cut -d' ' -f1)
+          python3 tools/apply_apextennis_manifest.py | tee artifacts/apextennis-sports/idempotency.log
+          test "$before" = "$(sha256sum games.json | cut -d' ' -f1)"
       - name: Mount the candidate manifest under the site origin
         shell: bash
         run: |
@@ -60,31 +66,30 @@ jobs:
         run: |
           npm install --no-save --no-package-lock playwright@1.55.0
           npx playwright install --with-deps chromium
-      - name: Serve the combined candidate
+      - name: Serve the paired candidate
         shell: bash
         run: |
           set -euo pipefail
-          python3 -m http.server 4173 --bind 127.0.0.1 --directory site > artifacts/apexpool-sports/server.log 2>&1 &
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory site > artifacts/apextennis-sports/server.log 2>&1 &
           for i in {1..30}; do
             if curl -fsS http://127.0.0.1:4173/games/ >/dev/null; then exit 0; fi
             sleep 1
           done
-          cat artifacts/apexpool-sports/server.log
+          cat artifacts/apextennis-sports/server.log
           exit 1
       - name: Run end-to-end rendered gates
         shell: bash
         env:
           ARCADE_BASE_URL: http://127.0.0.1:4173
           APEXPOOL_GAMES_FILE: games.json
-          APEXPOOL_GAMES_BASELINE: artifacts/apexpool-sports/games-before.json
         run: |
           set -o pipefail
-          node tools/verify_apexpool_sports_browser.js | tee artifacts/apexpool-sports/browser.log
+          node tools/verify_apexpool_sports_browser.js | tee artifacts/apextennis-sports/browser.log
       - name: Upload evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: apex-sports-evidence-${{ github.run_id }}
-          path: artifacts/apexpool-sports/
+          name: apex-tennis-sports-evidence-${{ github.run_id }}
+          path: artifacts/apextennis-sports/
           if-no-files-found: error
           retention-days: 30
