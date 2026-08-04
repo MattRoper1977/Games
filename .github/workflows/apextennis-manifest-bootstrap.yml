@@ -1,0 +1,37 @@
+name: Apex Tennis manifest bootstrap
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'tools/apply_apextennis_manifest.py'
+      - 'tools/verify_apextennis_manifest.js'
+      - '.github/workflows/apextennis-manifest-bootstrap.yml'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/apextennis-arcade-sports
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply, verify and prove idempotency
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/apply_apextennis_manifest.py
+          node tools/verify_apextennis_manifest.js
+          before=$(sha256sum games.json assets/cards/apex-tennis.svg | sha256sum | cut -d' ' -f1)
+          python3 tools/apply_apextennis_manifest.py
+          after=$(sha256sum games.json assets/cards/apex-tennis.svg | sha256sum | cut -d' ' -f1)
+          test "$before" = "$after"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add games.json assets/cards/apex-tennis.svg
+          git commit -m 'feat: add Apex Tennis to Sports manifest'
+          git push origin HEAD:codex/apextennis-arcade-sports
