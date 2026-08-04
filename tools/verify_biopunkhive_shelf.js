@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+'use strict';
+const fs = require('fs');
+const path = require('path');
+let checks = 0;
+const pass = (condition, message) => {
+  checks += 1;
+  if (!condition) throw new Error(`FAIL ${checks}: ${message}`);
+  console.log(`PASS ${checks}: ${message}`);
+};
+const manifestPath = path.join(__dirname, '..', 'games.json');
+const raw = fs.readFileSync(manifestPath, 'utf8');
+const data = JSON.parse(raw);
+pass(data && typeof data === 'object', 'manifest root is an object');
+pass(Array.isArray(data.games), 'manifest exposes games array');
+pass(data.games.length > 0, 'manifest contains games');
+pass(data.games.every(game => typeof game.art === 'string' && game.art.trim()), 'every entry carries art');
+const target = data.games.filter(game => game.href === '/biopunkhive/');
+pass(target.length === 1, 'Biopunk Hive href is unique');
+const game = target[0];
+pass(game.title === 'NEW · Biopunk Hive — Containment Lab', 'NEW title is exact');
+pass(game.tag === 'Idle', 'tag is Idle');
+pass(game.hue === '#00FF66', 'shelf hue is neon slime');
+pass(game.art === '/assets/cards/biopunk-hive.svg', 'art path is present and canonical');
+pass(game.featured === false && game.hero === false, 'no homepage or hero placement is requested');
+pass(game.href.startsWith('/') && !/^https?:/i.test(game.href), 'href is site-relative');
+pass(new Set(data.games.map(item => item.href)).size === data.games.length, 'all shelf hrefs remain unique');
+const clone = JSON.parse(JSON.stringify(data));
+const before = JSON.stringify(clone);
+if (!clone.games.some(item => item.href === '/biopunkhive/')) clone.games.unshift(game);
+pass(JSON.stringify(clone) === before, 'canonical insertion is idempotent');
+console.log(`Biopunk Hive shelf contract: ${checks} checks passed.`);
