@@ -1,0 +1,89 @@
+name: Add Apex Golf shelf entry
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/apexgolf-shelf.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  shelf:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-actions[bot]'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
+      - name: Upsert one idempotent Apex Golf entry
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = 'games.json';
+          const doc = JSON.parse(fs.readFileSync(path, 'utf8'));
+          if (!Array.isArray(doc.games)) throw new Error('games.json games must be an array');
+
+          const entry = {
+            icon: '⛳',
+            title: 'Apex Golf',
+            desc: 'A top-down golf game about reading the hole and knowing your own game. Call your stroke count, play nine seeded holes with honest wind and slope, then earn a Call Rating. Works offline.',
+            href: '/apexgolf/',
+            tag: 'Physics',
+            hue: '#7C5CFC',
+            featured: false,
+            hero: false,
+            art: '/assets/cards/apex-golf.svg'
+          };
+
+          const before = doc.games.length;
+          const existed = doc.games.some(game => game.title === entry.title || game.href === entry.href);
+          function upsert() {
+            const matches = doc.games.filter(game => game.title === entry.title || game.href === entry.href);
+            if (matches.length > 1) throw new Error('duplicate Apex Golf entries before upsert');
+            const index = doc.games.findIndex(game => game.title === entry.title || game.href === entry.href);
+            if (index === -1) doc.games.push(entry);
+            else doc.games[index] = entry;
+          }
+
+          upsert();
+          const once = JSON.stringify(doc, null, 2) + '\n';
+          upsert();
+          const twice = JSON.stringify(doc, null, 2) + '\n';
+          if (once !== twice) throw new Error('shelf upsert is not idempotent');
+
+          const golf = doc.games.filter(game => game.title === 'Apex Golf');
+          if (golf.length !== 1) throw new Error(`expected one Apex Golf entry, found ${golf.length}`);
+          if (doc.games.length !== before + (existed ? 0 : 1)) throw new Error('unexpected manifest count delta');
+          if (doc.games.some(game => !game.art)) throw new Error('every shelf entry must carry art');
+          if (golf[0].desc !== entry.desc) throw new Error('meta description drift');
+          if (golf[0].tag !== 'Physics') throw new Error('tag vocabulary drift');
+
+          const kick = doc.games.find(game => game.title === 'Apex Kick');
+          if (!kick || kick.hue !== '#2F8F6B') throw new Error('Apex Kick reference hue changed or missing');
+          const pool = doc.games.find(game => game.title === 'Apex Pool');
+          if (pool && pool.hue !== '#F2A24A') throw new Error('Apex Pool reference hue changed');
+          if (['#2F8F6B', '#F2A24A'].includes(entry.hue)) throw new Error('Apex Golf hue collides with a sibling');
+
+          fs.writeFileSync(path, twice);
+          console.log(`entries ${before} -> ${doc.games.length}`);
+          console.log(`art ${doc.games.filter(game => game.art).length}/${doc.games.length}`);
+          console.log(`hue ${entry.hue}; checked against #2F8F6B and #F2A24A`);
+          console.log('idempotency second run: unchanged');
+          NODE
+
+      - name: Commit shelf entry
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add games.json
+          git commit -m "feat: add Apex Golf to the arcade shelf"
+          git push origin "HEAD:${{ github.head_ref }}"
