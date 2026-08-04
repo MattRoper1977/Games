@@ -1,4 +1,4 @@
-name: Apex Pool Sports manifest contract
+name: Apex Sports manifest contract
 
 on:
   pull_request:
@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: apexpool-sports-${{ github.event.pull_request.number || github.ref }}
+  group: apex-sports-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -28,14 +28,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Capture the main-branch baseline
+      - name: Capture the current two-game Sports baseline
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p artifacts/apexpool-sports
           git show origin/main:games.json > artifacts/apexpool-sports/games-before.json
-          node -e "const d=require('./artifacts/apexpool-sports/games-before.json'); if(!d.games||d.games.length!==31) process.exit(1); console.log('baseline entries='+d.games.length)"
-      - name: Run manifest and non-vacuity gates
+          node -e "const d=require('./artifacts/apexpool-sports/games-before.json'); if(!d.games||d.games.length!==32) process.exit(1); console.log('baseline entries='+d.games.length)"
+      - name: Run manifest, idempotency and non-vacuity gates
         shell: bash
         env:
           APEXPOOL_GAMES_BASELINE: artifacts/apexpool-sports/games-before.json
@@ -83,7 +83,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: apexpool-sports-evidence-${{ github.run_id }}
+          name: apex-sports-evidence-${{ github.run_id }}
           path: artifacts/apexpool-sports/
           if-no-files-found: error
           retention-days: 30
