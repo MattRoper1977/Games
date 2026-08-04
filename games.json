@@ -342,6 +342,17 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/apex-kick.webp"
+    },
+    {
+      "icon": "⛳",
+      "title": "Apex Golf",
+      "desc": "A top-down golf game about reading the hole and knowing your own game. Call your stroke count, play nine seeded holes with honest wind and slope, then earn a Call Rating. Works offline.",
+      "href": "/apexgolf/",
+      "tag": "Physics",
+      "hue": "#7C5CFC",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/apex-golf.svg"
     }
   ]
 }
