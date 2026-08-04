@@ -341,7 +341,20 @@
       "hue": "#2F8F6B",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/apex-kick.webp"
+      "art": "/assets/cards/apex-kick.webp",
+      "collection": "Sports"
+    },
+    {
+      "icon": "🎱",
+      "title": "Apex Pool",
+      "desc": "NEW · Call the cue ball's leave, then prove you can read the table. Offline 8-ball with genuine spin, position play, AI, trick shots and an honest Leave Rating.",
+      "href": "/apexpool/",
+      "tag": "Physics",
+      "hue": "#F2A24A",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/apex-pool.svg",
+      "collection": "Sports"
     }
   ]
 }

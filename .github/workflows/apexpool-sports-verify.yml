@@ -1,0 +1,89 @@
+name: Apex Pool Sports manifest contract
+
+on:
+  pull_request:
+    paths:
+      - 'games.json'
+      - 'tools/verify_apexpool_sports_manifest.js'
+      - 'tools/verify_apexpool_sports_browser.js'
+      - '.github/workflows/apexpool-sports-verify.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: apexpool-sports-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out Games candidate
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Capture the main-branch baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/apexpool-sports
+          git show origin/main:games.json > artifacts/apexpool-sports/games-before.json
+          node -e "const d=require('./artifacts/apexpool-sports/games-before.json'); if(!d.games||d.games.length!==31) process.exit(1); console.log('baseline entries='+d.games.length)"
+      - name: Run manifest and non-vacuity gates
+        shell: bash
+        env:
+          APEXPOOL_GAMES_BASELINE: artifacts/apexpool-sports/games-before.json
+        run: |
+          set -o pipefail
+          node tools/verify_apexpool_sports_manifest.js | tee artifacts/apexpool-sports/manifest.log
+          node tools/verify_apexpool_sports_manifest.js --self-test | tee artifacts/apexpool-sports/nonvacuity.log
+      - name: Check out the landed Arcade renderer
+        uses: actions/checkout@v4
+        with:
+          repository: MattRoper1977/mattroper1977.github.io
+          ref: main
+          path: site
+      - name: Mount the candidate manifest under the site origin
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p site/Games
+          cp games.json site/Games/games.json
+      - name: Install pinned Chromium harness
+        run: |
+          npm install --no-save --no-package-lock playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Serve the combined candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory site > artifacts/apexpool-sports/server.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/games/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat artifacts/apexpool-sports/server.log
+          exit 1
+      - name: Run end-to-end rendered gates
+        shell: bash
+        env:
+          ARCADE_BASE_URL: http://127.0.0.1:4173
+          APEXPOOL_GAMES_FILE: games.json
+          APEXPOOL_GAMES_BASELINE: artifacts/apexpool-sports/games-before.json
+        run: |
+          set -o pipefail
+          node tools/verify_apexpool_sports_browser.js | tee artifacts/apexpool-sports/browser.log
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: apexpool-sports-evidence-${{ github.run_id }}
+          path: artifacts/apexpool-sports/
+          if-no-files-found: error
+          retention-days: 30
