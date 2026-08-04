@@ -1,35 +1,34 @@
 #!/usr/bin/env node
 'use strict';
-
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { spawnSync } = require('child_process');
-
 const args = process.argv.slice(2);
 const selfTest = args.includes('--self-test');
 const supplied = args.find((arg) => arg !== '--self-test');
 const FILE = supplied || path.join(__dirname, '..', 'games.json');
 const BASELINE = process.env.APEXPOOL_GAMES_BASELINE || path.join(__dirname, '..', 'artifacts', 'apexpool-sports', 'games-before.json');
-const expectedPool = {
-  icon: '🎱', title: 'Apex Pool',
-  desc: "NEW · Call the cue ball's leave, then prove you can read the table. Offline 8-ball with genuine spin, position play, AI, trick shots and an honest Leave Rating.",
-  href: '/apexpool/', tag: 'Physics', hue: '#F2A24A', featured: false, hero: false,
-  art: '/assets/cards/apex-pool.svg', collection: 'Sports'
+const expectedGolf = {
+  icon: '⛳', title: 'Apex Golf',
+  desc: 'A top-down golf game about reading the hole and knowing your own game. Call your stroke count, play nine seeded holes with honest wind and slope, then earn a Call Rating. Works offline.',
+  href: '/apexgolf/', tag: 'Physics', hue: '#7C5CFC', featured: false, hero: false,
+  art: '/assets/cards/apex-golf.svg', collection: 'Sports'
 };
-
+function same(a, b) { return JSON.stringify(a) === JSON.stringify(b); }
+function census(games) { const out = {}; games.forEach((g) => { out[g.tag] = (out[g.tag] || 0) + 1; }); return out; }
 function selfCheck() {
   const source = fs.readFileSync(FILE, 'utf8');
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'games-sports-'));
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'games-golf-sports-'));
   const cases = [
-    ['membership', 'sports-membership-exact', (s) => s.replace('"collection": "Sports"\n    }\n  ]', '"collection": "Other"\n    }\n  ]')],
-    ['art', 'all-entries-carry-art', (s) => s.replace('"art": "/assets/cards/apex-pool.svg"', '"art": ""')],
-    ['tag', 'tag-vocabulary-unchanged', (s) => s.replace('"tag": "Physics",\n      "hue": "#F2A24A"', '"tag": "Sport",\n      "hue": "#F2A24A"')],
-    ['hue', 'pool-hue-distinct-and-new', (s) => s.replace('"hue": "#F2A24A"', '"hue": "#2F8F6B"')],
-    ['duplicate', 'pool-title-and-href-unique', (s) => s.replace('"title": "Apex Pool"', '"title": "Apex Kick"')]
+    ['membership', 'sports-membership-exact', (s) => s.replace('"art": "/assets/cards/apex-golf.svg",\n      "collection": "Sports"', '"art": "/assets/cards/apex-golf.svg",\n      "collection": "Other"')],
+    ['art', 'all-entries-carry-art', (s) => s.replace('"art": "/assets/cards/apex-golf.svg"', '"art": ""')],
+    ['tag', 'tag-vocabulary-unchanged', (s) => s.replace('"tag": "Physics",\n      "hue": "#7C5CFC"', '"tag": "Sport",\n      "hue": "#7C5CFC"')],
+    ['hue', 'golf-hue-distinct-and-new', (s) => s.replace('"hue": "#7C5CFC"', '"hue": "#2F8F6B"')],
+    ['duplicate', 'golf-title-and-href-unique', (s) => s.replace('"title": "Apex Golf"', '"title": "Apex Pool"')]
   ];
   let missed = 0;
-  console.log('== Apex Pool manifest non-vacuity ==');
+  console.log('== Apex Golf Sports manifest non-vacuity ==');
   cases.forEach(([family, expected, mutate], index) => {
     const changed = mutate(source);
     const file = path.join(root, `${index}-${family}.json`);
@@ -44,49 +43,40 @@ function selfCheck() {
   process.exit(missed ? 1 : 0);
 }
 if (selfTest) selfCheck();
-
 const beforeRaw = fs.readFileSync(BASELINE, 'utf8');
 const afterRaw = fs.readFileSync(FILE, 'utf8');
 const before = JSON.parse(beforeRaw).games || [];
 const after = JSON.parse(afterRaw).games || [];
-let pass = 0;
-let fail = 0;
+let pass = 0, fail = 0;
 function ok(name, condition, detail = '') {
   if (condition) { pass++; console.log('  PASS  ' + name + (detail ? '   ' + detail : '')); }
   else { fail++; console.log('  FAIL  ' + name + (detail ? '   ' + detail : '')); }
 }
-function same(a, b) { return JSON.stringify(a) === JSON.stringify(b); }
-function census(games) { const out = {}; games.forEach((g) => { out[g.tag] = (out[g.tag] || 0) + 1; }); return out; }
-
-const poolRows = after.filter((g) => g.title === 'Apex Pool');
-const poolHrefs = after.filter((g) => g.href === '/apexpool/');
-const kickBefore = before.find((g) => g.title === 'Apex Kick');
-const kickAfter = after.find((g) => g.title === 'Apex Kick');
-const sports = after.filter((g) => g.collection === 'Sports');
-const tagsBefore = census(before);
-const tagsAfter = census(after);
-const survivorsBefore = before.filter((g) => g.title !== 'Apex Kick');
-const survivorsAfter = after.filter((g) => g.title !== 'Apex Kick' && g.title !== 'Apex Pool');
-const expectedKick = { ...kickBefore, collection: 'Sports' };
-
-console.log('== Apex Pool Sports manifest contract ==');
-ok('baseline-entry-count-measured', before.length === 31, String(before.length));
+const golfRows = after.filter((g) => g.title === 'Apex Golf');
+const golfHrefs = after.filter((g) => g.href === '/apexgolf/');
+const sportsBefore = before.filter((g) => g.collection === 'Sports');
+const sportsAfter = after.filter((g) => g.collection === 'Sports');
+const survivorsAfter = after.filter((g) => g.title !== 'Apex Golf');
+const tagsBefore = census(before), tagsAfter = census(after);
+const kick = before.find((g) => g.title === 'Apex Kick');
+const pool = before.find((g) => g.title === 'Apex Pool');
+console.log('== Apex Golf Sports manifest contract ==');
+ok('baseline-entry-count-measured', before.length === 32, String(before.length));
 ok('candidate-entry-count-derived', after.length === before.length + 1, `${before.length} -> ${after.length}`);
-ok('pool-title-and-href-unique', poolRows.length === 1 && poolHrefs.length === 1 && poolRows[0] === poolHrefs[0]);
-ok('pool-schema-and-copy-exact', poolRows.length === 1 && same(poolRows[0], expectedPool));
-ok('sports-membership-exact', same(sports.map((g) => g.title), ['Apex Kick', 'Apex Pool']), sports.map((g) => g.title).join(' | '));
-ok('apex-kick-only-gains-collection', same(kickAfter, expectedKick));
-ok('all-other-entries-byte-equivalent', same(survivorsBefore, survivorsAfter));
-ok('pool-appended-adjacent-to-kick', after[after.length - 2].title === 'Apex Kick' && after[after.length - 1].title === 'Apex Pool');
+ok('baseline-sports-membership-preserved', same(sportsBefore.map((g) => g.title), ['Apex Kick', 'Apex Pool']), sportsBefore.map((g) => g.title).join(' | '));
+ok('sports-membership-exact', same(sportsAfter.map((g) => g.title), ['Apex Kick', 'Apex Pool', 'Apex Golf']), sportsAfter.map((g) => g.title).join(' | '));
+ok('golf-title-and-href-unique', golfRows.length === 1 && golfHrefs.length === 1 && golfRows[0] === golfHrefs[0]);
+ok('golf-schema-and-copy-exact', golfRows.length === 1 && same(golfRows[0], expectedGolf));
+ok('all-existing-entries-byte-equivalent', same(before, survivorsAfter));
+ok('golf-appended-after-pool', after[after.length - 2].title === 'Apex Pool' && after[after.length - 1].title === 'Apex Golf');
 ok('all-entries-carry-art', after.every((g) => typeof g.art === 'string' && g.art.length > 0));
 ok('tag-vocabulary-unchanged', same(Object.keys(tagsBefore).sort(), Object.keys(tagsAfter).sort()), `${JSON.stringify(tagsBefore)} -> ${JSON.stringify(tagsAfter)}`);
-ok('physics-count-increases-by-one', tagsBefore.Physics === 5 && tagsAfter.Physics === 6, `${tagsBefore.Physics} -> ${tagsAfter.Physics}`);
-ok('pool-hue-distinct-and-new', poolRows.length === 1 && poolRows[0].hue !== kickAfter.hue && !before.some((g) => g.hue.toUpperCase() === poolRows[0].hue.toUpperCase()), poolRows.length ? poolRows[0].hue : 'missing');
-ok('site-relative-house-link', poolRows.length === 1 && poolRows[0].href === '/apexpool/');
-ok('new-prefix-preserved', poolRows.length === 1 && poolRows[0].desc.startsWith('NEW · '));
-ok('no-lessons-contamination', !afterRaw.includes('Apex_Pool') && !afterRaw.includes('/Lessons/Apex_Pool/'));
-
+ok('physics-count-increases-by-one', tagsBefore.Physics === 6 && tagsAfter.Physics === 7, `${tagsBefore.Physics} -> ${tagsAfter.Physics}`);
+ok('golf-hue-distinct-and-new', golfRows.length === 1 && golfRows[0].hue !== kick.hue && golfRows[0].hue !== pool.hue && !before.some((g) => g.hue.toUpperCase() === golfRows[0].hue.toUpperCase()), golfRows.length ? golfRows[0].hue : 'missing');
+ok('site-relative-house-link', golfRows.length === 1 && golfRows[0].href === '/apexgolf/');
+ok('description-is-shipped-meta-copy', golfRows.length === 1 && golfRows[0].desc === expectedGolf.desc);
+ok('no-lessons-contamination', !afterRaw.includes('Apex_Golf') && !afterRaw.includes('/Lessons/Apex_Golf/'));
 console.log('='.repeat(64));
-console.log(fail === 0 ? `ALL ${pass} APEX POOL MANIFEST CHECKS PASSED` : `${pass} passed, ${fail} FAILED`);
+console.log(fail === 0 ? `ALL ${pass} APEX GOLF MANIFEST CHECKS PASSED` : `${pass} passed, ${fail} FAILED`);
 console.log('='.repeat(64));
 process.exit(fail ? 1 : 0);
