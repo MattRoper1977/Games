@@ -43,6 +43,7 @@ jobs:
           set -o pipefail
           node tools/verify_apexpool_sports_manifest.js | tee artifacts/apexpool-sports/manifest.log
           node tools/verify_apexpool_sports_manifest.js --self-test | tee artifacts/apexpool-sports/nonvacuity.log
+      # Site merge ceeb5bd763bfe545cc466f0ec80c0394cf098db5 carries the three-game Sports renderer and Golf art.
       - name: Check out the landed Arcade renderer
         uses: actions/checkout@v4
         with:
