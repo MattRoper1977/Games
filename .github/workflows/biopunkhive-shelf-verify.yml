@@ -49,3 +49,15 @@ jobs:
           path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           PY
           cmp -s /tmp/games-before.json games.json
+
+      - name: Verify live game target and exact identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location \
+            --retry 12 --retry-delay 10 --retry-all-errors \
+            https://madebymatt.uk/biopunkhive/ -o /tmp/biopunkhive-live.html
+          test "$(wc -c < /tmp/biopunkhive-live.html)" -eq 76841
+          echo 'f129e84bf8718d4b14feb9d3492cc6d534a86d3b0ee5438ed077652b3790080e  /tmp/biopunkhive-live.html' | sha256sum -c -
+          test "$(grep -o 'biopunkhive-build-2026-08-04' /tmp/biopunkhive-live.html | wc -l)" -eq 2
+          grep -q '<title>Biopunk Hive — Made by Matt</title>' /tmp/biopunkhive-live.html
