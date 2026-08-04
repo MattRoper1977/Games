@@ -342,6 +342,17 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/apex-kick.webp"
+    },
+    {
+      "icon": "🎱",
+      "title": "Apex Pool",
+      "desc": "NEW · Call where the cue ball will finish, then play the shot. Full 8-ball rules, genuine draw/follow/sidespin, spin-honest prediction, seven AI styles and arcade modes — all offline in one file.",
+      "href": "/apexpool/",
+      "tag": "Physics",
+      "hue": "#176344",
+      "featured": true,
+      "hero": false,
+      "art": "/assets/cards/apex-pool.svg"
     }
   ]
 }
