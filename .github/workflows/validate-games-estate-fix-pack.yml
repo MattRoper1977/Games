@@ -1,0 +1,202 @@
+name: Validate Games estate fix pack
+
+'on':
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'review/estate-fixes/**'
+      - '.github/workflows/validate-games-estate-fix-pack.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: games-estate-fix-pack-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Apply gate-first and content-only patches to exact main
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      - name: Check out review branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Check out website repository read-only
+        uses: actions/checkout@v4
+        with:
+          repository: MattRoper1977/mattroper1977.github.io
+          ref: main
+          path: _site
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Check out Lessons repository read-only
+        uses: actions/checkout@v4
+        with:
+          repository: MattRoper1977/Lessons
+          ref: main
+          path: _lessons
+          fetch-depth: 1
+          lfs: true
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install browser validation dependency
+        run: python -m pip install --disable-pip-version-check 'selenium>=4.18'
+
+      - name: Apply and validate both review stages
+        id: validation
+        shell: bash
+        env:
+          SPORTS_BASE_REF: origin/main
+        run: |
+          set +e
+          mkdir -p validation-output
+          (
+            set -euo pipefail
+            BASE='0fc29d519caea32b725d0b5dcbdcf2e6ef03db60'
+            PACK="$GITHUB_WORKSPACE/review/estate-fixes"
+            WORKTREE="$RUNNER_TEMP/games-estate-fixed"
+
+            python -m py_compile "$PACK/validate_applied.py"
+            git cat-file -e "$BASE^{commit}"
+            git worktree add --detach "$WORKTREE" "$BASE"
+            before_manifest=$(sha256sum "$WORKTREE/games.json" | cut -d' ' -f1)
+
+            printf '=== STAGE 1: gate and transform repair only ===\n'
+            git -C "$WORKTREE" apply --check --verbose --recount --ignore-space-change \
+              "$PACK/0001-repair-new-release-contracts.patch"
+            git -C "$WORKTREE" apply --verbose --recount --ignore-space-change \
+              "$PACK/0001-repair-new-release-contracts.patch"
+
+            python - "$WORKTREE" <<'PY'
+          import pathlib, subprocess, sys
+          root = pathlib.Path(sys.argv[1])
+          expected = sorted([
+              '.github/workflows/sports-rail-verify.yml',
+              'tools/apply_apexrally_manifest.py',
+              'tools/verify_echovault_shelf.js',
+              'tools/verify_relicforge_shelf.js',
+              'tools/verify_sports_rail.js',
+          ])
+          actual = sorted(subprocess.check_output(
+              ['git', 'diff', '--name-only', '0fc29d519caea32b725d0b5dcbdcf2e6ef03db60', '--'],
+              cwd=root, text=True
+          ).splitlines())
+          if actual != expected:
+              raise SystemExit(f'stage-1 allowlist mismatch\nexpected={expected}\nactual={actual}')
+          PY
+            test "$before_manifest" = "$(sha256sum "$WORKTREE/games.json" | cut -d' ' -f1)"
+            git -C "$WORKTREE" diff --check "$BASE" --
+            node --check "$WORKTREE/tools/verify_sports_rail.js"
+            node --check "$WORKTREE/tools/verify_echovault_shelf.js"
+            node --check "$WORKTREE/tools/verify_relicforge_shelf.js"
+            python -m py_compile "$WORKTREE/tools/apply_apexrally_manifest.py"
+
+            (
+              cd "$WORKTREE"
+              bash tools/validate_games_json.sh games.json "$GITHUB_WORKSPACE/_lessons" | tee "$GITHUB_WORKSPACE/validation-output/stage1-canonical.log"
+              node tools/verify_sports_rail.js | tee "$GITHUB_WORKSPACE/validation-output/stage1-sports.log"
+              node tools/verify_echovault_shelf.js | tee "$GITHUB_WORKSPACE/validation-output/stage1-echo.log"
+              node tools/verify_relicforge_shelf.js | tee "$GITHUB_WORKSPACE/validation-output/stage1-relic.log"
+              python tools/apply_apexrally_manifest.py --check | tee "$GITHUB_WORKSPACE/validation-output/stage1-rally-idempotency.log"
+            )
+
+            printf '=== STAGE 2: content-only marker normalisation ===\n'
+            git -C "$WORKTREE" apply --check --verbose --recount --ignore-space-change \
+              "$PACK/0002-normalise-new-release-holder.patch"
+            git -C "$WORKTREE" apply --verbose --recount --ignore-space-change \
+              "$PACK/0002-normalise-new-release-holder.patch"
+
+            python - "$WORKTREE" <<'PY'
+          import pathlib, subprocess, sys
+          root = pathlib.Path(sys.argv[1])
+          expected = sorted([
+              '.github/workflows/sports-rail-verify.yml',
+              'games.json',
+              'tools/apply_apexrally_manifest.py',
+              'tools/verify_echovault_shelf.js',
+              'tools/verify_relicforge_shelf.js',
+              'tools/verify_sports_rail.js',
+          ])
+          actual = sorted(subprocess.check_output(
+              ['git', 'diff', '--name-only', '0fc29d519caea32b725d0b5dcbdcf2e6ef03db60', '--'],
+              cwd=root, text=True
+          ).splitlines())
+          if actual != expected:
+              raise SystemExit(f'final allowlist mismatch\nexpected={expected}\nactual={actual}')
+          PY
+            git -C "$WORKTREE" diff --check "$BASE" --
+
+            (
+              cd "$WORKTREE"
+              bash tools/validate_games_json.sh games.json "$GITHUB_WORKSPACE/_lessons" | tee "$GITHUB_WORKSPACE/validation-output/stage2-canonical.log"
+              node tools/verify_sports_rail.js | tee "$GITHUB_WORKSPACE/validation-output/stage2-sports.log"
+              node tools/verify_echovault_shelf.js | tee "$GITHUB_WORKSPACE/validation-output/stage2-echo.log"
+              node tools/verify_relicforge_shelf.js | tee "$GITHUB_WORKSPACE/validation-output/stage2-relic.log"
+              python tools/apply_apexrally_manifest.py --check | tee "$GITHUB_WORKSPACE/validation-output/stage2-rally-idempotency.log"
+            )
+
+            git -C "$WORKTREE" diff --name-status "$BASE" -- > validation-output/changed-files.txt
+            git -C "$WORKTREE" diff --binary "$BASE" -- > validation-output/applied-fixes.patch
+
+            python "$PACK/validate_applied.py" \
+              --repo "$WORKTREE" \
+              --site-root "$GITHUB_WORKSPACE/_site" \
+              --lessons-root "$GITHUB_WORKSPACE/_lessons" \
+              --output "$GITHUB_WORKSPACE/validation-output" \
+              --browser
+
+            {
+              printf 'review_head=%s\n' "$(git rev-parse HEAD)"
+              printf 'games_base=%s\n' "$BASE"
+              printf 'site_main=%s\n' "$(git -C _site rev-parse HEAD)"
+              printf 'lessons_main=%s\n' "$(git -C _lessons rev-parse HEAD)"
+              printf 'chrome=%s\n' "$(google-chrome --version || google-chrome-stable --version || chromium --version || true)"
+            } > validation-output/repository-state.txt
+
+            cp -R "$PACK" validation-output/fix-pack
+            (
+              cd validation-output
+              zip -qr Games_Estate_Proposed_Fixes_2026-08-05.zip fix-pack
+              sha256sum Games_Estate_Proposed_Fixes_2026-08-05.zip > fix-pack-zip.sha256
+              find . -maxdepth 1 -type f ! -name checksums.sha256 -printf '%f\n' | sort | while read -r file; do
+                sha256sum "$file"
+              done > checksums.sha256
+            )
+          ) > validation-output/runner.log 2>&1
+          status=$?
+          printf 'exit_code=%s\n' "$status" >> "$GITHUB_OUTPUT"
+          cat validation-output/runner.log
+          exit 0
+
+      - name: Upload complete review and validation bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: games-estate-fix-pack-${{ github.sha }}
+          path: validation-output/
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Enforce exact validation after evidence upload
+        if: always()
+        shell: bash
+        run: exit "${{ steps.validation.outputs.exit_code || '2' }}"
