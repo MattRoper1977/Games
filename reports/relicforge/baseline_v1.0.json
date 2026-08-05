@@ -1,0 +1,114 @@
+{
+  "desktop": {
+    "viewport": "1366x768",
+    "chamberAtStart": 4,
+    "enemiesAtStart": 8,
+    "modesDuringRun": [
+      "playing",
+      "gameover"
+    ],
+    "perf": {
+      "frames": 3847,
+      "seconds": 59.98,
+      "fps": 64.1,
+      "meanFrameMs": 15.594,
+      "p50FrameMs": 17.1,
+      "p95FrameMs": 19.6,
+      "worstFrameMs": 61.9
+    },
+    "snapshotKeys": {
+      "menu": [
+        "camera",
+        "canvas",
+        "chamber",
+        "cycle",
+        "enemies",
+        "energy",
+        "equipment",
+        "hp",
+        "maxHp",
+        "mode",
+        "playerPosition",
+        "projectiles",
+        "salvage",
+        "score",
+        "time"
+      ],
+      "playing": [
+        "camera",
+        "canvas",
+        "chamber",
+        "cycle",
+        "enemies",
+        "energy",
+        "equipment",
+        "hp",
+        "maxHp",
+        "mode",
+        "playerPosition",
+        "projectiles",
+        "salvage",
+        "score",
+        "time"
+      ]
+    },
+    "snapshotStable": true,
+    "pageErrors": []
+  },
+  "phone": {
+    "viewport": "390x844",
+    "chamberAtStart": 4,
+    "enemiesAtStart": 8,
+    "modesDuringRun": [
+      "playing",
+      "gameover"
+    ],
+    "perf": {
+      "frames": 5649,
+      "seconds": 59.99,
+      "fps": 94.1,
+      "meanFrameMs": 10.622,
+      "p50FrameMs": 8.3,
+      "p95FrameMs": 17.7,
+      "worstFrameMs": 19.9
+    },
+    "snapshotKeys": {
+      "menu": [
+        "camera",
+        "canvas",
+        "chamber",
+        "cycle",
+        "enemies",
+        "energy",
+        "equipment",
+        "hp",
+        "maxHp",
+        "mode",
+        "playerPosition",
+        "projectiles",
+        "salvage",
+        "score",
+        "time"
+      ],
+      "playing": [
+        "camera",
+        "canvas",
+        "chamber",
+        "cycle",
+        "enemies",
+        "energy",
+        "equipment",
+        "hp",
+        "maxHp",
+        "mode",
+        "playerPosition",
+        "projectiles",
+        "salvage",
+        "score",
+        "time"
+      ]
+    },
+    "snapshotStable": true,
+    "pageErrors": []
+  }
+}

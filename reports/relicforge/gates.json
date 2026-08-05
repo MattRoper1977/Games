@@ -1,0 +1,277 @@
+[
+  {
+    "id": "G1",
+    "pass": false,
+    "detail": "0 network requests, 1 external markup refs, 1 script tag",
+    "requests": []
+  },
+  {
+    "id": "G2",
+    "pass": true,
+    "detail": "241125 B of 245760 budget (v1.0 190595 B, +50530); no fps regression beyond 12%",
+    "size": 241125,
+    "baseSize": 190595,
+    "perf": {
+      "desktop": {
+        "v1.1": {
+          "fps": 63.4,
+          "p95FrameMs": 19,
+          "scriptMsPerSec": 84.3
+        },
+        "v1.0": {
+          "fps": 62.2,
+          "p95FrameMs": 21.5,
+          "scriptMsPerSec": 71.9
+        }
+      },
+      "phone": {
+        "v1.1": {
+          "fps": 101.3,
+          "p95FrameMs": 17.6,
+          "scriptMsPerSec": 101.4
+        },
+        "v1.0": {
+          "fps": 77.4,
+          "p95FrameMs": 17.7,
+          "scriptMsPerSec": 67.4
+        }
+      }
+    }
+  },
+  {
+    "id": "G4",
+    "pass": true,
+    "detail": "keys [\"mbm_relicforge_v1\"]; siblings checked 8, hits 0; corrupted save booted to \"story\" with 0 errors",
+    "keys": [
+      "mbm_relicforge_v1"
+    ],
+    "siblingsChecked": [
+      "madebymatt_relicforge_v1",
+      "mbm_echo_vault_v1",
+      "madebymatt_echo_vault_v1",
+      "mbm_apex_rally_v1",
+      "mbm_apex_golf_v1",
+      "mbm_neon_sync_v1",
+      "mbm_axiom_shift_v1",
+      "mbm_off_brand_v1"
+    ]
+  },
+  {
+    "id": "G5",
+    "pass": false,
+    "detail": "6 controls under 44px across 2 viewports x 5 surfaces",
+    "offenders": [
+      {
+        "ctx": "desktop/settings-overlay",
+        "tag": "BUTTON",
+        "id": "toggle-audio",
+        "w": 50,
+        "h": 27
+      },
+      {
+        "ctx": "desktop/settings-overlay",
+        "tag": "BUTTON",
+        "id": "toggle-shake",
+        "w": 50,
+        "h": 27
+      },
+      {
+        "ctx": "desktop/settings-overlay",
+        "tag": "BUTTON",
+        "id": "toggle-motion",
+        "w": 50,
+        "h": 27
+      },
+      {
+        "ctx": "phone/settings-overlay",
+        "tag": "BUTTON",
+        "id": "toggle-audio",
+        "w": 50,
+        "h": 27
+      },
+      {
+        "ctx": "phone/settings-overlay",
+        "tag": "BUTTON",
+        "id": "toggle-shake",
+        "w": 50,
+        "h": 27
+      },
+      {
+        "ctx": "phone/settings-overlay",
+        "tag": "BUTTON",
+        "id": "toggle-motion",
+        "w": 50,
+        "h": 27
+      }
+    ]
+  },
+  {
+    "id": "G6",
+    "pass": true,
+    "detail": "same seed identical: true; different seed differs: true; 4 spawns compared",
+    "sample": "runner@1200,595|runner@1032,611|runner@538,898|runner@593,157"
+  },
+  {
+    "id": "G7",
+    "pass": false,
+    "detail": "flash 4.32 Hz (<3), worst luminance swing 0.7%/frame (<=25%); reducedMotion toggled false->true->false; OS floor held: true",
+    "census": {
+      "worstSwing": 0.0065,
+      "flashHz": 4.32,
+      "frames": 150
+    },
+    "toggles": {
+      "before": "false",
+      "afterFirst": "true",
+      "afterSecond": "false"
+    },
+    "floorResult": "true",
+    "floorHeld": true
+  },
+  {
+    "id": "G8",
+    "pass": false,
+    "detail": "3 chassis runs; reached chamber 10/10/10; victories 3/3; drafts always 3: false; NaN: none; errors: none",
+    "runs": [
+      {
+        "chassis": "vanguard",
+        "chambers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "drafts": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "nan": [],
+        "bosses": 2,
+        "victory": true,
+        "finalMode": "victory",
+        "reached": 10,
+        "errors": []
+      },
+      {
+        "chassis": "wraith",
+        "chambers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "drafts": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "nan": [],
+        "bosses": 2,
+        "victory": true,
+        "finalMode": "victory",
+        "reached": 10,
+        "errors": []
+      },
+      {
+        "chassis": "arcanist",
+        "chambers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "drafts": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "nan": [],
+        "bosses": 2,
+        "victory": true,
+        "finalMode": "victory",
+        "reached": 10,
+        "errors": []
+      }
+    ]
+  },
+  {
+    "id": "G9",
+    "pass": true,
+    "detail": "interstitials 10/10 all distinct: true; fragment wake lines shown 2/2; lore 27/27; chassis 3/3; closings 5; skip via keyboard/pointer/button: true/true/true; journal 6 entries for 6 discovered (6 / 27)",
+    "titles": [
+      "THE SHAFT",
+      "THE WORKING FLOOR",
+      "THE COG CROWN",
+      "THE FIRST SEIZE",
+      "CROWN CHAMBER",
+      "THE ARCHIVE",
+      "THE UNMADE",
+      "THE WAR OF PARTS",
+      "THE LAST ORDER",
+      "THE CROWN ITSELF"
+    ],
+    "skips": {
+      "keyboard": true,
+      "pointer": true,
+      "button": true
+    },
+    "journal": {
+      "discovered": 6,
+      "entries": 6,
+      "label": "6 / 27"
+    },
+    "counts": {
+      "chambers": 10,
+      "fragments": 2,
+      "lore": 27,
+      "chassis": 3,
+      "closings": 5,
+      "current": null,
+      "shown": {
+        "title": "The Shaft",
+        "lines": "",
+        "fragment": ""
+      }
+    }
+  }
+]
