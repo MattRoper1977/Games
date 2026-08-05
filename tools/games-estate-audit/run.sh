@@ -27,4 +27,4 @@ args=(
 [[ "${AUDIT_LIVE:-1}" == "0" ]] || args+=(--live)
 [[ -z "${AUDIT_BROWSER_MODES:-}" ]] || args+=(--browser-modes "$AUDIT_BROWSER_MODES")
 
-exec python3 "$SCRIPT_DIR/audit.py" "${args[@]}"
+exec python3 "$SCRIPT_DIR/runner.py" "${args[@]}"
