@@ -70,8 +70,8 @@ jobs:
 
       - name: Verify the audit instrument
         run: |
-          python -m py_compile tools/games-estate-audit/audit.py
-          python tools/games-estate-audit/audit.py --help >/dev/null
+          python -m py_compile tools/games-estate-audit/audit.py tools/games-estate-audit/runner.py
+          python tools/games-estate-audit/runner.py --help >/dev/null
           python -m unittest discover -s tools/games-estate-audit/tests -v
           bash -n tools/games-estate-audit/run.sh
           node --version
@@ -98,7 +98,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           set +e
-          python tools/games-estate-audit/audit.py \
+          python tools/games-estate-audit/runner.py \
             --repo-root . \
             --site-root _site \
             --lessons-root _lessons \
