@@ -335,7 +335,7 @@
     {
       "icon": "⚽",
       "title": "Apex Kick",
-      "desc": "NEW · A single-file browser free-kick game. Drag the marker onto the goal, then flick to strike — bow your drag to bend it past the wall and the keeper. Card stats set the physics, never the dice. Works offline.",
+      "desc": "A single-file browser free-kick game. Drag the marker onto the goal, then flick to strike — bow your drag to bend it past the wall and the keeper. Card stats set the physics, never the dice. Works offline.",
       "href": "/apexkick/",
       "tag": "Physics",
       "hue": "#2F8F6B",
@@ -347,7 +347,7 @@
     {
       "icon": "🎱",
       "title": "Apex Pool",
-      "desc": "NEW · Call the cue ball's leave, then prove you can read the table. Offline 8-ball with genuine spin, position play, AI, trick shots and an honest Leave Rating.",
+      "desc": "Call the cue ball's leave, then prove you can read the table. Offline 8-ball with genuine spin, position play, AI, trick shots and an honest Leave Rating.",
       "href": "/apexpool/",
       "tag": "Physics",
       "hue": "#F2A24A",
@@ -412,6 +412,18 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/neon-breach.svg"
+    },
+    {
+      "icon": "⚔️",
+      "title": "Apex Rally",
+      "desc": "NEW · Read the court before the ball arrives. A rally duel against opponents who adapt as you learn them — aim, time and spin every shot, bank Apex Focus by reading the bounce early, then finish the point from the baseline or at the net. Works offline.",
+      "href": "/apexrally/",
+      "tag": "Physics",
+      "hue": "#FF737C",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/apex-rally.svg",
+      "collection": "Sports"
     }
   ]
 }
