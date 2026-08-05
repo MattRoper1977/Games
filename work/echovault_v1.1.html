@@ -1145,6 +1145,23 @@
   const joystickKnob = $('joystick-knob');
   const liveRegion = $('live-region');
 
+  // G6 — the ONE renderer for every "the picture cannot be drawn" state: no WebGL,
+  // a shader that will not link, and a lost context. One function, one panel, one
+  // string to change — which is the property the gate actually checks.
+  const RENDERER_PANEL_SENTINEL = 'renderer-panel-v1';
+  function showRendererPanel(title, copy) {
+    const overlay = document.getElementById('fatal-overlay');
+    const titleNode = document.getElementById('fatal-title');
+    const copyNode = document.getElementById('fatal-copy');
+    if (titleNode) titleNode.textContent = title;
+    if (copyNode) copyNode.textContent = copy;
+    if (overlay) {
+      overlay.hidden = false;
+      overlay.dataset.renderer = RENDERER_PANEL_SENTINEL;
+    }
+    try { if (typeof announce === 'function') announce(`${title}. ${copy}`); } catch (_) {}
+  }
+
   const SAVE_KEY = 'mbm_echovault_v1';
   const defaultSave = () => ({
     version: 1,
@@ -1500,7 +1517,8 @@
   });
 
   if (!gl) {
-    $('fatal-overlay').hidden = false;
+    showRendererPanel('WebGL Required',
+      'This browser could not initialise WebGL. Try a current version of Chrome, Edge, Firefox or Safari with hardware acceleration enabled.');
     return;
   }
 
@@ -1642,8 +1660,7 @@
     gl.linkProgram(program);
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program) || 'Shader link failed');
   } catch (error) {
-    $('fatal-copy').textContent = `The WebGL shader pipeline could not start: ${error.message}`;
-    $('fatal-overlay').hidden = false;
+    showRendererPanel('WebGL Required', `The WebGL shader pipeline could not start: ${error.message}`);
     return;
   }
 
@@ -3657,6 +3674,8 @@
   canvas.addEventListener('webglcontextlost',(event)=>{
     event.preventDefault();
     if (run.state==='playing') pauseGame();
+    showRendererPanel('Renderer interrupted',
+      'The WebGL context was lost. The vault is paused and will reload itself as soon as the browser restores the renderer.');
     toast('<strong>Renderer interrupted:</strong> waiting for WebGL recovery',4000);
   });
   canvas.addEventListener('webglcontextrestored',()=>location.reload());
@@ -3712,6 +3731,12 @@
     completeSector:()=>{ for (const core of cores) if (!core.collected) collectCore(core); player.x=portal.x; player.z=portal.z; run.extractionProgress=.99; },
     damage:(amount=10)=>damagePlayer(amount,'diagnostic'),
     loudPing:emitLoudPulse,
+    layout:()=>({
+      cores:cores.map(c=>({ x:+c.x.toFixed(3), z:+c.z.toFixed(3) })),
+      portal:{ x:+portal.x.toFixed(3), z:+portal.z.toFixed(3) },
+      solids:worldSolids.length,
+      tiles:floorTiles.length
+    }),
     breath:()=>({ stillTimer:run.stillTimer, held:run.breathHeld, best:run.breathBest,
                   noise:run.noise, trailTimer:run.lastNoise.timer, loudPings:run.loudPings }),
     armRead:armEchoRead,

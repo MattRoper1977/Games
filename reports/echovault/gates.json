@@ -1,0 +1,83 @@
+[
+  {
+    "id": "G1",
+    "pass": true,
+    "detail": "0 network requests, 0 runtime-fetching refs (canonical/og are metadata), 1 script; injected-remote control caught: true"
+  },
+  {
+    "id": "G2",
+    "pass": true,
+    "detail": "147845 B of 204800 budget (56955 spare); phone 390x844 35.1 fps, p95 34.5ms",
+    "size": 147845,
+    "perf": {
+      "frames": 633,
+      "seconds": 17.99,
+      "fps": 35.1,
+      "p50FrameMs": 28,
+      "p95FrameMs": 34.5
+    }
+  },
+  {
+    "id": "G4",
+    "pass": true,
+    "detail": "keys [\"mbm_echovault_v1\"]; siblings checked 5, hits 0; corrupted save booted to \"playing\" with 0 errors"
+  },
+  {
+    "id": "G5",
+    "pass": true,
+    "detail": "0 controls under 44px by RENDERED box across 2 viewports x 2 surfaces",
+    "offenders": []
+  },
+  {
+    "id": "G6",
+    "pass": true,
+    "detail": "context loss rendered the SAME panel (\"Renderer interrupted\" — The WebGL context was lost. The vault is paused and will rel…), stamped by the single renderer; direct writes bypassing it: 0; call sites through it: 3 + its definition"
+  },
+  {
+    "id": "G8",
+    "pass": true,
+    "detail": "settings toggled both directions live: audio true->false->true; fullMotion true->false->true; fullFlash true->false->true"
+  },
+  {
+    "id": "G9",
+    "pass": true,
+    "detail": "3 headless sector drives: plain cores=3 state=perk | breath cores=3 state=perk | loud cores=3 state=perk; breath engaged in the breath run: true; loud pings in the lure run: 1; NaN: none",
+    "runs": [
+      {
+        "mode": "plain",
+        "cores": 3,
+        "sector": 1,
+        "state": "perk",
+        "nan": [],
+        "breathHeld": null,
+        "loudPings": 0,
+        "errors": []
+      },
+      {
+        "mode": "breath",
+        "cores": 3,
+        "sector": 1,
+        "state": "perk",
+        "nan": [],
+        "breathHeld": true,
+        "loudPings": 0,
+        "errors": []
+      },
+      {
+        "mode": "loud",
+        "cores": 3,
+        "sector": 1,
+        "state": "perk",
+        "nan": [],
+        "breathHeld": null,
+        "loudPings": 1,
+        "errors": []
+      }
+    ]
+  },
+  {
+    "id": "G10",
+    "pass": true,
+    "detail": "same seed identical: true; different seed differs: true (the rig is sighted because the differing-seed case is asserted, not assumed)"
+  }
+]
