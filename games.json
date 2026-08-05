@@ -3,6 +3,17 @@
   "strap": "Bite-sized challenges, infinite fun — built one game at a time.",
   "games": [
     {
+      "icon": "🛰️",
+      "title": "NEW · Echo Vault — Sound Is Your Light",
+      "desc": "A pitch-black vault you can only see by making noise. Every sonar pulse paints the architecture in travelling light — and tells every hunter down there exactly where you are. Read the room before it answers, hold your breath to go cold, or throw a loud ping across the hall and walk the other way while they chase it. Sound is your light and your danger, and choosing when to spend it is the whole game.",
+      "href": "/echovault/",
+      "tag": "Roguelike",
+      "hue": "#6ff7ff",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/echo-vault.svg"
+    },
+    {
       "icon": "⚙️",
       "title": "NEW · Relicforge — Strip the Machine",
       "desc": "A buried machine kingdom, dismantled component by component. Shoot the arms off and it stops shooting; take the legs and it stops chasing you. Strip every external and the core shuts down intact — and the Salvage Rating grades how surgically you did it, so patience outscores firepower. Rebuild your own chassis from what you recover, and read the kingdom's fall in the relics you install.",
