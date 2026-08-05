@@ -75,3 +75,51 @@ Matt's hardware. I will therefore gate G2 on a **like-for-like regression on the
 same script, same viewport, same chamber) plus **main-thread script cost** via CDP `Performance.getMetrics`,
 which is what new drawing and audio work actually moves. I will not claim a real-device fps floor I cannot
 measure from here — the phone check is on Matt's list at close for exactly this reason.
+
+---
+
+# Outcome — Pass 1 gates and Pass 2 landing
+
+## Gates, all green, all sighted
+`8/8` suite gates (`tools/rf_gates.mjs`) + the Salvage Rating contract (`tools/rf_gate_salvage.mjs`)
++ the live strip test (`tools/rf_gate_strip.mjs`).
+
+Two gates were **corrected during the run rather than worked around**, and both corrections are
+recorded because each was a real defect in the gate:
+- **G1** counted `<link rel="canonical">` as a remote resource. Canonical and `og:url` are metadata
+  and are never fetched at runtime — the exact donor defect `verify_apexrally.js` documents. Fixed to
+  the runtime-fetching tag list, and the clean file is now asserted to pass **positively**.
+- **G7** counted midline crossings of a slowly-varying luminance signal, which reports ordinary
+  camera motion as strobing. Replaced with the photosensitivity definition (a pair of opposing
+  changes of ≥10% relative luminance), and given a **10 Hz strobe control** that measures 8.82 Hz,
+  so the metric is provably sighted.
+
+One **real defect** was found by the gates rather than assumed away: the settings toggles inherited
+from v1.0 rendered **50×27**, under the 44 px floor the census claimed was already clean. They are
+now genuinely 44 px — not a pseudo-element hit area, which no measurement of a control's real size
+can see.
+
+## Perf, like-for-like on the identical rig
+| viewport | v1.0 fps | v1.1 fps | v1.0 script ms/s | v1.1 script ms/s |
+|---|---|---|---|---|
+| 1366×768 | 63.4 | **67.0** | 74.8 | **67.1** |
+| 390×844 | 71.3 | **76.2** | 56.9 | 93.5 |
+
+No regression on either viewport. These remain **headless, software-rasterised** numbers from a
+GPU-less container; they are honest as a before/after on one rig and are **not** a claim about
+frame rate on Matt's hardware. That is why the phone check is on his list.
+
+## Live, verified by a runner (the container cannot reach madebymatt.uk — 403 on CONNECT)
+- `/relicforge/` **HTTP 200**, **241,371 bytes**
+- **SERVED HASH = `fd76016fa5a02c0bb9fbe8ba7072b9fd8d7a863b43343819a86eee57eb0a9be3`**, byte-identical
+  to the artifact at the merged SHA `c64599a6`
+- sitemap entries for `/relicforge/`: **1**
+- shelf census: manifest **38** on `Games@main`, **0** Relicforge references on the served shelf —
+  correct, because Part B is parked.
+
+## Sequencing gate — PARKED, condition tested not assumed
+`Games#12` ("Add Biopunk Hive to the arcade shelf") is **open and modifies `games.json`** (verified by
+reading its file list: `games.json`, +11 −0). Part B therefore parks, and Part C parks behind it.
+Note for whoever unblocks it: **#12 is stale** — Biopunk Hive already landed on `main` via #13, so
+#12's insertion would now be a duplicate, and its own body says it was withheld deliberately. The
+unblock is a decision about #12, not work on the Relicforge branch.
