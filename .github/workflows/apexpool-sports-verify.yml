@@ -1,23 +1,34 @@
-name: Apex Sports manifest contract
+name: Apex Sports manifest contract (RETIRED — dispatch only)
 
-# SCOPED: 'games.json' was removed from these paths deliberately.
-# The gate this workflow runs (tools/verify_apexpool_sports_manifest.js) is a
-# ONE-SHOT contract for the Apex Tennis landing: it asserts the candidate is
-# exactly "baseline + one Apex Tennis entry appended after Apex Golf, Physics
-# count +1". That landing merged long ago, so the gate can no longer pass for
-# ANY other manifest change — yet it triggered on every games.json edit and
-# failed each one (four times on shelf/biopunkhive-2026-08-04 alone). A spent
-# one-shot gate must not judge unrelated content.
-# The gate itself is NOT weakened or deleted: it still runs on its own tools
-# and on workflow_dispatch, so Apex Tennis's contract remains reproducible.
+# RETIRED, 5 Aug 2026. Recorded, not silently deleted.
+# See tools/RETIRED_apex_sports_manifest_gate.md for the full record.
+#
+# WHAT IT VERIFIED: the Apex Tennis landing, as a single moment — that the
+# candidate manifest was exactly the baseline plus one Apex Tennis entry
+# appended after Apex Golf, with the Physics count up by one, a distinct
+# tennis hue, and every pre-existing entry byte-equivalent.
+#
+# WHEN: it did that job for Games#11, "Add Apex Tennis to Arcade Sports",
+# merged at 900fae5. Its evidence is that PR and its run history.
+#
+# WHY IT IS SPENT: those assertions describe a transition that has already
+# happened. Once Apex Tennis was in the manifest, "baseline + exactly one
+# tennis entry" could never be true again, so the gate could not go green
+# under ANY subsequent change. It failed four times on
+# shelf/biopunkhive-2026-08-04 and again on the three-card branch. A gate
+# that cannot pass is not a gate — it is a landmine, and it measures nothing,
+# the mirror of a check that can only pass.
+#
+# WHAT SURVIVED: the four limbs with live, general value — art on every
+# entry, unique titles and hrefs, tag-vocabulary surfacing (the anti-mint
+# guard) and no-Lessons-contamination — are migrated into
+# tools/validate_games_json.sh in derive-form, so retiring this loses no
+# real coverage. The one-shot baseline assertion dies with the gate.
+#
+# The pull_request trigger is REMOVED so it judges nothing. workflow_dispatch
+# is kept so the Apex Tennis contract stays reproducible on demand against
+# its own historical inputs.
 on:
-  pull_request:
-    paths:
-      - 'tools/apply_apextennis_manifest.py'
-      - 'tools/verify_apextennis_manifest.js'
-      - 'tools/verify_apexpool_sports_manifest.js'
-      - 'tools/verify_apexpool_sports_browser.js'
-      - '.github/workflows/apexpool-sports-verify.yml'
   workflow_dispatch:
 
 permissions:
