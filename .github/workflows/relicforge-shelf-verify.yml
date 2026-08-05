@@ -1,0 +1,54 @@
+name: Relicforge arcade shelf contract
+
+# Nothing here pins a manifest count. The retired Apex Sports gate pinned
+# origin/main to exactly 33 entries and went red the moment the estate grew;
+# a gate that fails because the shelf got longer is a gate nobody reads.
+# Every count is derived from games.json at HEAD.
+
+on:
+  pull_request:
+    paths:
+      - 'games.json'
+      - 'tools/verify_relicforge_shelf.js'
+      - '.github/workflows/relicforge-shelf-verify.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: relicforge-shelf-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Shelf contract
+        run: node tools/verify_relicforge_shelf.js
+
+      - name: Prove the mutation is idempotent against the file on disk
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp games.json /tmp/games-before.json
+          python3 - <<'PY'
+          from pathlib import Path
+          import copy, json
+          path = Path('games.json')
+          data = json.loads(path.read_text(encoding='utf-8'))
+          target = [g for g in data['games'] if g.get('href') == '/relicforge/']
+          if len(target) != 1:
+              raise SystemExit('Relicforge entry is not unique')
+          if not any(g.get('href') == '/relicforge/' for g in data['games']):
+              data['games'].insert(0, copy.deepcopy(target[0]))
+          path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+          cmp -s /tmp/games-before.json games.json
