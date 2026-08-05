@@ -75,7 +75,7 @@ jobs:
             PACK="$GITHUB_WORKSPACE/review/estate-fixes"
             WORKTREE="$RUNNER_TEMP/games-estate-fixed"
 
-            python -m py_compile "$PACK/validate_applied.py"
+            python -m py_compile "$PACK/validate_applied.py" "$PACK/validate_arcade.py"
             git cat-file -e "$BASE^{commit}"
             git worktree add --detach "$WORKTREE" "$BASE"
             before_manifest=$(sha256sum "$WORKTREE/games.json" | cut -d' ' -f1)
@@ -161,8 +161,13 @@ jobs:
               --repo "$WORKTREE" \
               --site-root "$GITHUB_WORKSPACE/_site" \
               --lessons-root "$GITHUB_WORKSPACE/_lessons" \
-              --output "$GITHUB_WORKSPACE/validation-output" \
-              --browser
+              --output "$GITHUB_WORKSPACE/validation-output"
+
+            python "$PACK/validate_arcade.py" \
+              --repo "$WORKTREE" \
+              --site-root "$GITHUB_WORKSPACE/_site" \
+              --lessons-root "$GITHUB_WORKSPACE/_lessons" \
+              --output "$GITHUB_WORKSPACE/validation-output"
 
             {
               printf 'review_head=%s\n' "$(git rev-parse HEAD)"
