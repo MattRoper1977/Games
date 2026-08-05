@@ -1,0 +1,10 @@
+PASS  G1  0 network requests, 0 runtime-fetching external refs (canonical/og are metadata, not fetched), 1 script tag; injected-remote-script control caught: true
+PASS  G2  241371 B of 245760 budget (v1.0 190595 B, +50776); no fps regression beyond 12%
+PASS  G4  keys ["mbm_relicforge_v1"]; siblings checked 8, hits 0; corrupted save booted to "story" with 0 errors
+PASS  G5  0 controls under 44px across 2 viewports x 5 surfaces
+PASS  G6  same seed identical: true; different seed differs: true; 4 spawns compared
+PASS  G7  flash 0 Hz (<3) at the 10% amplitude definition, worst luminance swing 0.8%/frame (<=25%); 10Hz strobe control measured 8.82 Hz so the metric is sighted; reducedMotion toggled false->true->false; OS floor held: true
+PASS  G8  3 chassis runs; reached chamber 10/10/10; victories 3/3; drafts always 3: true; NaN: none; errors: none
+PASS  G9  interstitials 10/10 all distinct: true; fragment wake lines shown 2/2; lore 27/27; chassis 3/3; closings 5; skip via keyboard/pointer/button: true/true/true; journal 9 entries for 9 discovered (9 / 27)
+
+8/8 gates pass

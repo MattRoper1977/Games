@@ -1,39 +1,40 @@
 [
   {
     "id": "G1",
-    "pass": false,
-    "detail": "0 network requests, 1 external markup refs, 1 script tag",
-    "requests": []
+    "pass": true,
+    "detail": "0 network requests, 0 runtime-fetching external refs (canonical/og are metadata, not fetched), 1 script tag; injected-remote-script control caught: true",
+    "requests": [],
+    "tamperCaught": true
   },
   {
     "id": "G2",
     "pass": true,
-    "detail": "241125 B of 245760 budget (v1.0 190595 B, +50530); no fps regression beyond 12%",
-    "size": 241125,
+    "detail": "241371 B of 245760 budget (v1.0 190595 B, +50776); no fps regression beyond 12%",
+    "size": 241371,
     "baseSize": 190595,
     "perf": {
       "desktop": {
         "v1.1": {
-          "fps": 63.4,
-          "p95FrameMs": 19,
-          "scriptMsPerSec": 84.3
+          "fps": 67,
+          "p95FrameMs": 17.8,
+          "scriptMsPerSec": 67.1
         },
         "v1.0": {
-          "fps": 62.2,
-          "p95FrameMs": 21.5,
-          "scriptMsPerSec": 71.9
+          "fps": 63.4,
+          "p95FrameMs": 20.2,
+          "scriptMsPerSec": 74.8
         }
       },
       "phone": {
         "v1.1": {
-          "fps": 101.3,
-          "p95FrameMs": 17.6,
-          "scriptMsPerSec": 101.4
+          "fps": 76.2,
+          "p95FrameMs": 19.1,
+          "scriptMsPerSec": 93.5
         },
         "v1.0": {
-          "fps": 77.4,
+          "fps": 71.3,
           "p95FrameMs": 17.7,
-          "scriptMsPerSec": 67.4
+          "scriptMsPerSec": 56.9
         }
       }
     }
@@ -58,52 +59,9 @@
   },
   {
     "id": "G5",
-    "pass": false,
-    "detail": "6 controls under 44px across 2 viewports x 5 surfaces",
-    "offenders": [
-      {
-        "ctx": "desktop/settings-overlay",
-        "tag": "BUTTON",
-        "id": "toggle-audio",
-        "w": 50,
-        "h": 27
-      },
-      {
-        "ctx": "desktop/settings-overlay",
-        "tag": "BUTTON",
-        "id": "toggle-shake",
-        "w": 50,
-        "h": 27
-      },
-      {
-        "ctx": "desktop/settings-overlay",
-        "tag": "BUTTON",
-        "id": "toggle-motion",
-        "w": 50,
-        "h": 27
-      },
-      {
-        "ctx": "phone/settings-overlay",
-        "tag": "BUTTON",
-        "id": "toggle-audio",
-        "w": 50,
-        "h": 27
-      },
-      {
-        "ctx": "phone/settings-overlay",
-        "tag": "BUTTON",
-        "id": "toggle-shake",
-        "w": 50,
-        "h": 27
-      },
-      {
-        "ctx": "phone/settings-overlay",
-        "tag": "BUTTON",
-        "id": "toggle-motion",
-        "w": 50,
-        "h": 27
-      }
-    ]
+    "pass": true,
+    "detail": "0 controls under 44px across 2 viewports x 5 surfaces",
+    "offenders": []
   },
   {
     "id": "G6",
@@ -113,13 +71,16 @@
   },
   {
     "id": "G7",
-    "pass": false,
-    "detail": "flash 4.32 Hz (<3), worst luminance swing 0.7%/frame (<=25%); reducedMotion toggled false->true->false; OS floor held: true",
+    "pass": true,
+    "detail": "flash 0 Hz (<3) at the 10% amplitude definition, worst luminance swing 0.8%/frame (<=25%); 10Hz strobe control measured 8.82 Hz so the metric is sighted; reducedMotion toggled false->true->false; OS floor held: true",
     "census": {
-      "worstSwing": 0.0065,
-      "flashHz": 4.32,
-      "frames": 150
+      "worstSwing": 0.0079,
+      "flashHz": 0,
+      "amplitudeThreshold": 0.1,
+      "frames": 150,
+      "seconds": 2.41
     },
+    "control": 8.82,
     "toggles": {
       "before": "false",
       "afterFirst": "true",
@@ -130,8 +91,8 @@
   },
   {
     "id": "G8",
-    "pass": false,
-    "detail": "3 chassis runs; reached chamber 10/10/10; victories 3/3; drafts always 3: false; NaN: none; errors: none",
+    "pass": true,
+    "detail": "3 chassis runs; reached chamber 10/10/10; victories 3/3; drafts always 3: true; NaN: none; errors: none",
     "runs": [
       {
         "chassis": "vanguard",
@@ -148,16 +109,16 @@
           10
         ],
         "drafts": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
         ],
         "nan": [],
         "bosses": 2,
@@ -181,16 +142,16 @@
           10
         ],
         "drafts": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
         ],
         "nan": [],
         "bosses": 2,
@@ -214,16 +175,16 @@
           10
         ],
         "drafts": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
         ],
         "nan": [],
         "bosses": 2,
@@ -237,7 +198,7 @@
   {
     "id": "G9",
     "pass": true,
-    "detail": "interstitials 10/10 all distinct: true; fragment wake lines shown 2/2; lore 27/27; chassis 3/3; closings 5; skip via keyboard/pointer/button: true/true/true; journal 6 entries for 6 discovered (6 / 27)",
+    "detail": "interstitials 10/10 all distinct: true; fragment wake lines shown 2/2; lore 27/27; chassis 3/3; closings 5; skip via keyboard/pointer/button: true/true/true; journal 9 entries for 9 discovered (9 / 27)",
     "titles": [
       "THE SHAFT",
       "THE WORKING FLOOR",
@@ -256,9 +217,9 @@
       "button": true
     },
     "journal": {
-      "discovered": 6,
-      "entries": 6,
-      "label": "6 / 27"
+      "discovered": 9,
+      "entries": 9,
+      "label": "9 / 27"
     },
     "counts": {
       "chambers": 10,
