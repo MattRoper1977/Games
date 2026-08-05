@@ -30,27 +30,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      # The baseline entry count is DERIVED from origin/main, never pinned.
-      # This step used to assert `games.length !== 33`. The manifest passed 33
-      # the next time a card landed, so the gate began failing at its own
-      # baseline — red for reasons that had nothing to do with the candidate
-      # under test. Re-pinning to 34, 35 or 37 would rot the same way on the
-      # next card, so the number is now read rather than asserted. What IS
-      # still enforced is the part that must never drift: the baseline parses,
-      # carries a games array, and is non-empty — so a corrupt or truncated
-      # baseline fails loudly instead of passing vacuously.
-      - name: Capture the current manifest baseline (count derived, not pinned)
+      - name: Capture the current 33-entry baseline
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p artifacts/apextennis-sports
           git show origin/main:games.json > artifacts/apextennis-sports/games-before.json
-          node -e "
-            const d=require('./artifacts/apextennis-sports/games-before.json');
-            if(!d.games||!Array.isArray(d.games)){console.error('FAIL baseline has no games array');process.exit(1)}
-            if(d.games.length<1){console.error('FAIL baseline manifest is empty — an empty baseline would pass vacuously');process.exit(1)}
-            console.log('baseline entries='+d.games.length+' (derived from origin/main)');
-          "
+          node -e "const d=require('./artifacts/apextennis-sports/games-before.json');if(!d.games||d.games.length!==33)process.exit(1);console.log('baseline entries='+d.games.length)"
       - name: Check out the paired Arcade renderer and card art
         uses: actions/checkout@v4
         with:
