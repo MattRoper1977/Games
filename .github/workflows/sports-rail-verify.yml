@@ -1,0 +1,101 @@
+name: Sports rail gates
+
+# The Sports rail's house rules, enforced generally rather than per landing.
+#
+# The predecessor gate was retired on 5 August 2026 because it pinned a baseline
+# of 33 entries and a named hue list, so it went stale the moment the estate
+# moved on (tools/RETIRED_apex_sports_manifest_gate.md). Nothing here is pinned:
+# rail membership, the hues compared, the expected counts and the ΔE baseline
+# are all derived — from the manifest at HEAD, and from the pull request's own
+# base branch. Adding a sixth sports game makes this gate check more, not fail.
+
+on:
+  push:
+    paths:
+      - 'games.json'
+      - 'tools/verify_sports_rail.js'
+      - 'tools/apply_apexrally_manifest.py'
+      - '.github/workflows/sports-rail-verify.yml'
+  pull_request:
+    paths:
+      - 'games.json'
+      - 'tools/verify_sports_rail.js'
+      - 'tools/apply_apexrally_manifest.py'
+      - '.github/workflows/sports-rail-verify.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sports-rail-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rail:
+    name: rail gates + shelf idempotency
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # full history so the gate can read the base branch's manifest and tell a
+      # collision this change introduced from one that was already there
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Make the base manifest reachable
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="${GITHUB_BASE_REF:-${GITHUB_REF_NAME}}"
+          echo "base ref: $base"
+          git fetch --no-tags --depth=1 origin "$base" || echo "base fetch skipped"
+          git rev-parse --verify "origin/$base" >/dev/null 2>&1 \
+            && echo "baseline reachable at origin/$base" \
+            || echo "no baseline — every collision will fail, which is the safe direction"
+
+      - name: Sports rail gates
+        run: node tools/verify_sports_rail.js | tee /tmp/rail.log
+
+      - name: Shelf transform is idempotent
+        shell: bash
+        run: |
+          set -euo pipefail
+          before=$(sha256sum games.json | cut -d' ' -f1)
+          python3 tools/apply_apexrally_manifest.py
+          after=$(sha256sum games.json | cut -d' ' -f1)
+          echo "games.json sha256 before=$before after=$after"
+          test "$before" = "$after"
+          # and the transform's own check mode must agree
+          python3 tools/apply_apexrally_manifest.py --check
+          git diff --exit-code games.json
+
+      - name: Gate counts are self-consistent (derived from the log)
+        shell: bash
+        run: |
+          set -euo pipefail
+          passes=$(grep -c '^PASS ' /tmp/rail.log || true)
+          fails=$(grep -c '^FAIL ' /tmp/rail.log || true)
+          claimed=$(grep -oE '^ALL [0-9]+ ' /tmp/rail.log | grep -oE '[0-9]+' || echo 0)
+          echo "$passes PASS, $fails FAIL, summary claims $claimed"
+          test "$fails" -eq 0
+          test "$passes" -gt 0
+          test "$claimed" -eq "$passes"
+
+      - name: Report rail composition (derived, informational)
+        shell: bash
+        run: |
+          node -e '
+            const g = require("./games.json").games;
+            const rail = g.filter(x => x.collection === "Sports");
+            console.log(`manifest entries: ${g.length}`);
+            console.log(`art present: ${g.filter(x => x.art).length}/${g.length}`);
+            console.log(`Sports rail (${rail.length}):`);
+            rail.forEach(x => console.log(`  ${x.icon}  ${x.title.padEnd(14)} ${x.hue}  ${x.href}`));
+            const nw = g.filter(x => (x.desc||"").startsWith("NEW · ")).map(x => x.title);
+            console.log(`NEW · holder(s): ${nw.length ? nw.join(", ") : "none"}`);
+          '
