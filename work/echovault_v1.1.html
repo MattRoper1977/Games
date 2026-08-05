@@ -1461,6 +1461,27 @@
       this.tone(rand(52, 78), .48, 'sawtooth', .055, rand(28, 40), 0, pan);
     }
     ui() { this.tone(520, .08, 'sine', .06, 780); }
+
+    // U9 — while the breath is held the whole mix ducks and a slow heartbeat
+    // carries it, so holding still SOUNDS like holding still.
+    setDuck(on) {
+      if (!this.context || !this.master) return;
+      const now = this.context.currentTime;
+      this.master.gain.cancelScheduledValues(now);
+      this.master.gain.setTargetAtTime(on ? .17 : .48, now, .35);
+      if (on) this.heartbeat(); else if (this._beat) { clearInterval(this._beat); this._beat = null; }
+    }
+
+    heartbeat() {
+      if (this._beat) return;
+      const thump = () => {
+        if (!saveData.settings.audio) return;
+        this.tone(52, .17, 'sine', .5, 34);
+        this.tone(46, .13, 'sine', .32, 30, .26);
+      };
+      thump();
+      this._beat = setInterval(thump, 1150);
+    }
     fail() { this.tone(190, .13, 'square', .07, 80); }
   }
 
@@ -1943,6 +1964,11 @@
     interactionTarget: null,
     interactionText: '',
     lastNoise: { x:0, z:0, timer:0, strength:0 },
+    stillTimer: 0,          // U9: how long the player has been still and silent
+    breathHeld: false,      // U9: whether the breath bonus is currently active
+    breathBest: 0,          // U14 hook: longest breath this run
+    loudPings: 0,           // U10
+    bestEchoRead: 0,
     objective: 'Emit a pulse. Locate three resonance cores.',
     objectiveKicker: 'Vault directive',
     perks: {},
@@ -2403,6 +2429,40 @@
     toast(`<b>ECHO READ ${score}</b> · ${band.label}`,2600);
   }
 
+  // U10 — LOUD PING. An overcharged pulse: it reveals far more, and it screams. Noise
+  // stops being only a punishment and becomes something you can SPEND — throw your voice
+  // at the far side of a room and walk the other way while the hunters commit to it.
+  function emitLoudPulse() {
+    const cost = 46;
+    if (run.state !== 'playing' || run.pulseCooldown > 0 || player.resonance < cost) {
+      if (player.resonance < cost) toast('Not enough resonance for a loud ping', 800);
+      return false;
+    }
+    player.resonance -= cost;
+    run.pulseCooldown = 1.35;
+    run.pulseRecoil = 1;
+    run.screenPulse = 1;
+    run.noise = clamp(run.noise + 58, 0, 100);
+    // The lure: a loud, long-lived mark that hunters walk to, wherever you go next.
+    run.lastNoise = { x: player.x, z: player.z, timer: 11, strength: 100 };
+    run.pings++;
+    run.loudPings++;
+    saveData.stats.pings++;
+    const range = (23 + perkLevel('wideband') * 4) * 1.85;
+    const pulse = {
+      id: run.nextPulseId++, x: player.x, y: 1.1, z: player.z,
+      radius: 0, prevRadius: 0, speed: 30, maxRadius: range,
+      damage: 52 * (1 + perkLevel('wideband') * .15), active: true, loud: true
+    };
+    run.pulses.push(pulse);
+    run.activePulseVisuals.push({ radius: 0, maxRadius: range, life: 1, colour: 'amber' });
+    run.stillTimer = 0;
+    audio.ping();
+    toast('<b>LOUD PING</b> · every hunter heard that', 1800);
+    announce('Loud ping. Wide reveal, and every hunter is coming to this spot.');
+    return true;
+  }
+
   function emitPulse() {
     if (run.state !== 'playing') return false;
     const quiet = perkLevel('quiet');
@@ -2590,7 +2650,7 @@
     for (const enemy of enemyPool) {
       if (!enemy.active) continue;
       enemy.phase+=dt*(enemy.type==='stalker'?6:enemy.type==='shrieker'?2.3:3.4);
-      enemy.reveal=Math.max(0,enemy.reveal-dt*(.52/(1+memory*.3)));
+      enemy.reveal=Math.max(0,enemy.reveal-dt*(.52/(1+memory*.55)));
       enemy.flash=Math.max(0,enemy.flash-dt*7);
       enemy.alert=Math.max(0,enemy.alert-dt);
       enemy.stun=Math.max(0,enemy.stun-dt);
@@ -2681,18 +2741,58 @@
     }
   }
 
+  // U9 — HELD BREATH. Stand still and stay silent and the vault stops hearing you:
+  // noise drains fast, the trail hunters were following goes cold, and the mix ducks
+  // to a heartbeat. Stillness becomes a real tactic, so the regulated player beats the
+  // panicking one — which is the whole argument of the game stated as a mechanic.
+  const BREATH_SECONDS = 3;
+  function updateBreath(dt) {
+    const moved = Math.hypot(player.x - (run.breathX ?? player.x), player.z - (run.breathZ ?? player.z));
+    run.breathX = player.x; run.breathZ = player.z;
+    const still = moved < 0.035 * Math.max(dt, 1e-4) * 60;
+    if (still && run.pulseCooldown <= 0.05) run.stillTimer += dt;
+    else run.stillTimer = 0;
+
+    const held = run.stillTimer >= BREATH_SECONDS;
+    if (held) {
+      run.breathBest = Math.max(run.breathBest, run.stillTimer);
+      // Noise drains sharply rather than at the ambient rate.
+      run.noise = Math.max(0, run.noise - dt * 26);
+      // The trail goes cold: hunters lose the scent they were walking toward.
+      if (run.lastNoise.timer > 0) run.lastNoise.timer = Math.max(0, run.lastNoise.timer - dt * 3.4);
+    }
+    if (held !== run.breathHeld) {
+      run.breathHeld = held;
+      audio.setDuck(held);
+      if (held) {
+        toast('<b>BREATH HELD</b> · the vault loses your trail', 2000);
+        announce('Breath held. Noise falling, hunters losing the trail.');
+      } else {
+        announce('Breath broken.');
+      }
+    }
+  }
+
   function updateWorldEcho(dt) {
     const memory=perkLevel('memory');
-    const decay=.68/(1+memory*.34);
-    for (const solid of worldSolids) solid.echo=Math.max(.008,solid.echo-dt*decay);
-    for (const tile of floorTiles) tile.echo=Math.max(.018,tile.echo-dt*decay*.92);
+    // U2 RETUNE. v1.0 decayed at .68/s, so a room faded before you could cross it and
+    // the blueprint residual U1 added had almost nothing to hold. Retuned to .40/s:
+    // a full-strength stamp (1.28) now takes about 3.2s to reach the floor, which is
+    // one unhurried room crossing on a single pulse — and still bites hard enough that
+    // a player who has lost their bearings runs out of memory before they run out of room.
+    // The memory perk divisor is widened .34 -> .55 so each rank is legible rather than
+    // theoretical: rank 3 roughly doubles how long the sketch survives.
+    const decay=.40/(1+memory*.55);
+    // Floors lifted slightly so the residual reads as a blueprint outline rather than black.
+    for (const solid of worldSolids) solid.echo=Math.max(.012,solid.echo-dt*decay);
+    for (const tile of floorTiles) tile.echo=Math.max(.024,tile.echo-dt*decay*.92);
     for (const core of cores) {
       core.spin+=dt*(1.4+run.noise*.004);
-      core.reveal=Math.max(0,core.reveal-dt/(1+memory*.38));
+      core.reveal=Math.max(0,core.reveal-dt/(1+memory*.55));
       core.echo=Math.max(.11,Math.max(core.reveal*.38,core.echo-dt*.7));
     }
     portal.spin+=dt*(portal.active?2.6:.55);
-    portal.reveal=Math.max(0,portal.reveal-dt/(1+memory*.35));
+    portal.reveal=Math.max(0,portal.reveal-dt/(1+memory*.55));
   }
 
   function collectCore(core) {
@@ -2898,6 +2998,7 @@
     }
     updatePlayer(dt);
     updatePulses(dt);
+    updateBreath(dt);
     updateWorldEcho(dt);
     updateEnemies(dt);
     updateProjectiles(dt);
@@ -3416,6 +3517,7 @@
     // ECHO READ: hold E to arm a read, B cycles the distance band, release commits.
     if (event.code==='KeyE'&&run.state==='playing') armEchoRead();
     if (event.code==='KeyB') cycleEchoBand();
+    if (event.code==='KeyG'&&run.state==='playing') emitLoudPulse();
     if (event.code==='Escape'&&run.state==='playing'&&(isTouchDevice||document.pointerLockElement!==canvas)) pauseGame();
   });
   window.addEventListener('keyup',(event)=>{
@@ -3609,6 +3711,9 @@
     collectCore:(index=0)=>{ const core=cores[index]; if (core&&!core.collected) collectCore(core); },
     completeSector:()=>{ for (const core of cores) if (!core.collected) collectCore(core); player.x=portal.x; player.z=portal.z; run.extractionProgress=.99; },
     damage:(amount=10)=>damagePlayer(amount,'diagnostic'),
+    loudPing:emitLoudPulse,
+    breath:()=>({ stillTimer:run.stillTimer, held:run.breathHeld, best:run.breathBest,
+                  noise:run.noise, trailTimer:run.lastNoise.timer, loudPings:run.loudPings }),
     armRead:armEchoRead,
     cycleBand:cycleEchoBand,
     releaseRead:releaseEchoRead,
