@@ -379,6 +379,39 @@
       "hero": false,
       "art": "/assets/cards/apex-tennis.svg",
       "collection": "Sports"
+    },
+    {
+      "icon": "🔷",
+      "title": "Neon Sync",
+      "desc": "A 3v3 neon point-control arena where the score is not your aim — what counts is whether you were the teammate everyone wants. Hold the point, back your squad and get endorsed by AI teammates who state their reasons. Bots have human reaction times and cannot out-track you, so matches are decided by reading the fight rather than by twitch.",
+      "href": "/neonsync/",
+      "tag": "Strategy",
+      "hue": "#22D3EE",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/neon-sync.svg"
+    },
+    {
+      "icon": "🧬",
+      "title": "Biopunk Hive",
+      "desc": "A single-file biopunk incremental game: grow a forbidden containment hive, harvest cadence, manage toxicity and stabilise breaches before they spread, then distil cryo-stasis condensate and prestige into a stronger run.",
+      "href": "/biopunkhive/",
+      "tag": "Strategy",
+      "hue": "#00FF66",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/biopunk-hive.svg"
+    },
+    {
+      "icon": "🎯",
+      "title": "Neon Breach",
+      "desc": "Survive escalating drone waves in a procedural neon arena. Three weapons — Pulse Rifle, Arc Scattergun and Ion Rail — each want a different range, and eight perks are drafted after every wave clear into a build you choose rather than one you unlock. Full touch controls, and it pauses itself when you switch away.",
+      "href": "/neonbreach/",
+      "tag": "Reflex",
+      "hue": "#FFD000",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/neon-breach.svg"
     }
   ]
 }
