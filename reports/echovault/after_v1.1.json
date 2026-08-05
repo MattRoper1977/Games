@@ -1,0 +1,58 @@
+[desktop] fps=3.5 draws/frame=82.8 peakPulses=2 errs=0
+[phone] fps=34.7 draws/frame=84.6 peakPulses=1 errs=0
+{
+  "desktop": {
+    "viewport": "1366x768",
+    "perf": {
+      "frames": 72,
+      "seconds": 20,
+      "fps": 3.5,
+      "p50FrameMs": 272.9,
+      "p95FrameMs": 339.1
+    },
+    "drawCallsPerFrame": 82.8,
+    "totalDrawCalls": 12510,
+    "framesObserved": 151,
+    "peakConcurrentPulses": 2,
+    "state": {
+      "state": "playing",
+      "sector": 1,
+      "score": 248,
+      "cores": 0,
+      "enemies": 2,
+      "pulses": 1,
+      "hp": 100,
+      "resonance": 34.460000000000306,
+      "noise": 95.61000000000004,
+      "touch": false
+    },
+    "errors": []
+  },
+  "phone": {
+    "viewport": "390x844",
+    "perf": {
+      "frames": 694,
+      "seconds": 20,
+      "fps": 34.7,
+      "p50FrameMs": 28.1,
+      "p95FrameMs": 35.7
+    },
+    "drawCallsPerFrame": 84.6,
+    "totalDrawCalls": 117952,
+    "framesObserved": 1395,
+    "peakConcurrentPulses": 1,
+    "state": {
+      "state": "playing",
+      "sector": 1,
+      "score": 1488,
+      "cores": 0,
+      "enemies": 3,
+      "pulses": 0,
+      "hp": 100,
+      "resonance": 11.274843999999977,
+      "noise": 87.75010000000003,
+      "touch": true
+    },
+    "errors": []
+  }
+}
