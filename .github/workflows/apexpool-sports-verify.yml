@@ -1,14 +1,34 @@
-name: Apex Sports manifest contract
+name: Apex Sports manifest contract (RETIRED — dispatch only)
 
+# RETIRED, 5 Aug 2026. Recorded, not silently deleted.
+# See tools/RETIRED_apex_sports_manifest_gate.md for the full record.
+#
+# WHAT IT VERIFIED: the Apex Tennis landing, as a single moment — that the
+# candidate manifest was exactly the baseline plus one Apex Tennis entry
+# appended after Apex Golf, with the Physics count up by one, a distinct
+# tennis hue, and every pre-existing entry byte-equivalent.
+#
+# WHEN: it did that job for Games#11, "Add Apex Tennis to Arcade Sports",
+# merged at 900fae5. Its evidence is that PR and its run history.
+#
+# WHY IT IS SPENT: those assertions describe a transition that has already
+# happened. Once Apex Tennis was in the manifest, "baseline + exactly one
+# tennis entry" could never be true again, so the gate could not go green
+# under ANY subsequent change. It failed four times on
+# shelf/biopunkhive-2026-08-04 and again on the three-card branch. A gate
+# that cannot pass is not a gate — it is a landmine, and it measures nothing,
+# the mirror of a check that can only pass.
+#
+# WHAT SURVIVED: the four limbs with live, general value — art on every
+# entry, unique titles and hrefs, tag-vocabulary surfacing (the anti-mint
+# guard) and no-Lessons-contamination — are migrated into
+# tools/validate_games_json.sh in derive-form, so retiring this loses no
+# real coverage. The one-shot baseline assertion dies with the gate.
+#
+# The pull_request trigger is REMOVED so it judges nothing. workflow_dispatch
+# is kept so the Apex Tennis contract stays reproducible on demand against
+# its own historical inputs.
 on:
-  pull_request:
-    paths:
-      - 'games.json'
-      - 'tools/apply_apextennis_manifest.py'
-      - 'tools/verify_apextennis_manifest.js'
-      - 'tools/verify_apexpool_sports_manifest.js'
-      - 'tools/verify_apexpool_sports_browser.js'
-      - '.github/workflows/apexpool-sports-verify.yml'
   workflow_dispatch:
 
 permissions:
@@ -30,13 +50,27 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Capture the current 33-entry baseline
+      # The baseline entry count is DERIVED from origin/main, never pinned.
+      # This step used to assert `games.length !== 33`. The manifest passed 33
+      # the next time a card landed, so the gate began failing at its own
+      # baseline — red for reasons that had nothing to do with the candidate
+      # under test. Re-pinning to 34, 35 or 37 would rot the same way on the
+      # next card, so the number is now read rather than asserted. What IS
+      # still enforced is the part that must never drift: the baseline parses,
+      # carries a games array, and is non-empty — so a corrupt or truncated
+      # baseline fails loudly instead of passing vacuously.
+      - name: Capture the current manifest baseline (count derived, not pinned)
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p artifacts/apextennis-sports
           git show origin/main:games.json > artifacts/apextennis-sports/games-before.json
-          node -e "const d=require('./artifacts/apextennis-sports/games-before.json');if(!d.games||d.games.length!==33)process.exit(1);console.log('baseline entries='+d.games.length)"
+          node -e "
+            const d=require('./artifacts/apextennis-sports/games-before.json');
+            if(!d.games||!Array.isArray(d.games)){console.error('FAIL baseline has no games array');process.exit(1)}
+            if(d.games.length<1){console.error('FAIL baseline manifest is empty — an empty baseline would pass vacuously');process.exit(1)}
+            console.log('baseline entries='+d.games.length+' (derived from origin/main)');
+          "
       - name: Check out the paired Arcade renderer and card art
         uses: actions/checkout@v4
         with:

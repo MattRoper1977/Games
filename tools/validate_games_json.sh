@@ -126,6 +126,51 @@ if (rootHosted.length) {
   rootHosted.forEach(r => console.log('        ' + r));
 }
 
+// 5b · MIGRATED FROM THE RETIRED APEX SPORTS ONE-SHOT GATE.
+//      These four limbs had live, general value: they say something true about
+//      any manifest, not about one landing. They are re-homed here in
+//      derive-form so retiring that gate loses no real coverage. See
+//      tools/RETIRED_apex_sports_manifest_gate.md for the full record.
+
+//      art on every entry — the shelf renders game.art; a missing one is a hole.
+{
+  const missing = gs.filter(g => !g || !g.art).map(g => (g && g.title) || '(untitled)');
+  if (missing.length) fail('entries missing mandatory art: ' + missing.join(', '));
+  ok('art present on all ' + gs.length + ' entries');
+}
+
+//      titles and hrefs unique — identity, derived from the manifest itself.
+{
+  for (const field of ['title', 'href']) {
+    const seen = Object.create(null), dups = [];
+    gs.forEach(g => { const v = g && g[field]; if (v == null) return;
+      if (seen[v]) { if (seen[v] === 1) dups.push(v); seen[v]++; } else seen[v] = 1; });
+    if (dups.length) fail('duplicate ' + field + '(s): ' + dups.join(', '));
+  }
+  ok('titles and hrefs are unique across the manifest');
+}
+
+//      tag vocabulary — the anti-mint guard. The vocabulary is DERIVED from the
+//      manifest, never listed here: a new tag is not forbidden, it is surfaced,
+//      so minting is a visible decision instead of an accident.
+{
+  const census = Object.create(null);
+  gs.forEach(g => { if (g && g.tag) census[g.tag] = (census[g.tag] || 0) + 1; });
+  const singles = Object.keys(census).filter(t => census[t] === 1).sort();
+  ok(Object.keys(census).length + ' tags in the derived vocabulary');
+  if (singles.length) console.log('        single-use tag(s), check these are intended and not accidental mints: ' + singles.join(', '));
+}
+
+//      no Lessons contamination in root-hosted entries — a site-hosted game
+//      must never carry a /Lessons/ path in its art or href.
+{
+  const bad = gs.filter(g => g && !String(g.href || '').startsWith('/Lessons/')
+                          && /\/Lessons\//.test(String(g.art || '')))
+                .map(g => g.title);
+  if (bad.length) fail('root-hosted entries pointing art into Lessons: ' + bad.join(', '));
+  ok('no Lessons contamination in root-hosted entries');
+}
+
 // 6 · SANITY FLOOR — manifest non-empty, entry count printed.
 //     The printed count is also what keeps the homepage arcade number honest.
 if (gs.length < 1) fail('manifest is empty (0 entries)');
