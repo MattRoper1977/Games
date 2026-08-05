@@ -1,0 +1,125 @@
+name: Games estate audit
+
+'on':
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'tools/games-estate-audit/**'
+      - '.github/workflows/games-estate-audit.yml'
+
+permissions:
+  contents: read
+  actions: read
+  pages: read
+
+concurrency:
+  group: games-estate-audit-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    name: Four-pass manifest, browser and publication audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Check out Games review branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Pin published Games main
+        run: git fetch --no-tags --force origin main:refs/remotes/origin/main
+
+      - name: Check out website repository read-only
+        uses: actions/checkout@v4
+        with:
+          repository: MattRoper1977/mattroper1977.github.io
+          ref: main
+          path: _site
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Check out Lessons repository read-only
+        uses: actions/checkout@v4
+        with:
+          repository: MattRoper1977/Lessons
+          ref: main
+          path: _lessons
+          fetch-depth: 1
+          lfs: true
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: tools/games-estate-audit/requirements.txt
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install audit dependencies
+        run: python -m pip install --disable-pip-version-check -r tools/games-estate-audit/requirements.txt
+
+      - name: Verify the audit instrument
+        run: |
+          python -m py_compile tools/games-estate-audit/audit.py
+          python tools/games-estate-audit/audit.py --help >/dev/null
+          python -m unittest discover -s tools/games-estate-audit/tests -v
+          bash -n tools/games-estate-audit/run.sh
+          node --version
+          python --version
+          (google-chrome --version || google-chrome-stable --version || chromium --version || chromium-browser --version)
+
+      - name: Prepare immutable review evidence
+        run: |
+          mkdir -p audit-output
+          git diff --binary origin/main...HEAD > audit-output/review.patch
+          git diff --name-status origin/main...HEAD > audit-output/changed-files.txt
+          {
+            printf 'games_head=%s\n' "$(git rev-parse HEAD)"
+            printf 'games_main=%s\n' "$(git rev-parse origin/main)"
+            printf 'site_main=%s\n' "$(git -C _site rev-parse HEAD)"
+            printf 'lessons_main=%s\n' "$(git -C _lessons rev-parse HEAD)"
+            printf 'event=%s\n' "$GITHUB_EVENT_NAME"
+          } > audit-output/repository-state.txt
+
+      - name: Run all four audit passes
+        id: estate
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          python tools/games-estate-audit/audit.py \
+            --repo-root . \
+            --site-root _site \
+            --lessons-root _lessons \
+            --output audit-output \
+            --published-ref origin/main \
+            --browser \
+            --live
+          status=$?
+          printf 'exit_code=%s\n' "$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Upload complete review bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: games-estate-audit-${{ github.sha }}
+          path: audit-output/
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Enforce measured result after evidence upload
+        if: always()
+        shell: bash
+        run: exit "${{ steps.estate.outputs.exit_code || '2' }}"
