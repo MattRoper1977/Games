@@ -205,10 +205,7 @@ diff --git a/tools/apply_apexrally_manifest.py b/tools/apply_apexrally_manifest.
 diff --git a/.github/workflows/sports-rail-verify.yml b/.github/workflows/sports-rail-verify.yml
 --- a/.github/workflows/sports-rail-verify.yml
 +++ b/.github/workflows/sports-rail-verify.yml
-@@ -59,7 +59,10 @@ jobs:
-           \
-             || echo "no baseline — every collision will fail, which is the safe direction"
- 
+@@ -61,5 +61,8 @@
        - name: Sports rail gates
 -        run: node tools/verify_sports_rail.js | tee /tmp/rail.log
 +        shell: bash
