@@ -10,6 +10,13 @@ Files involved:
 - `tools/verify_apexpool_sports_manifest.js` — a 489-byte compatibility shim
   that delegates to the file below
 - `tools/verify_apextennis_manifest.js` — the gate itself
+- `tools/verify_apexpool_sports_browser.js` — **added to this record on 6 August
+  2026.** It was always part of this family (the same workflow runs it) but was
+  never named here. It is spent for exactly the same reason: it asserts a
+  **four-game** Sports rail by href list and a **34-entry** shelf, both of which
+  described the estate on the day Apex Tennis landed and neither of which can be
+  true again. The rail is five today and the shelf is 41. It was found by a
+  derive-don't-pin census, and it is recorded rather than converted — see below.
 
 Both scripts are left in the tree, runnable on demand. Nothing was deleted.
 
@@ -89,3 +96,31 @@ gh workflow run apexpool-sports-verify.yml     # or the Actions UI
 
 It will still assert the Apex Tennis landing against its historical inputs.
 It is not wired to judge anything else.
+
+
+## The 6 August 2026 pin census
+
+A derive-don't-pin sweep of `tools/` and `.github/workflows/` was run to find any
+literal count or hash still being asserted as an invariant. Result:
+
+| instrument | verdict |
+|---|---|
+| `verify_sports_rail.js` | derived — no literal totals |
+| `verify_echovault_shelf.js` | derived |
+| `verify_relicforge_shelf.js` | derived |
+| `validate_games_json.sh` | derived |
+| `apply_apexrally_manifest.py` | derived |
+| `apply_apextennis_manifest.py` | derived |
+| `verify_apextennis_manifest.js` | **pinned (33/34) — retired, left alone** |
+| `verify_apexpool_sports_browser.js` | **pinned (34, four-game rail) — retired, named above** |
+
+The `sha256sum` pairs in `apexpool-sports-verify.yml` are before/after
+comparisons of the same file within one run — idempotency checks, not pinned
+values — and are correct as they stand.
+
+**Why the two pinned gates were not converted.** Converting them would resurrect
+a gate this record already explains is spent: both describe a *transition*
+(the estate on the day Apex Tennis landed), not an invariant, and a transition
+cannot be re-derived into a live contract without inventing a different gate
+that happens to share its filename. They stay retired, runnable on demand, as
+the audit record this document exists to preserve. Nothing was deleted.
