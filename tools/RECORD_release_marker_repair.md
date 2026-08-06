@@ -229,3 +229,54 @@ statement that the estate is clean.** Still open:
 - **Medevac card art** — see above.
 - The three pre-existing hue collisions S3 reports as drift (Apex Golf / Apex
   Tennis at ΔE00 14.01) are untouched and still reported.
+
+---
+
+## Close session — 6 August 2026
+
+### Live propagation: confirmed, and that open item is closed
+
+The previous run could not reach `madebymatt.uk` from its container and left
+propagation unverified. It was executed on a GitHub runner instead — runners can
+reach the live site when the agent container cannot — via a temporary
+`workflow_dispatch`/push workflow that was removed in the same branch and never
+merged to `main`.
+
+Result, at `main` = `e2e9ab7099493b619941329952195353ab0f4ccb`:
+
+```
+live  sha256: 10ba4bdefc90fa2c4ac29a64bf4dadf9a43dc1ea70c65703dd5a9dac15050876
+main  sha256: 10ba4bdefc90fa2c4ac29a64bf4dadf9a43dc1ea70c65703dd5a9dac15050876
+BYTE-IDENTICAL
+```
+
+Served manifest parsed: 41 entries, 41 art, one `NEW · ` title holder (Echo
+Vault), zero legacy description holders, Medevac present. `200` on the Medevac
+banner, on `/medevac/` and on `/games/`. The live arcade was then rendered in
+desktop 1280×900 and mobile 390×844 reduced-motion: **41 games, sole rendered
+holder `NEW · Echo Vault — Sound Is Your Light`, zero descriptions beginning
+`NEW · `, Medevac art painted at its natural 1200×630, 57/57 card images
+resolved, 0px horizontal overflow.** Both profiles passed.
+
+The shelf the public is served is the shelf on `main`.
+
+### The `reset --hard` footgun
+
+After merging the records PR, the agent ran `git reset --hard origin/main`
+**while still checked out on the feature branch**. That dragged the branch tip
+off its pushed commit and onto `main`'s merge commit. The push-protection hook
+then correctly reported an unpushed commit on that branch — a commit that was
+already on `main` and did not belong on the branch at all. Nothing was lost; the
+branch was restored to `01419f6` and `git log --branches --not --remotes` came
+back empty.
+
+**Standing rule: check out `main` — or detach HEAD — *before* any
+`git reset --hard origin/main`. Resetting while on a feature branch silently
+rewrites that branch, not your view of main.**
+
+And the second half, which matters more: **a hook firing about "commits that
+shouldn't be here" is doing its job.** The instinct to push whatever it names, or
+to assume work has been lost, is wrong in both directions. Derive the ancestry
+first — `git log --branches --not --remotes`, and check whether the named commit
+is already reachable from `origin/main`. Here it was, and the correct action was
+to move the branch pointer back, not to push.
