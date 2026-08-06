@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
 """apply_apexrally_manifest.py — put Apex Rally on the shelf, idempotently.
 
-Follows apply_apextennis_manifest.py. Two transforms, both safe to re-run:
+Follows apply_apextennis_manifest.py. One transform, safe to re-run:
 
   1. upsert the Apex Rally entry (append if absent, replace in place if present,
      collapsing any accidental duplicates onto the first index)
-  2. move the `NEW · ` prefix onto Apex Rally and off everything else
 
-The second one is a repair as much as a transform. The standing convention is
-that at most one entry carries the prefix; the manifest currently has two (Apex
-Kick and Apex Pool), so re-running this settles it rather than adding a third.
-`NEW ACT II` on Glitch Clash is a different string and is deliberately left
-alone — only the exact `NEW · ` prefix is moved.
+The `NEW · ` release marker is deliberately not owned by this game-specific
+transform. If an existing Apex Rally entry carries the marker in its title or
+description, that exact value is preserved; the transform never mints, moves or
+removes the whole-shelf release slot.
 
 Apex Rally joins the Sports rail by the inherited mechanism: the `collection`
 field, the same one the other four Apex games use. No second mechanism is built,
@@ -32,7 +30,7 @@ ENTRY = {
     'icon': '⚔️',
     'title': 'Apex Rally',
     'desc': (
-        'NEW · Read the court before the ball arrives. A rally duel against opponents who '
+        'Read the court before the ball arrives. A rally duel against opponents who '
         'adapt as you learn them — aim, time and spin every shot, bank Apex Focus by reading '
         'the bounce early, then finish the point from the baseline or at the net. Works offline.'
     ),
@@ -55,20 +53,21 @@ def transform(doc: dict) -> dict:
         return g.get('title') == ENTRY['title'] or g.get('href') == ENTRY['href']
 
     matches = [i for i, g in enumerate(games) if is_rally(g)]
+    entry = ENTRY.copy()
     if matches:
+        existing = games[matches[0]]
+        # Release placement is whole-shelf state, not Apex Rally identity.
+        # Preserve it exactly on a re-run so this transform is idempotent both
+        # before and after a separate release-marker handover.
+        for field in ('title', 'desc'):
+            value = existing.get(field)
+            if isinstance(value, str) and value.startswith(NEW_PREFIX):
+                entry[field] = value
         first = matches[0]
         games[:] = [g for i, g in enumerate(games) if i == first or not is_rally(g)]
-        games[next(i for i, g in enumerate(games) if is_rally(g))] = ENTRY.copy()
+        games[next(i for i, g in enumerate(games) if is_rally(g))] = entry
     else:
-        games.append(ENTRY.copy())
-
-    # exactly one NEW · holder, and it is Apex Rally
-    for g in games:
-        if is_rally(g):
-            continue
-        desc = g.get('desc', '')
-        if desc.startswith(NEW_PREFIX):
-            g['desc'] = desc[len(NEW_PREFIX):]
+        games.append(entry)
     return doc
 
 
@@ -89,11 +88,13 @@ def main() -> int:
 
     MANIFEST.write_text(after, encoding='utf-8')
     games = json.loads(after)['games']
-    holders = [g['title'] for g in games if g.get('desc', '').startswith(NEW_PREFIX)]
+    title_holders = [g['title'] for g in games if g.get('title', '').startswith(NEW_PREFIX)]
+    legacy_holders = [g['title'] for g in games if g.get('desc', '').startswith(NEW_PREFIX)]
     sports = [g['title'] for g in games if g.get('collection') == 'Sports']
     print(f'total entries: {len(games)}')
     print(f'Sports collection ({len(sports)}): {", ".join(sports)}')
-    print(f'NEW · holder(s) ({len(holders)}): {", ".join(holders)}')
+    print(f'NEW · title holder(s) ({len(title_holders)}): {", ".join(title_holders)}')
+    print(f'legacy description holder(s) ({len(legacy_holders)}): {", ".join(legacy_holders)}')
     print(f'art present: {sum(1 for g in games if g.get("art"))}/{len(games)}')
     return 0
 

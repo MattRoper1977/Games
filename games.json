@@ -15,7 +15,7 @@
     },
     {
       "icon": "⚙️",
-      "title": "NEW · Relicforge — Strip the Machine",
+      "title": "Relicforge — Strip the Machine",
       "desc": "A buried machine kingdom, dismantled component by component. Shoot the arms off and it stops shooting; take the legs and it stops chasing you. Strip every external and the core shuts down intact — and the Salvage Rating grades how surgically you did it, so patience outscores firepower. Rebuild your own chassis from what you recover, and read the kingdom's fall in the relics you install.",
       "href": "/relicforge/",
       "tag": "Action RPG",
@@ -335,7 +335,7 @@
     {
       "icon": "🎮",
       "title": "Trekkers Trail Runner — Tees Coast",
-      "desc": "Tees Coast edition of Trail Runner.",
+      "desc": "Five legs of the real AQA Walking Unit route, from Eston Rec to South Gare — set a bearing at the Rec, climb to Eston Nab, then take the dunes and loose sand at the coast. Glide the route, dodge the bog and beat the Storm; Calm Mode is there if you want the walk without the weather.",
       "href": "/Lessons/Games/Trekkers_Trail_Runner_Tees_Coast.html",
       "tag": "Reflex",
       "hue": "#68D391",
@@ -438,7 +438,7 @@
     {
       "icon": "⚔️",
       "title": "Apex Rally",
-      "desc": "NEW · Read the court before the ball arrives. A rally duel against opponents who adapt as you learn them — aim, time and spin every shot, bank Apex Focus by reading the bounce early, then finish the point from the baseline or at the net. Works offline.",
+      "desc": "Read the court before the ball arrives. A rally duel against opponents who adapt as you learn them — aim, time and spin every shot, bank Apex Focus by reading the bounce early, then finish the point from the baseline or at the net. Works offline.",
       "href": "/apexrally/",
       "tag": "Physics",
       "hue": "#FF737C",
@@ -446,6 +446,17 @@
       "hero": false,
       "art": "/assets/cards/apex-rally.svg",
       "collection": "Sports"
+    },
+    {
+      "icon": "✈️",
+      "title": "Medevac Frontier",
+      "desc": "Train with Unit 734, then fly Twilight and Night Canyon medevac runs. Land in the green zone, guide the litter teams out under a running clock — three litters a trip — then decide how many supply crates to risk before you clear the rim. Every completed mission tightens the canyon, and your service record carries over. Works offline.",
+      "href": "/medevac/",
+      "tag": "Physics",
+      "hue": "#1A8193",
+      "featured": false,
+      "hero": false,
+      "art": "/medevac/medevac_frontier_banner.png"
     }
   ]
 }

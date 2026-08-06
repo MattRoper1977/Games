@@ -15,8 +15,10 @@
  *   S2  every rail member is also in the whole-shelf catalogue (Sports is additive)
  *   S3  rail hues are pairwise distinct by CIEDE2000, and distinct from each
  *       member's shelf neighbours
- *   S4  at most one `NEW · ` holder across the whole manifest
+ *   S4  at most one title-based `NEW · ` holder across the whole manifest,
+ *       with description-based markers surfaced as legacy drift
  *   S5  rail cards do not read as duplicates of one another
+ *   S6  a positive control proves S4 rejects one additional holder
  *
  *   node tools/verify_sports_rail.js [path/to/games.json]
  */
@@ -166,10 +168,55 @@ gate('S3', 'rail hues are pairwise distinct, and distinct from shelf neighbours'
          (drift.length ? ` · ${drift.length} pre-existing collision(s) reported above` : '');
 });
 
-gate('S4', 'at most one NEW · holder', () => {
-  const holders = games.filter(g => (g.desc || '').startsWith(NEW_PREFIX));
-  assert(holders.length <= 1, `${holders.length} entries carry the prefix: ${holders.map(g => g.title).join(', ')}`);
-  return holders.length ? `1 holder: ${holders[0].title}` : 'no current holder';
+function markerState(entries) {
+  return {
+    title: entries.filter(g => String(g.title || '').startsWith(NEW_PREFIX)).map(g => g.title),
+    legacyDescription: entries.filter(g => String(g.desc || '').startsWith(NEW_PREFIX)).map(g => g.title)
+  };
+}
+
+function baselineGames() {
+  const ref = process.env.SPORTS_BASE_REF ||
+              (process.env.GITHUB_BASE_REF ? 'origin/' + process.env.GITHUB_BASE_REF : 'origin/main');
+  try {
+    const { execSync } = require('child_process');
+    const raw = execSync(`git show ${ref}:games.json`, {
+      cwd: path.resolve(__dirname, '..'), encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore']
+    });
+    const baseline = JSON.parse(raw);
+    return Array.isArray(baseline.games) ? baseline.games : null;
+  } catch (_) { return null; }
+}
+
+function checkMarkerState(entries, baselineEntries) {
+  const current = markerState(entries);
+  const clean = current.title.length <= 1 && current.legacyDescription.length === 0;
+  if (clean) return { current, baseline: null, drift: false };
+
+  /* The gate repair must not become a landmine on the pre-existing mixed
+   * convention. Against a reachable base, existing drift may stay level or
+   * reduce; any extra title holder, legacy description holder or total claim
+   * fails. Once the clean-up lands, the derived baseline is clean and this
+   * becomes the strict one-title/zero-description invariant automatically. */
+  assert(Array.isArray(baselineEntries),
+    `release-marker convention is not clean and no baseline is reachable: titles=${current.title.join(', ') || 'none'}; legacy descriptions=${current.legacyDescription.join(', ') || 'none'}`);
+  const baseline = markerState(baselineEntries);
+  const currentClaims = current.title.length + current.legacyDescription.length;
+  const baselineClaims = baseline.title.length + baseline.legacyDescription.length;
+  assert(current.title.length <= baseline.title.length &&
+         current.legacyDescription.length <= baseline.legacyDescription.length &&
+         currentClaims <= baselineClaims,
+    `release-marker drift increased from ${baselineClaims} to ${currentClaims} claim(s): titles=${current.title.join(', ') || 'none'}; legacy descriptions=${current.legacyDescription.join(', ') || 'none'}`);
+  return { current, baseline, drift: true };
+}
+
+gate('S4', 'one title-based NEW · holder; no legacy description marker', () => {
+  const checked = checkMarkerState(games, baselineGames());
+  const current = checked.current;
+  if (checked.drift) {
+    console.log(`       DRIFT, not increased by this change: title holders=${current.title.join(', ') || 'none'}; legacy description holders=${current.legacyDescription.join(', ') || 'none'}`);
+  }
+  return `title holders ${current.title.length}: ${current.title.join(', ') || 'none'}; legacy description holders ${current.legacyDescription.length}: ${current.legacyDescription.join(', ') || 'none'}`;
 });
 
 gate('S5', 'rail cards do not read as duplicates', () => {
@@ -186,6 +233,18 @@ gate('S5', 'rail cards do not read as duplicates', () => {
     seen.set(o, g.title);
   });
   return `${rail.length} distinct icons; ${rail.length} distinct opening clauses`;
+});
+
+gate('S6', 'release-marker gate has a positive control', () => {
+  const clone = JSON.parse(JSON.stringify(games));
+  const target = clone.find(g => !String(g.title || '').startsWith(NEW_PREFIX));
+  assert(target, 'positive control has no unmarked entry to mutate');
+  target.title = NEW_PREFIX + target.title;
+  let caught = false;
+  try { checkMarkerState(clone, games); }
+  catch (_) { caught = true; }
+  assert(caught, 'adding one extra NEW · title holder did not trip S4');
+  return `extra marker on ${target.title.replace(NEW_PREFIX, '')} was rejected`;
 });
 
 const failed = results.filter(r => r.status === 'FAIL');
