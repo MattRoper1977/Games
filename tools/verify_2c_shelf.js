@@ -119,12 +119,34 @@ function run(manifestRaw, tamperLabel) {
     holders.length === 1 && !TARGETS.includes(games.find(g => g.title === holders[0]).href),
     `holder(s): ${holders.join(' | ') || 'none'}`);
 
-  /* Aurora Links 3D is a golf game and is deliberately NOT on the Sports rail,
-     because that rail is the Apex Sports series and not a genre. */
+  /* CONVERTED 2026-08-07, not weakened and not deleted.
+     Stage 2C shipped with this gate asserting the OPPOSITE — that Aurora Links
+     3D was off the Sports rail, because that rail was read as the Apex Sports
+     series rather than a genre. That reading was recorded at the time as an
+     OPEN QUESTION rather than a fact, exactly so it could be settled by the
+     person whose call it is. Matt ruled on 2026-08-06: the rail means sports.
+     So the gate now guards the ruling instead of the superseded reading. It
+     still fails if someone silently drops Aurora from the rail, which is the
+     whole point of keeping it rather than removing it.
+     The `every(/^Apex /)` clause is gone deliberately: it was the stale pin.
+     Requiring rail members to be Apex titles is precisely the premise the
+     ruling overturned, and leaving it would have hard-failed on any genuine
+     non-Apex member forever. */
   const sports = games.filter(g => g.collection === 'Sports').map(g => g.title);
-  gate(`${tamperLabel}Aurora Links 3D is off the Sports rail (that rail is the Apex series)`,
-    aurora.collection === undefined && sports.every(t => /^Apex /.test(t)),
-    `Sports members: ${sports.join(', ')} · Aurora collection=${JSON.stringify(aurora.collection)}`);
+  const nonApex = sports.filter(t => !/^Apex /.test(t));
+  gate(`${tamperLabel}Aurora Links 3D is ON the Sports rail (Matt's ruling: the rail means sports)`,
+    aurora.collection === 'Sports' && sports.includes('Aurora Links 3D'),
+    `Sports members (${sports.length}): ${sports.join(', ')} · non-Apex: ${nonApex.join(', ') || 'none'} · Aurora collection=${JSON.stringify(aurora.collection)}`);
+
+  /* The rail is icon-distinct WITHIN itself. Aurora and Apex Golf both carried
+     the golf flag, which cost nothing while they were on different rails and
+     became this rail's first intra-rail collision the moment the sixth member
+     landed. The Sports contract's S5 caught it; this restates it here so the
+     2C contract cannot go green on a rail that reads as duplicates. */
+  const railIcons = games.filter(g => g.collection === 'Sports').map(g => g.icon);
+  gate(`${tamperLabel}the Sports rail is icon-distinct within itself`,
+    new Set(railIcons).size === railIcons.length,
+    `${new Set(railIcons).size}/${railIcons.length} distinct — ${railIcons.join(' ')}`);
 
   /* Hue separation, every distance derived. Floors: >=12 against a franchise
      sibling sharing a name stem, >=10 against every other shelf neighbour. */
@@ -184,7 +206,8 @@ const TAMPERS = [
   ['drop Lumina Haven from the shelf', d => { d.games = d.games.filter(g => g.href !== '/luminahaven/'); }],
   ['drop Aurora Links 3D from the shelf', d => { d.games = d.games.filter(g => g.href !== '/auroralinks/'); }],
   ['give Aurora the NEW marker too', d => { const g = d.games.find(x => x.href === '/auroralinks/'); g.title = NEW_PREFIX + g.title; }],
-  ['put Aurora on the Sports rail', d => { d.games.find(x => x.href === '/auroralinks/').collection = 'Sports'; }],
+  ['take Aurora off the Sports rail', d => { delete d.games.find(x => x.href === '/auroralinks/').collection; }],
+  ['give Aurora the golf flag back, colliding with Apex Golf on the rail', d => { d.games.find(x => x.href === '/auroralinks/').icon = '\u26f3'; }],
   ['move Lumina onto Relicforge\'s hue', d => { d.games.find(x => x.href === '/luminahaven/').hue = '#d05cff'; }],
   ['make the two 2C hues the same', d => { d.games.find(x => x.href === '/auroralinks/').hue = d.games.find(x => x.href === '/luminahaven/').hue; }],
   ['strip a required field', d => { delete d.games.find(x => x.href === '/luminahaven/').art; }],
