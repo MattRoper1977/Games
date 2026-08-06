@@ -3,8 +3,19 @@
   "strap": "Bite-sized challenges, infinite fun — built one game at a time.",
   "games": [
     {
+      "icon": "🔥",
+      "title": "NEW · Relicforge: Fracture Engine",
+      "desc": "Three realms are breaking apart, and their relic logic is the only way through. Take a Forgeguard, a Riftcaller or a Shadowsmith into Ironwood Verge for its Forge Shards, the Glitchworks for its Fracture Pylons, and the Celestial Foundry for the Nullsmith itself. Temper relics at the forge between fights, read every ground telegraph before it lands, then export a Chronicle of the whole run — a standalone evidence record, generated locally, with no account and no server.",
+      "href": "/fracture/",
+      "tag": "Action RPG",
+      "hue": "#5E8BFF",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/fracture-engine.svg"
+    },
+    {
       "icon": "🛰️",
-      "title": "NEW · Echo Vault — Sound Is Your Light",
+      "title": "Echo Vault — Sound Is Your Light",
       "desc": "A pitch-black vault you can only see by making noise. Every sonar pulse paints the architecture in travelling light — and tells every hunter down there exactly where you are. Read the room before it answers, hold your breath to go cold, or throw a loud ping across the hall and walk the other way while they chase it. Sound is your light and your danger, and choosing when to spend it is the whole game.",
       "href": "/echovault/",
       "tag": "Roguelike",
