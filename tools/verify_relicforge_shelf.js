@@ -41,8 +41,10 @@ if (matches.length !== 1) { report(); process.exit(1); }
 const game = matches[0];
 
 /* ---- the entry itself ---- */
-pass(typeof game.title === 'string' && game.title.startsWith('NEW · '),
-  `title carries the NEW convention: "${game.title}"`);
+/* NEW is an ephemeral whole-shelf release marker. This per-game identity
+ * contract must continue to pass when the next release legitimately takes it. */
+pass(typeof game.title === 'string' && game.title.trim().length > 0,
+  `title is present: "${game.title}"`);
 pass(/relicforge/i.test(game.title), 'title names the game');
 pass(game.href.startsWith('/') && !/^https?:/i.test(game.href), 'href is site-relative');
 pass(typeof game.art === 'string' && game.art.trim().length > 0,

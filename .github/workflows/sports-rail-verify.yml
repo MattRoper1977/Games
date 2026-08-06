@@ -59,7 +59,10 @@ jobs:
             || echo "no baseline — every collision will fail, which is the safe direction"
 
       - name: Sports rail gates
-        run: node tools/verify_sports_rail.js | tee /tmp/rail.log
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/verify_sports_rail.js | tee /tmp/rail.log
 
       - name: Shelf transform is idempotent
         shell: bash
@@ -96,6 +99,8 @@ jobs:
             console.log(`art present: ${g.filter(x => x.art).length}/${g.length}`);
             console.log(`Sports rail (${rail.length}):`);
             rail.forEach(x => console.log(`  ${x.icon}  ${x.title.padEnd(14)} ${x.hue}  ${x.href}`));
-            const nw = g.filter(x => (x.desc||"").startsWith("NEW · ")).map(x => x.title);
-            console.log(`NEW · holder(s): ${nw.length ? nw.join(", ") : "none"}`);
+            const nw = g.filter(x => (x.title||"").startsWith("NEW · ")).map(x => x.title);
+            const legacy = g.filter(x => (x.desc||"").startsWith("NEW · ")).map(x => x.title);
+            console.log(`NEW · title holder(s): ${nw.length ? nw.join(", ") : "none"}`);
+            console.log(`legacy description holder(s): ${legacy.length ? legacy.join(", ") : "none"}`);
           '
