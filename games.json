@@ -14,6 +14,17 @@
       "art": "/assets/cards/fracture-engine.svg"
     },
     {
+      "icon": "🏎️",
+      "title": "Neon Turf: Overdrive",
+      "desc": "Rocket-powered hover cars, one ball, and a floor that remembers who drove over it. Score in the net to lead — but every wheel-track paints the grid, and if the clock runs out level the team holding the most turf takes the decision. Three arenas of bumpers, gravity wells and portals: Neon Foundry, Singularity Court and Warp Circuit. Run the Arcade Cup solo, take a Local Duel on one screen, or drill it in the Training Lab.",
+      "href": "/neonturf/",
+      "tag": "Physics",
+      "hue": "#D02578",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/neon-turf-overdrive.svg"
+    },
+    {
       "icon": "🛰️",
       "title": "Echo Vault — Sound Is Your Light",
       "desc": "A pitch-black vault you can only see by making noise. Every sonar pulse paints the architecture in travelling light — and tells every hunter down there exactly where you are. Read the room before it answers, hold your breath to go cold, or throw a loud ping across the hall and walk the other way while they chase it. Sound is your light and your danger, and choosing when to spend it is the whole game.",
