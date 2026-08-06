@@ -15,7 +15,7 @@
     },
     {
       "icon": "⚙️",
-      "title": "NEW · Relicforge — Strip the Machine",
+      "title": "Relicforge — Strip the Machine",
       "desc": "A buried machine kingdom, dismantled component by component. Shoot the arms off and it stops shooting; take the legs and it stops chasing you. Strip every external and the core shuts down intact — and the Salvage Rating grades how surgically you did it, so patience outscores firepower. Rebuild your own chassis from what you recover, and read the kingdom's fall in the relics you install.",
       "href": "/relicforge/",
       "tag": "Action RPG",
@@ -438,7 +438,7 @@
     {
       "icon": "⚔️",
       "title": "Apex Rally",
-      "desc": "NEW · Read the court before the ball arrives. A rally duel against opponents who adapt as you learn them — aim, time and spin every shot, bank Apex Focus by reading the bounce early, then finish the point from the baseline or at the net. Works offline.",
+      "desc": "Read the court before the ball arrives. A rally duel against opponents who adapt as you learn them — aim, time and spin every shot, bank Apex Focus by reading the bounce early, then finish the point from the baseline or at the net. Works offline.",
       "href": "/apexrally/",
       "tag": "Physics",
       "hue": "#FF737C",
