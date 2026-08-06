@@ -446,6 +446,17 @@
       "hero": false,
       "art": "/assets/cards/apex-rally.svg",
       "collection": "Sports"
+    },
+    {
+      "icon": "✈️",
+      "title": "Medevac Frontier",
+      "desc": "Train with Unit 734, then fly Twilight and Night Canyon medevac runs. Land in the green zone, guide the litter teams out under a running clock — three litters a trip — then decide how many supply crates to risk before you clear the rim. Every completed mission tightens the canyon, and your service record carries over. Works offline.",
+      "href": "/medevac/",
+      "tag": "Physics",
+      "hue": "#1A8193",
+      "featured": false,
+      "hero": false,
+      "art": "/medevac/medevac_frontier_banner.png"
     }
   ]
 }
