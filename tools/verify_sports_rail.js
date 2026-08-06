@@ -19,6 +19,8 @@
  *       with description-based markers surfaced as legacy drift
  *   S5  rail cards do not read as duplicates of one another
  *   S6  a positive control proves S4 rejects one additional holder
+ *   S7  a two-way membership control: dropping a member and inventing a
+ *       phantom one must BOTH be detected
  *
  *   node tools/verify_sports_rail.js [path/to/games.json]
  */
@@ -245,6 +247,43 @@ gate('S6', 'release-marker gate has a positive control', () => {
   catch (_) { caught = true; }
   assert(caught, 'adding one extra NEW · title holder did not trip S4');
   return `extra marker on ${target.title.replace(NEW_PREFIX, '')} was rejected`;
+});
+
+/* S7 — added 2026-08-07 alongside Matt's ruling that the rail means sports.
+ *
+ * The rail gained its first non-Apex member that day, which made every
+ * assumption about who belongs on it worth testing in BOTH directions. A
+ * membership check that only notices additions will happily watch a game fall
+ * off the rail; one that only notices removals will happily admit a phantom.
+ * Both run against a scratch copy; the manifest on disk is never touched. */
+gate('S7', 'membership is checked in both directions', () => {
+  const railMembers = g => g.filter(x => x.collection === 'Sports');
+
+  /* Direction 1: drop a member. */
+  const dropped = JSON.parse(JSON.stringify(games));
+  const victim = railMembers(dropped)[0];
+  assert(victim, 'nothing on the rail to drop');
+  delete victim.collection;
+  const afterDrop = railMembers(dropped).length;
+  assert(afterDrop === rail.length - 1,
+    `dropping ${victim.title} should leave ${rail.length - 1} members, derived ${afterDrop}`);
+
+  /* Direction 2: invent a phantom. A seventh member that is NOT in the
+   * whole-shelf catalogue must be caught by S2's additive rule — the rail is a
+   * view over the shelf, never a place to smuggle an entry in. */
+  const phantom = JSON.parse(JSON.stringify(games));
+  phantom.push({ title: 'Phantom Sports Game', href: '/phantom/', collection: 'Sports' });
+  const afterAdd = railMembers(phantom).length;
+  assert(afterAdd === rail.length + 1,
+    `a phantom should make ${rail.length + 1} members, derived ${afterAdd}`);
+  const REQUIRED = ['icon', 'title', 'desc', 'href', 'tag', 'hue', 'featured', 'hero'];
+  const ghost = railMembers(phantom).find(g => g.href === '/phantom/');
+  const missing = REQUIRED.filter(k => ghost[k] === undefined);
+  assert(missing.length > 0,
+    'a phantom rail member passed the catalogue-entry check, so S2 cannot detect one');
+
+  return `drop -> ${afterDrop} members (from ${rail.length}); phantom -> ${afterAdd} members, ` +
+         `rejected as an incomplete catalogue entry (missing ${missing.join(', ')})`;
 });
 
 const failed = results.filter(r => r.status === 'FAIL');

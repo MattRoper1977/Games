@@ -492,7 +492,7 @@
       "art": "/assets/cards/lumina-haven.svg"
     },
     {
-      "icon": "⛳",
+      "icon": "🌌",
       "title": "Aurora Links 3D",
       "desc": "A complete single-file WebGL golf game with a nine-hole tournament, four-club bag, wind and wet-weather physics, night floodlights, glowing LED balls, green reading and a playable course designer. Call your score before you play the hole and the scorecard tracks that prediction separately from your strokes, so a brave, accurate call can rescue an untidy hole. Build your own in the Course Lab and play it.",
       "href": "/auroralinks/",
@@ -500,7 +500,8 @@
       "hue": "#C4F52A",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/aurora-links-3d.svg"
+      "art": "/assets/cards/aurora-links-3d.svg",
+      "collection": "Sports"
     }
   ]
 }
