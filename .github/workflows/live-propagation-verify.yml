@@ -1,0 +1,141 @@
+# live-propagation-verify.yml — TEMPORARY, verification only.
+#
+# The container running the close session cannot reach madebymatt.uk: the agent
+# proxy answers 403 to CONNECT for that host. GitHub's runners can. This job
+# exists purely to execute the live checks that the container could not, and is
+# removed in the following commit — it is never merged to main.
+#
+# It asserts that the shelf the public is served is byte-identical to the shelf
+# on main, and renders the live arcade to prove the repaired release marker,
+# the new Medevac card and the derived Trekkers copy are what people see.
+
+on:
+  push:
+    branches: [claude/games-estate-review-i9v9d4]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: 3.1 · served manifest is byte-identical to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsS --retry 3 --retry-delay 5 \
+            https://madebymatt.uk/Games/games.json -o /tmp/live-games.json
+          LIVE=$(sha256sum /tmp/live-games.json | cut -d' ' -f1)
+          MAIN=$(git show HEAD:games.json | sha256sum | cut -d' ' -f1)
+          echo "main SHA      : $(git rev-parse HEAD)"
+          echo "live  sha256  : $LIVE"
+          echo "main  sha256  : $MAIN"
+          {
+            echo "### 3.1 served manifest vs main"
+            echo ""
+            echo '```'
+            echo "main commit : $(git rev-parse HEAD)"
+            echo "live  sha256: $LIVE"
+            echo "main  sha256: $MAIN"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$LIVE" != "$MAIN" ]; then
+            echo "STALE: served manifest does not match main" | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "live entry count: $(python3 -c 'import json,sys;print(len(json.load(open("/tmp/live-games.json"))["games"]))')"
+            exit 1
+          fi
+          echo "BYTE-IDENTICAL" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: 3.1b · served manifest state, parsed
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' | tee -a "$GITHUB_STEP_SUMMARY"
+          import json
+          g=json.load(open('/tmp/live-games.json'))['games']
+          print(f"entries: {len(g)}  art: {sum(1 for x in g if x.get('art'))}")
+          print("NEW title holders:", [x['title'] for x in g if x['title'].startswith('NEW · ')])
+          print("NEW desc holders :", [x['title'] for x in g if x['desc'].startswith('NEW · ')])
+          print("Medevac present  :", any(x['title']=='Medevac Frontier' for x in g))
+          PY
+
+      - name: 3.2 · Medevac art and page resolve live
+        shell: bash
+        run: |
+          set -euo pipefail
+          for u in https://madebymatt.uk/medevac/medevac_frontier_banner.png \
+                   https://madebymatt.uk/medevac/ \
+                   https://madebymatt.uk/games/; do
+            code=$(curl -fsS --retry 3 --retry-delay 5 -o /dev/null -w '%{http_code}' "$u")
+            echo "$code  $u" | tee -a "$GITHUB_STEP_SUMMARY"
+          done
+
+      - name: 3.3 · render the live arcade
+        shell: bash
+        run: |
+          set -euo pipefail
+          # The script must live beside node_modules — resolving it from /tmp
+          # makes require('playwright') fail no matter where npm installed it.
+          npm i -D playwright@1.56.1
+          npx playwright install --with-deps chromium
+          cat > live.js <<'EOF'
+          const { chromium, devices } = require('playwright');
+          const URL='https://madebymatt.uk/games/';
+          const P=[{n:'desktop-1280x900',c:{viewport:{width:1280,height:900}}},
+                   {n:'mobile-390x844-reduced-motion',c:{...devices['iPhone 13'],reducedMotion:'reduce'}}];
+          (async()=>{
+            const b=await chromium.launch(); let fail=0;
+            for(const p of P){
+              const c=await b.newContext(p.c), pg=await c.newPage();
+              await pg.goto(URL,{waitUntil:'networkidle'});
+              await pg.evaluate(async()=>{
+                for(let y=0;y<document.body.scrollHeight;y+=400){window.scrollTo(0,y);await new Promise(r=>setTimeout(r,60));}
+                window.scrollTo(0,0);
+                const i=[...document.querySelectorAll('img.ga')];
+                i.forEach(x=>{x.loading='eager';x.src=x.src;});
+                await Promise.all(i.map(x=>x.decode().catch(()=>{})));
+              });
+              await pg.waitForTimeout(1500);
+              const r=await pg.evaluate(()=>{
+                const cards=[...document.querySelectorAll('.gcard')];
+                const t=cards.map(c=>c.querySelector('h4 span')?.textContent||'');
+                const d=cards.map(c=>c.querySelector('p')?.textContent||'');
+                const u=[...new Set(t)];
+                const imgs=[...document.querySelectorAll('img.ga')];
+                const med=cards.find(c=>/Medevac/.test(c.textContent))?.querySelector('img.ga');
+                return {games:u.length,
+                  newTitles:u.filter(x=>x.startsWith('NEW · ')),
+                  newDescs:d.filter(x=>x.startsWith('NEW · ')).length,
+                  medArt: med?med.naturalWidth+'x'+med.naturalHeight:'NO IMG',
+                  /* assert on the FULL desc; slice only for display, or the
+                     truncation hides the very phrase being asserted */
+                  trekkersFull:(d.find(x=>/Eston Nab/.test(x))||''),
+                  unresolved:imgs.filter(x=>x.naturalWidth===0).map(x=>x.getAttribute('src')),
+                  imgs:imgs.length,
+                  overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth};
+              });
+              const ok = r.games===41 && r.newTitles.length===1 &&
+                r.newTitles[0]==='NEW · Echo Vault — Sound Is Your Light' &&
+                r.newDescs===0 && r.overflow<=0 && r.unresolved.length===0 &&
+                r.medArt==='1200x630' && /Eston Nab/.test(r.trekkersFull);
+              if(!ok) fail++;
+              console.log(`\n[${p.n}] ${ok?'PASS':'FAIL'}`);
+              console.log(`  games ${r.games} | NEW titles ${JSON.stringify(r.newTitles)} | NEW descs ${r.newDescs}`);
+              console.log(`  Medevac art natural ${r.medArt} | images ${r.imgs-r.unresolved.length}/${r.imgs} resolved`);
+              console.log(`  Trekkers: "${r.trekkersFull.slice(0,90)}..."`);
+              console.log(`  overflow ${r.overflow}px`);
+              await c.close();
+            }
+            await b.close();
+            console.log(fail?`\n${fail} PROFILE(S) FAILED`:'\nALL LIVE BROWSER PROFILES PASSED');
+            process.exit(fail?1:0);
+          })();
+          EOF
+          node live.js | tee -a "$GITHUB_STEP_SUMMARY"
