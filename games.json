@@ -3,8 +3,32 @@
   "strap": "Bite-sized challenges, infinite fun — built one game at a time.",
   "games": [
     {
+      "icon": "🛸",
+      "title": "NEW · Vector Overdrive: Nova Siege",
+      "desc": "Twin-stick survival in a full 360° arena. Break a living threat budget wave after wave: graze enemy fire to charge your overdrive, evolve one weapon through four tiers, draft upgrades between waves, and hold off a three-phase dreadnought every fifth wave. Keyboard, gamepad or touch sticks; scores stay on your device. One file, no install, plays offline.",
+      "href": "/novasiege/",
+      "tag": "Reflex",
+      "hue": "#f43600",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/nova-siege.webp",
+      "collection": "Shooter"
+    },
+    {
+      "icon": "⏳",
+      "title": "Ouroboros: Chronos Unbound",
+      "desc": "Four visionaries and one dying clockwork city. A self-contained anime tactical RPG: break the city's logic, sever its sub-nodes, chain resonance techniques between bound heroes, forge equipment from salvaged materials, climb the Spire, and decide whether a broken timeline deserves preservation — or change. One file, no install, plays offline.",
+      "href": "/ouroboros/",
+      "tag": "Action RPG",
+      "hue": "#9f772f",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/ouroboros.webp",
+      "collection": "RPG"
+    },
+    {
       "icon": "🏟️",
-      "title": "NEW · Global Games: Championship Simulator",
+      "title": "Global Games: Championship Simulator",
       "desc": "Nine events across track, field, water, ice and snow, played out as one broadcast championship. Build an athlete's speed, power and stamina, pick a nation, then run the 100m and the hurdles, jump and throw, swim the 50m freestyle, shoot the archery round, deliver a curling stone, take three attempts on the platform and fly the ski jump. Energy carries between days, personal bests are kept on the device, and every control, sound and graphic is generated inside the one file.",
       "href": "/olympics/",
       "tag": "Physics",
