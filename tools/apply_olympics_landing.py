@@ -26,13 +26,33 @@ DERIVED, NOT PINNED. Nothing below reads a count or a membership from this
 file's comments. The script derives the shelf size, the current holder and the
 rail members from the manifest at the moment it runs, and reports what it found.
 
-THE HUE IS THE GAME'S OWN PIXELS. #128cc0 is the pool water the game fills its
-Aquatics lane with (SwimmingEvent's own `ctx.fillStyle`), not a colour chosen to
-look nice next to its neighbours. It clears the CIEDE2000 floor at dE00 11.77
-against its nearest neighbour, Medevac Frontier #1A8193. Every one of the five
-palette accents the game exposes as CSS tokens FAILED that floor — cyan 4.83,
-gold 5.40, green 7.13, purple 3.06, red 7.53 — so the honest move was to look
-further into the game rather than to lower the bar.
+THE HUE IS THE GAME'S OWN PIXELS, AND IT TOOK THREE TRIES TO GET RIGHT.
+
+#9c3b36 is the running track — the surface the game fills its lanes with, and
+the single most identifying thing it draws. Two floors had to be cleared, and
+they are not the same floor:
+
+  the ORDER asked for dE00 >= 10 against nearest shelf neighbours;
+  tools/verify_sports_rail.js S3 already required dE00 >= 25 against every
+  other rail member and against manifest-adjacent entries.
+
+R9 says a repaired validator is canon, so the stricter existing gate governs and
+the order's floor is the weaker of the two. Working to only the stated floor
+would have shipped a hue that the rail's own gate rejects.
+
+  attempt 1  the five palette accents the game exposes as CSS tokens. ALL FIVE
+             failed even the weaker floor: cyan 4.83, gold 5.40, green 7.13,
+             purple 3.06, red 7.53.
+  attempt 2  #128cc0, the pool water. Clears the shelf floor at 11.77 and FAILS
+             the rail at 14.70 against Apex Tennis #3B6FD4 — two blues on one
+             rail. Caught by reading S3 rather than by assuming 10 was the bar.
+  attempt 3  #9c3b36, the track. Rail min 27.37 (nearest Apex Rally), adjacent
+             45.24 against Fracture, whole-shelf min 19.92 against Neon Turf
+             #D02578. Clears both floors with margin.
+
+#47e7ff, the game's primary cyan, clears the RAIL at 33.25 and was rejected
+anyway: it sits 4.83 from Neon Sync #22D3EE on the wider shelf. Passing the gate
+that runs is not the same as being right.
 
 THE COPY IS THE GAME'S OWN STRINGS. The description is assembled from its meta
 description and the nine `category` values in its own EVENT_META. Nothing here
@@ -69,7 +89,7 @@ ENTRY = {
     ),
     "href": HREF,
     "tag": "Physics",
-    "hue": "#128cc0",
+    "hue": "#9c3b36",
     "featured": False,
     "hero": False,
     "art": "/assets/cards/global-games.svg",
