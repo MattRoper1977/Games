@@ -137,11 +137,30 @@ try {
 } catch (e) { hueOk = false; hueMsg = e.message; }
 pass(hueOk, hueMsg);
 
-/* ---- release marker: exactly one holder, and it is this game ---- */
+/* ---- release marker: exactly one holder ---------------------------------
+   CONVERTED 2026-08-07, NOT WEAKENED. This read
+     titleHolders.length === 1 && titleHolders[0].href === HREF
+   which asserted the marker was FRACTURE'S. That was true when this gate was
+   written and it was a stale pin the moment the estate moved on, because
+   `NEW · ` means "the newest thing that landed" — it is a property of the
+   SHELF, not of any one game, and the recency convention had already moved it
+   Echo Vault -> Fracture before it moved Fracture -> Global Games.
+
+   The same shape as the Apex Sports manifest gate that was retired for pinning
+   a 33-entry baseline, and the same repair as the Aurora conversion: keep what
+   the gate was actually protecting — never two holders, never none — and let
+   the thing that is designed to move, move. verify_sports_rail.js S4 already
+   derives it this way, so this now agrees with it rather than contradicting it.
+
+   What it does NOT do is stop caring where the marker is. Losing it is a real
+   event, so the holder is named in the message every run: an unexpected
+   transfer is loud in the output rather than silent. */
 const titleHolders = data.games.filter(g => String(g.title || '').startsWith(NEW_PREFIX));
 const descHolders = data.games.filter(g => String(g.desc || '').includes(NEW_PREFIX));
-pass(titleHolders.length === 1 && titleHolders[0].href === HREF,
-  `sole NEW title holder is Fracture Engine (found ${titleHolders.length}: ${titleHolders.map(g => g.title).join(', ') || 'none'})`);
+pass(titleHolders.length === 1,
+  `exactly one NEW title holder, and it is ${titleHolders.map(g => g.title.replace(NEW_PREFIX, '')).join(', ') || 'NOBODY'}` +
+  `${titleHolders.length === 1 && titleHolders[0].href !== HREF ? ' — transferred away from Fracture Engine, which is the convention working' : ''}` +
+  ` (found ${titleHolders.length})`);
 pass(descHolders.length === 0, `no legacy description marker (found ${descHolders.length})`);
 
 /* ---- the RPG rail, DERIVED ---- */

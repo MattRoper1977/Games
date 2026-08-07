@@ -3,8 +3,20 @@
   "strap": "Bite-sized challenges, infinite fun — built one game at a time.",
   "games": [
     {
+      "icon": "🏟️",
+      "title": "NEW · Global Games: Championship Simulator",
+      "desc": "Nine events across track, field, water, ice and snow, played out as one broadcast championship. Build an athlete's speed, power and stamina, pick a nation, then run the 100m and the hurdles, jump and throw, swim the 50m freestyle, shoot the archery round, deliver a curling stone, take three attempts on the platform and fly the ski jump. Energy carries between days, personal bests are kept on the device, and every control, sound and graphic is generated inside the one file.",
+      "href": "/olympics/",
+      "tag": "Physics",
+      "hue": "#9c3b36",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/global-games.svg",
+      "collection": "Sports"
+    },
+    {
       "icon": "🔥",
-      "title": "NEW · Relicforge: Fracture Engine",
+      "title": "Relicforge: Fracture Engine",
       "desc": "Three realms are breaking apart, and their relic logic is the only way through. Take a Forgeguard, a Riftcaller or a Shadowsmith into Ironwood Verge for its Forge Shards, the Glitchworks for its Fracture Pylons, and the Celestial Foundry for the Nullsmith itself. Temper relics at the forge between fights, read every ground telegraph before it lands, then export a Chronicle of the whole run — a standalone evidence record, generated locally, with no account and no server.",
       "href": "/fracture/",
       "tag": "Action RPG",

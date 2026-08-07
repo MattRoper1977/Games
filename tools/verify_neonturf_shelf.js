@@ -80,9 +80,16 @@ pass(REQUIRED.every(k => game[k] !== undefined && game[k] !== ''), `entry carrie
 /* ---- the two rulings ---- */
 pass(!String(game.title).startsWith(NEW_PREFIX),
   `Neon Turf does NOT take the NEW marker (title: ${game.title})`);
+/* CONVERTED 2026-08-07, NOT WEAKENED — same repair as verify_fracture_shelf.js.
+   This asserted the marker was still Fracture Engine's. The ruling this gate
+   exists to protect is "Neon Turf does NOT take the marker", which is the line
+   above and is untouched. Who DOES hold it is the recency convention's business,
+   and the convention moves it; pinning Fracture here made this gate go red the
+   first time the estate did the very thing the convention says it should. */
 const holders = data.games.filter(g => String(g.title).startsWith(NEW_PREFIX));
-pass(holders.length === 1 && /Fracture Engine/.test(holders[0].title),
-  `the NEW marker is still Fracture Engine's alone (${holders.map(h => h.title).join(', ') || 'none'})`);
+pass(holders.length === 1,
+  `the NEW marker has exactly one holder, and it is not Neon Turf ` +
+  `(${holders.map(h => h.title.replace(NEW_PREFIX, '')).join(', ') || 'NOBODY'})`);
 pass(game.featured === false && game.hero === false,
   'not promoted to the homepage — that is a separate ruled surface');
 pass(game.collection === undefined,
