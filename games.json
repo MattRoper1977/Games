@@ -3,8 +3,20 @@
  "strap": "Bite-sized challenges, infinite fun — built one game at a time.",
  "games": [
   {
+   "icon": "🛸",
+   "title": "NEW · Vector Overdrive: Nova Siege",
+   "desc": "Twin-stick survival in a full 360° arena. Break a living threat budget wave after wave: graze enemy fire to charge your overdrive, evolve one weapon through four tiers, draft upgrades between waves, and hold off a three-phase dreadnought every fifth wave. Keyboard, gamepad or touch sticks; scores stay on your device. One file, no install, plays offline.",
+   "href": "/novasiege/",
+   "tag": "Reflex",
+   "collection": "Shooter",
+   "hue": "#f43600",
+   "art": "/assets/cards/nova-siege.webp",
+   "featured": false,
+   "hero": false
+  },
+  {
    "icon": "⏳",
-   "title": "NEW · Ouroboros: Chronos Unbound",
+   "title": "Ouroboros: Chronos Unbound",
    "desc": "Four visionaries and one dying clockwork city. A self-contained anime tactical RPG: break the city's logic, sever its sub-nodes, chain resonance techniques between bound heroes, forge equipment from salvaged materials, climb the Spire, and decide whether a broken timeline deserves preservation — or change. One file, no install, plays offline.",
    "href": "/ouroboros/",
    "tag": "Action RPG",
