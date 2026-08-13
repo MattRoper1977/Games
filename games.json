@@ -3,6 +3,18 @@
   "strap": "Bite-sized challenges, infinite fun — built one game at a time.",
   "games": [
     {
+      "icon": "🔥",
+      "title": "NEW · Emberwild",
+      "desc": "An original creature-collector. Explore the Vale, battle and capture Emberkin, then follow a seam in the rock down into procedurally generated Depths — cavern, ruins, then hybrid — with loot, healing pools and a Depthwarden on the last floor. Before every throw you call your own odds, and the game then shows you the real ones. Fainting costs you the floor, never the run. One file, no install, plays offline.",
+      "href": "/emberwild/",
+      "tag": "Action RPG",
+      "hue": "#a04b00",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/emberwild.svg",
+      "collection": "RPG"
+    },
+    {
       "icon": "🛸",
       "title": "Vector Overdrive: Nova Siege",
       "desc": "Twin-stick survival in a full 360° arena. Break a living threat budget wave after wave: graze enemy fire to charge your overdrive, evolve one weapon through four tiers, draft upgrades between waves, and hold off a three-phase dreadnought every fifth wave. Keyboard, gamepad or touch sticks; scores stay on your device. One file, no install, plays offline.",
@@ -552,7 +564,7 @@
     },
     {
       "icon": "🏁",
-      "title": "NEW · Rally Vector 3D — Championship Edition",
+      "title": "Rally Vector 3D — Championship Edition",
       "desc": "A six-stage rally season on tarmac, sand, snow, wet coast, forest gravel and canyon shale. Read the holographic pace notes, keep it out of the fords and the breakable props, then spend your service-park minutes on the damage that matters. Every stage records a ghost you can race yourself against. Offline, single file, touch controls.",
       "href": "/rallyvector3d/",
       "tag": "Physics",
