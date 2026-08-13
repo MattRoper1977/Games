@@ -21,6 +21,8 @@
  *   S6  a positive control proves S4 rejects one additional holder
  *   S7  a two-way membership control: dropping a member and inventing a
  *       phantom one must BOTH be detected
+ *   S8  a two-way breach-record control: an unrecorded sub-floor pair must
+ *       fail, and a recorded pair whose hue has moved must fail too
  *
  *   node tools/verify_sports_rail.js [path/to/games.json]
  */
@@ -133,12 +135,34 @@ function baselineHues() {
   } catch (_) { return null; }
 }
 
+/* C1 EXTENDS TO THE RAIL — ruled 2026-08-13, during the shelf reconciliation.
+ * A sub-floor pair may be DECLARED in tools/rail_hue_breaches.json: pair named
+ * by href (stable identity — titles carry the ephemeral NEW marker), exact
+ * hues pinned, evidence cited. This is a record, not an allow-list: the gate
+ * re-checks that both actual hues still match the recorded ones, so an entry
+ * cannot silently cover a later repaint, and S8 proves both refusal
+ * directions every run. */
+function recordedBreaches() {
+  try {
+    const rec = JSON.parse(fs.readFileSync(path.join(__dirname, 'rail_hue_breaches.json'), 'utf8'));
+    return Array.isArray(rec.breaches) ? rec.breaches : [];
+  } catch (_) { return []; }
+}
+function breachFor(a, b, breaches) {
+  return breaches.find(x =>
+    Array.isArray(x.pair) && x.pair.length === 2 &&
+    ((x.pair[0] === a.href && x.pair[1] === b.href) ||
+     (x.pair[0] === b.href && x.pair[1] === a.href)) &&
+    x.hues && x.hues[a.href] === a.hue && x.hues[b.href] === b.hue) || null;
+}
+
 gate('S3', 'rail hues are pairwise distinct, and distinct from shelf neighbours', () => {
   const base = baselineHues();
+  const breaches = recordedBreaches();
   const preexisting = (a, b) =>
     base && base.get(a.title) === a.hue && base.get(b.title) === b.hue;
 
-  const lines = [], drift = [];
+  const lines = [], drift = [], recorded = [];
   const check = (a, b, kind) => {
     const d = de2000(a.hue, b.hue);
     if (d >= DE_FLOOR) return d;
@@ -146,7 +170,12 @@ gate('S3', 'rail hues are pairwise distinct, and distinct from shelf neighbours'
       drift.push(`${a.title} ${a.hue} / ${b.title} ${b.hue} — ΔE00 ${d.toFixed(2)} (${kind}, pre-existing on main)`);
       return d;
     }
-    throw new Error(`${a.title} ${a.hue} and ${b.title} ${b.hue} are ΔE00 ${d.toFixed(2)}, below the ${DE_FLOOR} floor (${kind}, introduced by this change)`);
+    const rec = breachFor(a, b, breaches);
+    if (rec) {
+      recorded.push(`${a.title} ${a.hue} / ${b.title} ${b.hue} — ΔE00 ${d.toFixed(2)} (${kind}, RECORDED BREACH, ruled ${rec.ruled})`);
+      return d;
+    }
+    throw new Error(`${a.title} ${a.hue} and ${b.title} ${b.hue} are ΔE00 ${d.toFixed(2)}, below the ${DE_FLOOR} floor (${kind}, introduced by this change and not in tools/rail_hue_breaches.json)`);
   };
 
   for (let i = 0; i < rail.length; i++) {
@@ -166,8 +195,10 @@ gate('S3', 'rail hues are pairwise distinct, and distinct from shelf neighbours'
 
   if (!base) console.log('       (no origin/main baseline reachable — every collision would fail)');
   drift.forEach(d => console.log('       DRIFT, not caused by this change: ' + d));
+  recorded.forEach(d => console.log('       ' + d));
   return `${lines.length} rail pairs, floor ΔE00 ${DE_FLOOR}: ${lines.join('; ')}` +
-         (drift.length ? ` · ${drift.length} pre-existing collision(s) reported above` : '');
+         (drift.length ? ` · ${drift.length} pre-existing collision(s) reported above` : '') +
+         (recorded.length ? ` · ${recorded.length} recorded breach(es) reported above` : '');
 });
 
 function markerState(entries) {
@@ -284,6 +315,45 @@ gate('S7', 'membership is checked in both directions', () => {
 
   return `drop -> ${afterDrop} members (from ${rail.length}); phantom -> ${afterAdd} members, ` +
          `rejected as an incomplete catalogue entry (missing ${missing.join(', ')})`;
+});
+
+/* S8 — added 2026-08-13 alongside the C1-extends-to-the-rail ruling.
+ *
+ * The breach record must be a record, not a hole. Two refusal directions,
+ * both proven against scratch data so the manifest on disk is never touched:
+ * an UNRECORDED sub-floor pair must still fail S3's logic, and a RECORDED
+ * pair whose actual hue has moved off the recorded value must fail too —
+ * otherwise one ruled breach would silently cover every later repaint. */
+gate('S8', 'breach record refuses in both directions', () => {
+  const breaches = recordedBreaches();
+  assert(breaches.length > 0, 'no recorded breach to exercise the control against');
+
+  /* Direction 1: a sub-floor pair that is NOT in the record. */
+  const a = { title: 'Control A', href: '/control-a/', hue: '#F2A24A' };
+  const b = { title: 'Control B', href: '/control-b/', hue: '#F2A34B' }; /* ΔE00 ≈ 0 */
+  assert(de2000(a.hue, b.hue) < DE_FLOOR, 'control pair is not sub-floor, control is inert');
+  assert(!breachFor(a, b, breaches), 'an unrecorded pair matched the record — the record is not selective');
+
+  /* Direction 2: a recorded pair, but one hue repainted off the recorded value. */
+  const rec = breaches[0];
+  const [h1, h2] = rec.pair;
+  const moved = [
+    { title: 'Recorded 1', href: h1, hue: rec.hues[h1] },
+    { title: 'Recorded 2', href: h2, hue: '#123456' } /* not the recorded hue */
+  ];
+  assert(moved[1].hue !== rec.hues[h2], 'control fixture could not move the hue');
+  assert(!breachFor(moved[0], moved[1], breaches),
+    'a repainted pair still matched the record — the record pins nothing');
+
+  /* And the record does match what it actually vouches for. */
+  const exact = [
+    { title: 'Recorded 1', href: h1, hue: rec.hues[h1] },
+    { title: 'Recorded 2', href: h2, hue: rec.hues[h2] }
+  ];
+  assert(breachFor(exact[0], exact[1], breaches), 'the record does not match its own declared pair');
+
+  return `unrecorded sub-floor pair refused; repainted recorded pair refused; ` +
+         `${breaches.length} recorded breach(es) match only their pinned hues`;
 });
 
 const failed = results.filter(r => r.status === 'FAIL');

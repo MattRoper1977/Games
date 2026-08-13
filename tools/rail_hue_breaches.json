@@ -1,0 +1,21 @@
+{
+  "_ruling": "C1 extends to the rail. Ruled by Matt 2026-08-13, during the shelf reconciliation that made this repository's games.json the canonical shelf. Desk ruling C1 (site repo 161af34, 2026-08-12: 'the games wear their own colours, and the breaches go on the record') reverted the driving games' shelf hues to their identity colours and recorded the resulting sub-floor pairs rather than working around them, because at ~50 entries the sRGB regions clearing the floor against the whole shelf no longer include the games' own liveries - a metric that can only be satisfied by abandoning the thing it proxies has stopped measuring it. The same reasoning holds a fortiori on the rail. So S3 in verify_sports_rail.js accepts a sub-floor rail pair ONLY if it is declared here, and this file is a record, not an allow-list: every entry names its pair by href (stable identity - titles carry the ephemeral NEW marker), pins the exact hues it vouches for, and cites its evidence. S3 re-measures the distance and refuses the record if either hue has moved, so an entry cannot silently cover a later repaint, and an UNRECORDED sub-floor pair still fails - the S8 control proves both directions every run.",
+  "breaches": [
+    {
+      "pair": ["/apexpool/", "/rallyvector3d/"],
+      "hues": {"/apexpool/": "#F2A24A", "/rallyvector3d/": "#ffd45f"},
+      "de00": 16.23,
+      "kind": "rail pair",
+      "ruled": "2026-08-13",
+      "evidence": "Rally Vector 3D wears #ffd45f, its own champion-livery gold, per C1 (site repo 161af34; reports/2026-08-12-two-driving-games-launch.md section 2 carries the gamut measurement). Apex Pool's #F2A24A predates it. Measured dE00 16.23 against the rail floor of 25."
+    },
+    {
+      "pair": ["/auroralinks/", "/rallyvector3d/"],
+      "hues": {"/auroralinks/": "#C4F52A", "/rallyvector3d/": "#ffd45f"},
+      "de00": 20.94,
+      "kind": "rail pair",
+      "ruled": "2026-08-13",
+      "evidence": "The second pair the same ruled hue creates: Aurora Links 3D's lime #C4F52A predates the port. Same C1 ruling, same commission, measured dE00 20.94 against the rail floor of 25. Golf/Tennis at 14.01 is NOT recorded here - both hues are unchanged from main, so S3's own pre-existing-drift path owns it."
+    }
+  ]
+}
