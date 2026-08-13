@@ -1,0 +1,15 @@
+{
+  "_purpose": "S8's negative control consumes THIS file, never tools/rail_hue_breaches.json. Ruled by Matt 2026-08-14. A gate's proof-that-it-can-fail must not depend on a real breach happening to exist: when the last live breach was retired the old S8 would have failed on 'no recorded breach to exercise the control against' - a control that stops working because the estate got healthier. That is the same vacuity family as counting a crash as a rejection (register species 35). So the control gets a committed synthetic breach of its own, and the live record is free to be empty.",
+  "_notLive": "Nothing here is a ruling about any real game. The two hrefs are deliberately fictional so this file can never be mistaken for the live record, and so a pair listed here can never silently excuse a real sub-floor collision on the rail. S3 does not read this file.",
+  "_pairIsSubFloor": "The fixture pair measures dE00 2.25 against the rail floor of 25, and S8 re-measures it every run: a fixture whose pair stopped being sub-floor would make the control inert without saying so, so S8 fails rather than passes if that ever happens.",
+  "breaches": [
+    {
+      "pair": ["/fixture-alpha/", "/fixture-beta/"],
+      "hues": {"/fixture-alpha/": "#F2A24A", "/fixture-beta/": "#EE9A44"},
+      "de00": 2.25,
+      "kind": "synthetic control fixture",
+      "ruled": "2026-08-14",
+      "evidence": "Committed control data, not an estate ruling. Exists so S8 can prove the breach-record mechanism refuses an unrecorded pair and refuses a recorded pair whose hue has moved, on a run where the live record is empty."
+    }
+  ]
+}
