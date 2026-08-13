@@ -21,7 +21,8 @@
  *   S6  a positive control proves S4 rejects one additional holder
  *   S7  a two-way membership control: dropping a member and inventing a
  *       phantom one must BOTH be detected
- *   S8  a two-way breach-record control: an unrecorded sub-floor pair must
+ *   S8  a two-way breach-record control, run against a COMMITTED FIXTURE so
+ *       it never depends on a live breach existing: an unrecorded sub-floor pair must
  *       fail, and a recorded pair whose hue has moved must fail too
  *
  *   node tools/verify_sports_rail.js [path/to/games.json]
@@ -145,6 +146,20 @@ function baselineHues() {
 function recordedBreaches() {
   try {
     const rec = JSON.parse(fs.readFileSync(path.join(__dirname, 'rail_hue_breaches.json'), 'utf8'));
+    return Array.isArray(rec.breaches) ? rec.breaches : [];
+  } catch (_) { return []; }
+}
+/* S8's control data, deliberately SEPARATE from the live record. Ruled by Matt
+ * 2026-08-14: a gate's proof-that-it-can-fail must not depend on a real breach
+ * happening to exist. The old S8 asserted `breaches.length > 0` against the
+ * LIVE record, so retiring the last real breach would have failed the control
+ * outright - a control that breaks because the estate got healthier. The path
+ * is overridable so a control run can point it at a tampered copy and prove
+ * the control itself can fail. */
+function fixtureBreaches() {
+  const p = process.env.RAIL_BREACH_FIXTURE || path.join(__dirname, 'rail_hue_breach_fixture.json');
+  try {
+    const rec = JSON.parse(fs.readFileSync(p, 'utf8'));
     return Array.isArray(rec.breaches) ? rec.breaches : [];
   } catch (_) { return []; }
 }
@@ -325,8 +340,29 @@ gate('S7', 'membership is checked in both directions', () => {
  * pair whose actual hue has moved off the recorded value must fail too —
  * otherwise one ruled breach would silently cover every later repaint. */
 gate('S8', 'breach record refuses in both directions', () => {
-  const breaches = recordedBreaches();
-  assert(breaches.length > 0, 'no recorded breach to exercise the control against');
+  /* The control runs on the FIXTURE. The live record may be empty - and after
+   * the 2026-08-14 retirement it is - which is the strong state: with nothing
+   * recorded, S3 refuses every sub-floor pair a change introduces. */
+  const breaches = fixtureBreaches();
+  assert(breaches.length > 0, 'fixture carries no breach to exercise the control against');
+  {
+    const f = breaches[0], [p1, p2] = f.pair;
+    const d = de2000(f.hues[p1], f.hues[p2]);
+    assert(d < DE_FLOOR,
+      `fixture pair ${p1}/${p2} measures ΔE00 ${d.toFixed(2)}, at or above the ${DE_FLOOR} floor — ` +
+      `the control would be inert, so this fails rather than passing quietly`);
+  }
+  /* The live record is not consumed by the control, but if it carries anything
+   * it must still be self-consistent: a declared breach whose pinned hues are
+   * NOT sub-floor would be excusing a collision that does not exist. Vacuous
+   * while the record is empty, which is exactly when it costs nothing. */
+  for (const live of recordedBreaches()) {
+    const [p1, p2] = live.pair;
+    const d = de2000(live.hues[p1], live.hues[p2]);
+    assert(d < DE_FLOOR,
+      `live record entry ${p1}/${p2} measures ΔE00 ${d.toFixed(2)}, which is not sub-floor — ` +
+      `it excuses nothing and should not be recorded`);
+  }
 
   /* Direction 1: a sub-floor pair that is NOT in the record. */
   const a = { title: 'Control A', href: '/control-a/', hue: '#F2A24A' };
@@ -352,8 +388,11 @@ gate('S8', 'breach record refuses in both directions', () => {
   ];
   assert(breachFor(exact[0], exact[1], breaches), 'the record does not match its own declared pair');
 
+  const live = recordedBreaches();
   return `unrecorded sub-floor pair refused; repainted recorded pair refused; ` +
-         `${breaches.length} recorded breach(es) match only their pinned hues`;
+         `${breaches.length} FIXTURE breach(es) match only their pinned hues; ` +
+         `live record carries ${live.length} entr${live.length === 1 ? 'y' : 'ies'}` +
+         `${live.length === 0 ? ' — nothing is excused' : ''}`;
 });
 
 const failed = results.filter(r => r.status === 'FAIL');
