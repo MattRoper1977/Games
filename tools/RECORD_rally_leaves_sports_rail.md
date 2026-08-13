@@ -42,17 +42,30 @@ point: the gate is not moved in the pass it blocks.
 identity gold `#ffd45f` — the C1 ruling on hues is untouched. One field removed,
 nothing else.
 
-## The rail lands at seven, not five
+## RAIL IDENTITY, ruled 2026-08-14 — a general Sports rail of seven
 
-The ruling names the rail the Apex-family rail, and the five Apex games are its
-core — but two non-Apex members remain, each added by its own earlier ruled commit:
+The 13 August ruling was phrased "the Apex-family rail" and was acted on as
+such: Rally Vector 3D came off, and **stays off** — that ruling was made twice
+and is now load-bearing, since the re-scoped NEW·-marker assertion is green
+because of it and the estate-audit §4 park dissolved on it.
 
-- `47fc567` — *Aurora Links 3D joins the Sports rail: 5 -> 6, the rail's first
-  non-Apex member*
-- `50d1800` — *Global Games lands — shelf 45→46, Sports rail 7*
+Matt settled the identity question itself on 14 August. **The rail is a general
+Sports rail and stands at seven.** Its occupants, as ruled:
 
-Removing those would contradict two standing rulings and was not asked for, so the
-rail is 7 after this change. Recorded here so the number is not read as a miss.
+| | |
+|---|---|
+| `/olympics/` | Global Games: Championship Simulator — joined by `50d1800` |
+| `/apexkick/` | Apex Kick |
+| `/apexpool/` | Apex Pool |
+| `/apexgolf/` | Apex Golf |
+| `/apextennis/` | Apex Tennis |
+| `/apexrally/` | Apex Rally |
+| `/auroralinks/` | Aurora Links 3D — joined by `47fc567`, *"the rail's first non-Apex member"* |
+
+Global Games and Aurora Links 3D each arrived through their own ruled commit and
+**stay**. Seven is the ruled number, not a shortfall against five: recorded here
+so the next launch does not re-litigate it, and so "Apex-family" is not read as a
+standing instruction to prune the two non-Apex members.
 
 ## Gates
 
@@ -61,13 +74,15 @@ rail is 7 after this change. Recorded here so the number is not read as a miss.
 is Apex Golf / Apex Tennis at ΔE00 14.01, correctly reported by S3's own
 pre-existing-drift path.
 
-**One consequence to note.** `tools/rail_hue_breaches.json` records two breaches
-involving `/rallyvector3d/` (against Apex Pool at 16.23 and Aurora Links at 20.94),
-declared when Rally was a rail member. Rally is no longer on the rail, so neither
-pair can arise and both records are now inert. They are deliberately **left in
-place**: S8 requires at least one recorded breach to exercise its control against,
-so emptying the record would break a working gate. Whether to retire them is a
-separate ruling, not a consequence of this one.
+**One consequence, since settled.** `tools/rail_hue_breaches.json` recorded two
+breaches involving `/rallyvector3d/` (against Apex Pool at 16.23 and Aurora Links
+at 20.94), declared when Rally was a rail member. Rally left the rail, so neither
+pair could arise and both records went inert. They were left in place at the time
+only because S8 then required a live breach to exercise its control against.
+**Ruled and done on 2026-08-14:** both entries retired, and S8's control moved to
+`tools/rail_hue_breach_fixture.json` so it never again depends on a real breach
+existing. The live record is now empty, which is the strong state — nothing is
+excused.
 
 ## The estate-audit §4 park is DISSOLVED
 
