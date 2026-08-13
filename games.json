@@ -559,8 +559,7 @@
       "hue": "#ffd45f",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/rally-vector-3d.webp",
-      "collection": "Sports"
+      "art": "/assets/cards/rally-vector-3d.webp"
     }
   ]
 }
