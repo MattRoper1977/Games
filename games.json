@@ -4,7 +4,7 @@
   "games": [
     {
       "icon": "🛸",
-      "title": "NEW · Vector Overdrive: Nova Siege",
+      "title": "Vector Overdrive: Nova Siege",
       "desc": "Twin-stick survival in a full 360° arena. Break a living threat budget wave after wave: graze enemy fire to charge your overdrive, evolve one weapon through four tiers, draft upgrades between waves, and hold off a three-phase dreadnought every fifth wave. Keyboard, gamepad or touch sticks; scores stay on your device. One file, no install, plays offline.",
       "href": "/novasiege/",
       "tag": "Reflex",
@@ -537,6 +537,29 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/aurora-links-3d.svg",
+      "collection": "Sports"
+    },
+    {
+      "icon": "🌃",
+      "title": "Neon Meridian: Open Drive",
+      "desc": "Free driving in Meridian Bay, a dense original coastal city built for landmarks, traffic and discovery. Take delivery runs, checkpoint runs and circuit races, bank the credits, then spend them in the garage on engine, tyres and brakes. Twelve landmarks across seven districts, weather and a day-night sky, holdable on one phone. Offline, single file, no account.",
+      "href": "/neonmeridian/",
+      "tag": "Sandbox",
+      "hue": "#58f2cf",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/neon-meridian.webp"
+    },
+    {
+      "icon": "🏁",
+      "title": "NEW · Rally Vector 3D — Championship Edition",
+      "desc": "A six-stage rally season on tarmac, sand, snow, wet coast, forest gravel and canyon shale. Read the holographic pace notes, keep it out of the fords and the breakable props, then spend your service-park minutes on the damage that matters. Every stage records a ghost you can race yourself against. Offline, single file, touch controls.",
+      "href": "/rallyvector3d/",
+      "tag": "Physics",
+      "hue": "#ffd45f",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/rally-vector-3d.webp",
       "collection": "Sports"
     }
   ]
