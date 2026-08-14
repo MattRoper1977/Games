@@ -572,6 +572,17 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/rally-vector-3d.webp"
+    },
+    {
+      "icon": "🏎️",
+      "title": "Slipstream GP: Hyperdraft",
+      "desc": "Drafting rebuilt as three zones you can feel: a turbulent fringe, a vacuum pocket that charges your boost, and dirty air that takes your grip and cooks the engine. Pull sideways out of the pocket and the slingshot fires. Four circuits including Stormline, where standing water, hydroplaning and lightning fight you the whole way round. Four rival personalities — the Blocker, the Apex Purist, the Leech and the Wildcard — and any of them will hold a grudge after contact. Offline, no account, nothing uploaded.",
+      "href": "/hyperdraft/",
+      "tag": "Physics",
+      "hue": "#00E5FF",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/slipstream-hyperdraft.svg"
     }
   ]
 }
