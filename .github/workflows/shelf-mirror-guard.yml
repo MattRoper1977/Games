@@ -27,6 +27,13 @@ on:
     paths:
       - 'games.json'
       - '.github/workflows/shelf-mirror-guard.yml'
+  # The other half of this pair carries the same schedule, for the same reason:
+  # a path filter fires only on a change to a file its own repository owns, and
+  # neither half fires when a merge lands without touching a filtered path or
+  # when a run is skipped. A weekly run re-asks the question regardless. Offset
+  # by a minute from the site half so the two anonymous clones do not race.
+  schedule:
+    - cron: '24 6 * * 1'
   workflow_dispatch:
 
 permissions:
