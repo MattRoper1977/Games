@@ -1,0 +1,57 @@
+name: Site shelf mirror is not stale
+
+# games.json in THIS repository is the canonical shelf: it is served at
+# /Games/games.json and the arcade fetches it at runtime. The site repository
+# keeps a mirror at data/source-manifests/games.json, because its search-index
+# generator reads its declared inputs from data/source-manifests/.
+#
+# This is the half of the mirror guard that fires when the CANONICAL moves —
+# which is the side that caused the drift, twice. The site half can only watch
+# its own files; a path filter there cannot see a merge here. So the trigger
+# that actually fires on a canonical-side change is this one: a push to this
+# repository that touches games.json.
+#
+# It deliberately runs the SITE's generator rather than a comparison written
+# here. One implementation of "mirror equals canonical" exists in the estate,
+# in tools/render_games_manifest_mirror.py, and both halves call it.
+#
+# A red here means: the canonical moved and the site's mirror has not caught
+# up. The fix is a site-repo commit, not a change to this file.
+
+on:
+  push:
+    paths:
+      - 'games.json'
+      - '.github/workflows/shelf-mirror-guard.yml'
+  pull_request:
+    paths:
+      - 'games.json'
+      - '.github/workflows/shelf-mirror-guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shelf-mirror-guard-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  mirror:
+    name: Site mirror has caught up with this shelf
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      # Anonymous clone: the site repository is public, so no token and no
+      # secret, matching validate-games-json.yml's proven pattern.
+      - name: Fetch the site tree (public, no token)
+        run: git clone --depth 1 https://github.com/MattRoper1977/mattroper1977.github.io.git _site
+
+      - name: Site mirror is byte-identical to this shelf
+        run: |
+          set -euo pipefail
+          cd _site
+          python3 tools/render_games_manifest_mirror.py \
+            --canonical "$GITHUB_WORKSPACE/games.json" --check
