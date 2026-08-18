@@ -3,6 +3,17 @@
   "strap": "Bite-sized challenges, infinite fun — built one game at a time.",
   "games": [
     {
+      "icon": "🏘",
+      "title": "NEW · Town Life",
+      "desc": "A whole town to live in. Claim a plot, furnish a home and wire its electrical grid, buy and upgrade businesses, tune a car, and take any of seven roles — Resident, Courier, Paramedic, Officer, Builder, Mayor or Mischief. Day and night, weather, police patrols, a civic budget the town votes on, and a save that keeps everything between visits. One file, no install, offline.",
+      "href": "/townlife/",
+      "tag": "Sandbox",
+      "hue": "#2FA8A4",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/town-life.svg"
+    },
+    {
       "icon": "🔥",
       "title": "NEW · Emberwild",
       "desc": "An original creature-collector. Explore the Vale, battle and capture Emberkin, then follow a seam in the rock down into procedurally generated Depths — cavern, ruins, then hybrid — with loot, healing pools and a Depthwarden on the last floor. Before every throw you call your own odds, and the game then shows you the real ones. Fainting costs you the floor, never the run. One file, no install, plays offline.",
