@@ -583,6 +583,30 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/slipstream-hyperdraft.svg"
+    },
+    {
+      "icon": "🥌",
+      "title": "Apex Curl",
+      "desc": "Call the shot, then throw it. A deterministic curling sheet where ice temperature, pebble wear and the scratch left by earlier stones all move the rock, and sweeping is a real decision rather than a button. Read the draw, judge the weight, and watch the predictor line against what the stone actually does. Works offline.",
+      "href": "/apexcurl/",
+      "tag": "Physics",
+      "hue": "#00F0B4",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/apex-curl.svg",
+      "collection": "Sports"
+    },
+    {
+      "icon": "🚴",
+      "title": "Apex Velodrome",
+      "desc": "Track racing where the match you have is the one you spend. Ride the bankings with real aerodynamics, draft that you can feel arriving, and an anaerobic reserve that does not come back. Points races, the Madison hand-sling, keirin and pursuit, against riders who read the race as you do. Works offline.",
+      "href": "/apexvelodrome/",
+      "tag": "Physics",
+      "hue": "#F3A3FF",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/apex-velodrome.svg",
+      "collection": "Sports"
     }
   ]
 }
