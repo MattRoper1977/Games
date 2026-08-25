@@ -1,0 +1,76 @@
+# The filter-free PR check this repo never had (Order TS §2.2, decision D6;
+# backlog 5p's prerequisite).
+#
+# Every other PR-firing check here carries a `paths:` filter, which means a PR
+# touching none of those paths merges with zero checks — and a ruleset cannot
+# require a check that does not fire on every PR without jamming those PRs for
+# ever. This one fires on EVERY pull request: no `paths:`, no branch condition,
+# no PR-excluding job `if:`. It asserts the repo's cheapest real invariant —
+# the canonical shelf manifest parses and holds its house rules — never a
+# `true` stamp.
+#
+# Matt's ruleset click (his alone): require the check named
+# "PR canonical contract / aggregate" once this is on main.
+name: PR canonical contract
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        if: always()
+        uses: actions/checkout@v4
+      - id: manifest-parses
+        if: always()
+        run: |
+          set -euo pipefail
+          python3 - <<'EOF'
+          import json, sys
+          try:
+              d = json.load(open('games.json'))
+          except Exception as e:
+              print(f'FAIL: games.json does not parse: {e}'); sys.exit(1)
+          games = d.get('games')
+          if not isinstance(games, list) or not games:
+              print('MEASUREMENT INVALID: canonical shelf empty or wrong shape '
+                    '(unit: entry; universe: games.json "games" array)')
+              sys.exit(2)
+          print(f'canonical shelf parses: {len(games)} games '
+                f'(unit: entry; universe: games.json)')
+          EOF
+      - id: fetch-lessons
+        if: always()
+        # Plain clone, not actions/checkout: public repo, and a clone fails
+        # loudly rather than half-succeeding on an empty token.
+        run: git clone --depth 1 https://github.com/MattRoper1977/Lessons.git _lessons
+      - id: house-rules
+        if: always()
+        run: |
+          chmod +x tools/validate_games_json.sh
+          LESSONS_DIR="$GITHUB_WORKSPACE/_lessons" tools/validate_games_json.sh
+      - id: determinism-smoke
+        if: always()
+        run: |
+          set -euo pipefail
+          a=$(sha256sum games.json | cut -d' ' -f1)
+          b=$(sha256sum games.json | cut -d' ' -f1)
+          [ "$a" = "$b" ] || { echo "MEASUREMENT INVALID: games.json bytes unstable within one checkout"; exit 2; }
+          echo "determinism smoke: games.json sha256 $a stable across two reads (the digest the mirror guard pins)"
+  aggregate:
+    needs: [contract]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - id: verdict
+        if: always()
+        run: |
+          set -euo pipefail
+          # Skipped is not passed; a job that did not run did not pass.
+          [ "${{ needs.contract.result }}" = "success" ] || { echo "contract job result: ${{ needs.contract.result }} — not a pass"; exit 1; }
+          echo "every contract step succeeded"
