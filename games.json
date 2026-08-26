@@ -152,7 +152,7 @@
     {
       "icon": "🎮",
       "title": "Trail Runner",
-      "desc": "A fast-paced reflex runner navigating procedural terrain hazards. Ideal for a quick motor-skills reset.",
+      "desc": "A fast reflex runner. Jump the hazards, keep your lives and take on the challenges as your journey goes on.",
       "href": "/Lessons/Games/Trail_Runner.html",
       "tag": "Reflex",
       "hue": "#5EEAD4",
@@ -185,7 +185,7 @@
     {
       "icon": "🌐",
       "title": "Globe Snake",
-      "desc": "A unique 3D spherical twist on classic mechanics, mapping directional inputs onto non-Euclidean global surfaces.",
+      "desc": "Snake, but wrapped around a planet. Steer around the globe, stretch your tail longer and hold to sprint — and unlock new skins as you clear planets.",
       "href": "/Lessons/Games/Globe_Snake (1).html",
       "tag": "Classic",
       "hue": "#F687B3",
@@ -196,7 +196,7 @@
     {
       "icon": "⚡",
       "title": "Neon Snake Overdrive",
-      "desc": "An optimized, high-performance vector snake arena calibrated for fluid mobile and desktop response pathways.",
+      "desc": "A neon snake arena. Steer with the arrow keys, WASD or a swipe, eat to get longer and pick up speed, then put your initials on the high-score table.",
       "href": "/Lessons/Games/Neon_Snake_Overdrive.html",
       "tag": "Classic",
       "hue": "#63B3ED",
@@ -339,7 +339,7 @@
     {
       "icon": "👻",
       "title": "One Guy",
-      "desc": "A solo ghost-runner: each attempt races the recorded 'ghost' of the last run on this device, so pupils compete against their own past best rather than each other. Shareable ghost codes let a run be passed on.",
+      "desc": "A solo ghost-runner: each attempt races the recorded 'ghost' of the last run on this device, so you race your own past best rather than anyone else. Shareable ghost codes let a run be passed on.",
       "href": "/Lessons/Games/OneGuy.html",
       "tag": "Reflex",
       "hue": "#68D391",
@@ -361,7 +361,7 @@
     {
       "icon": "🏆",
       "title": "Kids vs Staff: Showdown",
-      "desc": "Whole-class team quiz: pupils take on the staff across scored rounds. Class-vs-teacher framing — no individual leaderboard.",
+      "desc": "Whole-class team quiz: your class takes on the staff across scored rounds. Teams score, not individuals — no individual leaderboard.",
       "href": "/Lessons/Games/KidsVsStaff_Showdown (3).html",
       "tag": "Class game",
       "hue": "#B794F4",
@@ -372,7 +372,7 @@
     {
       "icon": "⚽",
       "title": "World Cup: Road to the Three Lions Final",
-      "desc": "Teacher-driven end-of-term tournament: three nations, possession and steals, stadium codes, a VAR twist and a cooperative England final. Auto-tallied scoring and evidence print included.",
+      "desc": "An end-of-term tournament your teacher runs: three nations, possession and steals, stadium codes, a VAR twist and a cooperative England final. Auto-tallied scoring and evidence print included.",
       "href": "/Lessons/Games/WorldCup_ThreeLions_Final.html",
       "tag": "Class game",
       "hue": "#F6AD55",
