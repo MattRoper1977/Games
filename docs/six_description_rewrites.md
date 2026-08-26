@@ -1,8 +1,15 @@
-# PROPOSAL — six description rewrites for `games.json`
+# Six description rewrites for `games.json` — APPLIED
 
-**Status: PROPOSAL ONLY. `games.json` is not touched in this branch, and this branch does not merge.**
+**Status: APPLIED, under a one-time written delegation (Order FC-Z, Z-D3).**
+Opened as a proposal under FC-R because the single writer derived as manual/Matt;
+Matt then delegated this specific write in writing. The delegation is quoted verbatim in
+the commit message, which is the whole point — *a delegated write that is logged is not the
+same act as a quiet hand-edit, and the difference is the log.*
 
-## Why this is a proposal and not a change
+The single-writer ruling of 2026-08-13 is otherwise unchanged, and the writer reverts to
+Matt on merge.
+
+## Why this began as a proposal
 
 Order FC-R §2.1 requires the single writer of `games.json` to be derived on evidence before a
 byte is written. Derived at tip `2e6e8f4`:
@@ -13,12 +20,9 @@ byte is written. Derived at tip `2e6e8f4`:
 | What do the workflows do? | **Validate, not generate** | `validate-games-json.yml` and `pr-canonical-contract.yml` check the file against the Lessons tree. |
 | Who has actually written it? | **Matt, by hand** | Last 10 commits touching `games.json`: Matt Roper ×4, MattRoper1977 ×2, Claude ×3 (via PRs #32/#36), one shelf reconciliation. |
 
-That is §2.1's **manual** branch: *write nothing; drop to proposal-only.* It is also FC-R stop
-condition 3 — `games.json` would need a hand-edit. The site repo's own mirror generator records
-the same ruling from the other side: the canonical shelf has a single writer, and that writer is
-not an agent acting on its own.
-
-So the six rewrites are set out here for Matt to apply or reject. Nothing is applied.
+That was §2.1's **manual** branch: *write nothing; drop to proposal-only.* FC-R stopped there,
+correctly. A fresh derivation at FC-Z reached the same answer — still no generator with a declared
+input — so the delegation route applies rather than the generator route.
 
 ## The six, each re-verified at the pinned tips
 
@@ -72,7 +76,7 @@ Re-verified there instead.
 - **Out — internal engineering vocabulary.** No input latency, draw loop, physics tick, canvas, classifier, facet, record, pathway field. A child reading a games directory is not owed the render loop, and swapping a marketing claim for an engineering noun is not restraint.
 - **In — what the player does and what the game does back**, in the reader's words, every clause traceable to the evidence above.
 
-## Read this before applying — a live defect these rewrites would have walked into
+## The defect these rewrites would have walked into — now fixed first
 
 The site's search index derives the BUILD / GROW / LAUNCH pathway facet by **matching words against
 the game's title, description and href, lowercased first**
@@ -99,8 +103,18 @@ been instances nine and ten. The wording above avoids `build`, `grow`, `launch`,
 `primary`, `gcse`, `igcse` and `tutor` — **but that is a workaround, not a fix**, and the right
 answer is not to keep steering descriptions around a bad classifier.
 
-**The fix is not made here, deliberately.** FC-R §2.4 asks for whole-field equality; that is not
-available, because no record declares the field — and switching to it would strip the pathway facet
-from **558 of 717 records**, measured. Setting the entries explicitly would need a `games.json`
-hand-edit, which is stop condition 3. So it is reported with its evidence and left for a pass that
-is scoped to it. Never reword a description to dodge a scanner, and never ban the verb.
+**Fixed before these landed, and that sequence was the ruling.** Order FC-Z §Z2 shipped a class
+exclusion in the site repo (PR #190, merged `cb435f4`): `category=game` never takes a teaching
+pathway facet, consulted before the matcher rather than filtering after it. The set turned out to
+be **nine**, not eight — running the instrument across all 717 records found a second Voxel
+Frontier record that a remembered list had missed. 558 → 549, delta exactly nine, every other
+record byte-identical.
+
+Merging six new descriptions into a classifier that still text-matched "build" and "grow" is how
+nine becomes eleven. That is why §Z2 ran first and this PR was gated behind it.
+
+The six texts avoid the trigger words — verified, zero across all six — but that remains a
+**workaround, not a fix**, and the fix is the exclusion, not the wording. Whole-field equality is
+still the correct instrument and stays deferred behind the A1 tag backfill, which now blocks two
+things: A2 pupil card badges and the classifier flip. Never reword a description to dodge a
+scanner, and never ban the verb.
