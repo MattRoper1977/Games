@@ -3,8 +3,30 @@
   "strap": "Bite-sized challenges, infinite fun — built one game at a time.",
   "games": [
     {
+      "icon": "♛",
+      "title": "NEW · Crown & Badge: Frontier Watch",
+      "desc": "Command six border districts through a seeded 30-day strategy campaign. Allocate officers to urgent calls, choose charge, containment or infiltration, build outposts, manage tomorrow’s ledger and carry earned Valor into future watches. One file, no install, plays offline.",
+      "href": "/crownbadge/",
+      "tag": "Strategy",
+      "hue": "#194C47",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/crown-badge.svg"
+    },
+    {
+      "icon": "🏋️",
+      "title": "Titan Forge: Strength Ascension",
+      "desc": "Time every lift through the gold core, turn clean reps into strength and coins, unlock heavier gear and harsher training zones, then ascend for permanent gem upgrades. Daily quests and one-shot rival trials reward precision without making progress depend on luck. One file, no install, plays offline.",
+      "href": "/titanforge/",
+      "tag": "Reflex",
+      "hue": "#4630A8",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/titan-forge.svg"
+    },
+    {
       "icon": "🔥",
-      "title": "NEW · Emberwild",
+      "title": "Emberwild",
       "desc": "An original creature-collector. Explore the Vale, battle and capture Emberkin, then follow a seam in the rock down into procedurally generated Depths — cavern, ruins, then hybrid — with loot, healing pools and a Depthwarden on the last floor. Before every throw you call your own odds, and the game then shows you the real ones. Fainting costs you the floor, never the run. One file, no install, plays offline.",
       "href": "/emberwild/",
       "tag": "Action RPG",
