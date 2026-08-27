@@ -607,6 +607,17 @@
       "hero": false,
       "art": "/assets/cards/apex-velodrome.svg",
       "collection": "Sports"
+    },
+    {
+      "icon": "🔧",
+      "title": "Micro-Tinkerer: The Giant's Study",
+      "desc": "Shrunk to thumb height in a giant's study, with three AA batteries to recover — one down in the Lowlands, one on the desktop, one along a bookshelf. A Seeker hunts you the whole time, and you carry an exposure meter that fills when you are in the open and a stamina meter that empties when you run. The room is your other move: an angle lamp, a tub of PVA, a desk fan, a line of hardcover books stood on end. Hiders prevail if one of them is still loose at the end. Up to four players share a six-character room code, and single player runs fully offline.",
+      "href": "/micro-tinkerer/",
+      "tag": "Hide & seek",
+      "hue": "#73e5b2",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/micro-tinkerer.svg"
     }
   ]
 }
