@@ -45,7 +45,9 @@ const game = matches[0];
  * contract must continue to pass when the next release legitimately takes it. */
 pass(typeof game.title === 'string' && game.title.trim().length > 0,
   `title is present: "${game.title}"`);
-pass(/relicforge/i.test(game.title), 'title names the game');
+/* The canonical V4 title uses the displayed brand spelling "Relic Forge";
+ * retain compatibility with the earlier compact "Relicforge" spelling. */
+pass(/\brelic[\s-]*forge\b/i.test(game.title), 'title names the game');
 pass(game.href.startsWith('/') && !/^https?:/i.test(game.href), 'href is site-relative');
 pass(typeof game.art === 'string' && game.art.trim().length > 0,
   `art is present and non-empty (${game.art})`);
