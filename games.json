@@ -644,7 +644,7 @@
     {
       "icon": "🏘",
       "title": "Town Life",
-      "desc": "A whole town to live in. Claim a plot, furnish a home and wire its electrical grid, buy and upgrade businesses, tune a car, and take any of seven roles — Resident, Courier, Paramedic, Officer, Builder, Mayor or Mischief. Day and night, weather, police patrols, a civic budget the town votes on, and a save that keeps everything between visits. One file, no install, offline. Gold Master v1.0 preview — verified in Chromium. Firefox, Safari and physical-device checks are still pending.",
+      "desc": "A whole town to live in. Claim a plot, furnish a home and wire its electrical grid, buy and upgrade businesses, tune a car, and take any of seven roles — Resident, Courier, Paramedic, Officer, Builder, Mayor or Mischief. Day and night, weather, police patrols, a civic budget the town votes on, and a save that keeps everything between visits. One file, no install, offline. Gold Master v1.0 preview — verified in Chromium, Firefox and WebKit. Physical device checks (Chromebook, phone) are still pending.",
       "href": "/townlife/",
       "tag": "Sandbox",
       "hue": "#2FA8A4",
