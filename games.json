@@ -14,6 +14,17 @@
       "art": "/assets/cards/crown-badge.svg"
     },
     {
+      "icon": "🏆",
+      "title": "House Olympiad · Sports V4",
+      "desc": "A V4 local championship dashboard for five disciplines across Aurora Links, Apex Pool, Apex Kick and Global Games. Merge results through the private, on-device Sports Passport, compare House points, and export only when you choose. One file, no account, plays offline.",
+      "href": "/houseolympiad/",
+      "tag": "Strategy",
+      "hue": "#0F5B78",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/house-olympiad.svg"
+    },
+    {
       "icon": "🏋️",
       "title": "Titan Forge: Strength Ascension",
       "desc": "Time every lift through the gold core, turn clean reps into strength and coins, unlock heavier gear and harsher training zones, then ascend for permanent gem upgrades. Daily quests and one-shot rival trials reward precision without making progress depend on luck. One file, no install, plays offline.",
@@ -62,8 +73,8 @@
     },
     {
       "icon": "🏟️",
-      "title": "Global Games: Championship Simulator",
-      "desc": "Nine events across track, field, water, ice and snow, played out as one broadcast championship. Build an athlete's speed, power and stamina, pick a nation, then run the 100m and the hurdles, jump and throw, swim the 50m freestyle, shoot the archery round, deliver a curling stone, take three attempts on the platform and fly the ski jump. Energy carries between days, personal bests are kept on the device, and every control, sound and graphic is generated inside the one file.",
+      "title": "Global Games: World Stage V4",
+      "desc": "World Stage V4 brings nine fluid sporting events, biomechanical rhythm, weekly cups, earn-only progression and private same-network class play to one offline file. Energy carries between days, personal bests stay on the device, and every control, sound and graphic is generated locally.",
       "href": "/olympics/",
       "tag": "Physics",
       "hue": "#9c3b36",
@@ -107,8 +118,8 @@
     },
     {
       "icon": "⚙️",
-      "title": "Relicforge — Strip the Machine",
-      "desc": "A buried machine kingdom, dismantled component by component. Shoot the arms off and it stops shooting; take the legs and it stops chasing you. Strip every external and the core shuts down intact — and the Salvage Rating grades how surgically you did it, so patience outscores firepower. Rebuild your own chassis from what you recover, and read the kingdom's fall in the relics you install.",
+      "title": "Relic Forge: Crownfall — V4 Milestone 2",
+      "desc": "V4 Roadmap Milestone 2 turns Crownfall into a kinetic modular action roguelite: dismantle machine enemies component by component, recover their relics, rebuild your chassis and preserve the best surgical Salvage Rating. One file, no install, plays offline.",
       "href": "/relicforge/",
       "tag": "Action RPG",
       "hue": "#d05cff",
@@ -118,9 +129,9 @@
     },
     {
       "icon": "👾",
-      "title": "Off-Brand",
-      "desc": "A whodunnit in the brand workshop: six shapes work the line and one (two later on) is a Glitch in disguise. You crack it through movement trails, the scene log and Roll Call statements — and nobody is ever voted out, everything is reversible. Designed for Matt's sweet, adorable niece Clara.",
-      "href": "/Lessons/Games/Off_Brand.html",
+      "title": "Off-Brand: After Hours — V4 Milestone 2",
+      "desc": "V4 Roadmap Milestone 2 takes the reversible brand-workshop whodunnit After Hours. Follow movement trails, the scene log and Roll Call statements to identify the Glitch without voting anyone out. Designed for Matt's sweet, adorable niece Clara; one file, no install, plays offline.",
+      "href": "/offbrand/",
       "tag": "Whodunnit",
       "hue": "#A78BFA",
       "featured": true,
@@ -173,9 +184,9 @@
     },
     {
       "icon": "🎮",
-      "title": "Trail Runner",
-      "desc": "A fast reflex runner. Jump the hazards, keep your lives and take on the challenges as your journey goes on.",
-      "href": "/Lessons/Games/Trail_Runner.html",
+      "title": "Trail Runner: Stormbreak V4 — Milestone 2",
+      "desc": "Portable V4 Milestone 2 sends a fast reflex runner through a curved storm corridor. Dodge hazards, build Momentum and challenge a local ghost run in one offline file.",
+      "href": "/trailrunner/",
       "tag": "Reflex",
       "hue": "#5EEAD4",
       "featured": false,
@@ -437,8 +448,8 @@
     },
     {
       "icon": "⛏️",
-      "title": "Voxel Frontier",
-      "desc": "Mine, build and explore an endless procedurally generated block world — caves, trees, swimming, per-world saves. Runs offline, right in the browser.",
+      "title": "Voxel Frontier: Beaconfall — V4 Milestone 2",
+      "desc": "V4 Roadmap Milestone 2 adds greedy-meshed terrain, bounded flowing water, adaptive visuals and Arcade Passport feats while preserving Creative mode, procedural caves, trees, swimming and per-world saves. Runs offline in the browser.",
       "href": "/voxel/",
       "tag": "Sandbox",
       "hue": "#87CEEB",
@@ -448,8 +459,8 @@
     },
     {
       "icon": "⚽",
-      "title": "Apex Kick",
-      "desc": "A single-file browser free-kick game. Drag the marker onto the goal, then flick to strike — bow your drag to bend it past the wall and the keeper. Card stats set the physics, never the dice. Works offline.",
+      "title": "Apex Kick: World Stage — AAA V4",
+      "desc": "AAA V4 Final Edition expands the offline free-kick game with a broadcast World Tour, ethical earn-only progression, accessibility and private same-network class play. Drag the marker, flick to strike and bend the ball past the wall and keeper; card stats set the physics, never the dice.",
       "href": "/apexkick/",
       "tag": "Physics",
       "hue": "#2F8F6B",
@@ -563,8 +574,8 @@
     },
     {
       "icon": "🌌",
-      "title": "Aurora Links 3D",
-      "desc": "A complete single-file WebGL golf game with a nine-hole tournament, four-club bag, wind and wet-weather physics, night floodlights, glowing LED balls, green reading and a playable course designer. Call your score before you play the hole and the scorecard tracks that prediction separately from your strokes, so a brave, accurate call can rescue an untidy hole. Build your own in the Course Lab and play it.",
+      "title": "Aurora Links: Northern Lights Tour — AAA V4",
+      "desc": "AAA V4 is a standalone WebGL2-enhanced golf simulation with RK4 aerodynamics, dynamic lies, weekly cups, an earn-only career, a shared Sports Passport and private local-network House Cup play. Canvas gameplay remains available when WebGL2 is unavailable.",
       "href": "/auroralinks/",
       "tag": "Physics",
       "hue": "#C4F52A",
