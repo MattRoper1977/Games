@@ -27,13 +27,16 @@
     {
       "icon": "🏋️",
       "title": "Titan Forge: Strength Ascension",
-      "desc": "Time every lift through the gold core, turn clean reps into strength and coins, unlock heavier gear and harsher training zones, then ascend for permanent gem upgrades. Daily quests and one-shot rival trials reward precision without making progress depend on luck. One file, no install, plays offline.",
+      "desc": "Rhythm-strength game: three-phase lifts, muscle evolution, Kai duels, LAN rival duels, Divine DNA ascension tree.",
       "href": "/titanforge/",
       "tag": "Reflex",
       "hue": "#4630A8",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/titan-forge.svg"
+      "art": "/assets/cards/titan-forge.svg",
+      "version": "5.0.0",
+      "size": 2242893,
+      "sha256": "76f3928f2ace6532db4e59711fdd3022ac9ad2966058a6fdf59a0c446ba298d9"
     },
     {
       "icon": "🔥",
