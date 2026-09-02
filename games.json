@@ -45,9 +45,9 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/titan-forge.svg",
-      "version": "5.0.0",
-      "size": 2242893,
-      "sha256": "76f3928f2ace6532db4e59711fdd3022ac9ad2966058a6fdf59a0c446ba298d9"
+      "version": "5.1.0",
+      "size": 1640431,
+      "sha256": "f5475538cef3b106d4ca53f530b5b622e4ce5156b6e5b7ed2b3ee8355fc19607"
     },
     {
       "icon": "🔥",
