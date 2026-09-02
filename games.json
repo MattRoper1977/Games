@@ -3,8 +3,19 @@
   "strap": "Bite-sized challenges, infinite fun — built one game at a time.",
   "games": [
     {
+      "icon": "⚡",
+      "title": "NEW · CyberPulse: Blackout",
+      "desc": "Skim a rain-black megacity at terminal speed. Parry lethal fire, weaponise collapsing infrastructure, and break the Null Warden in a seamless neon assault. WebGL2 rendering with a Canvas fallback, so it still runs where the GPU path is refused. One file, no install, offline. AAA V6.",
+      "href": "/cyberpulse/",
+      "tag": "Reflex",
+      "hue": "#FF2D78",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/cyberpulse.svg"
+    },
+    {
       "icon": "♛",
-      "title": "NEW · Crown & Badge: Frontier Watch",
+      "title": "Crown & Badge: Frontier Watch",
       "desc": "Command six border districts through a seeded 30-day strategy campaign. Allocate officers to urgent calls, choose charge, containment or infiltration, build outposts, manage tomorrow’s ledger and carry earned Valor into future watches. One file, no install, plays offline.",
       "href": "/crownbadge/",
       "tag": "Strategy",
