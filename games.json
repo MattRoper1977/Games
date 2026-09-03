@@ -676,6 +676,18 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/town-life.svg"
+    },
+    {
+      "icon": "📋",
+      "title": "Touchline Dynasty",
+      "desc": "A complete football management career in one file. Take Harbour FC through seasons of transfers, contracts, board expectations and a dressing room that remembers how you treat it — then watch every fixture play out in a live 3D broadcast you can pause, replay from any angle and analyse. Tactics, substitutions and press conferences all move the simulation. Saves stay on your device. Offline, phone-first, no install.",
+      "href": "/touchline/",
+      "tag": "Management Sim",
+      "hue": "#4A1942",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/touchline-dynasty.svg",
+      "collection": "Sports"
     }
   ]
 }
