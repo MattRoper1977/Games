@@ -688,6 +688,17 @@
       "hero": false,
       "art": "/assets/cards/touchline-dynasty.svg",
       "collection": "Sports"
+    },
+    {
+      "icon": "🛩️",
+      "title": "Skybreak Vector",
+      "desc": "Fly beneath a hostile radar floor, dismantle an offshore cruiser under flak and CIWS fire, then defeat Strider Squadron's prototype ace. Three airframes, a Hydra special-weapon armoury, medals and liveries to unlock, and a phone you can pair as a HOTAS over local Wi-Fi with no cloud relay. WebGL 2 cinematic 3D in one file: no install, offline.",
+      "href": "/skybreak/",
+      "tag": "Flight combat",
+      "hue": "#65A30D",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/skybreak-vector.svg"
     }
   ]
 }
