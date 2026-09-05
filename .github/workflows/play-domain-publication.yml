@@ -81,20 +81,41 @@ jobs:
           path: .sources/Site/domain-split/output/games
           include-hidden-files: true
           retention-days: 30
-      - name: Require the configured standalone games destination
-        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish))
+      - name: Require the configured games destination and working HTTPS
         uses: actions/github-script@v7
         with:
           script: |
             const {data} = await github.rest.repos.getPages({owner: context.repo.owner, repo: context.repo.repo});
             const domains = ['madebymatt-play.uk', 'www.madebymatt-play.uk'];
+            core.info(JSON.stringify({build_type: data.build_type, cname: data.cname, html_url: data.html_url, https_enforced: data.https_enforced}));
             if (data.build_type !== 'workflow' || !domains.includes(data.cname)) {
               throw new Error('Games Pages must use GitHub Actions and the madebymatt-play.uk custom domain (apex or www).');
             }
             const destination = new URL(data.html_url);
-            if (destination.protocol !== 'https:' || !domains.includes(destination.hostname) || destination.hostname !== data.cname || destination.pathname !== '/' || destination.search || destination.hash) {
-              throw new Error('Games Pages must publish over HTTPS at the root of the configured games hostname.');
+            if (!['http:', 'https:'].includes(destination.protocol) || !domains.includes(destination.hostname) || destination.pathname !== '/' || destination.search || destination.hash || destination.port || destination.username || destination.password) {
+              throw new Error('Games Pages must identify the root of the configured games domain.');
             }
+            // html_url is Pages metadata; prove TLS against the actual site.
+            // This read-only guard runs on PRs too, before a pin is merged.
+            const config = JSON.parse(require('node:fs').readFileSync('play-publication.json', 'utf8'));
+            let probe = new URL('/data/domain-catalogue.json', 'https://' + data.cname);
+            let response;
+            for (let hop = 0; hop < 3; hop++) {
+              if (probe.protocol !== 'https:' || !domains.includes(probe.hostname) || probe.pathname !== '/data/domain-catalogue.json' || probe.search || probe.hash || probe.port || probe.username || probe.password) {
+                throw new Error('The HTTPS games probe changed its origin or resource.');
+              }
+              response = await fetch(probe, {redirect: 'manual', signal: AbortSignal.timeout(25000)});
+              if (![301, 302, 303, 307, 308].includes(response.status)) break;
+              const location = response.headers.get('location');
+              if (!location) throw new Error('Games redirect has no destination.');
+              probe = new URL(location, probe);
+            }
+            if (response.status !== 200) throw new Error('The HTTPS games catalogue did not return 200.');
+            const catalogue = await response.json();
+            if (!Array.isArray(catalogue.games) || !Array.isArray(catalogue.activities) || !Array.isArray(catalogue.staff) || catalogue.games.length !== config.canonical_games || catalogue.activities.length + catalogue.staff.length !== config.additional_activities) {
+              throw new Error('The secure destination does not serve the configured games population.');
+            }
+            core.info('Verified HTTPS games catalogue at ' + probe.href);
       - name: Read the configured Pages site
         if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish))
         uses: actions/configure-pages@v5
