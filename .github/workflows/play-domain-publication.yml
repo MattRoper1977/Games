@@ -1,0 +1,104 @@
+name: Standalone games website
+on:
+  pull_request:
+    branches: [main]
+    paths: ['play-publication.json', '.github/workflows/play-domain-publication.yml', 'docs/play-domain.md']
+  push:
+    branches: [main]
+    paths: ['play-publication.json', '.github/workflows/play-domain-publication.yml']
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish after Games Pages source and custom domain are configured
+        type: boolean
+        default: false
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: play-domain-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+jobs:
+  build:
+    name: Assemble all games independently
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Read pinned publication sources
+        id: sources
+        run: |
+          python - <<'PY'
+          import json,os,re
+          c=json.load(open('play-publication.json'))
+          assert c['domain']=='madebymatt-play.uk'
+          assert all(re.fullmatch('[0-9a-f]{40}',c[k]) for k in ['site_commit','lessons_commit'])
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('site='+c['site_commit']+'\nlessons='+c['lessons_commit']+'\n')
+          PY
+      - uses: actions/checkout@v4
+        with:
+          repository: MattRoper1977/mattroper1977.github.io
+          ref: ${{ steps.sources.outputs.site }}
+          path: .sources/Site
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: MattRoper1977/Lessons
+          ref: ${{ steps.sources.outputs.lessons }}
+          path: .sources/Lessons
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Build and check all game payloads and save boundaries
+        run: |
+          python .sources/Site/domain-split/build_publications.py --lessons .sources/Lessons
+          node .sources/Site/domain-split/check_game_saves.cjs
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          out=Path('.sources/Site/domain-split/output')
+          r=json.loads((out/'build-report.json').read_text())
+          assert r['counts']['game_payloads']==69
+          assert r['counts']['missing_initial_load_refs']==0
+          assert r['counts']['external_initial_load_refs']==0
+          assert (out/'games/games.json').read_bytes()==Path('games.json').read_bytes()
+          assert (out/'games/CNAME').read_text().strip()=='madebymatt-play.uk'
+          print(json.dumps(r['counts'],indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: standalone-games-review
+          path: .sources/Site/domain-split/output/games
+          include-hidden-files: true
+          retention-days: 30
+      - name: Read the configured Pages site
+        if: github.event_name == 'workflow_dispatch' && inputs.publish && github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v5
+      - name: Prepare Pages deployment artifact
+        if: github.event_name == 'workflow_dispatch' && inputs.publish && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .sources/Site/domain-split/output/games
+  deploy:
+    if: github.event_name == 'workflow_dispatch' && inputs.publish && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish the verified games artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
