@@ -8,9 +8,9 @@ PR and push runs build a downloadable review artifact only. They never change Pa
 
 ## Activation after checks pass
 
-1. Merge this reviewed source change with required `contract` and `aggregate` checks green on its exact head.
+1. Merge this reviewed source change with `contract`, `aggregate` and `Assemble all games independently` checks green on its exact head.
 2. In this repository's **Settings → Pages**, select **GitHub Actions** as the build/deployment source and set **madebymatt-play.uk** as the custom domain. The connected GitHub tools do not have Pages administration access, so this is an owner action.
-3. Run **Standalone games website** from the main branch, with **publish** selected. It verifies/builds the pinned publication again, then deploys that artifact. Check deployment success before changing GoDaddy DNS.
+3. Run **Standalone games website** from the main branch, with **publish** selected. It verifies/builds the pinned publication again and requires the actual Pages configuration to use GitHub Actions at the root of `madebymatt-play.uk`, then deploys that artifact. The generated `CNAME` file alone does not configure Actions hosting. Check deployment success before changing GoDaddy DNS.
 4. Replace only GoDaddy's apex WebsiteBuilder A destination with GitHub Pages' four A records: **185.199.108.153**, **185.199.109.153**, **185.199.110.153**, **185.199.111.153**. The `www` CNAME target is **mattroper1977.github.io**. Keep unrelated DNS records unchanged.
 5. Confirm HTTPS and representative games, then activate the separately reviewed education publications. The old-origin game-save export page must be available before retiring old game payloads.
 
