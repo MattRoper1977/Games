@@ -2,10 +2,10 @@ name: Standalone games website
 on:
   pull_request:
     branches: [main]
-    paths: ['play-publication.json', '.github/workflows/play-domain-publication.yml', 'docs/play-domain.md']
+    paths: ['games.json', 'play-publication.json', '.github/workflows/play-domain-publication.yml', 'docs/play-domain.md']
   push:
     branches: [main]
-    paths: ['play-publication.json', '.github/workflows/play-domain-publication.yml']
+    paths: ['games.json', 'play-publication.json', '.github/workflows/play-domain-publication.yml']
   workflow_dispatch:
     inputs:
       publish:
@@ -80,6 +80,19 @@ jobs:
           path: .sources/Site/domain-split/output/games
           include-hidden-files: true
           retention-days: 30
+      - name: Require the configured standalone games destination
+        if: github.event_name == 'workflow_dispatch' && inputs.publish && github.ref == 'refs/heads/main'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const {data} = await github.rest.repos.getPages({owner: context.repo.owner, repo: context.repo.repo});
+            if (data.build_type !== 'workflow' || data.cname !== 'madebymatt-play.uk') {
+              throw new Error('Set Games Pages to GitHub Actions with custom domain madebymatt-play.uk before publishing.');
+            }
+            const destination = new URL(data.html_url);
+            if (destination.hostname !== 'madebymatt-play.uk' || destination.pathname !== '/') {
+              throw new Error('Games Pages must publish at the root of madebymatt-play.uk.');
+            }
       - name: Read the configured Pages site
         if: github.event_name == 'workflow_dispatch' && inputs.publish && github.ref == 'refs/heads/main'
         uses: actions/configure-pages@v5
