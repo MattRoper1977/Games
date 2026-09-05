@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "fb61aafa6c1815824319f3f53f4153c166201a50",
+  "site_commit": "34271d6df3da9368da866f979063dc6201baf6dd",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "ccbe7a8bd70692fbf5a6c5352c7bf823c54f463f",
   "canonical_games": 62,
   "additional_activities": 7,
-  "notes": "Pinned standalone publication. This file and PR checks do not alter Pages settings or DNS."
+  "notes": "Reviewed standalone publication: branded home and artwork catalogue. Main pin changes deploy after the existing destination and payload checks. Pages settings and DNS remain owner-configured."
 }
