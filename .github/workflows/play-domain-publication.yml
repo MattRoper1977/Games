@@ -140,3 +140,58 @@ jobs:
       - name: Publish the verified games artifact
         id: deployment
         uses: actions/deploy-pages@v4
+  verify-published:
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Read the accepted publication tuple
+        id: sources
+        run: |
+          python - <<'PY'
+          import json,os
+          c=json.load(open('play-publication.json'))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('site='+c['site_commit']+'\nlessons='+c['lessons_commit']+'\n')
+          PY
+      - uses: actions/checkout@v4
+        with:
+          repository: MattRoper1977/mattroper1977.github.io
+          ref: ${{ steps.sources.outputs.site }}
+          path: .sources/Site
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: MattRoper1977/Lessons
+          ref: ${{ steps.sources.outputs.lessons }}
+          path: .sources/Lessons
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Prepare expected payloads and browser runtime
+        working-directory: .sources/Site
+        run: |
+          python -m pip install lxml==6.0.1
+          python domain-split/play/prepare.py --lessons ../Lessons --output .play-review/output
+          npm install --no-save --no-package-lock playwright@1.55.0
+          npx playwright install --with-deps chrome
+      - name: Verify published phone and desktop discovery, previews and retained game payloads
+        working-directory: .sources/Site
+        env:
+          PLAY_REVIEW_URL: https://www.madebymatt-play.uk
+        run: node domain-split/play/check.cjs
+      - name: Preserve published browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-play-completion-${{ github.run_id }}
+          path: .sources/Site/.play-review/qa/
+          if-no-files-found: error
+          retention-days: 30

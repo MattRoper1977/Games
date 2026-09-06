@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "3bdbf6ef9d2d047e9ff318059cd59c5ce5717498",
+  "site_commit": "787400e56978bd8859539b89024e430896f9a32f",
   "lessons_repository": "MattRoper1977/Lessons",
-  "lessons_commit": "ccbe7a8bd70692fbf5a6c5352c7bf823c54f463f",
+  "lessons_commit": "825883bc8161325c65626500f9c47aae5dee9c6f",
   "canonical_games": 62,
   "additional_activities": 7,
-  "notes": "Reviewed standalone publication: branded home and artwork catalogue. Main pin changes deploy after the existing destination and payload checks. Pages settings and DNS remain owner-configured."
+  "notes": "Reviewed Play completion: supplied logo, Explore • Play • Discover tagline, six accepted gameplay previews, responsive discovery, saved favourites and retained save-transfer behaviour. All 69 game payloads remain unchanged. Publication preserves the existing destination, Pages configuration and DNS."
 }
