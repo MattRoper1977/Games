@@ -1,0 +1,287 @@
+# Pin release — Play follows its sources through a PR it opens, proves, and
+# merges itself (Order HC3 §3.2). Policy: PINS.md.
+#
+# Nothing reaches madebymatt-play.uk by being merged into Site or Lessons; it
+# reaches Play when play-publication.json moves. This workflow notices a source
+# HEAD ahead of its pin, builds the tree at the CURRENT pin and the tree at the
+# PROPOSED pin on the same runner, runs every Play verifier and the idle-repaint
+# / frame-rate gate on them, and only then opens ONE PR per source (fixed
+# branches pin-release/site and pin-release/lessons). The required checks are
+# dispatched on that branch; on full green the PR is merged and the publication
+# is dispatched with publish=true, because a merge made by this token does not
+# fire the push publication by itself. Any red leaves the PR open with the
+# failing check named in the run summary.
+name: Pin release
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  repository_dispatch:
+    types: [pin-release]
+  workflow_dispatch:
+    inputs:
+      source:
+        description: Which source to release
+        type: choice
+        options: [both, site, lessons]
+        default: both
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+concurrency:
+  group: pin-release
+  cancel-in-progress: false
+jobs:
+  release:
+    name: ${{ matrix.source }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        source: [site, lessons]
+    env:
+      SOURCE: ${{ matrix.source }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Read the pin and the source HEAD
+        id: pin
+        env:
+          GH_TOKEN: ${{ github.token }}
+          WANTED: ${{ github.event.inputs.source || 'both' }}
+        run: |
+          python - <<'PY'
+          import json, os, re, urllib.request
+          src = os.environ['SOURCE']; wanted = os.environ['WANTED']
+          c = json.load(open('play-publication.json'))
+          repo = {'site': c['site_repository'], 'lessons': c['lessons_repository']}[src]
+          key = src + '_commit'
+          current = c[key]
+          req = urllib.request.Request(f'https://api.github.com/repos/{repo}/commits/main',
+                                       headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json'})
+          head = json.load(urllib.request.urlopen(req, timeout=30))['sha']
+          assert re.fullmatch('[0-9a-f]{40}', current) and re.fullmatch('[0-9a-f]{40}', head)
+          go = wanted in ('both', src) and head != current
+          other = 'lessons' if src == 'site' else 'site'
+          print(f'{src}: pin {current[:10]} → HEAD {head[:10]}  ({"release" if go else "skip: " + ("not requested" if wanted not in ("both", src) else "pin is current")})')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write(f'go={"true" if go else "false"}\nrepo={repo}\ncurrent={current}\nhead={head}\nkey={key}\n')
+              f.write(f'site_before={c["site_commit"]}\nlessons_before={c["lessons_commit"]}\n')
+              f.write(f'site_after={head if src == "site" else c["site_commit"]}\nlessons_after={head if src == "lessons" else c["lessons_commit"]}\n')
+          PY
+      # ---- the two trees: current pin ("before") and proposed pin ("after") ----
+      - if: steps.pin.outputs.go == 'true'
+        uses: actions/checkout@v4
+        with: {repository: MattRoper1977/mattroper1977.github.io, ref: '${{ steps.pin.outputs.site_before }}', path: .before/Site, persist-credentials: false}
+      - if: steps.pin.outputs.go == 'true'
+        uses: actions/checkout@v4
+        with: {repository: MattRoper1977/Lessons, ref: '${{ steps.pin.outputs.lessons_before }}', path: .before/Lessons, persist-credentials: false}
+      - if: steps.pin.outputs.go == 'true'
+        uses: actions/checkout@v4
+        with: {repository: MattRoper1977/mattroper1977.github.io, ref: '${{ steps.pin.outputs.site_after }}', path: .after/Site, persist-credentials: false}
+      - if: steps.pin.outputs.go == 'true'
+        uses: actions/checkout@v4
+        with: {repository: MattRoper1977/Lessons, ref: '${{ steps.pin.outputs.lessons_after }}', path: .after/Lessons, persist-credentials: false}
+      - if: steps.pin.outputs.go == 'true'
+        uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - if: steps.pin.outputs.go == 'true'
+        uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Build both trees
+        if: steps.pin.outputs.go == 'true'
+        run: |
+          set -euo pipefail
+          python -m pip install lxml==6.0.1
+          python .before/Site/domain-split/build_publications.py --lessons .before/Lessons --output .before/out
+          python .after/Site/domain-split/build_publications.py --lessons .after/Lessons --output .after/out
+      - name: Publication contract on the proposed tree
+        if: steps.pin.outputs.go == 'true'
+        run: |
+          set -euo pipefail
+          node .after/Site/domain-split/check_game_saves.cjs
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          out = Path('.after/out'); r = json.loads((out/'build-report.json').read_text())
+          assert r['counts']['game_payloads'] == 69, r['counts']
+          assert r['counts']['missing_initial_load_refs'] == 0, r['counts']
+          assert r['counts']['external_initial_load_refs'] == 0, r['counts']
+          assert (out/'games/games.json').read_bytes() == Path('games.json').read_bytes(), 'games.json is not the shelf'
+          assert (out/'games/CNAME').read_text().strip() == 'madebymatt-play.uk'
+          before = {p['path']: p['published_sha256'] for p in json.loads(Path('.before/out/build-report.json').read_text())['payloads']}
+          moved = [p['route'] for p in r['payloads'] if before.get(p['path']) != p['published_sha256']]
+          print(json.dumps(r['counts'], indent=2))
+          print('payloads whose bytes move with this pin:', len(moved), *moved, sep='\n  ')
+          Path('moved-payloads.json').write_text(json.dumps(moved))
+          PY
+      - name: This repository's shelf contracts against the proposed Lessons tree
+        if: steps.pin.outputs.go == 'true'
+        run: |
+          set -euo pipefail
+          chmod +x tools/validate_games_json.sh
+          LESSONS_DIR="$GITHUB_WORKSPACE/.after/Lessons" tools/validate_games_json.sh
+          node tools/verify_echovault_shelf.js
+          node tools/verify_relicforge_shelf.js
+          node tools/verify_sports_rail.js
+      - name: Browser runtime
+        if: steps.pin.outputs.go == 'true'
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-package-lock playwright@1.55.0
+          npx playwright install --with-deps chrome chromium
+          (cd .after/Site && npm install --no-save --no-package-lock playwright@1.55.0)
+      - name: Play browser acceptance, served from the proposed tree
+        if: steps.pin.outputs.go == 'true'
+        working-directory: .after/Site
+        env:
+          PLAY_REVIEW_URL: http://127.0.0.1:4173
+        run: |
+          set -euo pipefail
+          python domain-split/play/prepare.py --lessons ../Lessons --output .play-review/output
+          node domain-split/play/serve.cjs .play-review/output/games 4173 > /tmp/serve-after.log 2>&1 &
+          sleep 1
+          node domain-split/play/check.cjs
+      - name: Idle-repaint and frame-rate gate, current pin against proposed pin
+        if: steps.pin.outputs.go == 'true'
+        run: |
+          set -euo pipefail
+          node .after/Site/domain-split/play/serve.cjs .before/out/games 4174 > /tmp/serve-before.log 2>&1 &
+          sleep 1
+          node tools/play_perf_gate.mjs --self-test
+          node tools/play_perf_gate.mjs --before http://127.0.0.1:4174 --after http://127.0.0.1:4173 --routes .after/out/build-report.json --report perf-gate.json
+      - name: Preserve the evidence
+        if: always() && steps.pin.outputs.go == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pin-release-${{ matrix.source }}-${{ github.run_id }}
+          path: |
+            perf-gate.json
+            moved-payloads.json
+            .after/Site/.play-review/qa/
+          if-no-files-found: warn
+          retention-days: 30
+      # ---- the PR, only after every gate above is green ----
+      - name: Open or re-point the release PR
+        if: steps.pin.outputs.go == 'true'
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD: ${{ steps.pin.outputs.head }}
+          CURRENT: ${{ steps.pin.outputs.current }}
+          KEY: ${{ steps.pin.outputs.key }}
+          REPO: ${{ steps.pin.outputs.repo }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          p = Path('play-publication.json'); c = json.loads(p.read_text())
+          c[os.environ['KEY']] = os.environ['HEAD']
+          p.write_text(json.dumps(c, indent=2) + '\n')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          branch="pin-release/$SOURCE"
+          git checkout -B "$branch"
+          git add play-publication.json
+          git commit -m "Pin release: $SOURCE ${CURRENT:0:10} → ${HEAD:0:10}" -m "Opened by the Pin release workflow (PINS.md). Rollback: $KEY $CURRENT."
+          git push --force origin "$branch"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "branch=$branch" >> "$GITHUB_OUTPUT"
+      - name: Create the PR if none is open, dispatch the required checks, merge on full green, publish
+        if: steps.pin.outputs.go == 'true'
+        uses: actions/github-script@v7
+        env:
+          BRANCH: ${{ steps.pr.outputs.branch }}
+          SHA: ${{ steps.pr.outputs.sha }}
+          HEAD: ${{ steps.pin.outputs.head }}
+          CURRENT: ${{ steps.pin.outputs.current }}
+          KEY: ${{ steps.pin.outputs.key }}
+          SRC_REPO: ${{ steps.pin.outputs.repo }}
+        with:
+          script: |
+            const fs = require('node:fs');
+            const {owner, repo} = context.repo;
+            const {BRANCH, SHA, HEAD, CURRENT, KEY, SRC_REPO, SOURCE} = process.env;
+            const sleep = ms => new Promise(r => setTimeout(r, ms));
+            const moved = JSON.parse(fs.readFileSync('moved-payloads.json', 'utf8'));
+            const perf = JSON.parse(fs.readFileSync('perf-gate.json', 'utf8'));
+            const body = [
+              `Opened by the **Pin release** workflow (run ${context.runId}); policy in PINS.md.`,
+              '',
+              `| | before | after |`, `|---|---|---|`,
+              `| \`${KEY}\` | \`${CURRENT}\` | \`${HEAD}\` |`,
+              '',
+              `Source: https://github.com/${SRC_REPO}/compare/${CURRENT.slice(0,10)}...${HEAD.slice(0,10)}`,
+              '',
+              `Gates run on the proposed tree before this PR opened: publication contract (69 payloads, 0 missing / 0 external initial-load refs, shelf byte-identical), save boundaries, shelf contracts against the proposed Lessons tree, Play browser acceptance (all widths, all 69 start surfaces), idle-repaint and frame-rate gate (${perf.routes} routes measured against the current pin on the same runner, ${perf.red.length} regressed${perf.inconclusive.length ? `, ${perf.inconclusive.length} inconclusive: ${perf.inconclusive.join(', ')}` : ''}).`,
+              '',
+              `Game payloads whose bytes move with this pin: ${moved.length}${moved.length ? '\n' + moved.map(r => `- \`${r}\``).join('\n') : ''}`,
+              '',
+              `Rollback: \`${KEY}\` → \`${CURRENT}\`.`,
+            ].join('\n');
+            let pr = (await github.rest.pulls.list({owner, repo, state: 'open', head: `${owner}:${BRANCH}`, per_page: 5})).data[0];
+            if (!pr) {
+              try {
+                pr = (await github.rest.pulls.create({owner, repo, base: 'main', head: BRANCH, title: `Pin release: ${SOURCE} ${CURRENT.slice(0,10)} → ${HEAD.slice(0,10)}`, body})).data;
+              } catch (e) {
+                core.setFailed(`could not open the PR: ${e.message}. If this is "GitHub Actions is not permitted to create or approve pull requests", the repository setting Settings → Actions → General → Workflow permissions → "Allow GitHub Actions to create and approve pull requests" is the owner's click; the branch ${BRANCH} is pushed and proven, so a person can open the PR from it.`);
+                return;
+              }
+              core.info(`opened #${pr.number}`);
+            } else {
+              await github.rest.pulls.update({owner, repo, pull_number: pr.number, title: `Pin release: ${SOURCE} ${CURRENT.slice(0,10)} → ${HEAD.slice(0,10)}`, body});
+              core.info(`re-pointed #${pr.number}`);
+            }
+            // The required checks fire on pull_request only for a person's push; a push
+            // by this token creates no run, so they are dispatched on the branch and
+            // their check runs land on the same head SHA the PR carries.
+            await github.rest.actions.createWorkflowDispatch({owner, repo, workflow_id: 'pr-canonical-contract.yml', ref: BRANCH});
+            await github.rest.actions.createWorkflowDispatch({owner, repo, workflow_id: 'shelf-mirror-guard.yml', ref: BRANCH});
+            const required = ['contract', 'aggregate'];
+            let runs = [];
+            const deadline = Date.now() + 25 * 60 * 1000;
+            while (Date.now() < deadline) {
+              await sleep(30000);
+              runs = (await github.rest.checks.listForRef({owner, repo, ref: SHA, per_page: 100})).data.check_runs;
+              const byName = Object.fromEntries(runs.map(r => [r.name, r]));
+              const pending = runs.filter(r => r.status !== 'completed');
+              const missing = required.filter(n => !byName[n]);
+              core.info(`${runs.length} check runs on ${SHA.slice(0,10)}: ${runs.map(r => `${r.name}=${r.conclusion || r.status}`).join(', ')}${missing.length ? ` (waiting for ${missing.join(', ')})` : ''}`);
+              if (!missing.length && !pending.length) break;
+            }
+            const failed = runs.filter(r => r.status === 'completed' && !['success', 'skipped', 'neutral'].includes(r.conclusion));
+            const missing = required.filter(n => !runs.some(r => r.name === n && r.conclusion === 'success'));
+            const pending = runs.filter(r => r.status !== 'completed');
+            const summary = [`## Pin release: ${SOURCE}`, '', `PR #${pr.number} — ${pr.html_url}`, '', `Check runs on ${SHA}:`, ...runs.map(r => `- ${r.name}: ${r.conclusion || r.status}`)];
+            if (failed.length || missing.length || pending.length) {
+              summary.push('', `**Not merged.** ${failed.length ? 'Red: ' + failed.map(r => r.name).join(', ') + '. ' : ''}${missing.length ? 'Required and not green: ' + missing.join(', ') + '. ' : ''}${pending.length ? 'Still running: ' + pending.map(r => r.name).join(', ') + '.' : ''}`);
+              fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary.join('\n') + '\n');
+              core.setFailed(`PR #${pr.number} is not on full green — it stays open with the red named above`);
+              return;
+            }
+            const merge = await github.rest.pulls.merge({owner, repo, pull_number: pr.number, sha: SHA, merge_method: 'squash', commit_title: `Pin release: ${SOURCE} ${CURRENT.slice(0,10)} → ${HEAD.slice(0,10)} (#${pr.number})`});
+            core.info(`merged: ${merge.data.sha}`);
+            summary.push('', `Merged as \`${merge.data.sha}\`.`);
+            // A merge by this token does not fire the push publication. Dispatch it.
+            const since = new Date().toISOString();
+            await github.rest.actions.createWorkflowDispatch({owner, repo, workflow_id: 'play-domain-publication.yml', ref: 'main', inputs: {publish: 'true'}});
+            let pub = null;
+            const pubDeadline = Date.now() + 35 * 60 * 1000;
+            while (Date.now() < pubDeadline) {
+              await sleep(30000);
+              const list = (await github.rest.actions.listWorkflowRuns({owner, repo, workflow_id: 'play-domain-publication.yml', event: 'workflow_dispatch', created: `>=${since}`, per_page: 5})).data.workflow_runs;
+              pub = list.find(r => r.head_sha === merge.data.sha) || list[0] || null;
+              if (pub) core.info(`publication run ${pub.id}: ${pub.status} ${pub.conclusion || ''}`);
+              if (pub && pub.status === 'completed') break;
+            }
+            if (!pub) { summary.push('', '**Publication run not found** after dispatch — merged, NOT served.'); fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary.join('\n') + '\n'); core.setFailed('publication run not found'); return; }
+            summary.push('', `Publication run ${pub.html_url}: ${pub.status} ${pub.conclusion || ''}`);
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary.join('\n') + '\n');
+            if (pub.conclusion !== 'success') core.setFailed(`merged, but the publication run concluded ${pub.conclusion || pub.status} — NOT served`);
+            else core.info('served: publication run green');
