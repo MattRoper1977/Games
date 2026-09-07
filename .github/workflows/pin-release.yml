@@ -28,6 +28,8 @@ permissions:
   contents: write
   pull-requests: write
   actions: write
+  # HC4 §5.2: the ONE tracking issue opened/updated when PR creation is denied.
+  issues: write
 concurrency:
   group: pin-release
   cancel-in-progress: false
@@ -177,7 +179,7 @@ jobs:
             const {owner, repo} = context.repo;
             const prs = (await github.rest.pulls.list({owner, repo, state: 'open', head: `${owner}:pin-release/${process.env.SOURCE}`, per_page: 100})).data;
             for (const pr of prs) assertWritable(pr);
-      - name: Open or re-point the release PR
+      - name: Stage the release branch, or leave it untouched when it already carries this HEAD
         if: steps.pin.outputs.go == 'true'
         id: pr
         env:
@@ -188,6 +190,20 @@ jobs:
           REPO: ${{ steps.pin.outputs.repo }}
         run: |
           set -euo pipefail
+          branch="pin-release/$SOURCE"
+          # HC4 §5.2: a staged branch is never overwritten while the source has not
+          # moved. Compare the staged pin with HEAD first; re-stage only on movement.
+          staged=""
+          if git fetch --no-tags origin "refs/heads/$branch" 2>/dev/null; then
+            staged=$(node -e "const {stagedPin}=require('./tools/pin_release_evidence.cjs');process.stdout.write(stagedPin(require('node:child_process').execFileSync('git',['show','FETCH_HEAD:play-publication.json'],{encoding:'utf8'}),process.env.KEY))")
+          fi
+          if [ "$staged" = "$HEAD" ]; then
+            echo "Staged branch $branch already carries $KEY=$HEAD; left untouched (HC4 §5.2)."
+            echo "sha=$(git rev-parse FETCH_HEAD)" >> "$GITHUB_OUTPUT"
+            echo "branch=$branch" >> "$GITHUB_OUTPUT"
+            echo "restaged=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           python - <<'PY'
           import json, os
           from pathlib import Path
@@ -197,13 +213,13 @@ jobs:
           PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          branch="pin-release/$SOURCE"
           git checkout -B "$branch"
           git add play-publication.json
           git commit -m "Pin release: $SOURCE ${CURRENT:0:10} → ${HEAD:0:10}" -m "Opened by the Pin release workflow (PINS.md). Rollback: $KEY $CURRENT."
           git push --force origin "$branch"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           echo "branch=$branch" >> "$GITHUB_OUTPUT"
+          echo "restaged=true" >> "$GITHUB_OUTPUT"
       - name: Create the PR if none is open, dispatch the required checks, merge on full green, publish
         if: steps.pin.outputs.go == 'true'
         uses: actions/github-script@v7
@@ -214,10 +230,11 @@ jobs:
           CURRENT: ${{ steps.pin.outputs.current }}
           KEY: ${{ steps.pin.outputs.key }}
           SRC_REPO: ${{ steps.pin.outputs.repo }}
+          RESTAGED: ${{ steps.pr.outputs.restaged }}
         with:
           script: |
             const fs = require('node:fs');
-            const {assessChecks, exactPublication, assertWritable} = require(process.env.GITHUB_WORKSPACE + '/tools/pin_release_evidence.cjs');
+            const {assessChecks, exactPublication, assertWritable, classifyCreateFailure, trackingIssue, findTrackingIssue} = require(process.env.GITHUB_WORKSPACE + '/tools/pin_release_evidence.cjs');
             const {owner, repo} = context.repo;
             const {BRANCH, SHA, HEAD, CURRENT, KEY, SRC_REPO, SOURCE} = process.env;
             const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -243,7 +260,24 @@ jobs:
               try {
                 pr = (await github.rest.pulls.create({owner, repo, base: 'main', head: BRANCH, title: `Pin release: ${SOURCE} ${CURRENT.slice(0,10)} → ${HEAD.slice(0,10)}`, body})).data;
               } catch (e) {
-                core.setFailed(`could not open the PR: ${e.message}. If this is "GitHub Actions is not permitted to create or approve pull requests", the repository setting Settings → Actions → General → Workflow permissions → "Allow GitHub Actions to create and approve pull requests" is the owner's click; the branch ${BRANCH} is pushed and proven, so a person can open the PR from it.`);
+                if (classifyCreateFailure(e) !== 'pr-denied') {
+                  core.setFailed(`could not open the PR: ${e.message}`);
+                  return;
+                }
+                // HC4 §5.2: PR creation denied by the repository setting (M3). The
+                // staged branch stays as pushed; ONE tracking issue is opened or
+                // updated; the run exits green with a job summary. Nothing in-repo
+                // can substitute for the owner's click.
+                const gates = {perf, moved, publicationContract: 'PASS', saveBoundaries: 'PASS', shelfContracts: 'PASS', browserAcceptance: 'PASS'};
+                const tracking = trackingIssue({source: SOURCE, branch: BRANCH, sha: SHA, key: KEY, current: CURRENT, head: HEAD, sourceRepo: SRC_REPO, runId: context.runId, runUrl: `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`, gates, restaged: process.env.RESTAGED === 'true'});
+                const open = (await github.paginate(github.rest.issues.listForRepo, {owner, repo, state: 'open', per_page: 100})).filter(row => !row.pull_request);
+                const existing = findTrackingIssue(open, tracking.title);
+                let issue;
+                if (existing) issue = (await github.rest.issues.update({owner, repo, issue_number: existing.number, body: tracking.body})).data;
+                else issue = (await github.rest.issues.create({owner, repo, title: tracking.title, body: tracking.body})).data;
+                const summary = [`## Pin release: ${SOURCE} — staged, awaiting M3`, '', `PR creation was denied: ${e.message}`, '', `Staged branch \`${BRANCH}\` at \`${SHA}\` carries \`${KEY}\` \`${CURRENT}\` → \`${HEAD}\`; it was ${process.env.RESTAGED === 'true' ? 're-staged because the source moved' : 'left untouched'}.`, '', `Tracking issue: ${issue.html_url} (${existing ? 'updated' : 'opened'})`, '', 'Owner click (M3): Games → Settings → Actions → General → Workflow permissions → "Allow GitHub Actions to create and approve pull requests".', '', 'Merged: no. Served: no. This run is green because the staged state is correct and recorded, not because the pin moved.'].join('\n');
+                fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary + '\n');
+                core.info(summary);
                 return;
               }
               core.info(`opened #${pr.number}`);
