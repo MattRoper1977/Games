@@ -73,6 +73,8 @@ jobs:
               f.write(f'site_before={c["site_commit"]}\nlessons_before={c["lessons_commit"]}\n')
               f.write(f'site_after={head if src == "site" else c["site_commit"]}\nlessons_after={head if src == "lessons" else c["lessons_commit"]}\n')
           PY
+      - name: Prove exact-release and protected-PR controls
+        run: node tools/pin_release_evidence.test.cjs
       # ---- the two trees: current pin ("before") and proposed pin ("after") ----
       - if: steps.pin.outputs.go == 'true'
         uses: actions/checkout@v4
@@ -166,6 +168,15 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
       # ---- the PR, only after every gate above is green ----
+      - name: Preserve any protected PR before changing its fixed release branch
+        if: steps.pin.outputs.go == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const {assertWritable} = require(process.env.GITHUB_WORKSPACE + '/tools/pin_release_evidence.cjs');
+            const {owner, repo} = context.repo;
+            const prs = (await github.rest.pulls.list({owner, repo, state: 'open', head: `${owner}:pin-release/${process.env.SOURCE}`, per_page: 100})).data;
+            for (const pr of prs) assertWritable(pr);
       - name: Open or re-point the release PR
         if: steps.pin.outputs.go == 'true'
         id: pr
@@ -206,6 +217,7 @@ jobs:
         with:
           script: |
             const fs = require('node:fs');
+            const {assessChecks, exactPublication, assertWritable} = require(process.env.GITHUB_WORKSPACE + '/tools/pin_release_evidence.cjs');
             const {owner, repo} = context.repo;
             const {BRANCH, SHA, HEAD, CURRENT, KEY, SRC_REPO, SOURCE} = process.env;
             const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -226,6 +238,7 @@ jobs:
               `Rollback: \`${KEY}\` → \`${CURRENT}\`.`,
             ].join('\n');
             let pr = (await github.rest.pulls.list({owner, repo, state: 'open', head: `${owner}:${BRANCH}`, per_page: 5})).data[0];
+            assertWritable(pr);
             if (!pr) {
               try {
                 pr = (await github.rest.pulls.create({owner, repo, base: 'main', head: BRANCH, title: `Pin release: ${SOURCE} ${CURRENT.slice(0,10)} → ${HEAD.slice(0,10)}`, body})).data;
@@ -248,16 +261,16 @@ jobs:
             const deadline = Date.now() + 25 * 60 * 1000;
             while (Date.now() < deadline) {
               await sleep(30000);
-              runs = (await github.rest.checks.listForRef({owner, repo, ref: SHA, per_page: 100})).data.check_runs;
+              const response = (await github.rest.checks.listForRef({owner, repo, ref: SHA, per_page: 100})).data;
+              runs = response.check_runs;
+              if (response.total_count !== runs.length) throw new Error('Incomplete check-run census; no merge');
               const byName = Object.fromEntries(runs.map(r => [r.name, r]));
               const pending = runs.filter(r => r.status !== 'completed');
               const missing = required.filter(n => !byName[n]);
               core.info(`${runs.length} check runs on ${SHA.slice(0,10)}: ${runs.map(r => `${r.name}=${r.conclusion || r.status}`).join(', ')}${missing.length ? ` (waiting for ${missing.join(', ')})` : ''}`);
               if (!missing.length && !pending.length) break;
             }
-            const failed = runs.filter(r => r.status === 'completed' && !['success', 'skipped', 'neutral'].includes(r.conclusion));
-            const missing = required.filter(n => !runs.some(r => r.name === n && r.conclusion === 'success'));
-            const pending = runs.filter(r => r.status !== 'completed');
+            const {failed, missing, pending} = assessChecks(runs, required);
             const summary = [`## Pin release: ${SOURCE}`, '', `PR #${pr.number} — ${pr.html_url}`, '', `Check runs on ${SHA}:`, ...runs.map(r => `- ${r.name}: ${r.conclusion || r.status}`)];
             if (failed.length || missing.length || pending.length) {
               summary.push('', `**Not merged.** ${failed.length ? 'Red: ' + failed.map(r => r.name).join(', ') + '. ' : ''}${missing.length ? 'Required and not green: ' + missing.join(', ') + '. ' : ''}${pending.length ? 'Still running: ' + pending.map(r => r.name).join(', ') + '.' : ''}`);
@@ -265,7 +278,11 @@ jobs:
               core.setFailed(`PR #${pr.number} is not on full green — it stays open with the red named above`);
               return;
             }
+            const fresh = (await github.rest.pulls.get({owner, repo, pull_number: pr.number})).data;
+            assertWritable(fresh);
+            if (fresh.head.sha !== SHA) throw new Error('Release PR changed after checks; no merge');
             const merge = await github.rest.pulls.merge({owner, repo, pull_number: pr.number, sha: SHA, merge_method: 'squash', commit_title: `Pin release: ${SOURCE} ${CURRENT.slice(0,10)} → ${HEAD.slice(0,10)} (#${pr.number})`});
+            if (!merge.data.merged || !merge.data.sha) throw new Error('GitHub did not confirm the release merge');
             core.info(`merged: ${merge.data.sha}`);
             summary.push('', `Merged as \`${merge.data.sha}\`.`);
             // A merge by this token does not fire the push publication. Dispatch it.
@@ -276,7 +293,8 @@ jobs:
             while (Date.now() < pubDeadline) {
               await sleep(30000);
               const list = (await github.rest.actions.listWorkflowRuns({owner, repo, workflow_id: 'play-domain-publication.yml', event: 'workflow_dispatch', created: `>=${since}`, per_page: 5})).data.workflow_runs;
-              pub = list.find(r => r.head_sha === merge.data.sha) || list[0] || null;
+              pub = exactPublication(list, merge.data.sha);
+              if (!pub) core.info(`No publication for expected ${merge.data.sha}; observed ${list.map(r => r.head_sha).join(', ') || 'none'}`);
               if (pub) core.info(`publication run ${pub.id}: ${pub.status} ${pub.conclusion || ''}`);
               if (pub && pub.status === 'completed') break;
             }

@@ -44,6 +44,9 @@ jobs:
           print(f'canonical shelf parses: {len(games)} games '
                 f'(unit: entry; universe: games.json)')
           EOF
+      - id: pin-release-proof-controls
+        if: always()
+        run: node tools/pin_release_evidence.test.cjs
       - id: fetch-lessons
         if: always()
         # Plain clone, not actions/checkout: public repo, and a clone fails
