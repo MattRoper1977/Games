@@ -28,16 +28,24 @@ is why a merged game fix can be "on main" and still not "served".
      a route paints more than max(1.5×, +10) frames at idle, drops below 70 % of
      a ≥30 fps rate, or starts throwing. It proves itself on two planted
      defects on every run before it judges a real tree.
-4. **Auto-merge on full green only.** After the PR opens, the required checks
+4. **When the repository denies PR creation (HC4 §5.2).** Until the owner ticks
+   Settings → Actions → General → Workflow permissions → "Allow GitHub Actions
+   to create and approve pull requests" (M3), the workflow (a) leaves the staged
+   branch exactly as pushed — a staged branch whose pin already equals the
+   source HEAD is never overwritten; it is re-staged only when the source moved —
+   (b) opens or updates ONE issue titled "Pin bump staged — awaiting M3" with the
+   branch, both SHAs and the gate results, and (c) exits green with a job
+   summary. Green there means "staged and recorded", never "merged" or "served".
+5. **Auto-merge on full green only.** After the PR opens, the required checks
    (`contract`, `aggregate`) are dispatched on the branch; the PR is merged only
    when every check run on its head has completed and none failed. Any red
    leaves the PR open with the failing check named in the run summary — that PR
    is the actionable item, not a silent retry.
-5. **Merge is not served.** A merge made by the workflow token does not fire
+6. **Merge is not served.** A merge made by the workflow token does not fire
    the `push` publication, so the workflow dispatches `Standalone games
    website` with `publish` after the merge and waits for its deploy and
    `verify-published` jobs. The pin is "served" when that run is green.
-6. **The Site preservation baseline.** `check.cjs` asserts every payload's
+7. **The Site preservation baseline.** `check.cjs` asserts every payload's
    hash against `reports/play-upgrade/preservation.json` at the Site pin. A
    Lessons change that alters a game payload therefore reds the gate until the
    Site baseline is refreshed for that route in a reviewed Site change — the
