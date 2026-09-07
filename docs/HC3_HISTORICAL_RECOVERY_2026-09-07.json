@@ -1,0 +1,129 @@
+{
+  "measuredAt": "2026-09-07T01:00:00Z",
+  "scope": "Read-only HC1 historical recovery and original HC3 touch-harness recovery; no source edits, reruns or PR mutations",
+  "previouslySearched": "Existing Games HC3 ledger appendix and hc3-work/recovery-search.json inspected first; latter contained empty checkedRefs arrays",
+  "originalLedgerCommits": [
+    {
+      "repo": "Site",
+      "sha": "68b5f2119bb97c0864d6bee6f6b577809f3ca111",
+      "actionsRunsAtSHA": 0
+    },
+    {
+      "repo": "Lessons",
+      "sha": "fd53cfb2d37bc4e23910e355d31843f005704561",
+      "actionsRunsAtSHA": 0
+    },
+    {
+      "repo": "Games",
+      "sha": "67416315bccf8ab04359c624f5c904d74ab17635",
+      "actionsRunsAtSHA": 0
+    },
+    {
+      "repo": "Apps",
+      "sha": "34dbde984bf07a1b4a21fbaa83f78666d34db263",
+      "actionsRunsAtSHA": 0
+    }
+  ],
+  "originalRecordsRecovered": "Existing ledger aggregate and selected named excerpts only; full p4_bytes.txt is explicitly session-local and absent in original trees",
+  "archivedPayloadSupplement": {
+    "artifactID": 9990820021,
+    "runID": 34038125168,
+    "gamesSHA": "ec5ee7bb2724dc0219a53b7e60508b42bbd2a051",
+    "routes": 69,
+    "rawHTMLBytes": 20344993,
+    "above500000Bytes": 16,
+    "file": "HC3_HISTORICAL_PAYLOAD_BYTES_2026-09-07.json",
+    "classification": "Exact historical publication bytes reconstructed from original archive; distinct from lost original HC1 table"
+  },
+  "missing": [
+    "Original per-route gzip values and compressor parameters",
+    "Original idle rAF dataset and identities of 18 quiet routes",
+    "Full 19 slow-route list; exact instrument/version and boot/FCP dataset",
+    "Original reusable 26-route pinch harness and its machine-readable 1.0 \u2192 2.5 results"
+  ],
+  "metricValidity": "HC1 measured requestAnimationFrame calls, not paints; the one-input \u2192 one-paint control was not built. No claim that 18 routes are verified paint-quiet.",
+  "artifactIndex": {
+    "file": "historical-artifacts-index.json",
+    "window": "2026-09-06 through the contemporary 2026-09-07 index, stopping each repository when the list crossed September 6.",
+    "pages": {
+      "Site": 7,
+      "Lessons": 8,
+      "Games": 1,
+      "Apps": 2
+    },
+    "uniqueCounts": {
+      "Site": 691,
+      "Lessons": 744,
+      "Games": 28,
+      "Apps": 121
+    },
+    "limitation": "The rolling collection gained artifacts during pagination; artifact IDs were deduplicated. No claim of future completeness."
+  },
+  "archivesInspected": [
+    {
+      "digest": "sha256:d8dac197ef363e0fd598b9349e4181c9d355354e0ba0b1c6b01a3c938853efc8",
+      "head": "ec5ee7bb2724dc0219a53b7e60508b42bbd2a051",
+      "id": 9990910643,
+      "name": "published-play-completion-34038125168",
+      "run": 34038125168,
+      "digestVerified": true,
+      "originalHC1PerformanceTableFound": false,
+      "pinchHarnessFound": false
+    },
+    {
+      "digest": "sha256:812df7862d087160f2414f1dc311bae696887d4f4015d879de9c19b36ed2a2fe",
+      "head": "ec5ee7bb2724dc0219a53b7e60508b42bbd2a051",
+      "id": 9990820021,
+      "name": "standalone-games-review",
+      "run": 34038125168,
+      "digestVerified": true,
+      "originalHC1PerformanceTableFound": false,
+      "pinchHarnessFound": false
+    },
+    {
+      "digest": "sha256:d1f84f904640af1241925d6b936efe9c348a1c103e4b063c3b6a6e2eadf4250a",
+      "head": "904a3c1a6d065438b763048cc9f51221c2e636ad",
+      "id": 9991045385,
+      "name": "sweep-evidence",
+      "run": 34038867832,
+      "digestVerified": true,
+      "originalHC1PerformanceTableFound": false,
+      "pinchHarnessFound": false
+    },
+    {
+      "digest": "sha256:b429adf2ec480d62a085d72324b758f08dae2d76af9db26d110df5b695d72ec7",
+      "head": "d9115711a989da54229441c3ae64549aa1d5f0eb",
+      "id": 9992561676,
+      "name": "browser-proof",
+      "run": 34043927142,
+      "digestVerified": true,
+      "originalHC1PerformanceTableFound": false,
+      "pinchHarnessFound": false
+    }
+  ],
+  "archiveInspectionFile": "historical-artifact-recovery/inspection.json",
+  "zoomEvidence": {
+    "sourcePRs": [
+      "Site#278",
+      "Lessons#350",
+      "Apps#37",
+      "Apps#38",
+      "Apps#39",
+      "Apps#40"
+    ],
+    "savedPRClaims": "390 \u00d7 844 mobile touch profile, synthesized 2.5\u00d7 pinch; pre-change scale 1.0, post-change 2.5; Art pinched on its toolbar and games on their splashes.",
+    "specificGameRoutes": [
+      "/apexrally/",
+      "/fracture/",
+      "/neonsync/",
+      "/neonmeridian/",
+      "/neonbreach/",
+      "/medevac/MedevacFrontier_v1.html",
+      "/Lessons/Games/Orbital.html"
+    ],
+    "harnessSearchFile": "historical-pinch-harness-search.json",
+    "branchTreesFile": "historical-zoom-branch-trees.json",
+    "existingCode": "verify_ouroboros.mjs checks computed touch-action; it does not measure an actual pinch. Other current game checks inspect viewport metadata.",
+    "next": "Reconstruct the missing read-only gesture verifier in a separate tools/workflow PR. Confirm HTTP 200, title and source artifact before touch; test the 26 intended routes plus the planted negative control; do not edit PR-owned games."
+  }
+}
