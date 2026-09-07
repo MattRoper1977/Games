@@ -1,0 +1,6308 @@
+{
+ "label": "label: current-main baseline (not historical)",
+ "order": "HC4 §6.3 — new baseline of current main",
+ "enforcement": "none. This file records measurements only; no threshold is applied or implied. GS1 owns thresholds.",
+ "started_utc": "2026-09-07T08:43:45.816Z",
+ "ended_utc": "2026-09-07T09:12:13.239Z",
+ "harness": {
+  "path": "tools/hc4_perf_baseline.mjs",
+  "sha256": "175143da27f853db5eb17574a0619e86e1b9908bbdb24db8acd76e02751583d5"
+ },
+ "versions": {
+  "node": "v22.22.2",
+  "chromium": "141.0.7390.37",
+  "playwright": "1.56.1",
+  "platform": "linux 6.18.44-fc-v24 x64",
+  "cpus": 4,
+  "cpu_model": "Intel(R) Xeon(R) Processor @ 2.80GHz"
+ },
+ "games": {
+  "head": "15e2c9cf970e8ffc03f62ba4c2e02ba462dbcf39",
+  "branch": "claude/hc4-perf-baseline"
+ },
+ "served_tree": {
+  "origin": "http://127.0.0.1:4177",
+  "routes_file": "/tmp/claude-0/-home-user-Lessons/db41bf53-c005-5b05-a736-7ebf5e2662a3/scratchpad/play-pinned/build-report.json",
+  "source_heads": {
+   "Site": "a30088ea8d3380b0c0e6040a361a9c0449450a89",
+   "Lessons": "138457849c2690de5413ed80d616725a5160f9d1"
+  },
+  "counts": {
+   "canonical_games": 62,
+   "additional_classroom_activities": 7,
+   "game_payloads": 69,
+   "game_output_files": 465,
+   "education_overlay_pages": 4,
+   "missing_initial_load_refs": 0,
+   "external_initial_load_refs": 0
+  },
+  "source_census_sha256": "c4f46c185168ad05e6e463c9e0943cee35f1fee3b6f8a10592ad89a10a1da59f"
+ },
+ "recipe": {
+  "runs": 3,
+  "route_order": "build-report payload order",
+  "context": "viewport 390x844, isMobile, hasTouch, dpr 2, service workers blocked (same as play_perf_gate)",
+  "launch_args": [
+   "--use-angle=swiftshader",
+   "--enable-unsafe-swiftshader"
+  ],
+  "load": "page.goto waitUntil load, timeout 30000 ms",
+  "settle_ms": 1000,
+  "idle_ms": 3000,
+  "fps_ms": 3000,
+  "hold_key": "ArrowRight",
+  "stage_timeout_ms": 30000,
+  "frame": "a requestAnimationFrame callback actually invoked (rAF wrapped before first page script)",
+  "median": "middle value of the measured runs; mean of the two middles when even; unresponsive/failed runs excluded and counted",
+  "unresponsive": "a route whose page cannot answer an in-page stage within 30000 ms is recorded as unresponsive for that run and the sweep moves on"
+ },
+ "self_test": {
+  "what": "one scratch route measured real -> planted (four idle rAF chains instead of one) -> restored; idle_raf over 3000 ms",
+  "real": {
+   "state": "measured",
+   "idle_raf": 180,
+   "fps": 60,
+   "longtasks": 0,
+   "errors": 0
+  },
+  "planted": {
+   "state": "measured",
+   "idle_raf": 720,
+   "fps": 240,
+   "longtasks": 0,
+   "errors": 0
+  },
+  "restored": {
+   "state": "measured",
+   "idle_raf": 180,
+   "fps": 60,
+   "longtasks": 0,
+   "errors": 0
+  },
+  "demonstrated": true,
+  "note": "the harness reported the planted idle re-arm as a higher idle_raf count"
+ },
+ "summary": {
+  "routes": 69,
+  "runs": 3,
+  "routes_measured_all_runs": 69,
+  "routes_with_unresponsive_run": [],
+  "routes_with_failed_run": [],
+  "routes_with_errors": [],
+  "slowest_by_median_load": [
+   {
+    "route": "/Lessons/Games/Grapple.html",
+    "median_load_ms": 1080,
+    "median_transfer_total": 684982,
+    "median_idle_raf": 8,
+    "median_fps": 3
+   },
+   {
+    "route": "/auroralinks/",
+    "median_load_ms": 826,
+    "median_transfer_total": 232849,
+    "median_idle_raf": 13,
+    "median_fps": 4
+   },
+   {
+    "route": "/trailrunner/",
+    "median_load_ms": 490,
+    "median_transfer_total": 709008,
+    "median_idle_raf": 16,
+    "median_fps": 8
+   },
+   {
+    "route": "/emberwild/",
+    "median_load_ms": 466,
+    "median_transfer_total": 990104,
+    "median_idle_raf": 0,
+    "median_fps": 0
+   },
+   {
+    "route": "/voxel/",
+    "median_load_ms": 439,
+    "median_transfer_total": 770163,
+    "median_idle_raf": 93,
+    "median_fps": 32
+   },
+   {
+    "route": "/apexkick/",
+    "median_load_ms": 381,
+    "median_transfer_total": 994134,
+    "median_idle_raf": 99,
+    "median_fps": 27
+   },
+   {
+    "route": "/Lessons/Games/Neon_Garden.html",
+    "median_load_ms": 345,
+    "median_transfer_total": 601431,
+    "median_idle_raf": 7,
+    "median_fps": 3
+   },
+   {
+    "route": "/Lessons/Games/Globe_Snake (1).html",
+    "median_load_ms": 327,
+    "median_transfer_total": 564958,
+    "median_idle_raf": 10,
+    "median_fps": 5
+   },
+   {
+    "route": "/Lessons/Games/Neon_Siege.html",
+    "median_load_ms": 310,
+    "median_transfer_total": 593732,
+    "median_idle_raf": 8,
+    "median_fps": 3
+   },
+   {
+    "route": "/Lessons/Games/Vortex.html",
+    "median_load_ms": 308,
+    "median_transfer_total": 576141,
+    "median_idle_raf": 8,
+    "median_fps": 2
+   }
+  ]
+ },
+ "routes": [
+  {
+   "route": "/cyberpulse/",
+   "runs": [
+    {
+     "route": "/cyberpulse/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 122,
+     "nav": {
+      "responseEnd": 8,
+      "domContentLoaded": 112,
+      "load": 119
+     },
+     "transfer": {
+      "document": 224351,
+      "total": 224351,
+      "resources": 0
+     },
+     "idle_raf": 37,
+     "held_frames": 37,
+     "fps": 12,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/cyberpulse/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 187,
+     "nav": {
+      "responseEnd": 16,
+      "domContentLoaded": 113,
+      "load": 172
+     },
+     "transfer": {
+      "document": 224351,
+      "total": 224351,
+      "resources": 0
+     },
+     "idle_raf": 23,
+     "held_frames": 22,
+     "fps": 7,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/cyberpulse/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 121,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 103,
+      "load": 118
+     },
+     "transfer": {
+      "document": 224351,
+      "total": 224351,
+      "resources": 0
+     },
+     "idle_raf": 51,
+     "held_frames": 43,
+     "fps": 14,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 8,
+    "nav.domContentLoaded": 112,
+    "nav.load": 119,
+    "transfer.document": 224351,
+    "transfer.total": 224351,
+    "wall_to_load_ms": 122,
+    "idle_raf": 37,
+    "fps": 12,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/crownbadge/",
+   "runs": [
+    {
+     "route": "/crownbadge/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 112,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 106,
+      "load": 110
+     },
+     "transfer": {
+      "document": 181027,
+      "total": 181027,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/crownbadge/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 78,
+     "nav": {
+      "responseEnd": 10,
+      "domContentLoaded": 71,
+      "load": 71
+     },
+     "transfer": {
+      "document": 181027,
+      "total": 181027,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/crownbadge/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 89,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 83,
+      "load": 86
+     },
+     "transfer": {
+      "document": 181027,
+      "total": 181027,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 6,
+    "nav.domContentLoaded": 83,
+    "nav.load": 86,
+    "transfer.document": 181027,
+    "transfer.total": 181027,
+    "wall_to_load_ms": 89,
+    "idle_raf": 0,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/houseolympiad/",
+   "runs": [
+    {
+     "route": "/houseolympiad/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 110,
+     "nav": {
+      "responseEnd": 7,
+      "domContentLoaded": 103,
+      "load": 108
+     },
+     "transfer": {
+      "document": 112861,
+      "total": 112861,
+      "resources": 0
+     },
+     "idle_raf": 50,
+     "held_frames": 62,
+     "fps": 21,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/houseolympiad/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 83,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 75,
+      "load": 80
+     },
+     "transfer": {
+      "document": 112861,
+      "total": 112861,
+      "resources": 0
+     },
+     "idle_raf": 52,
+     "held_frames": 46,
+     "fps": 15,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/houseolympiad/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 83,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 76,
+      "load": 82
+     },
+     "transfer": {
+      "document": 112861,
+      "total": 112861,
+      "resources": 0
+     },
+     "idle_raf": 59,
+     "held_frames": 64,
+     "fps": 21,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 4,
+    "nav.domContentLoaded": 76,
+    "nav.load": 82,
+    "transfer.document": 112861,
+    "transfer.total": 112861,
+    "wall_to_load_ms": 83,
+    "idle_raf": 52,
+    "fps": 21,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/titanforge/",
+   "runs": [
+    {
+     "route": "/titanforge/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 254,
+     "nav": {
+      "responseEnd": 9,
+      "domContentLoaded": 224,
+      "load": 250
+     },
+     "transfer": {
+      "document": 1640736,
+      "total": 1640736,
+      "resources": 0
+     },
+     "idle_raf": 41,
+     "held_frames": 80,
+     "fps": 27,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/titanforge/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 277,
+     "nav": {
+      "responseEnd": 12,
+      "domContentLoaded": 250,
+      "load": 274
+     },
+     "transfer": {
+      "document": 1640736,
+      "total": 1640736,
+      "resources": 0
+     },
+     "idle_raf": 23,
+     "held_frames": 54,
+     "fps": 18,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/titanforge/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 250,
+     "nav": {
+      "responseEnd": 9,
+      "domContentLoaded": 225,
+      "load": 248
+     },
+     "transfer": {
+      "document": 1640736,
+      "total": 1640736,
+      "resources": 0
+     },
+     "idle_raf": 54,
+     "held_frames": 96,
+     "fps": 32,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 9,
+    "nav.domContentLoaded": 225,
+    "nav.load": 250,
+    "transfer.document": 1640736,
+    "transfer.total": 1640736,
+    "wall_to_load_ms": 254,
+    "idle_raf": 41,
+    "fps": 27,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/emberwild/",
+   "runs": [
+    {
+     "route": "/emberwild/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 471,
+     "nav": {
+      "responseEnd": 10,
+      "domContentLoaded": 462,
+      "load": 466
+     },
+     "transfer": {
+      "document": 990104,
+      "total": 990104,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/emberwild/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 572,
+     "nav": {
+      "responseEnd": 22,
+      "domContentLoaded": 554,
+      "load": 562
+     },
+     "transfer": {
+      "document": 990104,
+      "total": 990104,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/emberwild/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 355,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 345,
+      "load": 350
+     },
+     "transfer": {
+      "document": 990104,
+      "total": 990104,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 10,
+    "nav.domContentLoaded": 462,
+    "nav.load": 466,
+    "transfer.document": 990104,
+    "transfer.total": 990104,
+    "wall_to_load_ms": 471,
+    "idle_raf": 0,
+    "fps": 0,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/novasiege/",
+   "runs": [
+    {
+     "route": "/novasiege/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 95,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 87,
+      "load": 93
+     },
+     "transfer": {
+      "document": 154438,
+      "total": 154438,
+      "resources": 0
+     },
+     "idle_raf": 27,
+     "held_frames": 14,
+     "fps": 5,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/novasiege/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 136,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 103,
+      "load": 129
+     },
+     "transfer": {
+      "document": 154438,
+      "total": 154438,
+      "resources": 0
+     },
+     "idle_raf": 17,
+     "held_frames": 24,
+     "fps": 8,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/novasiege/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 69,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 62,
+      "load": 68
+     },
+     "transfer": {
+      "document": 154438,
+      "total": 154438,
+      "resources": 0
+     },
+     "idle_raf": 35,
+     "held_frames": 20,
+     "fps": 7,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 6,
+    "nav.domContentLoaded": 87,
+    "nav.load": 93,
+    "transfer.document": 154438,
+    "transfer.total": 154438,
+    "wall_to_load_ms": 95,
+    "idle_raf": 27,
+    "fps": 7,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/ouroboros/",
+   "runs": [
+    {
+     "route": "/ouroboros/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 43,
+     "nav": {
+      "responseEnd": 8,
+      "domContentLoaded": 40,
+      "load": 41
+     },
+     "transfer": {
+      "document": 209966,
+      "total": 209966,
+      "resources": 0
+     },
+     "idle_raf": 20,
+     "held_frames": 8,
+     "fps": 3,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/ouroboros/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 54,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 45,
+      "load": 53
+     },
+     "transfer": {
+      "document": 209966,
+      "total": 209966,
+      "resources": 0
+     },
+     "idle_raf": 17,
+     "held_frames": 6,
+     "fps": 2,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/ouroboros/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 38,
+     "nav": {
+      "responseEnd": 7,
+      "domContentLoaded": 32,
+      "load": 36
+     },
+     "transfer": {
+      "document": 209966,
+      "total": 209966,
+      "resources": 0
+     },
+     "idle_raf": 39,
+     "held_frames": 38,
+     "fps": 13,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 7,
+    "nav.domContentLoaded": 40,
+    "nav.load": 41,
+    "transfer.document": 209966,
+    "transfer.total": 209966,
+    "wall_to_load_ms": 43,
+    "idle_raf": 20,
+    "fps": 3,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/olympics/",
+   "runs": [
+    {
+     "route": "/olympics/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 159,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 140,
+      "load": 156
+     },
+     "transfer": {
+      "document": 432749,
+      "total": 432749,
+      "resources": 0
+     },
+     "idle_raf": 6,
+     "held_frames": 10,
+     "fps": 3,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/olympics/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 164,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 134,
+      "load": 151
+     },
+     "transfer": {
+      "document": 432749,
+      "total": 432749,
+      "resources": 0
+     },
+     "idle_raf": 8,
+     "held_frames": 10,
+     "fps": 3,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/olympics/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 115,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 102,
+      "load": 113
+     },
+     "transfer": {
+      "document": 432749,
+      "total": 432749,
+      "resources": 0
+     },
+     "idle_raf": 13,
+     "held_frames": 6,
+     "fps": 2,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 6,
+    "nav.domContentLoaded": 134,
+    "nav.load": 151,
+    "transfer.document": 432749,
+    "transfer.total": 432749,
+    "wall_to_load_ms": 159,
+    "idle_raf": 8,
+    "fps": 3,
+    "longtasks": 2,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/fracture/",
+   "runs": [
+    {
+     "route": "/fracture/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 235,
+     "nav": {
+      "responseEnd": 7,
+      "domContentLoaded": 233,
+      "load": 233
+     },
+     "transfer": {
+      "document": 244430,
+      "total": 881969,
+      "resources": 2
+     },
+     "idle_raf": 28,
+     "held_frames": 27,
+     "fps": 9,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/fracture/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 174,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 171,
+      "load": 172
+     },
+     "transfer": {
+      "document": 244430,
+      "total": 881969,
+      "resources": 2
+     },
+     "idle_raf": 32,
+     "held_frames": 31,
+     "fps": 10,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/fracture/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 186,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 184,
+      "load": 185
+     },
+     "transfer": {
+      "document": 244430,
+      "total": 881969,
+      "resources": 2
+     },
+     "idle_raf": 31,
+     "held_frames": 32,
+     "fps": 11,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 184,
+    "nav.load": 185,
+    "transfer.document": 244430,
+    "transfer.total": 881969,
+    "wall_to_load_ms": 186,
+    "idle_raf": 31,
+    "fps": 10,
+    "longtasks": 2,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/neonturf/",
+   "runs": [
+    {
+     "route": "/neonturf/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 103,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 86,
+      "load": 100
+     },
+     "transfer": {
+      "document": 219820,
+      "total": 253614,
+      "resources": 1
+     },
+     "idle_raf": 26,
+     "held_frames": 26,
+     "fps": 9,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/neonturf/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 71,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 65,
+      "load": 69
+     },
+     "transfer": {
+      "document": 219820,
+      "total": 253614,
+      "resources": 1
+     },
+     "idle_raf": 30,
+     "held_frames": 25,
+     "fps": 8,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/neonturf/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 90,
+     "nav": {
+      "responseEnd": 9,
+      "domContentLoaded": 74,
+      "load": 89
+     },
+     "transfer": {
+      "document": 219820,
+      "total": 253614,
+      "resources": 1
+     },
+     "idle_raf": 30,
+     "held_frames": 27,
+     "fps": 9,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 74,
+    "nav.load": 89,
+    "transfer.document": 219820,
+    "transfer.total": 253614,
+    "wall_to_load_ms": 90,
+    "idle_raf": 30,
+    "fps": 9,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/echovault/",
+   "runs": [
+    {
+     "route": "/echovault/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 191,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 181,
+      "load": 189
+     },
+     "transfer": {
+      "document": 177778,
+      "total": 177778,
+      "resources": 0
+     },
+     "idle_raf": 40,
+     "held_frames": 43,
+     "fps": 14,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/echovault/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 148,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 137,
+      "load": 146
+     },
+     "transfer": {
+      "document": 177778,
+      "total": 177778,
+      "resources": 0
+     },
+     "idle_raf": 43,
+     "held_frames": 44,
+     "fps": 15,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/echovault/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 138,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 130,
+      "load": 137
+     },
+     "transfer": {
+      "document": 177778,
+      "total": 177778,
+      "resources": 0
+     },
+     "idle_raf": 45,
+     "held_frames": 52,
+     "fps": 17,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 4,
+    "nav.domContentLoaded": 137,
+    "nav.load": 146,
+    "transfer.document": 177778,
+    "transfer.total": 177778,
+    "wall_to_load_ms": 148,
+    "idle_raf": 43,
+    "fps": 15,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/relicforge/",
+   "runs": [
+    {
+     "route": "/relicforge/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 106,
+     "nav": {
+      "responseEnd": 9,
+      "domContentLoaded": 95,
+      "load": 103
+     },
+     "transfer": {
+      "document": 352694,
+      "total": 352694,
+      "resources": 0
+     },
+     "idle_raf": 35,
+     "held_frames": 37,
+     "fps": 12,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/relicforge/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 124,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 101,
+      "load": 115
+     },
+     "transfer": {
+      "document": 352694,
+      "total": 352694,
+      "resources": 0
+     },
+     "idle_raf": 23,
+     "held_frames": 20,
+     "fps": 7,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/relicforge/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 93,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 85,
+      "load": 91
+     },
+     "transfer": {
+      "document": 352694,
+      "total": 352694,
+      "resources": 0
+     },
+     "idle_raf": 41,
+     "held_frames": 45,
+     "fps": 15,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 95,
+    "nav.load": 103,
+    "transfer.document": 352694,
+    "transfer.total": 352694,
+    "wall_to_load_ms": 106,
+    "idle_raf": 35,
+    "fps": 12,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/offbrand/",
+   "runs": [
+    {
+     "route": "/offbrand/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 54,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 50,
+      "load": 52
+     },
+     "transfer": {
+      "document": 211410,
+      "total": 211410,
+      "resources": 0
+     },
+     "idle_raf": 584,
+     "held_frames": 720,
+     "fps": 240,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/offbrand/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 65,
+     "nav": {
+      "responseEnd": 22,
+      "domContentLoaded": 61,
+      "load": 61
+     },
+     "transfer": {
+      "document": 211410,
+      "total": 211410,
+      "resources": 0
+     },
+     "idle_raf": 540,
+     "held_frames": 720,
+     "fps": 240,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/offbrand/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 49,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 44,
+      "load": 46
+     },
+     "transfer": {
+      "document": 211410,
+      "total": 211410,
+      "resources": 0
+     },
+     "idle_raf": 591,
+     "held_frames": 720,
+     "fps": 240,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 50,
+    "nav.load": 52,
+    "transfer.document": 211410,
+    "transfer.total": 211410,
+    "wall_to_load_ms": 54,
+    "idle_raf": 584,
+    "fps": 240,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Axiom_Shift.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Axiom_Shift.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 41,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 35,
+      "load": 35
+     },
+     "transfer": {
+      "document": 71126,
+      "total": 71126,
+      "resources": 0
+     },
+     "idle_raf": 180,
+     "held_frames": 180,
+     "fps": 60,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Axiom_Shift.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 47,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 42,
+      "load": 45
+     },
+     "transfer": {
+      "document": 71126,
+      "total": 71126,
+      "resources": 0
+     },
+     "idle_raf": 180,
+     "held_frames": 180,
+     "fps": 60,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Axiom_Shift.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 31,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 29,
+      "load": 30
+     },
+     "transfer": {
+      "document": 71126,
+      "total": 71126,
+      "resources": 0
+     },
+     "idle_raf": 180,
+     "held_frames": 180,
+     "fps": 60,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 4,
+    "nav.domContentLoaded": 35,
+    "nav.load": 35,
+    "transfer.document": 71126,
+    "transfer.total": 71126,
+    "wall_to_load_ms": 41,
+    "idle_raf": 180,
+    "fps": 60,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Charcoal.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Charcoal.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 34,
+     "nav": {
+      "responseEnd": 13,
+      "domContentLoaded": 32,
+      "load": 32
+     },
+     "transfer": {
+      "document": 107120,
+      "total": 107120,
+      "resources": 0
+     },
+     "idle_raf": 625,
+     "held_frames": 720,
+     "fps": 240,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Charcoal.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 131,
+     "nav": {
+      "responseEnd": 25,
+      "domContentLoaded": 95,
+      "load": 95
+     },
+     "transfer": {
+      "document": 107120,
+      "total": 107120,
+      "resources": 0
+     },
+     "idle_raf": 630,
+     "held_frames": 720,
+     "fps": 240,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Charcoal.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 34,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 31,
+      "load": 31
+     },
+     "transfer": {
+      "document": 107120,
+      "total": 107120,
+      "resources": 0
+     },
+     "idle_raf": 625,
+     "held_frames": 720,
+     "fps": 240,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 13,
+    "nav.domContentLoaded": 32,
+    "nav.load": 32,
+    "transfer.document": 107120,
+    "transfer.total": 107120,
+    "wall_to_load_ms": 34,
+    "idle_raf": 625,
+    "fps": 240,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Hold_the_Mark.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Hold_the_Mark.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 96,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 86,
+      "load": 93
+     },
+     "transfer": {
+      "document": 123705,
+      "total": 157499,
+      "resources": 1
+     },
+     "idle_raf": 181,
+     "held_frames": 180,
+     "fps": 60,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Hold_the_Mark.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 71,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 64,
+      "load": 69
+     },
+     "transfer": {
+      "document": 123705,
+      "total": 157499,
+      "resources": 1
+     },
+     "idle_raf": 180,
+     "held_frames": 180,
+     "fps": 60,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Hold_the_Mark.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 46,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 41,
+      "load": 45
+     },
+     "transfer": {
+      "document": 123705,
+      "total": 157499,
+      "resources": 1
+     },
+     "idle_raf": 180,
+     "held_frames": 180,
+     "fps": 60,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 64,
+    "nav.load": 69,
+    "transfer.document": 123705,
+    "transfer.total": 157499,
+    "wall_to_load_ms": 71,
+    "idle_raf": 180,
+    "fps": 60,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Glitch_Clash.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Glitch_Clash.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 82,
+     "nav": {
+      "responseEnd": 11,
+      "domContentLoaded": 80,
+      "load": 81
+     },
+     "transfer": {
+      "document": 203972,
+      "total": 237766,
+      "resources": 1
+     },
+     "idle_raf": 98,
+     "held_frames": 93,
+     "fps": 31,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Glitch_Clash.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 79,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 70,
+      "load": 75
+     },
+     "transfer": {
+      "document": 203972,
+      "total": 237766,
+      "resources": 1
+     },
+     "idle_raf": 91,
+     "held_frames": 87,
+     "fps": 29,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Glitch_Clash.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 61,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 58,
+      "load": 59
+     },
+     "transfer": {
+      "document": 203972,
+      "total": 237766,
+      "resources": 1
+     },
+     "idle_raf": 168,
+     "held_frames": 161,
+     "fps": 54,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 6,
+    "nav.domContentLoaded": 70,
+    "nav.load": 75,
+    "transfer.document": 203972,
+    "transfer.total": 237766,
+    "wall_to_load_ms": 79,
+    "idle_raf": 98,
+    "fps": 31,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/trailrunner/",
+   "runs": [
+    {
+     "route": "/trailrunner/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 685,
+     "nav": {
+      "responseEnd": 11,
+      "domContentLoaded": 638,
+      "load": 682
+     },
+     "transfer": {
+      "document": 709008,
+      "total": 709008,
+      "resources": 0
+     },
+     "idle_raf": 16,
+     "held_frames": 24,
+     "fps": 8,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/trailrunner/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 495,
+     "nav": {
+      "responseEnd": 8,
+      "domContentLoaded": 472,
+      "load": 490
+     },
+     "transfer": {
+      "document": 709008,
+      "total": 709008,
+      "resources": 0
+     },
+     "idle_raf": 16,
+     "held_frames": 19,
+     "fps": 6,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/trailrunner/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 334,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 315,
+      "load": 330
+     },
+     "transfer": {
+      "document": 709008,
+      "total": 709008,
+      "resources": 0
+     },
+     "idle_raf": 35,
+     "held_frames": 44,
+     "fps": 15,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 8,
+    "nav.domContentLoaded": 472,
+    "nav.load": 490,
+    "transfer.document": 709008,
+    "transfer.total": 709008,
+    "wall_to_load_ms": 495,
+    "idle_raf": 16,
+    "fps": 8,
+    "longtasks": 2,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/voxelcraft.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/voxelcraft.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 73,
+     "nav": {
+      "responseEnd": 14,
+      "domContentLoaded": 60,
+      "load": 71
+     },
+     "transfer": {
+      "document": 89563,
+      "total": 123357,
+      "resources": 1
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/voxelcraft.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 32,
+     "nav": {
+      "responseEnd": 7,
+      "domContentLoaded": 28,
+      "load": 30
+     },
+     "transfer": {
+      "document": 89563,
+      "total": 123357,
+      "resources": 1
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/voxelcraft.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 57,
+     "nav": {
+      "responseEnd": 3,
+      "domContentLoaded": 52,
+      "load": 55
+     },
+     "transfer": {
+      "document": 89563,
+      "total": 123357,
+      "resources": 1
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 7,
+    "nav.domContentLoaded": 52,
+    "nav.load": 55,
+    "transfer.document": 89563,
+    "transfer.total": 123357,
+    "wall_to_load_ms": 57,
+    "idle_raf": 0,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Vortex.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Vortex.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 456,
+     "nav": {
+      "responseEnd": 27,
+      "domContentLoaded": 437,
+      "load": 451
+     },
+     "transfer": {
+      "document": 576141,
+      "total": 576141,
+      "resources": 0
+     },
+     "idle_raf": 8,
+     "held_frames": 5,
+     "fps": 2,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Vortex.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 316,
+     "nav": {
+      "responseEnd": 10,
+      "domContentLoaded": 294,
+      "load": 308
+     },
+     "transfer": {
+      "document": 576141,
+      "total": 576141,
+      "resources": 0
+     },
+     "idle_raf": 3,
+     "held_frames": 5,
+     "fps": 2,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Vortex.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 265,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 254,
+      "load": 264
+     },
+     "transfer": {
+      "document": 576141,
+      "total": 576141,
+      "resources": 0
+     },
+     "idle_raf": 11,
+     "held_frames": 9,
+     "fps": 3,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 10,
+    "nav.domContentLoaded": 294,
+    "nav.load": 308,
+    "transfer.document": 576141,
+    "transfer.total": 576141,
+    "wall_to_load_ms": 316,
+    "idle_raf": 8,
+    "fps": 2,
+    "longtasks": 2,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Globe_Snake (1).html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Globe_Snake (1).html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 386,
+     "nav": {
+      "responseEnd": 9,
+      "domContentLoaded": 363,
+      "load": 374
+     },
+     "transfer": {
+      "document": 564958,
+      "total": 564958,
+      "resources": 0
+     },
+     "idle_raf": 10,
+     "held_frames": 14,
+     "fps": 5,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Globe_Snake (1).html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 333,
+     "nav": {
+      "responseEnd": 32,
+      "domContentLoaded": 315,
+      "load": 325
+     },
+     "transfer": {
+      "document": 564958,
+      "total": 564958,
+      "resources": 0
+     },
+     "idle_raf": 10,
+     "held_frames": 8,
+     "fps": 3,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Globe_Snake (1).html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 330,
+     "nav": {
+      "responseEnd": 10,
+      "domContentLoaded": 321,
+      "load": 327
+     },
+     "transfer": {
+      "document": 564958,
+      "total": 564958,
+      "resources": 0
+     },
+     "idle_raf": 18,
+     "held_frames": 20,
+     "fps": 7,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 10,
+    "nav.domContentLoaded": 321,
+    "nav.load": 327,
+    "transfer.document": 564958,
+    "transfer.total": 564958,
+    "wall_to_load_ms": 333,
+    "idle_raf": 10,
+    "fps": 5,
+    "longtasks": 2,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Neon_Snake_Overdrive.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Neon_Snake_Overdrive.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 177,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 174,
+      "load": 175
+     },
+     "transfer": {
+      "document": 38229,
+      "total": 675768,
+      "resources": 2
+     },
+     "idle_raf": 16,
+     "held_frames": 19,
+     "fps": 6,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Neon_Snake_Overdrive.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 210,
+     "nav": {
+      "responseEnd": 15,
+      "domContentLoaded": 199,
+      "load": 199
+     },
+     "transfer": {
+      "document": 38229,
+      "total": 675768,
+      "resources": 2
+     },
+     "idle_raf": 8,
+     "held_frames": 10,
+     "fps": 3,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Neon_Snake_Overdrive.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 161,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 158,
+      "load": 158
+     },
+     "transfer": {
+      "document": 38229,
+      "total": 675768,
+      "resources": 2
+     },
+     "idle_raf": 19,
+     "held_frames": 20,
+     "fps": 7,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 174,
+    "nav.load": 175,
+    "transfer.document": 38229,
+    "transfer.total": 675768,
+    "wall_to_load_ms": 177,
+    "idle_raf": 16,
+    "fps": 6,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Neon_Siege.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Neon_Siege.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 312,
+     "nav": {
+      "responseEnd": 10,
+      "domContentLoaded": 304,
+      "load": 310
+     },
+     "transfer": {
+      "document": 559938,
+      "total": 593732,
+      "resources": 1
+     },
+     "idle_raf": 8,
+     "held_frames": 8,
+     "fps": 3,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Neon_Siege.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 436,
+     "nav": {
+      "responseEnd": 12,
+      "domContentLoaded": 430,
+      "load": 434
+     },
+     "transfer": {
+      "document": 559938,
+      "total": 593732,
+      "resources": 1
+     },
+     "idle_raf": 4,
+     "held_frames": 5,
+     "fps": 2,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Neon_Siege.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 300,
+     "nav": {
+      "responseEnd": 8,
+      "domContentLoaded": 282,
+      "load": 296
+     },
+     "transfer": {
+      "document": 559938,
+      "total": 593732,
+      "resources": 1
+     },
+     "idle_raf": 9,
+     "held_frames": 10,
+     "fps": 3,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 10,
+    "nav.domContentLoaded": 304,
+    "nav.load": 310,
+    "transfer.document": 559938,
+    "transfer.total": 593732,
+    "wall_to_load_ms": 312,
+    "idle_raf": 8,
+    "fps": 3,
+    "longtasks": 2,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Neon_Garden.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Neon_Garden.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 347,
+     "nav": {
+      "responseEnd": 10,
+      "domContentLoaded": 340,
+      "load": 345
+     },
+     "transfer": {
+      "document": 567637,
+      "total": 601431,
+      "resources": 1
+     },
+     "idle_raf": 7,
+     "held_frames": 8,
+     "fps": 3,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Neon_Garden.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 4373,
+     "nav": {
+      "responseEnd": 20,
+      "domContentLoaded": 4371,
+      "load": 4372
+     },
+     "transfer": {
+      "document": 567637,
+      "total": 601431,
+      "resources": 1
+     },
+     "idle_raf": 3,
+     "held_frames": 5,
+     "fps": 2,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Neon_Garden.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 281,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 273,
+      "load": 279
+     },
+     "transfer": {
+      "document": 567637,
+      "total": 601431,
+      "resources": 1
+     },
+     "idle_raf": 9,
+     "held_frames": 9,
+     "fps": 3,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 10,
+    "nav.domContentLoaded": 340,
+    "nav.load": 345,
+    "transfer.document": 567637,
+    "transfer.total": 601431,
+    "wall_to_load_ms": 347,
+    "idle_raf": 7,
+    "fps": 3,
+    "longtasks": 2,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Orbital.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Orbital.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 298,
+     "nav": {
+      "responseEnd": 8,
+      "domContentLoaded": 290,
+      "load": 294
+     },
+     "transfer": {
+      "document": 544969,
+      "total": 578763,
+      "resources": 1
+     },
+     "idle_raf": 7,
+     "held_frames": 7,
+     "fps": 2,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Orbital.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 348,
+     "nav": {
+      "responseEnd": 8,
+      "domContentLoaded": 336,
+      "load": 343
+     },
+     "transfer": {
+      "document": 544969,
+      "total": 578763,
+      "resources": 1
+     },
+     "idle_raf": 5,
+     "held_frames": 5,
+     "fps": 2,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Orbital.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 296,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 289,
+      "load": 293
+     },
+     "transfer": {
+      "document": 544969,
+      "total": 578763,
+      "resources": 1
+     },
+     "idle_raf": 10,
+     "held_frames": 10,
+     "fps": 3,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 8,
+    "nav.domContentLoaded": 290,
+    "nav.load": 294,
+    "transfer.document": 544969,
+    "transfer.total": 578763,
+    "wall_to_load_ms": 298,
+    "idle_raf": 7,
+    "fps": 2,
+    "longtasks": 2,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Grid_Chase.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Grid_Chase.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 72,
+     "nav": {
+      "responseEnd": 10,
+      "domContentLoaded": 68,
+      "load": 70
+     },
+     "transfer": {
+      "document": 74317,
+      "total": 74317,
+      "resources": 0
+     },
+     "idle_raf": 21,
+     "held_frames": 17,
+     "fps": 6,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Grid_Chase.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 74,
+     "nav": {
+      "responseEnd": 22,
+      "domContentLoaded": 61,
+      "load": 61
+     },
+     "transfer": {
+      "document": 74317,
+      "total": 74317,
+      "resources": 0
+     },
+     "idle_raf": 11,
+     "held_frames": 18,
+     "fps": 6,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Grid_Chase.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 58,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 53,
+      "load": 55
+     },
+     "transfer": {
+      "document": 74317,
+      "total": 74317,
+      "resources": 0
+     },
+     "idle_raf": 29,
+     "held_frames": 25,
+     "fps": 8,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 10,
+    "nav.domContentLoaded": 61,
+    "nav.load": 61,
+    "transfer.document": 74317,
+    "transfer.total": 74317,
+    "wall_to_load_ms": 72,
+    "idle_raf": 21,
+    "fps": 6,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Prism.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Prism.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 273,
+     "nav": {
+      "responseEnd": 8,
+      "domContentLoaded": 263,
+      "load": 270
+     },
+     "transfer": {
+      "document": 550706,
+      "total": 584500,
+      "resources": 1
+     },
+     "idle_raf": 7,
+     "held_frames": 7,
+     "fps": 2,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Prism.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 254,
+     "nav": {
+      "responseEnd": 8,
+      "domContentLoaded": 230,
+      "load": 240
+     },
+     "transfer": {
+      "document": 550706,
+      "total": 584500,
+      "resources": 1
+     },
+     "idle_raf": 7,
+     "held_frames": 8,
+     "fps": 3,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Prism.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 345,
+     "nav": {
+      "responseEnd": 7,
+      "domContentLoaded": 334,
+      "load": 339
+     },
+     "transfer": {
+      "document": 550706,
+      "total": 584500,
+      "resources": 1
+     },
+     "idle_raf": 10,
+     "held_frames": 9,
+     "fps": 3,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 8,
+    "nav.domContentLoaded": 263,
+    "nav.load": 270,
+    "transfer.document": 550706,
+    "transfer.total": 584500,
+    "wall_to_load_ms": 273,
+    "idle_raf": 7,
+    "fps": 3,
+    "longtasks": 2,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Grapple.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Grapple.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 1313,
+     "nav": {
+      "responseEnd": 26,
+      "domContentLoaded": 1311,
+      "load": 1312
+     },
+     "transfer": {
+      "document": 651188,
+      "total": 684982,
+      "resources": 1
+     },
+     "idle_raf": 4,
+     "held_frames": 4,
+     "fps": 1,
+     "longtasks": 4,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Grapple.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 1083,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 1077,
+      "load": 1080
+     },
+     "transfer": {
+      "document": 651188,
+      "total": 684982,
+      "resources": 1
+     },
+     "idle_raf": 8,
+     "held_frames": 8,
+     "fps": 3,
+     "longtasks": 3,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Grapple.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 901,
+     "nav": {
+      "responseEnd": 8,
+      "domContentLoaded": 898,
+      "load": 900
+     },
+     "transfer": {
+      "document": 651188,
+      "total": 684982,
+      "resources": 1
+     },
+     "idle_raf": 8,
+     "held_frames": 9,
+     "fps": 3,
+     "longtasks": 3,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 8,
+    "nav.domContentLoaded": 1077,
+    "nav.load": 1080,
+    "transfer.document": 651188,
+    "transfer.total": 684982,
+    "wall_to_load_ms": 1083,
+    "idle_raf": 8,
+    "fps": 3,
+    "longtasks": 3,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Marble.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Marble.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 655,
+     "nav": {
+      "responseEnd": 14,
+      "domContentLoaded": 646,
+      "load": 648
+     },
+     "transfer": {
+      "document": 661943,
+      "total": 695737,
+      "resources": 1
+     },
+     "idle_raf": 4,
+     "held_frames": 3,
+     "fps": 1,
+     "longtasks": 3,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Marble.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 235,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 227,
+      "load": 233
+     },
+     "transfer": {
+      "document": 661943,
+      "total": 695737,
+      "resources": 1
+     },
+     "idle_raf": 8,
+     "held_frames": 8,
+     "fps": 3,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Marble.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 261,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 247,
+      "load": 259
+     },
+     "transfer": {
+      "document": 661943,
+      "total": 695737,
+      "resources": 1
+     },
+     "idle_raf": 8,
+     "held_frames": 8,
+     "fps": 3,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 6,
+    "nav.domContentLoaded": 247,
+    "nav.load": 259,
+    "transfer.document": 661943,
+    "transfer.total": 695737,
+    "wall_to_load_ms": 261,
+    "idle_raf": 8,
+    "fps": 3,
+    "longtasks": 2,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Slipstream.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Slipstream.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 406,
+     "nav": {
+      "responseEnd": 50,
+      "domContentLoaded": 393,
+      "load": 403
+     },
+     "transfer": {
+      "document": 526252,
+      "total": 560046,
+      "resources": 1
+     },
+     "idle_raf": 4,
+     "held_frames": 6,
+     "fps": 2,
+     "longtasks": 3,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Slipstream.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 248,
+     "nav": {
+      "responseEnd": 7,
+      "domContentLoaded": 236,
+      "load": 244
+     },
+     "transfer": {
+      "document": 526252,
+      "total": 560046,
+      "resources": 1
+     },
+     "idle_raf": 9,
+     "held_frames": 10,
+     "fps": 3,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Slipstream.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 308,
+     "nav": {
+      "responseEnd": 16,
+      "domContentLoaded": 301,
+      "load": 301
+     },
+     "transfer": {
+      "document": 526252,
+      "total": 560046,
+      "resources": 1
+     },
+     "idle_raf": 9,
+     "held_frames": 10,
+     "fps": 3,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 16,
+    "nav.domContentLoaded": 301,
+    "nav.load": 301,
+    "transfer.document": 526252,
+    "transfer.total": 560046,
+    "wall_to_load_ms": 308,
+    "idle_raf": 9,
+    "fps": 3,
+    "longtasks": 2,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Slipstream_GP.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Slipstream_GP.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 390,
+     "nav": {
+      "responseEnd": 12,
+      "domContentLoaded": 370,
+      "load": 386
+     },
+     "transfer": {
+      "document": 720511,
+      "total": 754305,
+      "resources": 1
+     },
+     "idle_raf": 93,
+     "held_frames": 129,
+     "fps": 43,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Slipstream_GP.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 263,
+     "nav": {
+      "responseEnd": 7,
+      "domContentLoaded": 260,
+      "load": 261
+     },
+     "transfer": {
+      "document": 720511,
+      "total": 754305,
+      "resources": 1
+     },
+     "idle_raf": 129,
+     "held_frames": 159,
+     "fps": 53,
+     "longtasks": 3,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Slipstream_GP.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 260,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 251,
+      "load": 258
+     },
+     "transfer": {
+      "document": 720511,
+      "total": 754305,
+      "resources": 1
+     },
+     "idle_raf": 162,
+     "held_frames": 192,
+     "fps": 64,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 7,
+    "nav.domContentLoaded": 260,
+    "nav.load": 261,
+    "transfer.document": 720511,
+    "transfer.total": 754305,
+    "wall_to_load_ms": 263,
+    "idle_raf": 129,
+    "fps": 53,
+    "longtasks": 2,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Wrecking_Crew.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Wrecking_Crew.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 212,
+     "nav": {
+      "responseEnd": 12,
+      "domContentLoaded": 209,
+      "load": 210
+     },
+     "transfer": {
+      "document": 866888,
+      "total": 900682,
+      "resources": 1
+     },
+     "idle_raf": 34,
+     "held_frames": 28,
+     "fps": 9,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Wrecking_Crew.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 184,
+     "nav": {
+      "responseEnd": 10,
+      "domContentLoaded": 177,
+      "load": 181
+     },
+     "transfer": {
+      "document": 866888,
+      "total": 900682,
+      "resources": 1
+     },
+     "idle_raf": 44,
+     "held_frames": 36,
+     "fps": 12,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Wrecking_Crew.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 157,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 151,
+      "load": 155
+     },
+     "transfer": {
+      "document": 866888,
+      "total": 900682,
+      "resources": 1
+     },
+     "idle_raf": 52,
+     "held_frames": 44,
+     "fps": 15,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 10,
+    "nav.domContentLoaded": 177,
+    "nav.load": 181,
+    "transfer.document": 866888,
+    "transfer.total": 900682,
+    "wall_to_load_ms": 184,
+    "idle_raf": 44,
+    "fps": 12,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Lumins.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Lumins.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 80,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 71,
+      "load": 78
+     },
+     "transfer": {
+      "document": 120535,
+      "total": 154329,
+      "resources": 1
+     },
+     "idle_raf": 50,
+     "held_frames": 45,
+     "fps": 15,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Lumins.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 70,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 66,
+      "load": 68
+     },
+     "transfer": {
+      "document": 120535,
+      "total": 154329,
+      "resources": 1
+     },
+     "idle_raf": 66,
+     "held_frames": 42,
+     "fps": 14,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Lumins.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 78,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 66,
+      "load": 76
+     },
+     "transfer": {
+      "document": 120535,
+      "total": 154329,
+      "resources": 1
+     },
+     "idle_raf": 100,
+     "held_frames": 73,
+     "fps": 24,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 66,
+    "nav.load": 76,
+    "transfer.document": 120535,
+    "transfer.total": 154329,
+    "wall_to_load_ms": 78,
+    "idle_raf": 66,
+    "fps": 15,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Static.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Static.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 57,
+     "nav": {
+      "responseEnd": 17,
+      "domContentLoaded": 55,
+      "load": 56
+     },
+     "transfer": {
+      "document": 175332,
+      "total": 175332,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Static.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 58,
+     "nav": {
+      "responseEnd": 9,
+      "domContentLoaded": 52,
+      "load": 56
+     },
+     "transfer": {
+      "document": 175332,
+      "total": 175332,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Static.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 45,
+     "nav": {
+      "responseEnd": 7,
+      "domContentLoaded": 40,
+      "load": 43
+     },
+     "transfer": {
+      "document": 175332,
+      "total": 175332,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 9,
+    "nav.domContentLoaded": 52,
+    "nav.load": 56,
+    "transfer.document": 175332,
+    "transfer.total": 175332,
+    "wall_to_load_ms": 57,
+    "idle_raf": 0,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/OneGuy.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/OneGuy.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 62,
+     "nav": {
+      "responseEnd": 13,
+      "domContentLoaded": 53,
+      "load": 61
+     },
+     "transfer": {
+      "document": 89337,
+      "total": 89337,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/OneGuy.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 81,
+     "nav": {
+      "responseEnd": 11,
+      "domContentLoaded": 50,
+      "load": 74
+     },
+     "transfer": {
+      "document": 89337,
+      "total": 89337,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/OneGuy.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 51,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 46,
+      "load": 49
+     },
+     "transfer": {
+      "document": 89337,
+      "total": 89337,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 11,
+    "nav.domContentLoaded": 50,
+    "nav.load": 61,
+    "transfer.document": 89337,
+    "transfer.total": 89337,
+    "wall_to_load_ms": 62,
+    "idle_raf": 0,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/The_Last_Lighthouse_v1_1_The_Archipelago_Update_FINAL.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/The_Last_Lighthouse_v1_1_The_Archipelago_Update_FINAL.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 103,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 95,
+      "load": 101
+     },
+     "transfer": {
+      "document": 149347,
+      "total": 183141,
+      "resources": 1
+     },
+     "idle_raf": 10,
+     "held_frames": 10,
+     "fps": 3,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/The_Last_Lighthouse_v1_1_The_Archipelago_Update_FINAL.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 124,
+     "nav": {
+      "responseEnd": 8,
+      "domContentLoaded": 112,
+      "load": 122
+     },
+     "transfer": {
+      "document": 149347,
+      "total": 183141,
+      "resources": 1
+     },
+     "idle_raf": 10,
+     "held_frames": 10,
+     "fps": 3,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/The_Last_Lighthouse_v1_1_The_Archipelago_Update_FINAL.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 80,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 69,
+      "load": 77
+     },
+     "transfer": {
+      "document": 149347,
+      "total": 183141,
+      "resources": 1
+     },
+     "idle_raf": 18,
+     "held_frames": 18,
+     "fps": 6,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 6,
+    "nav.domContentLoaded": 95,
+    "nav.load": 101,
+    "transfer.document": 149347,
+    "transfer.total": 183141,
+    "wall_to_load_ms": 103,
+    "idle_raf": 10,
+    "fps": 3,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/KidsVsStaff_Showdown (3).html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/KidsVsStaff_Showdown (3).html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 66,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 58,
+      "load": 60
+     },
+     "transfer": {
+      "document": 51065,
+      "total": 84859,
+      "resources": 1
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/KidsVsStaff_Showdown (3).html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 68,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 57,
+      "load": 58
+     },
+     "transfer": {
+      "document": 51065,
+      "total": 84859,
+      "resources": 1
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/KidsVsStaff_Showdown (3).html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 44,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 42,
+      "load": 42
+     },
+     "transfer": {
+      "document": 51065,
+      "total": 84859,
+      "resources": 1
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 57,
+    "nav.load": 58,
+    "transfer.document": 51065,
+    "transfer.total": 84859,
+    "wall_to_load_ms": 66,
+    "idle_raf": 0,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/WorldCup_ThreeLions_Final.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/WorldCup_ThreeLions_Final.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 29,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 23,
+      "load": 27
+     },
+     "transfer": {
+      "document": 83333,
+      "total": 117127,
+      "resources": 1
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/WorldCup_ThreeLions_Final.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 71,
+     "nav": {
+      "responseEnd": 20,
+      "domContentLoaded": 57,
+      "load": 63
+     },
+     "transfer": {
+      "document": 83333,
+      "total": 117127,
+      "resources": 1
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/WorldCup_ThreeLions_Final.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 30,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 25,
+      "load": 28
+     },
+     "transfer": {
+      "document": 83333,
+      "total": 117127,
+      "resources": 1
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 4,
+    "nav.domContentLoaded": 25,
+    "nav.load": 28,
+    "transfer.document": 83333,
+    "transfer.total": 117127,
+    "wall_to_load_ms": 30,
+    "idle_raf": 0,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/WorldCup_v3_MatchDirector.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/WorldCup_v3_MatchDirector.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 74,
+     "nav": {
+      "responseEnd": 18,
+      "domContentLoaded": 68,
+      "load": 72
+     },
+     "transfer": {
+      "document": 92579,
+      "total": 126373,
+      "resources": 1
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/WorldCup_v3_MatchDirector.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 56,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 51,
+      "load": 55
+     },
+     "transfer": {
+      "document": 92579,
+      "total": 126373,
+      "resources": 1
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/WorldCup_v3_MatchDirector.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 66,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 62,
+      "load": 65
+     },
+     "transfer": {
+      "document": 92579,
+      "total": 126373,
+      "resources": 1
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 62,
+    "nav.load": 65,
+    "transfer.document": 92579,
+    "transfer.total": 126373,
+    "wall_to_load_ms": 66,
+    "idle_raf": 0,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/WorldCup_v5_Showdown.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/WorldCup_v5_Showdown.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 76,
+     "nav": {
+      "responseEnd": 10,
+      "domContentLoaded": 69,
+      "load": 73
+     },
+     "transfer": {
+      "document": 129893,
+      "total": 163687,
+      "resources": 1
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/WorldCup_v5_Showdown.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 66,
+     "nav": {
+      "responseEnd": 7,
+      "domContentLoaded": 58,
+      "load": 64
+     },
+     "transfer": {
+      "document": 129893,
+      "total": 163687,
+      "resources": 1
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/WorldCup_v5_Showdown.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 68,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 59,
+      "load": 66
+     },
+     "transfer": {
+      "document": 129893,
+      "total": 163687,
+      "resources": 1
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 7,
+    "nav.domContentLoaded": 59,
+    "nav.load": 66,
+    "transfer.document": 129893,
+    "transfer.total": 163687,
+    "wall_to_load_ms": 68,
+    "idle_raf": 0,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Games/Trekkers_Trail_Runner_Tees_Coast.html",
+   "runs": [
+    {
+     "route": "/Lessons/Games/Trekkers_Trail_Runner_Tees_Coast.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 407,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 378,
+      "load": 399
+     },
+     "transfer": {
+      "document": 130405,
+      "total": 1466119,
+      "resources": 10
+     },
+     "idle_raf": 13,
+     "held_frames": 14,
+     "fps": 5,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Games/Trekkers_Trail_Runner_Tees_Coast.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 301,
+     "nav": {
+      "responseEnd": 3,
+      "domContentLoaded": 288,
+      "load": 299
+     },
+     "transfer": {
+      "document": 130405,
+      "total": 1466119,
+      "resources": 10
+     },
+     "idle_raf": 20,
+     "held_frames": 24,
+     "fps": 8,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Games/Trekkers_Trail_Runner_Tees_Coast.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 286,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 273,
+      "load": 285
+     },
+     "transfer": {
+      "document": 130405,
+      "total": 1466119,
+      "resources": 10
+     },
+     "idle_raf": 26,
+     "held_frames": 28,
+     "fps": 9,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 4,
+    "nav.domContentLoaded": 288,
+    "nav.load": 299,
+    "transfer.document": 130405,
+    "transfer.total": 1466119,
+    "wall_to_load_ms": 301,
+    "idle_raf": 20,
+    "fps": 8,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/voxel/",
+   "runs": [
+    {
+     "route": "/voxel/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 604,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 585,
+      "load": 603
+     },
+     "transfer": {
+      "document": 736369,
+      "total": 770163,
+      "resources": 1
+     },
+     "idle_raf": 49,
+     "held_frames": 40,
+     "fps": 13,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/voxel/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 398,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 381,
+      "load": 396
+     },
+     "transfer": {
+      "document": 736369,
+      "total": 770163,
+      "resources": 1
+     },
+     "idle_raf": 95,
+     "held_frames": 96,
+     "fps": 32,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/voxel/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 441,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 432,
+      "load": 439
+     },
+     "transfer": {
+      "document": 736369,
+      "total": 770163,
+      "resources": 1
+     },
+     "idle_raf": 93,
+     "held_frames": 96,
+     "fps": 32,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 6,
+    "nav.domContentLoaded": 432,
+    "nav.load": 439,
+    "transfer.document": 736369,
+    "transfer.total": 770163,
+    "wall_to_load_ms": 441,
+    "idle_raf": 93,
+    "fps": 32,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/apexkick/",
+   "runs": [
+    {
+     "route": "/apexkick/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 892,
+     "nav": {
+      "responseEnd": 17,
+      "domContentLoaded": 885,
+      "load": 888
+     },
+     "transfer": {
+      "document": 994134,
+      "total": 994134,
+      "resources": 0
+     },
+     "idle_raf": 65,
+     "held_frames": 74,
+     "fps": 25,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/apexkick/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 388,
+     "nav": {
+      "responseEnd": 7,
+      "domContentLoaded": 183,
+      "load": 381
+     },
+     "transfer": {
+      "document": 994134,
+      "total": 994134,
+      "resources": 0
+     },
+     "idle_raf": 101,
+     "held_frames": 80,
+     "fps": 27,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/apexkick/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 372,
+     "nav": {
+      "responseEnd": 8,
+      "domContentLoaded": 180,
+      "load": 368
+     },
+     "transfer": {
+      "document": 994134,
+      "total": 994134,
+      "resources": 0
+     },
+     "idle_raf": 99,
+     "held_frames": 92,
+     "fps": 31,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 8,
+    "nav.domContentLoaded": 183,
+    "nav.load": 381,
+    "transfer.document": 994134,
+    "transfer.total": 994134,
+    "wall_to_load_ms": 388,
+    "idle_raf": 99,
+    "fps": 27,
+    "longtasks": 2,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/apexpool/",
+   "runs": [
+    {
+     "route": "/apexpool/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 57,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 50,
+      "load": 53
+     },
+     "transfer": {
+      "document": 109348,
+      "total": 109348,
+      "resources": 0
+     },
+     "idle_raf": 180,
+     "held_frames": 180,
+     "fps": 60,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/apexpool/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 63,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 55,
+      "load": 60
+     },
+     "transfer": {
+      "document": 109348,
+      "total": 109348,
+      "resources": 0
+     },
+     "idle_raf": 180,
+     "held_frames": 180,
+     "fps": 60,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/apexpool/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 51,
+     "nav": {
+      "responseEnd": 3,
+      "domContentLoaded": 48,
+      "load": 50
+     },
+     "transfer": {
+      "document": 109348,
+      "total": 109348,
+      "resources": 0
+     },
+     "idle_raf": 180,
+     "held_frames": 180,
+     "fps": 60,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 4,
+    "nav.domContentLoaded": 50,
+    "nav.load": 53,
+    "transfer.document": 109348,
+    "transfer.total": 109348,
+    "wall_to_load_ms": 57,
+    "idle_raf": 180,
+    "fps": 60,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/apexgolf/",
+   "runs": [
+    {
+     "route": "/apexgolf/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 52,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 34,
+      "load": 50
+     },
+     "transfer": {
+      "document": 92979,
+      "total": 92979,
+      "resources": 0
+     },
+     "idle_raf": 360,
+     "held_frames": 360,
+     "fps": 120,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/apexgolf/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 31,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 28,
+      "load": 29
+     },
+     "transfer": {
+      "document": 92979,
+      "total": 92979,
+      "resources": 0
+     },
+     "idle_raf": 360,
+     "held_frames": 360,
+     "fps": 120,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/apexgolf/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 30,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 28,
+      "load": 29
+     },
+     "transfer": {
+      "document": 92979,
+      "total": 92979,
+      "resources": 0
+     },
+     "idle_raf": 360,
+     "held_frames": 360,
+     "fps": 120,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 28,
+    "nav.load": 29,
+    "transfer.document": 92979,
+    "transfer.total": 92979,
+    "wall_to_load_ms": 31,
+    "idle_raf": 360,
+    "fps": 120,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/apextennis/",
+   "runs": [
+    {
+     "route": "/apextennis/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 58,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 49,
+      "load": 56
+     },
+     "transfer": {
+      "document": 85748,
+      "total": 85748,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/apextennis/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 39,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 34,
+      "load": 37
+     },
+     "transfer": {
+      "document": 85748,
+      "total": 85748,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/apextennis/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 46,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 41,
+      "load": 44
+     },
+     "transfer": {
+      "document": 85748,
+      "total": 85748,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 41,
+    "nav.load": 44,
+    "transfer.document": 85748,
+    "transfer.total": 85748,
+    "wall_to_load_ms": 46,
+    "idle_raf": 0,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/neonsync/",
+   "runs": [
+    {
+     "route": "/neonsync/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 65,
+     "nav": {
+      "responseEnd": 7,
+      "domContentLoaded": 57,
+      "load": 64
+     },
+     "transfer": {
+      "document": 88047,
+      "total": 88047,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/neonsync/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 47,
+     "nav": {
+      "responseEnd": 3,
+      "domContentLoaded": 43,
+      "load": 45
+     },
+     "transfer": {
+      "document": 88047,
+      "total": 88047,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/neonsync/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 46,
+     "nav": {
+      "responseEnd": 3,
+      "domContentLoaded": 41,
+      "load": 44
+     },
+     "transfer": {
+      "document": 88047,
+      "total": 88047,
+      "resources": 0
+     },
+     "idle_raf": 0,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 3,
+    "nav.domContentLoaded": 43,
+    "nav.load": 45,
+    "transfer.document": 88047,
+    "transfer.total": 88047,
+    "wall_to_load_ms": 47,
+    "idle_raf": 0,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/biopunkhive/",
+   "runs": [
+    {
+     "route": "/biopunkhive/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 78,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 73,
+      "load": 76
+     },
+     "transfer": {
+      "document": 87930,
+      "total": 87930,
+      "resources": 0
+     },
+     "idle_raf": 64,
+     "held_frames": 63,
+     "fps": 21,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/biopunkhive/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 93,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 85,
+      "load": 92
+     },
+     "transfer": {
+      "document": 87930,
+      "total": 87930,
+      "resources": 0
+     },
+     "idle_raf": 69,
+     "held_frames": 85,
+     "fps": 28,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/biopunkhive/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 80,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 72,
+      "load": 77
+     },
+     "transfer": {
+      "document": 87930,
+      "total": 87930,
+      "resources": 0
+     },
+     "idle_raf": 87,
+     "held_frames": 105,
+     "fps": 35,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 4,
+    "nav.domContentLoaded": 73,
+    "nav.load": 77,
+    "transfer.document": 87930,
+    "transfer.total": 87930,
+    "wall_to_load_ms": 80,
+    "idle_raf": 69,
+    "fps": 28,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/neonbreach/",
+   "runs": [
+    {
+     "route": "/neonbreach/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 136,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 130,
+      "load": 134
+     },
+     "transfer": {
+      "document": 125174,
+      "total": 158968,
+      "resources": 1
+     },
+     "idle_raf": 38,
+     "held_frames": 34,
+     "fps": 11,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/neonbreach/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 106,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 99,
+      "load": 104
+     },
+     "transfer": {
+      "document": 125174,
+      "total": 158968,
+      "resources": 1
+     },
+     "idle_raf": 40,
+     "held_frames": 31,
+     "fps": 10,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/neonbreach/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 125,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 111,
+      "load": 121
+     },
+     "transfer": {
+      "document": 125174,
+      "total": 158968,
+      "resources": 1
+     },
+     "idle_raf": 51,
+     "held_frames": 40,
+     "fps": 13,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 111,
+    "nav.load": 121,
+    "transfer.document": 125174,
+    "transfer.total": 158968,
+    "wall_to_load_ms": 125,
+    "idle_raf": 40,
+    "fps": 11,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/apexrally/",
+   "runs": [
+    {
+     "route": "/apexrally/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 43,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 39,
+      "load": 39
+     },
+     "transfer": {
+      "document": 54539,
+      "total": 54539,
+      "resources": 0
+     },
+     "idle_raf": 20,
+     "held_frames": 23,
+     "fps": 8,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/apexrally/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 23,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 20,
+      "load": 21
+     },
+     "transfer": {
+      "document": 54539,
+      "total": 54539,
+      "resources": 0
+     },
+     "idle_raf": 35,
+     "held_frames": 35,
+     "fps": 12,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/apexrally/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 27,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 24,
+      "load": 24
+     },
+     "transfer": {
+      "document": 54539,
+      "total": 54539,
+      "resources": 0
+     },
+     "idle_raf": 30,
+     "held_frames": 36,
+     "fps": 12,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 4,
+    "nav.domContentLoaded": 24,
+    "nav.load": 24,
+    "transfer.document": 54539,
+    "transfer.total": 54539,
+    "wall_to_load_ms": 27,
+    "idle_raf": 30,
+    "fps": 12,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/medevac/",
+   "runs": [
+    {
+     "route": "/medevac/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 119,
+     "nav": {
+      "responseEnd": 12,
+      "domContentLoaded": 105,
+      "load": 106
+     },
+     "transfer": {
+      "document": 461103,
+      "total": 494897,
+      "resources": 1
+     },
+     "idle_raf": 40,
+     "held_frames": 43,
+     "fps": 14,
+     "longtasks": 71,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/medevac/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 83,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 74,
+      "load": 81
+     },
+     "transfer": {
+      "document": 461103,
+      "total": 494897,
+      "resources": 1
+     },
+     "idle_raf": 43,
+     "held_frames": 39,
+     "fps": 13,
+     "longtasks": 61,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/medevac/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 84,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 77,
+      "load": 82
+     },
+     "transfer": {
+      "document": 461103,
+      "total": 494897,
+      "resources": 1
+     },
+     "idle_raf": 39,
+     "held_frames": 43,
+     "fps": 14,
+     "longtasks": 68,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 6,
+    "nav.domContentLoaded": 77,
+    "nav.load": 82,
+    "transfer.document": 461103,
+    "transfer.total": 494897,
+    "wall_to_load_ms": 84,
+    "idle_raf": 40,
+    "fps": 14,
+    "longtasks": 68,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/luminahaven/",
+   "runs": [
+    {
+     "route": "/luminahaven/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 67,
+     "nav": {
+      "responseEnd": 7,
+      "domContentLoaded": 61,
+      "load": 66
+     },
+     "transfer": {
+      "document": 108818,
+      "total": 142612,
+      "resources": 1
+     },
+     "idle_raf": 3,
+     "held_frames": 1,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/luminahaven/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 68,
+     "nav": {
+      "responseEnd": 3,
+      "domContentLoaded": 52,
+      "load": 66
+     },
+     "transfer": {
+      "document": 108818,
+      "total": 142612,
+      "resources": 1
+     },
+     "idle_raf": 4,
+     "held_frames": 1,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/luminahaven/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 72,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 62,
+      "load": 69
+     },
+     "transfer": {
+      "document": 108818,
+      "total": 142612,
+      "resources": 1
+     },
+     "idle_raf": 3,
+     "held_frames": 3,
+     "fps": 1,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 4,
+    "nav.domContentLoaded": 61,
+    "nav.load": 66,
+    "transfer.document": 108818,
+    "transfer.total": 142612,
+    "wall_to_load_ms": 68,
+    "idle_raf": 3,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/auroralinks/",
+   "runs": [
+    {
+     "route": "/auroralinks/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 835,
+     "nav": {
+      "responseEnd": 24,
+      "domContentLoaded": 824,
+      "load": 826
+     },
+     "transfer": {
+      "document": 232849,
+      "total": 232849,
+      "resources": 0
+     },
+     "idle_raf": 7,
+     "held_frames": 9,
+     "fps": 3,
+     "longtasks": 7,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/auroralinks/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 1414,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 102,
+      "load": 1411
+     },
+     "transfer": {
+      "document": 232849,
+      "total": 232849,
+      "resources": 0
+     },
+     "idle_raf": 13,
+     "held_frames": 12,
+     "fps": 4,
+     "longtasks": 8,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/auroralinks/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 186,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 105,
+      "load": 182
+     },
+     "transfer": {
+      "document": 232849,
+      "total": 232849,
+      "resources": 0
+     },
+     "idle_raf": 16,
+     "held_frames": 15,
+     "fps": 5,
+     "longtasks": 8,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 105,
+    "nav.load": 826,
+    "transfer.document": 232849,
+    "transfer.total": 232849,
+    "wall_to_load_ms": 835,
+    "idle_raf": 13,
+    "fps": 4,
+    "longtasks": 8,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/neonmeridian/",
+   "runs": [
+    {
+     "route": "/neonmeridian/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 140,
+     "nav": {
+      "responseEnd": 18,
+      "domContentLoaded": 114,
+      "load": 135
+     },
+     "transfer": {
+      "document": 140852,
+      "total": 140852,
+      "resources": 0
+     },
+     "idle_raf": 124,
+     "held_frames": 180,
+     "fps": 60,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/neonmeridian/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 87,
+     "nav": {
+      "responseEnd": 8,
+      "domContentLoaded": 81,
+      "load": 84
+     },
+     "transfer": {
+      "document": 140852,
+      "total": 140852,
+      "resources": 0
+     },
+     "idle_raf": 140,
+     "held_frames": 180,
+     "fps": 60,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/neonmeridian/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 91,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 87,
+      "load": 89
+     },
+     "transfer": {
+      "document": 140852,
+      "total": 140852,
+      "resources": 0
+     },
+     "idle_raf": 139,
+     "held_frames": 180,
+     "fps": 60,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 8,
+    "nav.domContentLoaded": 87,
+    "nav.load": 89,
+    "transfer.document": 140852,
+    "transfer.total": 140852,
+    "wall_to_load_ms": 91,
+    "idle_raf": 139,
+    "fps": 60,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/rallyvector3d/",
+   "runs": [
+    {
+     "route": "/rallyvector3d/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 270,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 230,
+      "load": 239
+     },
+     "transfer": {
+      "document": 248906,
+      "total": 248906,
+      "resources": 0
+     },
+     "idle_raf": 18,
+     "held_frames": 14,
+     "fps": 5,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/rallyvector3d/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 224,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 209,
+      "load": 221
+     },
+     "transfer": {
+      "document": 248906,
+      "total": 248906,
+      "resources": 0
+     },
+     "idle_raf": 25,
+     "held_frames": 20,
+     "fps": 7,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/rallyvector3d/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 267,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 251,
+      "load": 263
+     },
+     "transfer": {
+      "document": 248906,
+      "total": 248906,
+      "resources": 0
+     },
+     "idle_raf": 22,
+     "held_frames": 19,
+     "fps": 6,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 4,
+    "nav.domContentLoaded": 230,
+    "nav.load": 239,
+    "transfer.document": 248906,
+    "transfer.total": 248906,
+    "wall_to_load_ms": 267,
+    "idle_raf": 22,
+    "fps": 6,
+    "longtasks": 2,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/hyperdraft/",
+   "runs": [
+    {
+     "route": "/hyperdraft/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 79,
+     "nav": {
+      "responseEnd": 8,
+      "domContentLoaded": 70,
+      "load": 77
+     },
+     "transfer": {
+      "document": 150840,
+      "total": 184634,
+      "resources": 1
+     },
+     "idle_raf": 13,
+     "held_frames": 18,
+     "fps": 6,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/hyperdraft/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 55,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 49,
+      "load": 52
+     },
+     "transfer": {
+      "document": 150840,
+      "total": 184634,
+      "resources": 1
+     },
+     "idle_raf": 27,
+     "held_frames": 26,
+     "fps": 9,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/hyperdraft/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 69,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 55,
+      "load": 64
+     },
+     "transfer": {
+      "document": 150840,
+      "total": 184634,
+      "resources": 1
+     },
+     "idle_raf": 25,
+     "held_frames": 24,
+     "fps": 8,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 6,
+    "nav.domContentLoaded": 55,
+    "nav.load": 64,
+    "transfer.document": 150840,
+    "transfer.total": 184634,
+    "wall_to_load_ms": 69,
+    "idle_raf": 25,
+    "fps": 8,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/apexcurl/",
+   "runs": [
+    {
+     "route": "/apexcurl/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 160,
+     "nav": {
+      "responseEnd": 19,
+      "domContentLoaded": 126,
+      "load": 157
+     },
+     "transfer": {
+      "document": 255579,
+      "total": 255579,
+      "resources": 0
+     },
+     "idle_raf": 7,
+     "held_frames": 7,
+     "fps": 2,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/apexcurl/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 138,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 102,
+      "load": 128
+     },
+     "transfer": {
+      "document": 255579,
+      "total": 255579,
+      "resources": 0
+     },
+     "idle_raf": 11,
+     "held_frames": 9,
+     "fps": 3,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/apexcurl/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 120,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 104,
+      "load": 119
+     },
+     "transfer": {
+      "document": 255579,
+      "total": 255579,
+      "resources": 0
+     },
+     "idle_raf": 9,
+     "held_frames": 9,
+     "fps": 3,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 6,
+    "nav.domContentLoaded": 104,
+    "nav.load": 128,
+    "transfer.document": 255579,
+    "transfer.total": 255579,
+    "wall_to_load_ms": 138,
+    "idle_raf": 9,
+    "fps": 3,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/apexvelodrome/",
+   "runs": [
+    {
+     "route": "/apexvelodrome/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 272,
+     "nav": {
+      "responseEnd": 11,
+      "domContentLoaded": 268,
+      "load": 268
+     },
+     "transfer": {
+      "document": 262640,
+      "total": 262640,
+      "resources": 0
+     },
+     "idle_raf": 8,
+     "held_frames": 18,
+     "fps": 6,
+     "longtasks": 2,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/apexvelodrome/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 155,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 151,
+      "load": 151
+     },
+     "transfer": {
+      "document": 262640,
+      "total": 262640,
+      "resources": 0
+     },
+     "idle_raf": 15,
+     "held_frames": 15,
+     "fps": 5,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/apexvelodrome/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 173,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 168,
+      "load": 168
+     },
+     "transfer": {
+      "document": 262640,
+      "total": 262640,
+      "resources": 0
+     },
+     "idle_raf": 15,
+     "held_frames": 15,
+     "fps": 5,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 6,
+    "nav.domContentLoaded": 168,
+    "nav.load": 168,
+    "transfer.document": 262640,
+    "transfer.total": 262640,
+    "wall_to_load_ms": 173,
+    "idle_raf": 15,
+    "fps": 5,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/micro-tinkerer/",
+   "runs": [
+    {
+     "route": "/micro-tinkerer/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 321,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 317,
+      "load": 318
+     },
+     "transfer": {
+      "document": 159622,
+      "total": 159622,
+      "resources": 0
+     },
+     "idle_raf": 27,
+     "held_frames": 27,
+     "fps": 9,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/micro-tinkerer/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 305,
+     "nav": {
+      "responseEnd": 10,
+      "domContentLoaded": 303,
+      "load": 304
+     },
+     "transfer": {
+      "document": 159622,
+      "total": 159622,
+      "resources": 0
+     },
+     "idle_raf": 22,
+     "held_frames": 25,
+     "fps": 8,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/micro-tinkerer/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 278,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 276,
+      "load": 277
+     },
+     "transfer": {
+      "document": 159622,
+      "total": 159622,
+      "resources": 0
+     },
+     "idle_raf": 30,
+     "held_frames": 31,
+     "fps": 10,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 4,
+    "nav.domContentLoaded": 303,
+    "nav.load": 304,
+    "transfer.document": 159622,
+    "transfer.total": 159622,
+    "wall_to_load_ms": 305,
+    "idle_raf": 27,
+    "fps": 9,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/townlife/",
+   "runs": [
+    {
+     "route": "/townlife/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 136,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 124,
+      "load": 129
+     },
+     "transfer": {
+      "document": 349251,
+      "total": 349251,
+      "resources": 0
+     },
+     "idle_raf": 14,
+     "held_frames": 10,
+     "fps": 3,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/townlife/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 131,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 123,
+      "load": 128
+     },
+     "transfer": {
+      "document": 349251,
+      "total": 349251,
+      "resources": 0
+     },
+     "idle_raf": 15,
+     "held_frames": 15,
+     "fps": 5,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/townlife/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 131,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 123,
+      "load": 129
+     },
+     "transfer": {
+      "document": 349251,
+      "total": 349251,
+      "resources": 0
+     },
+     "idle_raf": 19,
+     "held_frames": 18,
+     "fps": 6,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 123,
+    "nav.load": 129,
+    "transfer.document": 349251,
+    "transfer.total": 349251,
+    "wall_to_load_ms": 131,
+    "idle_raf": 15,
+    "fps": 5,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/touchline/",
+   "runs": [
+    {
+     "route": "/touchline/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 127,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 120,
+      "load": 124
+     },
+     "transfer": {
+      "document": 416330,
+      "total": 416330,
+      "resources": 0
+     },
+     "idle_raf": 161,
+     "held_frames": 180,
+     "fps": 60,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/touchline/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 89,
+     "nav": {
+      "responseEnd": 9,
+      "domContentLoaded": 83,
+      "load": 87
+     },
+     "transfer": {
+      "document": 416330,
+      "total": 416330,
+      "resources": 0
+     },
+     "idle_raf": 167,
+     "held_frames": 180,
+     "fps": 60,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/touchline/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 101,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 96,
+      "load": 99
+     },
+     "transfer": {
+      "document": 416330,
+      "total": 416330,
+      "resources": 0
+     },
+     "idle_raf": 173,
+     "held_frames": 180,
+     "fps": 60,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 96,
+    "nav.load": 99,
+    "transfer.document": 416330,
+    "transfer.total": 416330,
+    "wall_to_load_ms": 101,
+    "idle_raf": 167,
+    "fps": 60,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/skybreak/",
+   "runs": [
+    {
+     "route": "/skybreak/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 143,
+     "nav": {
+      "responseEnd": 13,
+      "domContentLoaded": 138,
+      "load": 141
+     },
+     "transfer": {
+      "document": 220559,
+      "total": 220559,
+      "resources": 0
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/skybreak/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 114,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 108,
+      "load": 112
+     },
+     "transfer": {
+      "document": 220559,
+      "total": 220559,
+      "resources": 0
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/skybreak/",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 107,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 104,
+      "load": 106
+     },
+     "transfer": {
+      "document": 220559,
+      "total": 220559,
+      "resources": 0
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 108,
+    "nav.load": 112,
+    "transfer.document": 220559,
+    "transfer.total": 220559,
+    "wall_to_load_ms": 114,
+    "idle_raf": 1,
+    "fps": 0,
+    "longtasks": 1,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/5 Intervention 10/InterventionA_Battle_Arena (1).html",
+   "runs": [
+    {
+     "route": "/Lessons/5 Intervention 10/InterventionA_Battle_Arena (1).html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 39,
+     "nav": {
+      "responseEnd": 12,
+      "domContentLoaded": 33,
+      "load": 37
+     },
+     "transfer": {
+      "document": 143006,
+      "total": 176800,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/5 Intervention 10/InterventionA_Battle_Arena (1).html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 65,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 56,
+      "load": 63
+     },
+     "transfer": {
+      "document": 143006,
+      "total": 176800,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/5 Intervention 10/InterventionA_Battle_Arena (1).html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 63,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 57,
+      "load": 61
+     },
+     "transfer": {
+      "document": 143006,
+      "total": 176800,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 4,
+    "nav.domContentLoaded": 56,
+    "nav.load": 61,
+    "transfer.document": 143006,
+    "transfer.total": 176800,
+    "wall_to_load_ms": 63,
+    "idle_raf": 1,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/2 Physics 10/current_rush.html",
+   "runs": [
+    {
+     "route": "/Lessons/2 Physics 10/current_rush.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 33,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 30,
+      "load": 30
+     },
+     "transfer": {
+      "document": 42304,
+      "total": 76098,
+      "resources": 1
+     },
+     "idle_raf": 18,
+     "held_frames": 12,
+     "fps": 4,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/2 Physics 10/current_rush.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 27,
+     "nav": {
+      "responseEnd": 6,
+      "domContentLoaded": 25,
+      "load": 25
+     },
+     "transfer": {
+      "document": 42304,
+      "total": 76098,
+      "resources": 1
+     },
+     "idle_raf": 18,
+     "held_frames": 11,
+     "fps": 4,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/2 Physics 10/current_rush.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 48,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 27,
+      "load": 39
+     },
+     "transfer": {
+      "document": 42304,
+      "total": 76098,
+      "resources": 1
+     },
+     "idle_raf": 18,
+     "held_frames": 14,
+     "fps": 5,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 27,
+    "nav.load": 30,
+    "transfer.document": 42304,
+    "transfer.total": 76098,
+    "wall_to_load_ms": 33,
+    "idle_raf": 18,
+    "fps": 4,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/5 Intervention 10/InterventionB_Escape_Room.html",
+   "runs": [
+    {
+     "route": "/Lessons/5 Intervention 10/InterventionB_Escape_Room.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 52,
+     "nav": {
+      "responseEnd": 3,
+      "domContentLoaded": 45,
+      "load": 49
+     },
+     "transfer": {
+      "document": 89951,
+      "total": 123745,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/5 Intervention 10/InterventionB_Escape_Room.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 52,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 26,
+      "load": 47
+     },
+     "transfer": {
+      "document": 89951,
+      "total": 123745,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/5 Intervention 10/InterventionB_Escape_Room.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 62,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 53,
+      "load": 58
+     },
+     "transfer": {
+      "document": 89951,
+      "total": 123745,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 4,
+    "nav.domContentLoaded": 45,
+    "nav.load": 49,
+    "transfer.document": 89951,
+    "transfer.total": 123745,
+    "wall_to_load_ms": 52,
+    "idle_raf": 1,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/LundyLoop/5_staff_training/R_Gate_Calibration_Game.html",
+   "runs": [
+    {
+     "route": "/Lessons/LundyLoop/5_staff_training/R_Gate_Calibration_Game.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 41,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 35,
+      "load": 39
+     },
+     "transfer": {
+      "document": 27907,
+      "total": 61701,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/LundyLoop/5_staff_training/R_Gate_Calibration_Game.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 46,
+     "nav": {
+      "responseEnd": 7,
+      "domContentLoaded": 36,
+      "load": 40
+     },
+     "transfer": {
+      "document": 27907,
+      "total": 61701,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/LundyLoop/5_staff_training/R_Gate_Calibration_Game.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 19,
+     "nav": {
+      "responseEnd": 3,
+      "domContentLoaded": 16,
+      "load": 18
+     },
+     "transfer": {
+      "document": 27907,
+      "total": 61701,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 4,
+    "nav.domContentLoaded": 35,
+    "nav.load": 39,
+    "transfer.document": 27907,
+    "transfer.total": 61701,
+    "wall_to_load_ms": 41,
+    "idle_raf": 1,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/Summer Term Fun/Kids_vs_Staff_Studio_Game_Show_v8_Autopilot.html",
+   "runs": [
+    {
+     "route": "/Lessons/Summer Term Fun/Kids_vs_Staff_Studio_Game_Show_v8_Autopilot.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 62,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 55,
+      "load": 59
+     },
+     "transfer": {
+      "document": 144223,
+      "total": 178017,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/Summer Term Fun/Kids_vs_Staff_Studio_Game_Show_v8_Autopilot.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 72,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 64,
+      "load": 69
+     },
+     "transfer": {
+      "document": 144223,
+      "total": 178017,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/Summer Term Fun/Kids_vs_Staff_Studio_Game_Show_v8_Autopilot.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 60,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 53,
+      "load": 58
+     },
+     "transfer": {
+      "document": 144223,
+      "total": 178017,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 55,
+    "nav.load": 59,
+    "transfer.document": 144223,
+    "transfer.total": 178017,
+    "wall_to_load_ms": 62,
+    "idle_raf": 1,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/5 Intervention 10/L8a_Powerhouse_Arena_TeamQuiz.html",
+   "runs": [
+    {
+     "route": "/Lessons/5 Intervention 10/L8a_Powerhouse_Arena_TeamQuiz.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 50,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 41,
+      "load": 48
+     },
+     "transfer": {
+      "document": 36703,
+      "total": 70497,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/5 Intervention 10/L8a_Powerhouse_Arena_TeamQuiz.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 50,
+     "nav": {
+      "responseEnd": 8,
+      "domContentLoaded": 36,
+      "load": 45
+     },
+     "transfer": {
+      "document": 36703,
+      "total": 70497,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/5 Intervention 10/L8a_Powerhouse_Arena_TeamQuiz.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 42,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 31,
+      "load": 40
+     },
+     "transfer": {
+      "document": 36703,
+      "total": 70497,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 36,
+    "nav.load": 45,
+    "transfer.document": 36703,
+    "transfer.total": 70497,
+    "wall_to_load_ms": 50,
+    "idle_raf": 1,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  },
+  {
+   "route": "/Lessons/5 Intervention 10/Lesson_VIR_Pupil_App.html",
+   "runs": [
+    {
+     "route": "/Lessons/5 Intervention 10/Lesson_VIR_Pupil_App.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 100,
+     "nav": {
+      "responseEnd": 16,
+      "domContentLoaded": 97,
+      "load": 98
+     },
+     "transfer": {
+      "document": 137755,
+      "total": 171549,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 1,
+     "errors": 0,
+     "error_messages": [],
+     "run": 1
+    },
+    {
+     "route": "/Lessons/5 Intervention 10/Lesson_VIR_Pupil_App.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 66,
+     "nav": {
+      "responseEnd": 5,
+      "domContentLoaded": 61,
+      "load": 64
+     },
+     "transfer": {
+      "document": 137755,
+      "total": 171549,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 2
+    },
+    {
+     "route": "/Lessons/5 Intervention 10/Lesson_VIR_Pupil_App.html",
+     "state": "measured",
+     "status": 200,
+     "wall_to_load_ms": 64,
+     "nav": {
+      "responseEnd": 4,
+      "domContentLoaded": 59,
+      "load": 63
+     },
+     "transfer": {
+      "document": 137755,
+      "total": 171549,
+      "resources": 1
+     },
+     "idle_raf": 1,
+     "held_frames": 0,
+     "fps": 0,
+     "longtasks": 0,
+     "errors": 0,
+     "error_messages": [],
+     "run": 3
+    }
+   ],
+   "measured": 3,
+   "unresponsive": 0,
+   "failed": 0,
+   "median": {
+    "nav.responseEnd": 5,
+    "nav.domContentLoaded": 61,
+    "nav.load": 64,
+    "transfer.document": 137755,
+    "transfer.total": 171549,
+    "wall_to_load_ms": 66,
+    "idle_raf": 1,
+    "fps": 0,
+    "longtasks": 0,
+    "errors": 0
+   }
+  }
+ ]
+}
