@@ -2,11 +2,11 @@ name: Standalone games website
 on:
   pull_request:
     branches: [main]
-    paths: ['games.json', 'play-publication.json', '.github/workflows/play-domain-publication.yml', 'docs/play-domain.md']
-  # Reviewed publication pins deploy after merge; PRs only assemble and verify.
+    paths: ['games.json', 'play-publication.json', '.github/workflows/play-domain-publication.yml', 'docs/play-domain.md', 'tools/check_publication_trigger.py']
+  # Every main revision has its own source receipt, including docs-only commits.
+  # Source pins remain reviewed releases; PRs only assemble and verify.
   push:
     branches: [main]
-    paths: ['games.json', 'play-publication.json', '.github/workflows/play-domain-publication.yml']
   workflow_dispatch:
     inputs:
       publish:
@@ -58,7 +58,9 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - name: Install publication HTML parser
-        run: python -m pip install lxml==6.0.1
+        run: python -m pip install lxml==6.0.1 PyYAML==6.0.3
+      - name: Prove main publication and PR exclusion triggers
+        run: python tools/check_publication_trigger.py --self-test
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
       - name: Build and check all game payloads and save boundaries
