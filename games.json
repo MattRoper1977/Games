@@ -27,6 +27,7 @@
     {
       "icon": "🏆",
       "title": "House Olympiad · Sports V4",
+      "displayTitle": "House Olympiad",
       "desc": "A V4 local championship dashboard for five disciplines across Aurora Links, Apex Pool, Apex Kick and Global Games. Merge results through the private, on-device Sports Passport, compare House points, and export only when you choose. One file, no account, plays offline.",
       "href": "/houseolympiad/",
       "tag": "Strategy",
@@ -331,6 +332,7 @@
     {
       "icon": "⚪",
       "title": "Slipstream",
+      "series": "Slipstream",
       "desc": "A streamlined rhythmic velocity test tracking uninterrupted forward momentum and rapid gap synchronization.",
       "href": "/Lessons/Games/Slipstream.html",
       "tag": "Reflex",
@@ -342,6 +344,7 @@
     {
       "icon": "⚪",
       "title": "Slipstream - GP",
+      "series": "Slipstream",
       "desc": "Climb the eight-rival ladder — draft, slingshot, overtake. Touch controls with a brake, garage upgrades, daily sprint, and a velocity–time graph in school mode.",
       "href": "/Lessons/Games/Slipstream_GP.html",
       "tag": "Reflex",
@@ -419,6 +422,7 @@
     {
       "icon": "⚽",
       "title": "World Cup: Road to the Three Lions Final",
+      "series": "World Cup",
       "desc": "An end-of-term tournament your teacher runs: three nations, possession and steals, stadium codes, a VAR twist and a cooperative England final. Auto-tallied scoring and evidence print included.",
       "href": "/Lessons/Games/WorldCup_ThreeLions_Final.html",
       "tag": "Class game",
@@ -430,6 +434,8 @@
     {
       "icon": "🎮",
       "title": "World Cup v3 — Match Director",
+      "displayTitle": "World Cup: Match Director",
+      "series": "World Cup",
       "desc": "Run a match as director — Made by Matt arcade.",
       "href": "/Lessons/Games/WorldCup_v3_MatchDirector.html",
       "tag": "Class game",
@@ -441,6 +447,8 @@
     {
       "icon": "🎮",
       "title": "World Cup v5 — Showdown",
+      "displayTitle": "World Cup: Showdown",
+      "series": "World Cup",
       "desc": "Head-to-head showdown — Made by Matt arcade.",
       "href": "/Lessons/Games/WorldCup_v5_Showdown.html",
       "tag": "Class game",
@@ -589,6 +597,7 @@
     {
       "icon": "🌌",
       "title": "Aurora Links: Northern Lights Tour — AAA V4",
+      "displayTitle": "Aurora Links: Northern Lights Tour",
       "desc": "AAA V4 is a standalone WebGL2-enhanced golf simulation with RK4 aerodynamics, dynamic lies, weekly cups, an earn-only career, a shared Sports Passport and private local-network House Cup play. Canvas gameplay remains available when WebGL2 is unavailable.",
       "href": "/auroralinks/",
       "tag": "Physics",
@@ -623,6 +632,7 @@
     {
       "icon": "🏎️",
       "title": "Slipstream GP: Hyperdraft",
+      "series": "Slipstream",
       "desc": "Drafting rebuilt as three zones you can feel: a turbulent fringe, a vacuum pocket that charges your boost, and dirty air that takes your grip and cooks the engine. Pull sideways out of the pocket and the slingshot fires. Four circuits including Stormline, where standing water, hydroplaning and lightning fight you the whole way round. Four rival personalities — the Blocker, the Apex Purist, the Leech and the Wildcard — and any of them will hold a grudge after contact. Offline, no account, nothing uploaded.",
       "href": "/hyperdraft/",
       "tag": "Physics",

@@ -100,18 +100,33 @@ gate('S1', 'one rail mechanism, derived from the manifest', () => {
   return `${rail.length} members via \`collection\`; collection vocabulary: ${[...values].join(', ')}`;
 });
 
+/* OPTIONAL per-entry keys (UX2 C1, 2026-09-08). These carry presentation
+ * metadata for the Play shelf — a shorter card title, and a series name that
+ * lets the shelf collapse editions of one game into one card. They are
+ * optional by design: only the rows that need them carry them, so they are
+ * NOT part of the schema S2 compares. They are still typed and cross-checked
+ * by tools/validate_games_json.sh (non-empty strings, displayTitle differs
+ * from title, a series names at least two rows). S1's ban on a second rail
+ * mechanism (section/rail/group/...) is unchanged: `series` is not a rail. */
+const OPTIONAL_KEYS = ['displayTitle', 'series'];
+
 gate('S2', 'Sports is additive, not a move', () => {
   /* Every rail member must still be a plain shelf entry — same array, same
    * schema as its non-rail siblings. Exactly-once applies to homepage
-   * surfaces, never to the browse-all catalogue. */
-  const schema = Object.keys(games.find(g => !g.collection)).sort();
+   * surfaces, never to the browse-all catalogue. The comparison ignores the
+   * OPTIONAL_KEYS above on both sides, so a shelf-only presentation key on a
+   * single row is not read as a schema move. */
+  const core = g => Object.keys(g).filter(k => k !== 'collection' && !OPTIONAL_KEYS.includes(k)).sort();
+  const schema = core(games.find(g => !g.collection));
   rail.forEach(g => {
-    const keys = Object.keys(g).filter(k => k !== 'collection').sort();
+    const keys = core(g);
     assert(JSON.stringify(keys) === JSON.stringify(schema),
       `${g.title} schema differs from a plain shelf entry: ${keys.join(',')} vs ${schema.join(',')}`);
     assert(games.includes(g), `${g.title} is not in the whole-shelf catalogue`);
   });
-  return `${rail.length} rail members, each a full catalogue entry (schema: ${schema.join(', ')} + collection)`;
+  const optional = rail.filter(g => OPTIONAL_KEYS.some(k => k in g)).map(g => g.title);
+  return `${rail.length} rail members, each a full catalogue entry (schema: ${schema.join(', ')} + collection; optional ${OPTIONAL_KEYS.join('/')} ignored` +
+         (optional.length ? `, carried by ${optional.join(', ')})` : ')');
 });
 
 /* The baseline is DERIVED from the branch point, never pinned. A collision that

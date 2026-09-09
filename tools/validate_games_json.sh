@@ -94,6 +94,35 @@ gs.forEach((g, i) => {
 });
 ok('every entry carries all required fields [' + REQUIRED.join(', ') + '], non-empty');
 
+// 4b · OPTIONAL PRESENTATION KEYS, typed when present (UX2 C1, 2026-09-08).
+//      displayTitle — a shorter card title for the Play shelf; series — the
+//      name that lets the shelf collapse editions of one game into one card.
+//      Neither is required (only the rows that need them carry them; the
+//      Sports rail gate ignores them for its schema comparison), but a present
+//      key must mean something: a non-empty string, a displayTitle that
+//      actually differs from the title it replaces, and a series shared by at
+//      least two rows — a series of one collapses nothing and is a defect.
+const OPTIONAL_STRINGS = ['displayTitle', 'series'];
+gs.forEach((g, i) => {
+  const label = '"' + (g.title || '?') + '" (#' + i + ')';
+  OPTIONAL_STRINGS.forEach(k => {
+    if (!Object.prototype.hasOwnProperty.call(g, k)) return;
+    if (typeof g[k] !== 'string' || g[k].trim() === '') fail('entry ' + label + ' optional field "' + k + '" must be a non-empty string when present (got ' + JSON.stringify(g[k]) + ')');
+  });
+  if (Object.prototype.hasOwnProperty.call(g, 'displayTitle') && g.displayTitle === g.title)
+    fail('entry ' + label + ' displayTitle must differ from title (drop the key instead of repeating the title)');
+});
+{
+  const seriesCensus = Object.create(null);
+  gs.forEach(g => { if (typeof g.series === 'string') seriesCensus[g.series] = (seriesCensus[g.series] || 0) + 1; });
+  const lonely = Object.keys(seriesCensus).filter(s => seriesCensus[s] < 2).sort();
+  if (lonely.length) fail('series named on only one row (a series of one is a defect): ' + lonely.join(', '));
+  const withDisplay = gs.filter(g => Object.prototype.hasOwnProperty.call(g, 'displayTitle')).length;
+  ok('optional displayTitle on ' + withDisplay + ' entr' + (withDisplay === 1 ? 'y' : 'ies') + ', each a non-empty string differing from title');
+  ok(Object.keys(seriesCensus).length + ' series, each named on >=2 rows' +
+     (Object.keys(seriesCensus).length ? ': ' + Object.keys(seriesCensus).sort().map(s => s + ' ×' + seriesCensus[s]).join(', ') : ''));
+}
+
 // 5 · EVERY HREF RESOLVES to a real file in the Lessons tree.
 //     Anchored to fs.existsSync of the exact decoded target path — a broken or
 //     renamed game file fails here. Refuses to silently skip: a missing Lessons
