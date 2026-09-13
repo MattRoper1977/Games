@@ -57,3 +57,65 @@ assert.equal(findTrackingIssue(open.filter(i => i.number !== 4)), null, 'No exac
 assert.throws(() => findTrackingIssue([...open, {number: 7, title: TRACKING_TITLE}]), /More than one/, 'Two exact matches must stop, not pick one');
 assert.equal(findTrackingIssue(open).number, 4);
 console.log('PASS HC4 §5.2 denial classified / unrelated errors stay red / staged pin read / tracking issue exact and single');
+
+// Post-merge deployment skips are valid only with authenticated PR evidence.
+const {publicationRunIds, PUBLICATION_POLICY_SHA} = require('./pin_release_evidence.cjs');
+const repository = 'MattRoper1977/Games', sha = 'a'.repeat(40), publicationId = 71, suiteId = 91;
+const row = (name, id, conclusion) => ({name, id, status: 'completed', conclusion,
+  head_sha: sha, app: {id: 15368, slug: 'github-actions'}, check_suite: {id: suiteId},
+  details_url: `https://github.com/${repository}/actions/runs/${publicationId}/job/${id}`});
+const qualified = [...real,
+  row('Assemble all games independently', 101, 'success'),
+  row('deploy', 102, 'skipped'), row('verify-published', 103, 'skipped')];
+const evidence = {repository, sha, publicationPolicySha: PUBLICATION_POLICY_SHA,
+  publicationRuns: [{id: publicationId, check_suite_id: suiteId, head_sha: sha,
+    event: 'pull_request', path: '.github/workflows/play-domain-publication.yml',
+    status: 'completed', conclusion: 'success'}]};
+const accepted = (rows, context) => Object.values(assessChecks(rows, required, context)).every(xs => xs.length === 0);
+assert(!accepted(qualified, {}), 'Names alone must never waive skips');
+assert(accepted(qualified, evidence));
+assert.deepEqual(publicationRunIds(qualified, evidence), [publicationId]);
+const controls = [
+  ['wrong policy blob', (r,c)=>{c.publicationPolicySha='b'.repeat(40)}],
+  ['missing policy blob', (r,c)=>{delete c.publicationPolicySha}],
+  ['missing run metadata', (r,c)=>{c.publicationRuns=[]}],
+  ['duplicate run metadata', (r,c)=>{c.publicationRuns.push(structuredClone(c.publicationRuns[0]))}],
+  ['wrong run id', (r,c)=>{c.publicationRuns[0].id++}],
+  ['push publication', (r,c)=>{c.publicationRuns[0].event='push'}],
+  ['dispatch publication', (r,c)=>{c.publicationRuns[0].event='workflow_dispatch'}],
+  ['wrong workflow', (r,c)=>{c.publicationRuns[0].path='.github/workflows/other.yml'}],
+  ['wrong source SHA', (r,c)=>{c.publicationRuns[0].head_sha='b'.repeat(40)}],
+  ['incomplete workflow', (r,c)=>{c.publicationRuns[0].status='in_progress'}],
+  ['failed workflow', (r,c)=>{c.publicationRuns[0].conclusion='failure'}],
+  ['skipped workflow', (r,c)=>{c.publicationRuns[0].conclusion='skipped'}],
+  ['wrong suite', (r,c)=>{c.publicationRuns[0].check_suite_id++}],
+  ['absent suite', (r,c)=>{delete c.publicationRuns[0].check_suite_id}],
+  ['wrong check SHA', r=>{r[4].head_sha='b'.repeat(40)}],
+  ['wrong application', r=>{r[4].app.id=1}],
+  ['wrong application slug', r=>{r[4].app.slug='other'}],
+  ['foreign check URL', r=>{r[4].details_url=r[4].details_url.replace('github.com','example.invalid')}],
+  ['foreign repository', r=>{r[4].details_url=r[4].details_url.replace('/Games/','/Other/')}],
+  ['wrong job identity', r=>{r[4].details_url=r[4].details_url.replace('/job/102','/job/999')}],
+  ['different sibling suite', r=>{r[4].check_suite.id++}],
+  ['missing build', r=>{r.splice(3,1)}],
+  ['failed build', r=>{r[3].conclusion='failure'}],
+  ['pending build', r=>{r[3].status='queued';r[3].conclusion=null}],
+  ['duplicate build', r=>{r.push(structuredClone(r[3]))}],
+  ['missing skipped sibling', r=>{r.splice(5,1)}],
+  ['duplicate skipped sibling', r=>{r.push(structuredClone(r[4]))}],
+  ['real deploy failure', r=>{r[4].conclusion='failure'}],
+  ['cancelled deploy', r=>{r[4].conclusion='cancelled'}],
+  ['neutral deploy', r=>{r[4].conclusion='neutral'}],
+  ['pending deploy', r=>{r[4].status='queued';r[4].conclusion=null}],
+  ['unrelated skipped check', r=>{r.push(row('browser-extra',104,'skipped'))}],
+  ['required contract skipped', r=>{r[0].conclusion='skipped'}],
+  ['required aggregate missing', r=>{r.splice(1,1)}],
+];
+for (const [label, mutate] of controls) {
+  const rows=structuredClone(qualified), context=structuredClone(evidence);
+  mutate(rows,context);assert(!accepted(rows,context), 'Unsafe exception: '+label);
+  assert(accepted(qualified,evidence), 'Restored evidence failed: '+label);
+}
+assert(assessChecks(qualified, ['contract','aggregate','deploy'], evidence).missing.includes('deploy'),
+  'A required skipped job must never satisfy required success');
+console.log(`PASS ${controls.length} scoped skip rejection/restoration controls; required success unchanged`);
