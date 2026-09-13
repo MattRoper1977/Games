@@ -234,7 +234,7 @@ jobs:
         with:
           script: |
             const fs = require('node:fs');
-            const {assessChecks, exactPublication, assertWritable, classifyCreateFailure, trackingIssue, findTrackingIssue} = require(process.env.GITHUB_WORKSPACE + '/tools/pin_release_evidence.cjs');
+            const {assessChecks, publicationRunIds, exactPublication, assertWritable, classifyCreateFailure, trackingIssue, findTrackingIssue} = require(process.env.GITHUB_WORKSPACE + '/tools/pin_release_evidence.cjs');
             const {owner, repo} = context.repo;
             const {BRANCH, SHA, HEAD, CURRENT, KEY, SRC_REPO, SOURCE} = process.env;
             const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -304,7 +304,19 @@ jobs:
               core.info(`${runs.length} check runs on ${SHA.slice(0,10)}: ${runs.map(r => `${r.name}=${r.conclusion || r.status}`).join(', ')}${missing.length ? ` (waiting for ${missing.join(', ')})` : ''}`);
               if (!missing.length && !pending.length) break;
             }
-            const {failed, missing, pending} = assessChecks(runs, required);
+            // Only the two post-merge jobs from the exact reviewed PR publication
+            // may be skipped. Authenticate event, workflow, SHA and check suite;
+            // retain fail-closed behavior if evidence is missing or has changed.
+            const checkContext = {repository: `${owner}/${repo}`, sha: SHA, publicationRuns: []};
+            const publicationIds = publicationRunIds(runs, checkContext);
+            if (publicationIds.length) {
+              const policy = (await github.rest.repos.getContent({owner, repo, path: '.github/workflows/play-domain-publication.yml', ref: SHA})).data;
+              checkContext.publicationPolicySha = policy.type === 'file' ? policy.sha : null;
+              for (const run_id of publicationIds) {
+                checkContext.publicationRuns.push((await github.rest.actions.getWorkflowRun({owner, repo, run_id})).data);
+              }
+            }
+            const {failed, missing, pending} = assessChecks(runs, required, checkContext);
             const summary = [`## Pin release: ${SOURCE}`, '', `PR #${pr.number} — ${pr.html_url}`, '', `Check runs on ${SHA}:`, ...runs.map(r => `- ${r.name}: ${r.conclusion || r.status}`)];
             if (failed.length || missing.length || pending.length) {
               summary.push('', `**Not merged.** ${failed.length ? 'Red: ' + failed.map(r => r.name).join(', ') + '. ' : ''}${missing.length ? 'Required and not green: ' + missing.join(', ') + '. ' : ''}${pending.length ? 'Still running: ' + pending.map(r => r.name).join(', ') + '.' : ''}`);
