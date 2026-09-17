@@ -47,6 +47,11 @@ jobs:
       - id: pin-release-proof-controls
         if: always()
         run: node tools/pin_release_evidence.test.cjs
+      - id: run-logged-reporting-controls
+        if: always()
+        # run_logged is what makes a pin-release failure readable at all, so its own
+        # reporting is a control here rather than something taken on trust.
+        run: bash tools/site_build_scope.test.sh
       - id: fetch-lessons
         if: always()
         # Plain clone, not actions/checkout: public repo, and a clone fails
