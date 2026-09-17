@@ -68,7 +68,7 @@ jobs:
           # Same capability probe as the pin release: this builds the PINNED Site, which may
           # predate --publication. See tools/site_build_scope.sh.
           # remove once both Games pins >= Site 983381d5
-          . tools/site_build_scope.sh
+          . "$GITHUB_WORKSPACE/tools/site_build_scope.sh"
           SRC_SCOPE=$(site_build_scope .sources/Site/domain-split/build_publications.py sources "$(git -C .sources/Site rev-parse HEAD)")
           python .sources/Site/domain-split/build_publications.py --lessons .sources/Lessons $SRC_SCOPE
           node .sources/Site/domain-split/check_game_saves.cjs

@@ -32,6 +32,9 @@ site_build_scope() {
     return 1
   fi
   if printf '%s' "$help" | grep -q -- '--publication'; then
+    if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
+      printf 'SCOPED: %s Site %s --publication games\n' "$label" "$sha" >> "$GITHUB_STEP_SUMMARY"
+    fi
     printf '%s' '--publication games'
     return 0
   fi

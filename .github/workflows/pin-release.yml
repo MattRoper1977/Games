@@ -56,6 +56,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           WANTED: ${{ github.event.inputs.source || 'both' }}
         run: |
+          . "$GITHUB_WORKSPACE/tools/site_build_scope.sh"
+          cat > /tmp/step-read-the-pin-and-the-source-head.sh <<'MBMSTEP'
           python - <<'PY'
           import json, os, re, urllib.request
           src = os.environ['SOURCE']; wanted = os.environ['WANTED']
@@ -75,8 +77,12 @@ jobs:
               f.write(f'site_before={c["site_commit"]}\nlessons_before={c["lessons_commit"]}\n')
               f.write(f'site_after={head if src == "site" else c["site_commit"]}\nlessons_after={head if src == "lessons" else c["lessons_commit"]}\n')
           PY
+          MBMSTEP
+          run_logged 'Read the pin and the source HEAD' bash -euo pipefail /tmp/step-read-the-pin-and-the-source-head.sh
       - name: Prove exact-release and protected-PR controls
-        run: node tools/pin_release_evidence.test.cjs
+        run: |
+          . "$GITHUB_WORKSPACE/tools/site_build_scope.sh"
+          run_logged 'Prove exact-release and protected-PR controls' node tools/pin_release_evidence.test.cjs
       # ---- the two trees: current pin ("before") and proposed pin ("after") ----
       - if: steps.pin.outputs.go == 'true'
         uses: actions/checkout@v4
@@ -99,12 +105,14 @@ jobs:
       - name: Build both trees
         if: steps.pin.outputs.go == 'true'
         run: |
+          . "$GITHUB_WORKSPACE/tools/site_build_scope.sh"
+          cat > /tmp/step-prove-exact-release-and-protected-pr-con.sh <<'MBMSTEP'
           set -euo pipefail
           python -m pip install lxml==6.0.1
           # The scope is asked of each builder, never guessed from its version: the two trees
           # here are deliberately different Site commits, and only one of them may carry the
           # flag. See tools/site_build_scope.sh. remove once both Games pins >= Site 983381d5
-          . tools/site_build_scope.sh
+          . "$GITHUB_WORKSPACE/tools/site_build_scope.sh"
           BEFORE_SCOPE=$(site_build_scope .before/Site/domain-split/build_publications.py before '${{ steps.pin.outputs.site_before }}')
           AFTER_SCOPE=$(site_build_scope .after/Site/domain-split/build_publications.py after '${{ steps.pin.outputs.site_after }}')
           # Unquoted on purpose: empty must expand to no argument at all.
@@ -112,9 +120,13 @@ jobs:
             python .before/Site/domain-split/build_publications.py --lessons .before/Lessons --output .before/out $BEFORE_SCOPE
           run_logged 'Build both trees (after)' \
             python .after/Site/domain-split/build_publications.py --lessons .after/Lessons --output .after/out $AFTER_SCOPE
+          MBMSTEP
+          run_logged 'Prove exact-release and protected-PR controls' bash -euo pipefail /tmp/step-prove-exact-release-and-protected-pr-con.sh
       - name: Publication contract on the proposed tree
         if: steps.pin.outputs.go == 'true'
         run: |
+          . "$GITHUB_WORKSPACE/tools/site_build_scope.sh"
+          cat > /tmp/step-publication-contract-on-the-proposed-tre.sh <<'MBMSTEP'
           set -euo pipefail
           node .after/Site/domain-split/check_game_saves.cjs
           python - <<'PY'
@@ -132,41 +144,59 @@ jobs:
           print('payloads whose bytes move with this pin:', len(moved), *moved, sep='\n  ')
           Path('moved-payloads.json').write_text(json.dumps(moved))
           PY
+          MBMSTEP
+          run_logged 'Publication contract on the proposed tree' bash -euo pipefail /tmp/step-publication-contract-on-the-proposed-tre.sh
       - name: This repository's shelf contracts against the proposed Lessons tree
         if: steps.pin.outputs.go == 'true'
         run: |
+          . "$GITHUB_WORKSPACE/tools/site_build_scope.sh"
+          cat > /tmp/step-this-repository-s-shelf-contracts-agains.sh <<'MBMSTEP'
           set -euo pipefail
           chmod +x tools/validate_games_json.sh
           LESSONS_DIR="$GITHUB_WORKSPACE/.after/Lessons" tools/validate_games_json.sh
           node tools/verify_echovault_shelf.js
           node tools/verify_relicforge_shelf.js
           node tools/verify_sports_rail.js
+          MBMSTEP
+          run_logged 'This repository'\''s shelf contracts against the proposed Lessons tree' bash -euo pipefail /tmp/step-this-repository-s-shelf-contracts-agains.sh
       - name: Browser runtime
         if: steps.pin.outputs.go == 'true'
         run: |
+          . "$GITHUB_WORKSPACE/tools/site_build_scope.sh"
+          cat > /tmp/step-browser-runtime.sh <<'MBMSTEP'
           set -euo pipefail
           npm install --no-save --no-package-lock playwright@1.55.0
           npx playwright install --with-deps chrome chromium
           (cd .after/Site && npm install --no-save --no-package-lock playwright@1.55.0)
+          MBMSTEP
+          run_logged 'Browser runtime' bash -euo pipefail /tmp/step-browser-runtime.sh
       - name: Play browser acceptance, served from the proposed tree
         if: steps.pin.outputs.go == 'true'
         working-directory: .after/Site
         env:
           PLAY_REVIEW_URL: http://127.0.0.1:4173
         run: |
+          . "$GITHUB_WORKSPACE/tools/site_build_scope.sh"
+          cat > /tmp/step-play-browser-acceptance-served-from-the-.sh <<'MBMSTEP'
           set -euo pipefail
           python domain-split/play/prepare.py --lessons ../Lessons --output .play-review/output
           node domain-split/play/serve.cjs .play-review/output/games 4173 > /tmp/serve-after.log 2>&1 &
           sleep 1
           node domain-split/play/check.cjs
+          MBMSTEP
+          run_logged 'Play browser acceptance, served from the proposed tree' bash -euo pipefail /tmp/step-play-browser-acceptance-served-from-the-.sh
       - name: Idle-repaint and frame-rate gate, current pin against proposed pin
         if: steps.pin.outputs.go == 'true'
         run: |
+          . "$GITHUB_WORKSPACE/tools/site_build_scope.sh"
+          cat > /tmp/step-idle-repaint-and-frame-rate-gate-current.sh <<'MBMSTEP'
           set -euo pipefail
           node .after/Site/domain-split/play/serve.cjs .before/out/games 4174 > /tmp/serve-before.log 2>&1 &
           sleep 1
           node tools/play_perf_gate.mjs --self-test
           node tools/play_perf_gate.mjs --before http://127.0.0.1:4174 --after http://127.0.0.1:4173 --routes .after/out/build-report.json --report perf-gate.json
+          MBMSTEP
+          run_logged 'Idle-repaint and frame-rate gate, current pin against proposed pin' bash -euo pipefail /tmp/step-idle-repaint-and-frame-rate-gate-current.sh
       - name: Preserve the evidence
         if: always() && steps.pin.outputs.go == 'true'
         uses: actions/upload-artifact@v4
@@ -198,6 +228,8 @@ jobs:
           KEY: ${{ steps.pin.outputs.key }}
           REPO: ${{ steps.pin.outputs.repo }}
         run: |
+          . "$GITHUB_WORKSPACE/tools/site_build_scope.sh"
+          cat > /tmp/step-stage-the-release-branch.sh <<'MBMSTEP'
           set -euo pipefail
           branch="pin-release/$SOURCE"
           # HC4 §5.2: a staged branch is never overwritten while the source has not
@@ -229,6 +261,8 @@ jobs:
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           echo "branch=$branch" >> "$GITHUB_OUTPUT"
           echo "restaged=true" >> "$GITHUB_OUTPUT"
+          MBMSTEP
+          run_logged 'Stage the release branch' bash -euo pipefail /tmp/step-stage-the-release-branch.sh
       - name: Create the PR if none is open, dispatch the required checks, merge on full green, publish
         if: steps.pin.outputs.go == 'true'
         uses: actions/github-script@v7
