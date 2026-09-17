@@ -101,8 +101,17 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install lxml==6.0.1
-          python .before/Site/domain-split/build_publications.py --lessons .before/Lessons --output .before/out
-          python .after/Site/domain-split/build_publications.py --lessons .after/Lessons --output .after/out
+          # The scope is asked of each builder, never guessed from its version: the two trees
+          # here are deliberately different Site commits, and only one of them may carry the
+          # flag. See tools/site_build_scope.sh. remove once both Games pins >= Site 983381d5
+          . tools/site_build_scope.sh
+          BEFORE_SCOPE=$(site_build_scope .before/Site/domain-split/build_publications.py before '${{ steps.pin.outputs.site_before }}')
+          AFTER_SCOPE=$(site_build_scope .after/Site/domain-split/build_publications.py after '${{ steps.pin.outputs.site_after }}')
+          # Unquoted on purpose: empty must expand to no argument at all.
+          run_logged 'Build both trees (before)' \
+            python .before/Site/domain-split/build_publications.py --lessons .before/Lessons --output .before/out $BEFORE_SCOPE
+          run_logged 'Build both trees (after)' \
+            python .after/Site/domain-split/build_publications.py --lessons .after/Lessons --output .after/out $AFTER_SCOPE
       - name: Publication contract on the proposed tree
         if: steps.pin.outputs.go == 'true'
         run: |
