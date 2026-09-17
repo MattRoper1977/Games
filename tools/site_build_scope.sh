@@ -58,7 +58,14 @@ run_logged() {
   [ "$code" -eq 0 ] && return 0
   # The LAST error-ish line, not the first: a Python traceback opens with
   # "Traceback (most recent call last):" and ends with the exception that actually says why.
-  first="$(grep -E '^[A-Za-z_.]*(Error|Exception)|error:|assert' "$log" | tail -1 || true)"
+  #
+  # But the last line is not always the useful one. When a Python parent shells out, the
+  # traceback ends with subprocess.CalledProcessError, which says only that a command exited
+  # non-zero and never says why; the line that says why is the CHILD's own exception, printed
+  # above it. So the child's exception wins when there is one, and CalledProcessError is used
+  # only when it is all there is -- nothing is ever dropped, only re-ordered.
+  first="$(grep -E '^[A-Za-z_.]*(Error|Exception):' "$log" | grep -vE '(^|\.)CalledProcessError:' | tail -1 || true)"
+  [ -n "$first" ] || first="$(grep -E '^[A-Za-z_.]*(Error|Exception)|error:|assert' "$log" | tail -1 || true)"
   [ -n "$first" ] || first="$(grep -m1 . "$log" || true)"
   if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
     {

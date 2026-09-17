@@ -83,6 +83,7 @@ jobs:
         run: |
           . "$GITHUB_WORKSPACE/tools/site_build_scope.sh"
           run_logged 'Prove exact-release and protected-PR controls' node tools/pin_release_evidence.test.cjs
+          run_logged 'Prove run_logged reports the child exception' bash tools/site_build_scope.test.sh
       # ---- the two trees: current pin ("before") and proposed pin ("after") ----
       - if: steps.pin.outputs.go == 'true'
         uses: actions/checkout@v4
