@@ -47,6 +47,11 @@ jobs:
       - id: pin-release-proof-controls
         if: always()
         run: node tools/pin_release_evidence.test.cjs
+      - id: pin-release-never-merges
+        if: always()
+        # Ruling rg: the Pin release workflow opens PRs only and holds a pin whose
+        # PR was closed unmerged; this pins that on every PR, not only on its runs.
+        run: node tools/pin_release_guard.test.cjs
       - id: run-logged-reporting-controls
         if: always()
         # run_logged is what makes a pin-release failure readable at all, so its own

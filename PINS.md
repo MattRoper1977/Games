@@ -36,15 +36,24 @@ is why a merged game fix can be "on main" and still not "served".
    (b) opens or updates ONE issue titled "Pin bump staged — awaiting M3" with the
    branch, both SHAs and the gate results, and (c) exits green with a job
    summary. Green there means "staged and recorded", never "merged" or "served".
-5. **Auto-merge on full green only.** After the PR opens, the required checks
-   (`contract`, `aggregate`) are dispatched on the branch; the PR is merged only
-   when every check run on its head has completed and none failed. Any red
-   leaves the PR open with the failing check named in the run summary — that PR
-   is the actionable item, not a silent retry.
-6. **Merge is not served.** A merge made by the workflow token does not fire
-   the `push` publication, so the workflow dispatches `Standalone games
-   website` with `publish` after the merge and waits for its deploy and
-   `verify-published` jobs. The pin is "served" when that run is green.
+5. **The workflow opens PRs only; it never merges (ruling rg).** No run of
+   any event or input calls a merge API, enables auto-merge or merges a
+   branch: merging a pin PR is a ruled action by a person. After the PR opens,
+   the required checks (`contract`, `aggregate`) are dispatched on the branch
+   so their check runs land on the PR head (a push by the workflow token fires
+   no `pull_request` run), and the run summary reports them. Full green leaves
+   the PR open, "not merged"; any red leaves it open with the failing check
+   named in the run summary — that PR is the actionable item, not a silent
+   retry. A pin whose PR was closed unmerged — the same head SHA or the same
+   target pin — is held: the run opens nothing, updates nothing and stays
+   green. A merged PR never holds a pin, and a moved source opens a new PR.
+   While a pin-release PR is open on a source's branch, that source's run is
+   held from its first step: nothing is built, staged, force-pushed, updated
+   or merged, so the open PR's head, title and body stay as they are until a
+   person acts on it (closes it, or merges it on a ruling).
+6. **Merge is not served.** A person's merge to `main` fires the `push`
+   publication (`Standalone games website`); the pin is "served" when that
+   run's deploy and `verify-published` jobs are green.
 7. **The Site preservation baseline.** `check.cjs` asserts every payload's
    hash against `reports/play-upgrade/preservation.json` at the Site pin. A
    Lessons change that alters a game payload therefore reds the gate until the
