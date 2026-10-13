@@ -1,5 +1,6 @@
-# Pin release — Play follows its sources through a PR it opens, proves, and
-# merges itself (Order HC3 §3.2). Policy: PINS.md.
+# Pin release — Play follows its sources through a PR it opens and proves
+# (Order HC3 §3.2). It never merges: merging is a ruled action by a person
+# (ruling rg). Policy: PINS.md.
 #
 # Nothing reaches madebymatt-play.uk by being merged into Site or Lessons; it
 # reaches Play when play-publication.json moves. This workflow notices a source
@@ -7,10 +8,13 @@
 # PROPOSED pin on the same runner, runs every Play verifier and the idle-repaint
 # / frame-rate gate on them, and only then opens ONE PR per source (fixed
 # branches pin-release/site and pin-release/lessons). The required checks are
-# dispatched on that branch; on full green the PR is merged and the publication
-# is dispatched with publish=true, because a merge made by this token does not
-# fire the push publication by itself. Any red leaves the PR open with the
-# failing check named in the run summary.
+# dispatched on that branch so their check runs land on the PR head, and the
+# run summary reports them; any red leaves the PR open with the failing check
+# named. No run of any event or input merges; a person's merge fires the push
+# publication by itself. A pin whose PR was closed unmerged is held: the run
+# opens and updates nothing and stays green. While a pin-release PR is open on a
+# source's branch, that source's run is held from its first step: nothing is
+# built, staged, force-pushed or updated until a person acts on the open PR.
 name: Pin release
 on:
   schedule:
@@ -59,7 +63,7 @@ jobs:
           . "$GITHUB_WORKSPACE/tools/site_build_scope.sh"
           cat > /tmp/step-read-the-pin-and-the-source-head.sh <<'MBMSTEP'
           python - <<'PY'
-          import json, os, re, urllib.request
+          import json, os, re, urllib.parse, urllib.request
           src = os.environ['SOURCE']; wanted = os.environ['WANTED']
           c = json.load(open('play-publication.json'))
           repo = {'site': c['site_repository'], 'lessons': c['lessons_repository']}[src]
@@ -70,6 +74,23 @@ jobs:
           head = json.load(urllib.request.urlopen(req, timeout=30))['sha']
           assert re.fullmatch('[0-9a-f]{40}', current) and re.fullmatch('[0-9a-f]{40}', head)
           go = wanted in ('both', src) and head != current
+          # rg (decision under rg): an open pin-release PR on this source's branch holds the
+          # whole run before anything is built, staged or force-pushed, so a held PR's head,
+          # title and body stay untouched until a person acts on it. Merging is a ruled action.
+          if go:
+              owner = os.environ['GITHUB_REPOSITORY'].split('/')[0]
+              q = urllib.parse.urlencode({'state': 'open', 'head': f'{owner}:pin-release/{src}', 'per_page': 100})
+              req = urllib.request.Request(f'https://api.github.com/repos/{os.environ["GITHUB_REPOSITORY"]}/pulls?{q}',
+                                           headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json'})
+              held = json.load(urllib.request.urlopen(req, timeout=30))
+              if held:
+                  go = False
+                  note = (f'{src}: held - pin-release PR ' + ', '.join(f'#{p["number"]}' for p in held)
+                          + f' is open on pin-release/{src}; nothing is built, staged, updated or merged '
+                          + f'(the source moved to {head[:10]}). A person acts on the open PR.')
+                  print(note)
+                  with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
+                      f.write(f'## Pin release: {src} - held\n\n{note}\n')
           other = 'lessons' if src == 'site' else 'site'
           print(f'{src}: pin {current[:10]} → HEAD {head[:10]}  ({"release" if go else "skip: " + ("not requested" if wanted not in ("both", src) else "pin is current")})')
           with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
@@ -84,6 +105,7 @@ jobs:
           . "$GITHUB_WORKSPACE/tools/site_build_scope.sh"
           run_logged 'Prove exact-release and protected-PR controls' node tools/pin_release_evidence.test.cjs
           run_logged 'Prove run_logged reports the child exception' bash tools/site_build_scope.test.sh
+          run_logged 'Prove the release never merges and holds a closed-unmerged pin' node tools/pin_release_guard.test.cjs
       # ---- the two trees: current pin ("before") and proposed pin ("after") ----
       - if: steps.pin.outputs.go == 'true'
         uses: actions/checkout@v4
@@ -264,7 +286,7 @@ jobs:
           echo "restaged=true" >> "$GITHUB_OUTPUT"
           MBMSTEP
           run_logged 'Stage the release branch' bash -euo pipefail /tmp/step-stage-the-release-branch.sh
-      - name: Create the PR if none is open, dispatch the required checks, merge on full green, publish
+      - name: Create the PR if none is open, dispatch the required checks, report; never merge
         if: steps.pin.outputs.go == 'true'
         uses: actions/github-script@v7
         env:
@@ -278,14 +300,14 @@ jobs:
         with:
           script: |
             const fs = require('node:fs');
-            const {assessChecks, publicationRunIds, exactPublication, assertWritable, classifyCreateFailure, trackingIssue, findTrackingIssue} = require(process.env.GITHUB_WORKSPACE + '/tools/pin_release_evidence.cjs');
+            const {assessChecks, publicationRunIds, assertWritable, classifyCreateFailure, trackingIssue, findTrackingIssue, refusedRelease} = require(process.env.GITHUB_WORKSPACE + '/tools/pin_release_evidence.cjs');
             const {owner, repo} = context.repo;
             const {BRANCH, SHA, HEAD, CURRENT, KEY, SRC_REPO, SOURCE} = process.env;
             const sleep = ms => new Promise(r => setTimeout(r, ms));
             const moved = JSON.parse(fs.readFileSync('moved-payloads.json', 'utf8'));
             const perf = JSON.parse(fs.readFileSync('perf-gate.json', 'utf8'));
             const body = [
-              `Opened by the **Pin release** workflow (run ${context.runId}); policy in PINS.md.`,
+              `Opened by the **Pin release** workflow (run ${context.runId}); policy in PINS.md. This workflow never merges; merging is a ruled action by a person.`,
               '',
               `| | before | after |`, `|---|---|---|`,
               `| \`${KEY}\` | \`${CURRENT}\` | \`${HEAD}\` |`,
@@ -298,6 +320,16 @@ jobs:
               '',
               `Rollback: \`${KEY}\` → \`${CURRENT}\`.`,
             ].join('\n');
+            // rg: a pin whose PR was closed unmerged is held. Consulted before any PR is
+            // created or updated: the run opens nothing, updates nothing, and stays green.
+            const closed = await github.paginate(github.rest.pulls.list, {owner, repo, state: 'closed', head: `${owner}:${BRANCH}`, per_page: 100});
+            const refused = refusedRelease(closed, SHA, HEAD);
+            if (refused) {
+              const held = [`## Pin release: ${SOURCE} — held`, '', `#${refused.number} (head \`${refused.head && refused.head.sha}\`) carried \`${KEY}\` → \`${HEAD}\` and was closed unmerged. No PR is opened or updated and nothing is merged; the next PR waits for the source to move. Merging stays a ruled action by a person.`].join('\n');
+              fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, held + '\n');
+              core.info(held);
+              return;
+            }
             let pr = (await github.rest.pulls.list({owner, repo, state: 'open', head: `${owner}:${BRANCH}`, per_page: 5})).data[0];
             assertWritable(pr);
             if (!pr) {
@@ -341,7 +373,7 @@ jobs:
               await sleep(30000);
               const response = (await github.rest.checks.listForRef({owner, repo, ref: SHA, per_page: 100})).data;
               runs = response.check_runs;
-              if (response.total_count !== runs.length) throw new Error('Incomplete check-run census; no merge');
+              if (response.total_count !== runs.length) throw new Error('Incomplete check-run census; not reported');
               const byName = Object.fromEntries(runs.map(r => [r.name, r]));
               const pending = runs.filter(r => r.status !== 'completed');
               const missing = required.filter(n => !byName[n]);
@@ -368,28 +400,9 @@ jobs:
               core.setFailed(`PR #${pr.number} is not on full green — it stays open with the red named above`);
               return;
             }
-            const fresh = (await github.rest.pulls.get({owner, repo, pull_number: pr.number})).data;
-            assertWritable(fresh);
-            if (fresh.head.sha !== SHA) throw new Error('Release PR changed after checks; no merge');
-            const merge = await github.rest.pulls.merge({owner, repo, pull_number: pr.number, sha: SHA, merge_method: 'squash', commit_title: `Pin release: ${SOURCE} ${CURRENT.slice(0,10)} → ${HEAD.slice(0,10)} (#${pr.number})`});
-            if (!merge.data.merged || !merge.data.sha) throw new Error('GitHub did not confirm the release merge');
-            core.info(`merged: ${merge.data.sha}`);
-            summary.push('', `Merged as \`${merge.data.sha}\`.`);
-            // A merge by this token does not fire the push publication. Dispatch it.
-            const since = new Date().toISOString();
-            await github.rest.actions.createWorkflowDispatch({owner, repo, workflow_id: 'play-domain-publication.yml', ref: 'main', inputs: {publish: 'true'}});
-            let pub = null;
-            const pubDeadline = Date.now() + 35 * 60 * 1000;
-            while (Date.now() < pubDeadline) {
-              await sleep(30000);
-              const list = (await github.rest.actions.listWorkflowRuns({owner, repo, workflow_id: 'play-domain-publication.yml', event: 'workflow_dispatch', created: `>=${since}`, per_page: 5})).data.workflow_runs;
-              pub = exactPublication(list, merge.data.sha);
-              if (!pub) core.info(`No publication for expected ${merge.data.sha}; observed ${list.map(r => r.head_sha).join(', ') || 'none'}`);
-              if (pub) core.info(`publication run ${pub.id}: ${pub.status} ${pub.conclusion || ''}`);
-              if (pub && pub.status === 'completed') break;
-            }
-            if (!pub) { summary.push('', '**Publication run not found** after dispatch — merged, NOT served.'); fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary.join('\n') + '\n'); core.setFailed('publication run not found'); return; }
-            summary.push('', `Publication run ${pub.html_url}: ${pub.status} ${pub.conclusion || ''}`);
+            // rg: this workflow never merges. On full green the PR stays open for a
+            // person: merging is a ruled action, and a person's merge fires the push
+            // publication by itself.
+            summary.push('', '**Full green — not merged.** This workflow opens release PRs only; merging is a ruled action by a person (rg). A person\'s merge fires the push publication.');
             fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary.join('\n') + '\n');
-            if (pub.conclusion !== 'success') core.setFailed(`merged, but the publication run concluded ${pub.conclusion || pub.status} — NOT served`);
-            else core.info('served: publication run green');
+            core.info(`PR #${pr.number} on full green; not merged (merging is a ruled action by a person)`);

@@ -115,4 +115,18 @@ function findTrackingIssue(issues, title) {
   if (matches.length > 1) throw new Error('More than one open tracking issue titled "' + wanted + '"; resolve by hand');
   return matches[0] || null;
 }
-module.exports = {assessChecks, publicationRunIds, PUBLICATION_POLICY_SHA, exactPublication, assertWritable, classifyCreateFailure, stagedPin, trackingIssue, findTrackingIssue, TRACKING_TITLE};
+// rg: the closed-unmerged release PR that already carried this pin, or null.
+// A pin whose PR was closed without merging is held: the workflow opens nothing
+// and updates nothing for it. It refuses on the same staged head SHA, or on the
+// same target pin (the title's "→ <pin>" or the pin row of the PR body), so a
+// re-staged branch or a retitled PR is still recognised. A merged PR never
+// refuses, an open PR is never read as closed, and a moved source (a new target
+// pin at a new SHA) is never refused.
+function refusedRelease(prs, sha, head) {
+  if (!/^[0-9a-f]{40}$/.test(head || '')) throw new Error('refusedRelease: head must be a full commit SHA');
+  const title = new RegExp('→ ' + head.slice(0, 10) + '(?![0-9a-f])');
+  const pinRow = new RegExp('\\|\\s*`[a-z_]+`\\s*\\|\\s*`[0-9a-f]{40}`\\s*\\|\\s*`' + head + '`\\s*\\|');
+  return (prs || []).find(pr => pr && pr.state === 'closed' && !pr.merged_at && pr.merged !== true &&
+    ((sha && pr.head && pr.head.sha === sha) || title.test(pr.title || '') || pinRow.test(pr.body || ''))) || null;
+}
+module.exports = {assessChecks, publicationRunIds, PUBLICATION_POLICY_SHA, exactPublication, assertWritable, classifyCreateFailure, stagedPin, trackingIssue, findTrackingIssue, TRACKING_TITLE, refusedRelease};
