@@ -1,9 +1,9 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "a82d4d5b2487ea4d298f0f708a99693c5a259341",
+  "site_commit": "60383e2eac45b2e7ee5847289b262618252ff156",
   "lessons_repository": "MattRoper1977/Lessons",
-  "lessons_commit": "5f79804133896d325bacb9de40dfe22cc3d55849",
+  "lessons_commit": "7b9158fd653d0b022be68958fe88fcf98b5615b3",
   "canonical_games": 62,
   "additional_activities": 7,
   "notes": "Reviewed Play completion: supplied logo, Explore \u2022 Play \u2022 Discover tagline, six accepted gameplay previews, responsive discovery, saved favourites and retained save-transfer behaviour. All 69 game payloads remain unchanged. Publication preserves the existing destination, Pages configuration and DNS."
