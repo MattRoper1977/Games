@@ -433,32 +433,6 @@
     },
     {
       "icon": "🎮",
-      "title": "World Cup v3 — Match Director",
-      "displayTitle": "World Cup: Match Director",
-      "series": "World Cup",
-      "desc": "Run a match as director — Made by Matt arcade.",
-      "href": "/Lessons/Games/WorldCup_v3_MatchDirector.html",
-      "tag": "Class game",
-      "hue": "#F687B3",
-      "featured": false,
-      "hero": false,
-      "art": "/assets/cards/world-cup-v3-match-director.webp"
-    },
-    {
-      "icon": "🎮",
-      "title": "World Cup v5 — Showdown",
-      "displayTitle": "World Cup: Showdown",
-      "series": "World Cup",
-      "desc": "Head-to-head showdown — Made by Matt arcade.",
-      "href": "/Lessons/Games/WorldCup_v5_Showdown.html",
-      "tag": "Class game",
-      "hue": "#63B3ED",
-      "featured": false,
-      "hero": false,
-      "art": "/assets/cards/world-cup-v5-showdown.webp"
-    },
-    {
-      "icon": "🎮",
       "title": "Trekkers Trail Runner — Tees Coast",
       "desc": "Five legs of the real AQA Walking Unit route, from Eston Rec to South Gare — set a bearing at the Rec, climb to Eston Nab, then take the dunes and loose sand at the coast. Glide the route, dodge the bog and beat the Storm; Calm Mode is there if you want the walk without the weather.",
       "href": "/Lessons/Games/Trekkers_Trail_Runner_Tees_Coast.html",
