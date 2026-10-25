@@ -107,8 +107,11 @@ gate('S1', 'one rail mechanism, derived from the manifest', () => {
  * NOT part of the schema S2 compares. They are still typed and cross-checked
  * by tools/validate_games_json.sh (non-empty strings, displayTitle differs
  * from title, a series names at least two rows). S1's ban on a second rail
- * mechanism (section/rail/group/...) is unchanged: `series` is not a rail. */
-const OPTIONAL_KEYS = ['displayTitle', 'series'];
+ * mechanism (section/rail/group/...) is unchanged: `series` is not a rail.
+ * `session_modes` (J92, ruling ua) joins them: the enrichment of record gives
+ * a game per-mode session bands only where it has more than one mode (9 of
+ * 62 rows), so it is optional by the record, not a schema move. */
+const OPTIONAL_KEYS = ['displayTitle', 'series', 'session_modes'];
 
 gate('S2', 'Sports is additive, not a move', () => {
   /* Every rail member must still be a plain shelf entry — same array, same

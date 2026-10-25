@@ -11,7 +11,21 @@
       "hue": "#FF2D78",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/cyberpulse.svg"
+      "art": "/assets/cards/cyberpulse.svg",
+      "sub_genre": "STEER PARRY SURVIVAL",
+      "pitch": "Steer through enemy fire, parry at impact and charge overdrive by grazing shots.",
+      "what_you_do": [
+        "Drag to steer around incoming fire.",
+        "Tap phase at the moment of impact to parry.",
+        "Graze enemy fire to charge overdrive."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "♛",
@@ -22,7 +36,24 @@
       "hue": "#194C47",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/crown-badge.svg"
+      "art": "/assets/cards/crown-badge.svg",
+      "sub_genre": "OFFICER DISPATCH STRATEGY",
+      "pitch": "Dispatch officers, equip relics and secure three outposts across a 30-day strategy campaign.",
+      "what_you_do": [
+        "Assign ready officers to incidents or drag them onto districts.",
+        "Equip a relic on each officer.",
+        "Spend earned valor on permanent advantages for future campaigns."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "solo",
+        "calm"
+      ]
     },
     {
       "icon": "🏆",
@@ -34,7 +65,21 @@
       "hue": "#0F5B78",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/house-olympiad.svg"
+      "art": "/assets/cards/house-olympiad.svg",
+      "sub_genre": "LOCAL CHAMPIONSHIP DASHBOARD",
+      "pitch": "Collect station scores, compare house totals and export your local championship record.",
+      "what_you_do": [
+        "Import saved results or paste a sync code.",
+        "Build a temporary board that totals station scores by house.",
+        "Refresh the results or export a collection file."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🏋️",
@@ -48,7 +93,23 @@
       "art": "/assets/cards/titan-forge.svg",
       "version": "5.1.0",
       "size": 1640431,
-      "sha256": "f5475538cef3b106d4ca53f530b5b622e4ce5156b6e5b7ed2b3ee8355fc19607"
+      "sha256": "f5475538cef3b106d4ca53f530b5b622e4ce5156b6e5b7ed2b3ee8355fc19607",
+      "sub_genre": "LIFT TIMING TRAINING",
+      "pitch": "Time three-phase lifts, manage muscle fatigue and earn permanent upgrades through training.",
+      "what_you_do": [
+        "Time the drive, brace and control phases of each lift.",
+        "Change training focus when a muscle needs rest.",
+        "Spend gems on permanent upgrades."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "quick",
+      "classroom_facets": [
+        "versus"
+      ]
     },
     {
       "icon": "🔥",
@@ -60,7 +121,23 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/emberwild.svg",
-      "collection": "RPG"
+      "collection": "RPG",
+      "sub_genre": "CREATURE EXPLORATION BATTLES",
+      "pitch": "Explore six regions, make story choices and use timed bonus pulses in untimed creature battles.",
+      "what_you_do": [
+        "Explore routes with stairs, ledges and tall-grass encounters.",
+        "Press as the rings meet for optional bonus power in battle.",
+        "Make story choices that lead to one of five futures."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "calm"
+      ]
     },
     {
       "icon": "🛸",
@@ -72,7 +149,21 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/nova-siege.webp",
-      "collection": "Shooter"
+      "collection": "Shooter",
+      "sub_genre": "TWIN-STICK WAVE SURVIVAL",
+      "pitch": "Fight arena waves, graze shots for overdrive and evolve your weapon through four tiers.",
+      "what_you_do": [
+        "Move and aim separately while firing at enemy waves.",
+        "Choose an upgrade after each completed wave.",
+        "Collect three green cores to evolve your weapon."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "⏳",
@@ -84,7 +175,21 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/ouroboros.webp",
-      "collection": "RPG"
+      "collection": "RPG",
+      "sub_genre": "PARTY POSITIONING TACTICS",
+      "pitch": "Reposition your party, target enemy parts and choose skills in tactical battles.",
+      "what_you_do": [
+        "Move within the battle radius before committing an action.",
+        "Cycle enemy sub-nodes and choose skills or items.",
+        "Use flank and rear attacks to bypass armour."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🏟️",
@@ -96,7 +201,24 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/global-games.svg",
-      "collection": "Sports"
+      "collection": "Sports",
+      "sub_genre": "MULTI-EVENT SPORTS TIMING",
+      "pitch": "Build running rhythm, time jumps and aim arrows across nine sporting events.",
+      "what_you_do": [
+        "Alternate left and right inputs to build a steady running rhythm.",
+        "Hold the jump-angle meter and release before crossing the board.",
+        "Read wind and sway to aim five arrows."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "whole-class",
+        "versus"
+      ]
     },
     {
       "icon": "🔥",
@@ -107,7 +229,21 @@
       "hue": "#5E8BFF",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/fracture-engine.svg"
+      "art": "/assets/cards/fracture-engine.svg",
+      "sub_genre": "EXPLORE FIGHT FORGE",
+      "pitch": "Explore three realms, fight with class-specific attacks and temper equipment at a forge.",
+      "what_you_do": [
+        "Choose a hero discipline with its own attacks and signature ability.",
+        "Balance heat and resonance to strengthen forged upgrades.",
+        "Probe corrupted channels and restore a stable waveform."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🏎️",
@@ -118,7 +254,34 @@
       "hue": "#D02578",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/neon-turf-overdrive.svg"
+      "art": "/assets/cards/neon-turf-overdrive.svg",
+      "sub_genre": "HOVER-CAR FOOTBALL TERRITORY",
+      "pitch": "Drive hover cars, score goals and paint turf to improve grip and boost recharge.",
+      "what_you_do": [
+        "Steer, boost and shoot the core into the goal.",
+        "Paint turf to gain grip and recharge boost faster.",
+        "Pulse to block a rival or blast the core."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "quick",
+      "session_modes": [
+        {
+          "mode": "Quick Match",
+          "band": "quick"
+        },
+        {
+          "mode": "Open Training",
+          "band": "open"
+        }
+      ],
+      "classroom_facets": [
+        "versus",
+        "solo"
+      ]
     },
     {
       "icon": "🛰️",
@@ -129,7 +292,21 @@
       "hue": "#6ff7ff",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/echo-vault.svg"
+      "art": "/assets/cards/echo-vault.svg",
+      "sub_genre": "SONAR STEALTH EXTRACTION",
+      "pitch": "Reveal dark rooms with sonar, recover three cores and escape while every sound exposes your position.",
+      "what_you_do": [
+        "Fire sonar pulses to reveal the architecture.",
+        "Recover three resonance cores.",
+        "Find the active rift and escape."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "⚙️",
@@ -140,7 +317,21 @@
       "hue": "#d05cff",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/relicforge.svg"
+      "art": "/assets/cards/relicforge.svg",
+      "sub_genre": "MODULAR COMBAT SALVAGE",
+      "pitch": "Dismantle enemy components, salvage intact parts and rebuild your combat chassis between chambers.",
+      "what_you_do": [
+        "Target separate arms, legs, heads and cores to disable enemy systems.",
+        "Keep valuable parts intact so you can recover them at the forge.",
+        "Install one recovered component between chambers; dismantle the rest for credits."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "👾",
@@ -151,7 +342,21 @@
       "hue": "#A78BFA",
       "featured": true,
       "hero": true,
-      "art": "/assets/cards/off-brand.svg"
+      "art": "/assets/cards/off-brand.svg",
+      "sub_genre": "STEALTH DEDUCTION TASKS",
+      "pitch": "Complete workshop jobs and compare movement clues, or fake tasks and sabotage while avoiding the patrol.",
+      "what_you_do": [
+        "Complete jobs and repair corrupted machines to finish the commission.",
+        "Rewind trails and compare task sparks, skips and seam jumps.",
+        "Play the saboteur: fake tasks, corrupt machines and slip through seams."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "📐",
@@ -162,7 +367,21 @@
       "hue": "#5EEAD4",
       "featured": true,
       "hero": false,
-      "art": "/assets/cards/axiom-shift.svg"
+      "art": "/assets/cards/axiom-shift.svg",
+      "sub_genre": "ONE-BUTTON RHYTHM RUNNER",
+      "pitch": "Time jumps, gravity flips and flight to a visible beat, with checkpoints that keep your progress.",
+      "what_you_do": [
+        "Tap to jump or invert gravity as your form changes.",
+        "Hold to rise, release to fall, or tap to flap.",
+        "Watch the pulse and retry hazards from the last checkpoint."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "✎",
@@ -173,7 +392,23 @@
       "hue": "#D9B44A",
       "featured": true,
       "hero": false,
-      "art": "/assets/cards/charcoal.svg"
+      "art": "/assets/cards/charcoal.svg",
+      "sub_genre": "HIDDEN-ROLE CHASE ROUNDS",
+      "pitch": "Rotate roles, follow charcoal dust and spend ink to keep the studio finished or catch the hidden smudger.",
+      "what_you_do": [
+        "Follow the charcoal dust to work out who has been smudging.",
+        "Spend ink on protection, a dust trace or a brief view of the whole room.",
+        "Aim the single spray to stop the smudger; help restore rough shapes."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "calm"
+      ]
     },
     {
       "icon": "🛡️",
@@ -184,7 +419,23 @@
       "hue": "#F6AD55",
       "featured": true,
       "hero": false,
-      "art": "/assets/cards/hold-the-mark.webp"
+      "art": "/assets/cards/hold-the-mark.webp",
+      "sub_genre": "TOWER DEFENCE TACTICS",
+      "pitch": "Place and upgrade towers, spend limited utilities and charge a focus boost by making measured decisions.",
+      "what_you_do": [
+        "Choose a tower and place it on an open tile.",
+        "Upgrade towers, change their targets or sell them between waves.",
+        "Build focus between decisions, then trigger six seconds of thinking time."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "calm"
+      ]
     },
     {
       "icon": "🃏",
@@ -195,7 +446,33 @@
       "hue": "#A78BFA",
       "featured": true,
       "hero": false,
-      "art": "/assets/cards/glitch-clash.webp"
+      "art": "/assets/cards/glitch-clash.webp",
+      "sub_genre": "TURN-BASED CARD BATTLES",
+      "pitch": "Build a three-card team, charge energy for specials and time your taps when attacks clash.",
+      "what_you_do": [
+        "Choose three cards; mix three different shapes for a power bonus.",
+        "Strike, charge or guard to manage energy before using a special.",
+        "Tap as the sweep reaches the bright arc during a clash."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "open",
+      "session_modes": [
+        {
+          "mode": "Endless Run",
+          "band": "open"
+        },
+        {
+          "mode": "Time Attack",
+          "band": "unstated"
+        }
+      ],
+      "classroom_facets": [
+        "calm"
+      ]
     },
     {
       "icon": "🎮",
@@ -206,7 +483,20 @@
       "hue": "#5EEAD4",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/trail-runner.svg"
+      "art": "/assets/cards/trail-runner.svg",
+      "sub_genre": "THREE-LANE HAZARD RUNNER",
+      "pitch": "Steer, climb and drop through a curved three-lane course; spin through crates and blast mines.",
+      "what_you_do": [
+        "Steer across three lanes, then climb or drop to clear obstacles.",
+        "Spin through crates and blast mines.",
+        "Graze hazards and time attacks to trigger a six-second momentum burst."
+      ],
+      "controls": [
+        "touch",
+        "keyboard"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🧱",
@@ -217,7 +507,31 @@
       "hue": "#B794F4",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/voxelcraft.svg"
+      "art": "/assets/cards/voxelcraft.svg",
+      "sub_genre": "3D SURVIVAL BUILDING",
+      "pitch": "Mine blocks, craft tools and build shelter, or race to gather ores in a 60-second arcade round.",
+      "what_you_do": [
+        "Mine materials and craft tools or decorative blocks.",
+        "Place blocks to build a roof, then light a campfire before dark.",
+        "Try the 60-second ore challenge and collect higher-scoring minerals."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "quick",
+      "session_modes": [
+        {
+          "mode": "Speed Miner",
+          "band": "quick"
+        },
+        {
+          "mode": "Survival",
+          "band": "unstated"
+        }
+      ],
+      "classroom_facets": []
     },
     {
       "icon": "🌀",
@@ -228,7 +542,21 @@
       "hue": "#F6AD55",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/vortex.webp"
+      "art": "/assets/cards/vortex.webp",
+      "sub_genre": "TUNNEL RACING TIME-TRIAL",
+      "pitch": "Race a seeded tunnel, skim obstacles for boost and collect relays to absorb a hit.",
+      "what_you_do": [
+        "Steer through the tube and hold boost when you need speed.",
+        "Near-miss obstacles or thread gold rings to refill boost.",
+        "Collect three blue relays, then use the charge to absorb one hit."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🌐",
@@ -239,7 +567,20 @@
       "hue": "#F687B3",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/globe-snake.webp"
+      "art": "/assets/cards/globe-snake.webp",
+      "sub_genre": "SPHERICAL SNAKE CHASE",
+      "pitch": "Steer around a sphere, eat orbs and rescue crews while managing your sprint.",
+      "what_you_do": [
+        "Turn left or right and eat orbs to grow and score.",
+        "Rescue two crews from cyan rings on each planet; release dash to dock.",
+        "Hold sprint for speed and avoid crossing your tail in Classic mode."
+      ],
+      "controls": [
+        "touch",
+        "keyboard"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "⚡",
@@ -250,7 +591,39 @@
       "hue": "#63B3ED",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/neon-snake-overdrive.svg"
+      "art": "/assets/cards/neon-snake-overdrive.svg",
+      "sub_genre": "GRID SNAKE SURVIVAL",
+      "pitch": "Steer for food, avoid collisions and carry energy to three relays.",
+      "what_you_do": [
+        "Steer with arrows, letter keys or swipes; avoid walls and your own body.",
+        "Carry food energy to three relays in order, spending two cargo at each.",
+        "Spend one cargo on a boost that lifts the amber gates for 18 moves."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "quick",
+      "session_modes": [
+        {
+          "mode": "Timed · 60s",
+          "band": "quick"
+        },
+        {
+          "mode": "Timed · 90s",
+          "band": "quick"
+        },
+        {
+          "mode": "Timed · 120s",
+          "band": "quick"
+        },
+        {
+          "mode": "Endless",
+          "band": "open"
+        }
+      ],
+      "classroom_facets": []
     },
     {
       "icon": "🛡️",
@@ -261,7 +634,27 @@
       "hue": "#68D391",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/neon-siege.svg"
+      "art": "/assets/cards/neon-siege.svg",
+      "sub_genre": "TOWER DEFENCE TACTICS",
+      "pitch": "Build and upgrade towers, route reactor power and defend the core through fifteen waves.",
+      "what_you_do": [
+        "Pick a tower and build it on a tile to stop enemies reaching the core.",
+        "Spend credits from defeated enemies to build or upgrade towers.",
+        "Reassign three power sockets or spend power on a temporary damage and range boost."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "session_modes": [
+        {
+          "mode": "Endless",
+          "band": "open"
+        }
+      ],
+      "classroom_facets": []
     },
     {
       "icon": "🌸",
@@ -272,7 +665,23 @@
       "hue": "#5EEAD4",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/neon-garden.svg"
+      "art": "/assets/cards/neon-garden.svg",
+      "sub_genre": "GARDEN PLANTING SANDBOX",
+      "pitch": "Plant glowing seeds, collect motes and discover hybrids in a garden with no clock or losing.",
+      "what_you_do": [
+        "Tap the ground to plant your selected seed.",
+        "Collect motes from blooming plants to buy seeds and water.",
+        "Grow different species side by side to discover mystery seed pods."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "open",
+      "classroom_facets": [
+        "calm"
+      ]
     },
     {
       "icon": "🛰️",
@@ -283,7 +692,21 @@
       "hue": "#B794F4",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/orbital.webp"
+      "art": "/assets/cards/orbital.webp",
+      "sub_genre": "GRAVITY SLINGSHOT GOLF",
+      "pitch": "Slingshot a probe around gravity wells, collect stars and reach each goal in as few shots as possible.",
+      "what_you_do": [
+        "Drag from the probe to set aim and power, then release to launch.",
+        "Read the dotted trajectory preview as gravity bends your shot.",
+        "Collect bonus stars and use one mid-flight boost per shot."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🏁",
@@ -294,7 +717,21 @@
       "hue": "#F6AD55",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/grid-chase.webp"
+      "art": "/assets/cards/grid-chase.webp",
+      "sub_genre": "MAZE PURSUIT SURVIVAL",
+      "pitch": "Collect every pip in a hunted maze, use power cores and dodge shockwaves before striking the boss.",
+      "what_you_do": [
+        "Move through the maze and collect every pip while four hunters close in.",
+        "Grab power cores to turn the tables and eat the hunters.",
+        "Dodge the boss shockwaves, then ram its glowing cyan core three times."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🔺",
@@ -305,7 +742,21 @@
       "hue": "#F687B3",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/prism.svg"
+      "art": "/assets/cards/prism.svg",
+      "sub_genre": "COLOURED LASER LOGIC",
+      "pitch": "Place and rotate mirrors and splitters to light every target with matching coloured beams.",
+      "what_you_do": [
+        "Pick a piece from the tray and tap a cell to place it.",
+        "Tap a placed mirror or splitter to rotate it; remove pieces to try another route.",
+        "Mix beams where they meet and match the colours of every target."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🪝",
@@ -316,7 +767,21 @@
       "hue": "#63B3ED",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/grapple.webp"
+      "art": "/assets/cards/grapple.webp",
+      "sub_genre": "ROPE SWING TIME-TRIAL",
+      "pitch": "Hook anchors, release into flight and collect sparks to cut your time across six stages.",
+      "what_you_do": [
+        "Hold to hook the highlighted anchor, then release at the top of your arc.",
+        "Collect sparks to cut 0.3 seconds each from your time and chain swings for combos.",
+        "Use gold anchors and rings for speed while avoiding cracked anchors that break."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "⚪",
@@ -327,7 +792,21 @@
       "hue": "#68D391",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/marble.webp"
+      "art": "/assets/cards/marble.webp",
+      "sub_genre": "TILT MAZE RACING",
+      "pitch": "Tilt a sky maze, roll to the beacon and chase gems and par times while staying clear of the edges.",
+      "what_you_do": [
+        "Tilt the maze with keys, dragging or device tilt to roll toward the beacon.",
+        "Pass through checkpoint rings and collect gems on side paths.",
+        "Read ice, rubber and boost surfaces to beat the par time for a medal."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "⚪",
@@ -339,7 +818,23 @@
       "hue": "#5EEAD4",
       "featured": true,
       "hero": false,
-      "art": "/assets/cards/slipstream.webp"
+      "art": "/assets/cards/slipstream.webp",
+      "sub_genre": "DRAFT BOOST RACING",
+      "pitch": "Draft behind rivals, charge your boost and deliver three signal packets through gates each lap.",
+      "what_you_do": [
+        "Steer, brake and boost through a three-lap race.",
+        "Draft behind rivals to charge boost, then slingshot past on a straight.",
+        "Hit alternating gate lines to deliver three packets and earn a surge."
+      ],
+      "controls": [
+        "touch",
+        "keyboard"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "solo",
+        "versus"
+      ]
     },
     {
       "icon": "⚪",
@@ -351,7 +846,20 @@
       "hue": "#B794F4",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/slipstream-gp.svg"
+      "art": "/assets/cards/slipstream-gp.svg",
+      "sub_genre": "RIVAL LADDER RACING",
+      "pitch": "Climb a rival ladder, draft for boost and manage a speed wing that heats up on straights.",
+      "what_you_do": [
+        "Beat each rival on their home track to climb the ladder.",
+        "Hold the aero wing open on straights; close it before turns.",
+        "Brake and draft to cool the wing before overheating cuts your power."
+      ],
+      "controls": [
+        "touch",
+        "keyboard"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🔨",
@@ -362,7 +870,23 @@
       "hue": "#F6AD55",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/wrecking-crew.svg"
+      "art": "/assets/cards/wrecking-crew.svg",
+      "sub_genre": "PRECISION DEMOLITION PLANNING",
+      "pitch": "Inspect structures, place charges and bring them down while keeping protected assets clear.",
+      "what_you_do": [
+        "Orbit the structure and inspect load paths before choosing an intervention.",
+        "Tap blocks to place charges, or tap a charge to remove it.",
+        "Slide the crane rail and swing the wrecking ball with directional controls."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "solo"
+      ]
     },
     {
       "icon": "✨",
@@ -373,7 +897,21 @@
       "hue": "#F687B3",
       "featured": true,
       "hero": false,
-      "art": "/assets/cards/lumins.webp"
+      "art": "/assets/cards/lumins.webp",
+      "sub_genre": "TOOL-PLACEMENT RESCUE PUZZLE",
+      "pitch": "Place bridges, tunnels and turning fields to guide walkers safely to the exit.",
+      "what_you_do": [
+        "Place a bridge across gaps so walkers can reach the portal.",
+        "Carve shafts or sideways tunnels to open a route.",
+        "Paint, test and share your own rescue level."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "📺",
@@ -384,7 +922,27 @@
       "hue": "#63B3ED",
       "featured": true,
       "hero": false,
-      "art": "/assets/cards/static.webp"
+      "art": "/assets/cards/static.webp",
+      "sub_genre": "EVIDENCE BOARD DEDUCTION",
+      "pitch": "Examine clues, test accounts and assemble a case backed by evidence.",
+      "what_you_do": [
+        "Examine clues and play recordings to inspect the evidence.",
+        "Link a clue to an account to test whether it confirms or contradicts the claim.",
+        "Combine clues, compare theories and choose the culprit, method and motive."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "short",
+      "session_modes": [
+        {
+          "mode": "DAILY MICRO-CASE",
+          "band": "short"
+        }
+      ],
+      "classroom_facets": []
     },
     {
       "icon": "👻",
@@ -395,7 +953,27 @@
       "hue": "#68D391",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/one-guy.webp"
+      "art": "/assets/cards/one-guy.webp",
+      "sub_genre": "ONE-BUTTON GHOST RUNNER",
+      "pitch": "Time short hops and high jumps to outrun a recorded ghost and return boss projectiles.",
+      "what_you_do": [
+        "Tap to jump; hold for height or release early for a short hop.",
+        "Pass the spot where the recorded ghost fell to take the crown.",
+        "Land on top of boss orbs to send them back and open the gate."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "open",
+      "session_modes": [
+        {
+          "mode": "Original endless ghost race",
+          "band": "open"
+        }
+      ],
+      "classroom_facets": []
     },
     {
       "icon": "🗼",
@@ -406,7 +984,23 @@
       "hue": "#5EEAD4",
       "featured": true,
       "hero": false,
-      "art": "/assets/cards/the-last-lighthouse.svg"
+      "art": "/assets/cards/the-last-lighthouse.svg",
+      "sub_genre": "LIGHT ROUTE RESCUE",
+      "pitch": "Paint remembered light routes and manage lamp wear to guide vessels safely home.",
+      "what_you_do": [
+        "Aim and hold to paint glowing routes that vessels remember and follow.",
+        "Switch wide and focused lenses to charge stones and light old glass.",
+        "Douse before the lamp seizes, then choose cooling, charging or alignment."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "calm"
+      ]
     },
     {
       "icon": "🏆",
@@ -417,7 +1011,23 @@
       "hue": "#B794F4",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/kids-vs-staff-showdown.webp"
+      "art": "/assets/cards/kids-vs-staff-showdown.webp",
+      "sub_genre": "TEAM QUIZ CHALLENGES",
+      "pitch": "Choose quiz, drawing and challenge rounds, then score two competing teams.",
+      "what_you_do": [
+        "Pick at least thirty minutes of rounds for the show.",
+        "Guess a number before the reveal; the closest team wins the point.",
+        "Draw on the screen while your team guesses against a sixty-second clock."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "long",
+      "classroom_facets": [
+        "versus"
+      ]
     },
     {
       "icon": "⚽",
@@ -429,7 +1039,24 @@
       "hue": "#F6AD55",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/world-cup-road-to-the-three-lions-final.webp"
+      "art": "/assets/cards/world-cup-road-to-the-three-lions-final.webp",
+      "sub_genre": "TEAM QUIZ TOURNAMENT",
+      "pitch": "Answer team challenges, steal points and join forces for three final missions.",
+      "what_you_do": [
+        "Answer for the squad in possession; other squads can steal after a miss.",
+        "Arrange the tactics cards in order and discard the two decoys.",
+        "Consult your squad, then choose a goal zone for the final penalty."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "short",
+      "classroom_facets": [
+        "whole-class",
+        "versus"
+      ]
     },
     {
       "icon": "🎮",
@@ -442,7 +1069,24 @@
       "hue": "#F687B3",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/world-cup-v3-match-director.webp"
+      "art": "/assets/cards/world-cup-v3-match-director.webp",
+      "sub_genre": "TEAM QUIZ DIRECTING",
+      "pitch": "Direct team challenges, award goals and guide the class through a cooperative final.",
+      "what_you_do": [
+        "Reveal answers, judge the quiz and award a goal for each correct response.",
+        "Order the six tactics cards and discard the decoys.",
+        "Describe a word without using its banned words before the card vanishes."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "whole-class",
+        "versus"
+      ]
     },
     {
       "icon": "🎮",
@@ -455,7 +1099,24 @@
       "hue": "#63B3ED",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/world-cup-v5-showdown.webp"
+      "art": "/assets/cards/world-cup-v5-showdown.webp",
+      "sub_genre": "TEAM CHALLENGE SHOWDOWN",
+      "pitch": "Pit attackers against defenders, choose a challenge and contest team goals and clean sheets.",
+      "what_you_do": [
+        "Choose the attacking and defending squads for a head-to-head challenge.",
+        "Let the defenders choose a challenge and an optional pressure condition.",
+        "Earn goals as attackers or aim for a clean sheet as defenders."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "whole-class",
+        "versus"
+      ]
     },
     {
       "icon": "🎮",
@@ -466,7 +1127,20 @@
       "hue": "#68D391",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/trekkers-trail-runner-tees-coast.svg"
+      "art": "/assets/cards/trekkers-trail-runner-tees-coast.svg",
+      "sub_genre": "LANE DODGE RUNNER",
+      "pitch": "Steer past trail hazards and tune rescue rings through a finite three-sector route.",
+      "what_you_do": [
+        "Steer left or right, climb and drop to follow the path.",
+        "Chain pace pickups to build a streak up to ten.",
+        "Tune nine of twelve rings; spend fifteen radio to clear nearby hazards."
+      ],
+      "controls": [
+        "touch",
+        "keyboard"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "⛏️",
@@ -477,7 +1151,21 @@
       "hue": "#87CEEB",
       "featured": true,
       "hero": false,
-      "art": "/assets/cards/voxel-frontier.webp"
+      "art": "/assets/cards/voxel-frontier.webp",
+      "sub_genre": "3D BLOCK BUILDING",
+      "pitch": "Build and explore an unlimited block sandbox, or complete contracts to earn marks.",
+      "what_you_do": [
+        "Break and place blocks to reshape your world.",
+        "Fly, sprint, jump and swim as you explore.",
+        "Choose contracts, complete objectives and earn marks."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "open",
+      "classroom_facets": []
     },
     {
       "icon": "⚽",
@@ -489,7 +1177,24 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/apex-kick.webp",
-      "collection": "Sports"
+      "collection": "Sports",
+      "sub_genre": "AIMED FREE-KICK SHOOTING",
+      "pitch": "Drag your target, flick to strike and curve free kicks towards the goal.",
+      "what_you_do": [
+        "Drag the marker onto the goal to choose your target.",
+        "Flick to strike, bowing the gesture to bend the ball.",
+        "Pair two players to take the same five kicks and compare verified results."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "short",
+      "classroom_facets": [
+        "versus",
+        "solo"
+      ]
     },
     {
       "icon": "🎱",
@@ -501,7 +1206,28 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/apex-pool.svg",
-      "collection": "Sports"
+      "collection": "Sports",
+      "sub_genre": "8-BALL SPIN TACTICS",
+      "pitch": "Call where the cue ball will finish, then use aim and spin to play the table.",
+      "what_you_do": [
+        "Call where the cue ball will finish before you take the shot.",
+        "Adjust draw, follow and sidespin to control the cue ball.",
+        "Solve ten position-play puzzles and earn three-star ratings."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "session_modes": [
+        {
+          "mode": "Speed Pool",
+          "band": "unstated",
+          "note": "The starting clock extends after pots; no maximum session duration is stated."
+        }
+      ],
+      "classroom_facets": []
     },
     {
       "icon": "⛳",
@@ -513,7 +1239,21 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/apex-golf.svg",
-      "collection": "Sports"
+      "collection": "Sports",
+      "sub_genre": "WIND SLOPE GOLF",
+      "pitch": "Read wind and slope, call your stroke count and play nine seeded golf holes.",
+      "what_you_do": [
+        "Study the hole and call how many strokes you will need.",
+        "Choose one of four clubs, then set your aim and power.",
+        "Play nine seeded holes with wind, slope, sand and water."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🎾",
@@ -525,7 +1265,21 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/apex-tennis.svg",
-      "collection": "Sports"
+      "collection": "Sports",
+      "sub_genre": "SHOT-PLANNING TENNIS RALLIES",
+      "pitch": "Call how a tennis point will unfold, then move, aim and choose shots to follow your plan.",
+      "what_you_do": [
+        "Call how the point will unfold and earn a rating for following the plan.",
+        "Move, aim and choose from drive, slice, lob, drop and smash shots.",
+        "Practise serve width, rally depth and net approaches in three drills."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🔷",
@@ -536,7 +1290,21 @@
       "hue": "#22D3EE",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/neon-sync.svg"
+      "art": "/assets/cards/neon-sync.svg",
+      "sub_genre": "3V3 OBJECTIVE TACTICS",
+      "pitch": "Hold a point or escort a payload, combining abilities with your team.",
+      "what_you_do": [
+        "Capture the point and race the opposing team to one hundred percent.",
+        "Escort the payload to delivery, or defend until the five-minute horn.",
+        "Aim primary attacks and combine two abilities with an ultimate."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "short",
+      "classroom_facets": []
     },
     {
       "icon": "🧬",
@@ -547,7 +1315,21 @@
       "hue": "#00FF66",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/biopunk-hive.svg"
+      "art": "/assets/cards/biopunk-hive.svg",
+      "sub_genre": "CADENCE IDLE MANAGEMENT",
+      "pitch": "Harvest to a steady rhythm, manage toxicity and purge the hive for permanent upgrades.",
+      "what_you_do": [
+        "Keep harvest taps between 220 and 450 milliseconds to amplify yield.",
+        "Spend credits to reduce toxicity and contamination risk.",
+        "Purge the current hive to claim permanent mutagens while lifetime bonuses survive."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🎯",
@@ -558,7 +1340,21 @@
       "hue": "#FFD000",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/neon-breach.svg"
+      "art": "/assets/cards/neon-breach.svg",
+      "sub_genre": "FIRST-PERSON WAVE SHOOTING",
+      "pitch": "Survive drone waves, switch weapons and draft a tactical upgrade after every clear.",
+      "what_you_do": [
+        "Move, aim, fire, jump and crouch to survive escalating drone waves.",
+        "Switch between three weapons and reload during combat.",
+        "Choose one tactical upgrade after each clear; duplicate perks can stack."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "⚔️",
@@ -570,7 +1366,21 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/apex-rally.svg",
-      "collection": "Sports"
+      "collection": "Sports",
+      "sub_genre": "SPIN TENNIS DUELS",
+      "pitch": "Read the court, choose a landing target and time spin shots against adaptive opponents.",
+      "what_you_do": [
+        "Move early to the predicted landing area to charge your focus meter.",
+        "Choose a target, hold to charge, then release as the ball enters racket range.",
+        "Switch between flat, topspin, slice and lob to shape each rally."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "✈️",
@@ -581,7 +1391,23 @@
       "hue": "#1A8193",
       "featured": false,
       "hero": false,
-      "art": "/medevac/medevac_frontier_banner.png"
+      "art": "/medevac/medevac_frontier_banner.png",
+      "sub_genre": "CANYON RESCUE FLIGHT",
+      "pitch": "Land in a canyon, time the patient extraction and take off before the weather window closes.",
+      "what_you_do": [
+        "Control pitch and centreline to land gently on the strip.",
+        "Tap when the marker crosses the green zone to move each patient quickly.",
+        "Choose how many supply crates to load before a heavier takeoff."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "solo"
+      ]
     },
     {
       "icon": "🪴",
@@ -592,7 +1418,23 @@
       "hue": "#A83FBF",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/lumina-haven.svg"
+      "art": "/assets/cards/lumina-haven.svg",
+      "sub_genre": "ROOM DECORATING SANDBOX",
+      "pitch": "Arrange a room, care for plants and combine collected materials to unlock new décor.",
+      "what_you_do": [
+        "Choose furniture, drag it into place, then rotate or recolour it.",
+        "Water plants, let them grow and prune them for rewards.",
+        "Collect flowers and gems, then fuse two materials to unlock rare décor."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "calm"
+      ]
     },
     {
       "icon": "🌌",
@@ -605,7 +1447,26 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/aurora-links-3d.svg",
-      "collection": "Sports"
+      "collection": "Sports",
+      "sub_genre": "GOLF SHOT SIMULATION",
+      "pitch": "Read the course, call your score and use a three-tap swing to play each hole.",
+      "what_you_do": [
+        "Aim your shot and control the swing with three timed taps.",
+        "Read wind, lies and greens before choosing your shot.",
+        "Design a hole by placing its pin, lakes, bunkers and trees."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "whole-class",
+        "versus",
+        "solo",
+        "calm"
+      ]
     },
     {
       "icon": "🌃",
@@ -616,7 +1477,21 @@
       "hue": "#58f2cf",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/neon-meridian.webp"
+      "art": "/assets/cards/neon-meridian.webp",
+      "sub_genre": "CITY DRIVING SANDBOX",
+      "pitch": "Explore a city by car, complete delivery and checkpoint runs, then upgrade your vehicle.",
+      "what_you_do": [
+        "Drive through traffic and discover landmarks around the city.",
+        "Start a delivery, checkpoint run or three-lap circuit race.",
+        "Spend challenge credits on engine, tyre and brake upgrades."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🏁",
@@ -627,7 +1502,21 @@
       "hue": "#ffd45f",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/rally-vector-3d.webp"
+      "art": "/assets/cards/rally-vector-3d.webp",
+      "sub_genre": "3D RALLY RACING",
+      "pitch": "Race mixed-surface rally stages, compare your ghost and choose repairs between championship stages.",
+      "what_you_do": [
+        "Steer, brake and handbrake through stages with different grip and weather.",
+        "Challenge your local best ghost in a time attack.",
+        "Spend limited service time repairing damage during the six-stage championship."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🏎️",
@@ -639,7 +1528,20 @@
       "hue": "#00E5FF",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/slipstream-hyperdraft.svg"
+      "art": "/assets/cards/slipstream-hyperdraft.svg",
+      "sub_genre": "SLIPSTREAM CIRCUIT RACING",
+      "pitch": "Draft rivals, charge boost and pull sideways for slingshot passes in three-lap races.",
+      "what_you_do": [
+        "Hold the slipstream to charge boost, then slingshot past a rival.",
+        "Choose a circuit for a three-lap race.",
+        "Beat each rival on their home circuit to climb the ladder."
+      ],
+      "controls": [
+        "touch",
+        "keyboard"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🥌",
@@ -651,7 +1553,23 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/apex-curl.svg",
-      "collection": "Sports"
+      "collection": "Sports",
+      "sub_genre": "CURLING SHOT SIMULATION",
+      "pitch": "Call a curling shot, set its speed and angle, then sweep ahead of the moving stone.",
+      "what_you_do": [
+        "Choose release speed, angle and the direction of spin.",
+        "Sweep left and right ahead of the stone to reduce drag.",
+        "Build an ice puzzle by placing and dragging stones."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "solo"
+      ]
     },
     {
       "icon": "🚴",
@@ -663,7 +1581,23 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/apex-velodrome.svg",
-      "collection": "Sports"
+      "collection": "Sports",
+      "sub_genre": "TACTICAL TRACK CYCLING",
+      "pitch": "Choose a track race, manage power and sprint while judging draft and lane position.",
+      "what_you_do": [
+        "Choose a sprint duel, keirin, team pursuit or a 1 km ghost.",
+        "Adjust power and lane to manage drag and your energy reserve.",
+        "Sprint, brake or trigger a tactical action during the race."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "versus"
+      ]
     },
     {
       "icon": "🔧",
@@ -674,7 +1608,33 @@
       "hue": "#73e5b2",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/micro-tinkerer.svg"
+      "art": "/assets/cards/micro-tinkerer.svg",
+      "sub_genre": "FLASHLIGHT HIDE-AND-SEEK ESCAPE",
+      "pitch": "Hide from a searching light, recover three batteries or explore the room without a timer.",
+      "what_you_do": [
+        "Break the searching light’s sightline and survive the four-minute hunt.",
+        "Find three batteries to power the toy plane at the window.",
+        "Explore drawer, ruler, vent and cable routes without a timer."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "quick",
+      "session_modes": [
+        {
+          "mode": "Survival Hunt",
+          "band": "quick"
+        },
+        {
+          "mode": "Free Explore",
+          "band": "open"
+        }
+      ],
+      "classroom_facets": [
+        "solo"
+      ]
     },
     {
       "icon": "🏘",
@@ -685,7 +1645,21 @@
       "hue": "#2FA8A4",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/town-life.svg"
+      "art": "/assets/cards/town-life.svg",
+      "sub_genre": "TOWN ROLEPLAY SANDBOX",
+      "pitch": "Choose a town role, complete its jobs, furnish a home and manage businesses and utilities.",
+      "what_you_do": [
+        "Walk or drive around town and interact with people and buildings.",
+        "Complete role jobs using cargo handling, pulse timing or evidence scans.",
+        "Furnish a home and wire appliances to powered circuits."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "📋",
@@ -697,7 +1671,21 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/touchline-dynasty.svg",
-      "collection": "Sports"
+      "collection": "Sports",
+      "sub_genre": "FOOTBALL CLUB MANAGEMENT",
+      "pitch": "Manage a football club across seasons, from recruitment and finances to tactics and substitutions.",
+      "what_you_do": [
+        "Recruit players, develop youth and manage contracts and facilities.",
+        "Change mentality, pressing and player roles during a match.",
+        "Choose team talks and press answers that affect the club."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     },
     {
       "icon": "🛩️",
@@ -708,7 +1696,28 @@
       "hue": "#65A30D",
       "featured": false,
       "hero": false,
-      "art": "/assets/cards/skybreak-vector.svg"
+      "art": "/assets/cards/skybreak-vector.svg",
+      "sub_genre": "3D FLIGHT COMBAT",
+      "pitch": "Fly below radar, attack a cruiser and fight an ace across three combat phases.",
+      "what_you_do": [
+        "Control pitch, roll, yaw and throttle to fly beneath the radar floor.",
+        "Fire cannon, lock missiles and use equipped special weapons.",
+        "Cycle targets and release countermeasures during combat."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "short",
+      "classroom_facets": []
     }
-  ]
+  ],
+  "session_band_labels": {
+    "quick": "under 5 minutes",
+    "short": "5–15 minutes",
+    "long": "15+ minutes",
+    "open": "no fixed end",
+    "unstated": "no supported duration band"
+  }
 }
