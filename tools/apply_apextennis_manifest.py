@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 MANIFEST=Path(__file__).resolve().parents[1]/'games.json'
+ENRICHMENT_KEYS=('sub_genre','pitch','what_you_do','controls','session_band','session_modes','classroom_facets')
 ENTRY={
   'icon':'🎾','title':'Apex Tennis',
   'desc':'Call the point before the serve, then build it on court. A complete offline tennis game with real rules, three rival styles and an honest Plan Rating.',
@@ -17,7 +18,11 @@ def main()->int:
     if matches:
         first=matches[0]
         games[:]=[g for i,g in enumerate(games) if i==first or not (g.get('title')==ENTRY['title'] or g.get('href')==ENTRY['href'])]
-        games[next(i for i,g in enumerate(games) if g.get('title')==ENTRY['title'] or g.get('href')==ENTRY['href'])]=ENTRY.copy()
+        at=next(i for i,g in enumerate(games) if g.get('title')==ENTRY['title'] or g.get('href')==ENTRY['href'])
+        entry=ENTRY.copy()
+        # carry the J92 enrichment of record (ruling ua) over in its own order: it is not this entry's identity
+        entry.update({k:v for k,v in games[at].items() if k in ENRICHMENT_KEYS})
+        games[at]=entry
     else:
         games.append(ENTRY.copy())
     MANIFEST.write_text(json.dumps(doc,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

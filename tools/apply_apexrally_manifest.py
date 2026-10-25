@@ -25,6 +25,7 @@ from pathlib import Path
 
 MANIFEST = Path(__file__).resolve().parents[1] / 'games.json'
 NEW_PREFIX = 'NEW · '
+ENRICHMENT_KEYS = ('sub_genre', 'pitch', 'what_you_do', 'controls', 'session_band', 'session_modes', 'classroom_facets')
 
 ENTRY = {
     'icon': '⚔️',
@@ -63,6 +64,11 @@ def transform(doc: dict) -> dict:
             value = existing.get(field)
             if isinstance(value, str) and value.startswith(NEW_PREFIX):
                 entry[field] = value
+        # The J92 enrichment of record (ruling ua) is not Apex Rally identity either:
+        # carry it over in the existing entry's own key order, so a re-run stays a no-op.
+        for field in existing:
+            if field in ENRICHMENT_KEYS:
+                entry[field] = existing[field]
         first = matches[0]
         games[:] = [g for i, g in enumerate(games) if i == first or not is_rally(g)]
         games[next(i for i, g in enumerate(games) if is_rally(g))] = entry
