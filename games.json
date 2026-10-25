@@ -59,7 +59,7 @@
       "icon": "🏆",
       "title": "House Olympiad · Sports V4",
       "displayTitle": "House Olympiad",
-      "desc": "A V4 local championship dashboard for five disciplines across Aurora Links, Apex Pool, Apex Kick and Global Games. Merge results through the private, on-device Sports Passport, compare House points, and export only when you choose. One file, no account, plays offline.",
+      "desc": "A V4 local championship dashboard for five disciplines across Aurora Links, Apex Pool, Apex Kick and Global Games. Merge Aurora Links, Apex Pool and Global Games results through the private, on-device Sports Passport, compare House points, and export only when you choose. One file, no account, plays offline.",
       "href": "/houseolympiad/",
       "tag": "Strategy",
       "hue": "#0F5B78",
@@ -1169,8 +1169,8 @@
     },
     {
       "icon": "⚽",
-      "title": "Apex Kick: World Stage — AAA V4",
-      "desc": "AAA V4 Final Edition expands the offline free-kick game with a broadcast World Tour, ethical earn-only progression, accessibility and private same-network class play. Drag the marker, flick to strike and bend the ball past the wall and keeper; card stats set the physics, never the dice.",
+      "title": "Apex Kick: World Stage",
+      "desc": "Nine modes in one offline free-kick game: World Tour, Pro Free Kicks, 60s Time Attack, Corner Kick Whip, Keeper Glove Mode, Top Bins Blitz, Cross & Volley, Woodwork and a 2P pass-and-play shootout. Swipe to strike and bend the ball past the wall and keeper.",
       "href": "/apexkick/",
       "tag": "Physics",
       "hue": "#2F8F6B",
@@ -1183,7 +1183,7 @@
       "what_you_do": [
         "Drag the marker onto the goal to choose your target.",
         "Flick to strike, bowing the gesture to bend the ball.",
-        "Pair two players to take the same five kicks and compare verified results."
+        "Take turns with a friend on one device in the 2P shootout."
       ],
       "controls": [
         "touch",
