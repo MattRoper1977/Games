@@ -110,8 +110,9 @@ gate('S1', 'one rail mechanism, derived from the manifest', () => {
  * mechanism (section/rail/group/...) is unchanged: `series` is not a rail.
  * `session_modes` (J92, ruling ua) joins them: the enrichment of record gives
  * a game per-mode session bands only where it has more than one mode (9 of
- * 62 rows), so it is optional by the record, not a schema move. */
-const OPTIONAL_KEYS = ['displayTitle', 'series', 'session_modes'];
+ * 62 rows), so it is optional by the record, not a schema move. `spotlight`
+ * (AK10-AB) is carried by exactly one row, so it is optional the same way. */
+const OPTIONAL_KEYS = ['displayTitle', 'series', 'session_modes', 'spotlight'];
 
 gate('S2', 'Sports is additive, not a move', () => {
   /* Every rail member must still be a plain shelf entry — same array, same
