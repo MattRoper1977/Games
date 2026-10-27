@@ -60,6 +60,21 @@ if (heroes.length !== 1)
        (heroes.length ? ': ' + heroes.map(g => g.title).join(', ') : ''));
 ok('exactly one hero — currently "' + heroes[0].title + '" (holder not vetoed; Matt\'s call)');
 
+// 2b · EXACTLY ONE SPOTLIGHT, separate from the hero (ruling AK10-AB, AB-2).
+//      An optional key: absent means false, so only the one card that leads the
+//      Play Spotlight carries it. A present value must be a real boolean, the
+//      count of spotlight === true is exactly one, and it is never the hero.
+const badSpot = gs.filter(g => g && Object.prototype.hasOwnProperty.call(g, 'spotlight') && typeof g.spotlight !== 'boolean');
+if (badSpot.length)
+  fail('spotlight must be a boolean when present: ' + badSpot.map(g => g.title + ' = ' + JSON.stringify(g.spotlight)).join(', '));
+const spots = gs.filter(g => g && g.spotlight === true);
+if (spots.length !== 1)
+  fail('expected exactly one spotlight (spotlight === true), found ' + spots.length +
+       (spots.length ? ': ' + spots.map(g => g.title).join(', ') : ''));
+if (spots[0].hero === true)
+  fail('the spotlight entry "' + spots[0].title + '" is also the hero; spotlight and hero are one each, on separate entries');
+ok('exactly one spotlight — "' + spots[0].title + '", separate from the hero "' + heroes[0].title + '"');
+
 // 3 · NO DUPLICATES across identity-bearing fields.
 //     Anchored to full field-VALUE equality (a count per exact value), never a
 //     substring. id and slug are checked too, defensively: they are absent from

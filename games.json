@@ -1176,6 +1176,7 @@
       "hue": "#2F8F6B",
       "featured": false,
       "hero": false,
+      "spotlight": true,
       "art": "/assets/cards/apex-kick.webp",
       "collection": "Sports",
       "sub_genre": "AIMED FREE-KICK SHOOTING",
