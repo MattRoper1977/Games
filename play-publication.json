@@ -1,9 +1,9 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "55c8e20e3a57124c8f5fedd18052b7b9691054a7",
+  "site_commit": "25e0255f1b221599bb1f68554451d769dca6c3fc",
   "lessons_repository": "MattRoper1977/Lessons",
-  "lessons_commit": "d2d4c243c5a8a2ad0ffc3bb08617c1bb6fee3e62",
+  "lessons_commit": "e82625ea4ecf47bd9637d213d4a15c25018e91fb",
   "canonical_games": 62,
   "additional_activities": 7,
   "notes": "Reviewed Play completion: supplied logo, Explore \u2022 Play \u2022 Discover tagline, six accepted gameplay previews, responsive discovery, saved favourites and retained save-transfer behaviour. Games #124 replaced one game payload, Apex Kick at /apexkick/ (Apex Kick: World Stage V10.1, Site #496); the other 68 game payloads are unchanged. Publication preserves the existing destination, Pages configuration and DNS."
