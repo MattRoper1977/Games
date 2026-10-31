@@ -320,7 +320,6 @@
     {
       "icon": "⚙️",
       "title": "Relic Forge: Crownfall — V4 Milestone 2",
-      "displayTitle": "Relic Forge: Crownfall",
       "desc": "V4 Roadmap Milestone 2 turns Crownfall into a kinetic modular action roguelite: dismantle machine enemies component by component, recover their relics, rebuild your chassis and preserve the best surgical Salvage Rating. One file, no install, plays offline.",
       "href": "/relicforge/",
       "tag": "Action RPG",
@@ -346,7 +345,6 @@
     {
       "icon": "👾",
       "title": "Off-Brand: After Hours — V4 Milestone 2",
-      "displayTitle": "Off-Brand: After Hours",
       "desc": "V4 Roadmap Milestone 2 takes the reversible brand-workshop whodunnit After Hours. Follow movement trails, the scene log and Roll Call statements to identify the Glitch without voting anyone out. Designed for Matt's sweet, adorable niece Clara; one file, no install, plays offline.",
       "href": "/offbrand/",
       "tag": "Whodunnit",
@@ -1185,7 +1183,6 @@
     {
       "icon": "⚽",
       "title": "Apex Kick: World Stage",
-      "displayTitle": "Apex Kick",
       "desc": "Nine modes in one offline free-kick game: World Tour, Pro Free Kicks, 60s Time Attack, Corner Kick Whip, Keeper Glove Mode, Top Bins Blitz, Cross & Volley, Woodwork and a 2P pass-and-play shootout. Swipe to strike and bend the ball past the wall and keeper.",
       "href": "/apexkick/",
       "tag": "Physics",
