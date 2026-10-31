@@ -5,6 +5,7 @@
     {
       "icon": "⚡",
       "title": "NEW · CyberPulse: Blackout",
+      "displayTitle": "Blackout Pulse",
       "desc": "Skim a rain-black megacity at terminal speed. Parry lethal fire, weaponise collapsing infrastructure, and break the Null Warden in a seamless neon assault. WebGL2 rendering with a Canvas fallback, so it still runs where the GPU path is refused. One file, no install, offline. AAA V6.",
       "href": "/cyberpulse/",
       "tag": "Reflex",
@@ -12,8 +13,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/cyberpulse.svg",
-      "sub_genre": "STEER PARRY SURVIVAL",
-      "pitch": "Steer through enemy fire, parry at impact and charge overdrive by grazing shots.",
+      "sub_genre": "Steer, parry, survive",
+      "pitch": "Lights out, enemies in: steer and parry through the dark until the power is back.",
       "what_you_do": [
         "Drag to steer around incoming fire.",
         "Tap phase at the moment of impact to parry.",
@@ -30,6 +31,7 @@
     {
       "icon": "♛",
       "title": "Crown & Badge: Frontier Watch",
+      "displayTitle": "Frontier Watch",
       "desc": "Command six border districts through a seeded 30-day strategy campaign. Allocate officers to urgent calls, choose charge, containment or infiltration, build outposts, manage tomorrow’s ledger and carry earned Valor into future watches. One file, no install, plays offline.",
       "href": "/crownbadge/",
       "tag": "Strategy",
@@ -37,8 +39,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/crown-badge.svg",
-      "sub_genre": "OFFICER DISPATCH STRATEGY",
-      "pitch": "Dispatch officers, equip relics and secure three outposts across a 30-day strategy campaign.",
+      "sub_genre": "Officer dispatch strategy",
+      "pitch": "Every call needs the right officer in the right place. Send them before the trouble spreads.",
       "what_you_do": [
         "Assign ready officers to incidents or drag them onto districts.",
         "Equip a relic on each officer.",
@@ -66,8 +68,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/house-olympiad.svg",
-      "sub_genre": "LOCAL CHAMPIONSHIP DASHBOARD",
-      "pitch": "Collect station scores, compare house totals and export your local championship record.",
+      "sub_genre": "Sports day championship board",
+      "pitch": "Run a whole sports day from one board and see which house takes the cup.",
       "what_you_do": [
         "Import saved results or paste a sync code.",
         "Build a temporary board that totals station scores by house.",
@@ -84,6 +86,7 @@
     {
       "icon": "🏋️",
       "title": "Titan Forge: Strength Ascension",
+      "displayTitle": "Titan Forge",
       "desc": "Rhythm-strength game: three-phase lifts, muscle evolution, Kai duels, LAN rival duels, Divine DNA ascension tree.",
       "href": "/titanforge/",
       "tag": "Reflex",
@@ -94,8 +97,8 @@
       "version": "5.1.0",
       "size": 1640431,
       "sha256": "f5475538cef3b106d4ca53f530b5b622e4ce5156b6e5b7ed2b3ee8355fc19607",
-      "sub_genre": "LIFT TIMING TRAINING",
-      "pitch": "Time three-phase lifts, manage muscle fatigue and earn permanent upgrades through training.",
+      "sub_genre": "Lift-timing strength trainer",
+      "pitch": "Nail the timing on every lift and watch your strength climb.",
       "what_you_do": [
         "Time the drive, brace and control phases of each lift.",
         "Change training focus when a muscle needs rest.",
@@ -114,6 +117,7 @@
     {
       "icon": "🔥",
       "title": "Emberwild",
+      "displayTitle": "Emberwild",
       "desc": "An original creature-collector. Explore the Vale, battle and capture Emberkin, then follow a seam in the rock down into procedurally generated Depths — cavern, ruins, then hybrid — with loot, healing pools and a Depthwarden on the last floor. Before every throw you call your own odds, and the game then shows you the real ones. Fainting costs you the floor, never the run. One file, no install, plays offline.",
       "href": "/emberwild/",
       "tag": "Action RPG",
@@ -122,8 +126,8 @@
       "hero": false,
       "art": "/assets/cards/emberwild.svg",
       "collection": "RPG",
-      "sub_genre": "CREATURE EXPLORATION BATTLES",
-      "pitch": "Explore six regions, make story choices and use timed bonus pulses in untimed creature battles.",
+      "sub_genre": "Creature exploration and battles",
+      "pitch": "Wild creatures, hidden paths and battles that reward curiosity.",
       "what_you_do": [
         "Explore routes with stairs, ledges and tall-grass encounters.",
         "Press as the rings meet for optional bonus power in battle.",
@@ -142,6 +146,7 @@
     {
       "icon": "🛸",
       "title": "Vector Overdrive: Nova Siege",
+      "displayTitle": "Nova Siege",
       "desc": "Twin-stick survival in a full 360° arena. Break a living threat budget wave after wave: graze enemy fire to charge your overdrive, evolve one weapon through four tiers, draft upgrades between waves, and hold off a three-phase dreadnought every fifth wave. Keyboard, gamepad or touch sticks; scores stay on your device. One file, no install, plays offline.",
       "href": "/novasiege/",
       "tag": "Reflex",
@@ -150,8 +155,8 @@
       "hero": false,
       "art": "/assets/cards/nova-siege.webp",
       "collection": "Shooter",
-      "sub_genre": "TWIN-STICK WAVE SURVIVAL",
-      "pitch": "Fight arena waves, graze shots for overdrive and evolve your weapon through four tiers.",
+      "sub_genre": "Twin-stick wave survival",
+      "pitch": "Waves keep coming. Aim, dodge and hold the line as long as you can.",
       "what_you_do": [
         "Move and aim separately while firing at enemy waves.",
         "Choose an upgrade after each completed wave.",
@@ -168,6 +173,7 @@
     {
       "icon": "⏳",
       "title": "Ouroboros: Chronos Unbound",
+      "displayTitle": "Ouroboros",
       "desc": "Four visionaries and one dying clockwork city. A self-contained anime tactical RPG: break the city's logic, sever its sub-nodes, chain resonance techniques between bound heroes, forge equipment from salvaged materials, climb the Spire, and decide whether a broken timeline deserves preservation — or change. One file, no install, plays offline.",
       "href": "/ouroboros/",
       "tag": "Action RPG",
@@ -176,8 +182,8 @@
       "hero": false,
       "art": "/assets/cards/ouroboros.webp",
       "collection": "RPG",
-      "sub_genre": "PARTY POSITIONING TACTICS",
-      "pitch": "Reposition your party, target enemy parts and choose skills in tactical battles.",
+      "sub_genre": "Party positioning tactics",
+      "pitch": "Position your party, bait the enemy, strike when the turn is right.",
       "what_you_do": [
         "Move within the battle radius before committing an action.",
         "Cycle enemy sub-nodes and choose skills or items.",
@@ -194,6 +200,7 @@
     {
       "icon": "🏟️",
       "title": "Global Games: World Stage V4",
+      "displayTitle": "Global Games",
       "desc": "World Stage V4 brings nine fluid sporting events, biomechanical rhythm, weekly cups, earn-only progression and private same-network class play to one offline file. Energy carries between days, personal bests stay on the device, and every control, sound and graphic is generated locally.",
       "href": "/olympics/",
       "tag": "Physics",
@@ -202,8 +209,8 @@
       "hero": false,
       "art": "/assets/cards/global-games.svg",
       "collection": "Sports",
-      "sub_genre": "MULTI-EVENT SPORTS TIMING",
-      "pitch": "Build running rhythm, time jumps and aim arrows across nine sporting events.",
+      "sub_genre": "Multi-event sports timing",
+      "pitch": "Sprint, throw and jump against the clock across a dozen events.",
       "what_you_do": [
         "Alternate left and right inputs to build a steady running rhythm.",
         "Hold the jump-angle meter and release before crossing the board.",
@@ -223,6 +230,7 @@
     {
       "icon": "🔥",
       "title": "Relicforge: Fracture Engine",
+      "displayTitle": "Fracture Engine",
       "desc": "Three realms are breaking apart, and their relic logic is the only way through. Take a Forgeguard, a Riftcaller or a Shadowsmith into Ironwood Verge for its Forge Shards, the Glitchworks for its Fracture Pylons, and the Celestial Foundry for the Nullsmith itself. Temper relics at the forge between fights, read every ground telegraph before it lands, then export a Chronicle of the whole run — a standalone evidence record, generated locally, with no account and no server.",
       "href": "/fracture/",
       "tag": "Action RPG",
@@ -230,8 +238,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/fracture-engine.svg",
-      "sub_genre": "EXPLORE FIGHT FORGE",
-      "pitch": "Explore three realms, fight with class-specific attacks and temper equipment at a forge.",
+      "sub_genre": "Explore, fight, forge",
+      "pitch": "Explore, fight and forge your way through a broken world.",
       "what_you_do": [
         "Choose a hero discipline with its own attacks and signature ability.",
         "Balance heat and resonance to strengthen forged upgrades.",
@@ -248,6 +256,7 @@
     {
       "icon": "🏎️",
       "title": "Neon Turf: Overdrive",
+      "displayTitle": "Neon Turf",
       "desc": "Rocket-powered hover cars, one ball, and a floor that remembers who drove over it. Score in the net to lead — but every wheel-track paints the grid, and if the clock runs out level the team holding the most turf takes the decision. Three arenas of bumpers, gravity wells and portals: Neon Foundry, Singularity Court and Warp Circuit. Run the Arcade Cup solo, take a Local Duel on one screen, or drill it in the Training Lab.",
       "href": "/neonturf/",
       "tag": "Physics",
@@ -255,8 +264,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/neon-turf-overdrive.svg",
-      "sub_genre": "HOVER-CAR FOOTBALL TERRITORY",
-      "pitch": "Drive hover cars, score goals and paint turf to improve grip and boost recharge.",
+      "sub_genre": "Hover-car football for territory",
+      "pitch": "Hover-car football where every goal paints the pitch your colour.",
       "what_you_do": [
         "Steer, boost and shoot the core into the goal.",
         "Paint turf to gain grip and recharge boost faster.",
@@ -286,6 +295,7 @@
     {
       "icon": "🛰️",
       "title": "Echo Vault — Sound Is Your Light",
+      "displayTitle": "Echo Vault",
       "desc": "A pitch-black vault you can only see by making noise. Every sonar pulse paints the architecture in travelling light — and tells every hunter down there exactly where you are. Read the room before it answers, hold your breath to go cold, or throw a loud ping across the hall and walk the other way while they chase it. Sound is your light and your danger, and choosing when to spend it is the whole game.",
       "href": "/echovault/",
       "tag": "Roguelike",
@@ -293,8 +303,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/echo-vault.svg",
-      "sub_genre": "SONAR STEALTH EXTRACTION",
-      "pitch": "Reveal dark rooms with sonar, recover three cores and escape while every sound exposes your position.",
+      "sub_genre": "Sonar stealth extraction",
+      "pitch": "You can't see a thing. Use sound to find the way out.",
       "what_you_do": [
         "Fire sonar pulses to reveal the architecture.",
         "Recover three resonance cores.",
@@ -311,6 +321,7 @@
     {
       "icon": "⚙️",
       "title": "Relic Forge: Crownfall — V4 Milestone 2",
+      "displayTitle": "Relic Forge: Crownfall",
       "desc": "V4 Roadmap Milestone 2 turns Crownfall into a kinetic modular action roguelite: dismantle machine enemies component by component, recover their relics, rebuild your chassis and preserve the best surgical Salvage Rating. One file, no install, plays offline.",
       "href": "/relicforge/",
       "tag": "Action RPG",
@@ -318,8 +329,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/relicforge.svg",
-      "sub_genre": "MODULAR COMBAT SALVAGE",
-      "pitch": "Dismantle enemy components, salvage intact parts and rebuild your combat chassis between chambers.",
+      "sub_genre": "Modular combat and salvage",
+      "pitch": "Salvage parts, rebuild your rig and take on the next fight.",
       "what_you_do": [
         "Target separate arms, legs, heads and cores to disable enemy systems.",
         "Keep valuable parts intact so you can recover them at the forge.",
@@ -336,6 +347,7 @@
     {
       "icon": "👾",
       "title": "Off-Brand: After Hours — V4 Milestone 2",
+      "displayTitle": "Off-Brand: After Hours",
       "desc": "V4 Roadmap Milestone 2 takes the reversible brand-workshop whodunnit After Hours. Follow movement trails, the scene log and Roll Call statements to identify the Glitch without voting anyone out. Designed for Matt's sweet, adorable niece Clara; one file, no install, plays offline.",
       "href": "/offbrand/",
       "tag": "Whodunnit",
@@ -343,8 +355,8 @@
       "featured": true,
       "hero": true,
       "art": "/assets/cards/off-brand.svg",
-      "sub_genre": "STEALTH DEDUCTION TASKS",
-      "pitch": "Complete workshop jobs and compare movement clues, or fake tasks and sabotage while avoiding the patrol.",
+      "sub_genre": "Stealth deduction tasks",
+      "pitch": "Stealth tasks after hours: work it out without getting spotted.",
       "what_you_do": [
         "Complete jobs and repair corrupted machines to finish the commission.",
         "Rewind trails and compare task sparks, skips and seam jumps.",
@@ -361,6 +373,7 @@
     {
       "icon": "📐",
       "title": "Axiom Shift",
+      "displayTitle": "Axiom Shift",
       "desc": "A one-button rhythm runner where the beat is something you see, not hear — a visible pulse you read instead of music, so it plays in a silent classroom and works for a deaf pupil. Four forms with genuinely different physics (jump, gravity-invert, hold-to-fly, flap), six geometric Propositions, a date-seeded Daily Shift that's the same run for the whole class offline, and the opt-in Axiom Rule for the purists. You never lose — a touch smudges and rewinds to the last checkpoint, and your furthest progress is always kept. Offline, no accounts, no sound.",
       "href": "/Lessons/Games/Axiom_Shift.html",
       "tag": "Rhythm",
@@ -368,8 +381,8 @@
       "featured": true,
       "hero": false,
       "art": "/assets/cards/axiom-shift.svg",
-      "sub_genre": "ONE-BUTTON RHYTHM RUNNER",
-      "pitch": "Time jumps, gravity flips and flight to a visible beat, with checkpoints that keep your progress.",
+      "sub_genre": "One-button rhythm runner",
+      "pitch": "One button, one rhythm. Miss the beat and the floor drops.",
       "what_you_do": [
         "Tap to jump or invert gravity as your form changes.",
         "Hold to rise, release to fall, or tap to flap.",
@@ -386,6 +399,7 @@
     {
       "icon": "✎",
       "title": "Charcoal",
+      "displayTitle": "Charcoal",
       "desc": "A short hide-and-seek round in the Made by Matt studio: six shapes, one quietly smudging finished work back to rough with a stick of charcoal, and one carrying the fixative can — a single spray that seals it. Read the charcoal dust, spend your ink drops on a Blot, a Trace or the Studio lights, and two friends re-ink any shape that's gone rough. You rotate through every role and nothing is ever lost for good. Made with love for Matt's niece Clara ♥.",
       "href": "/Lessons/Games/Charcoal.html",
       "tag": "Hide & seek",
@@ -393,8 +407,8 @@
       "featured": true,
       "hero": false,
       "art": "/assets/cards/charcoal.svg",
-      "sub_genre": "HIDDEN-ROLE CHASE ROUNDS",
-      "pitch": "Rotate roles, follow charcoal dust and spend ink to keep the studio finished or catch the hidden smudger.",
+      "sub_genre": "Hidden-role chase rounds",
+      "pitch": "Someone in the round is not who they say. Hunt them before time runs out.",
       "what_you_do": [
         "Follow the charcoal dust to work out who has been smudging.",
         "Spend ink on protection, a dust trace or a brief view of the whole room.",
@@ -413,6 +427,7 @@
     {
       "icon": "🛡️",
       "title": "Hold the Mark",
+      "displayTitle": "Hold the Mark",
       "desc": "Built mobile-first for phones and tablets. Defend the Made by Matt mark with brand-shape towers, Harmony combos and a calm-play Focus meter. Six levels — including Kerning Run, where the route slides sideways mid-wave — plus thumb gestures, daily challenges, unlockable tower skins and Mark themes. Works offline in any orientation.",
       "href": "/Lessons/Games/Hold_the_Mark.html",
       "tag": "Strategy",
@@ -420,8 +435,8 @@
       "featured": true,
       "hero": false,
       "art": "/assets/cards/hold-the-mark.webp",
-      "sub_genre": "TOWER DEFENCE TACTICS",
-      "pitch": "Place and upgrade towers, spend limited utilities and charge a focus boost by making measured decisions.",
+      "sub_genre": "Tower defence tactics",
+      "pitch": "Build the towers, hold the line, let nothing through.",
       "what_you_do": [
         "Choose a tower and place it on an open tile.",
         "Upgrade towers, change their targets or sell them between waves.",
@@ -440,6 +455,7 @@
     {
       "icon": "🃏",
       "title": "Glitch Clash",
+      "displayTitle": "Glitch Clash",
       "desc": "NEW ACT II — the campaign runs to fifteen stages now, ending in the Deep Static. Collect 24 Keepers across the brand shapes, mix your trio for Harmony, then fight through shifting arena modifiers, Glitch Corruption you can ride or purge, Glyph Alchemy hybrid moves, and beam Clashes you win on timing rather than luck. Five animated story moments. Gentle by design, offline-friendly, phone-first.",
       "href": "/Lessons/Games/Glitch_Clash.html",
       "tag": "Card battle",
@@ -447,8 +463,8 @@
       "featured": true,
       "hero": false,
       "art": "/assets/cards/glitch-clash.webp",
-      "sub_genre": "TURN-BASED CARD BATTLES",
-      "pitch": "Build a three-card team, charge energy for specials and time your taps when attacks clash.",
+      "sub_genre": "Turn-based card battles",
+      "pitch": "Build your deck and out-think your opponent one card at a time.",
       "what_you_do": [
         "Choose three cards; mix three different shapes for a power bonus.",
         "Strike, charge or guard to manage energy before using a special.",
@@ -477,6 +493,7 @@
     {
       "icon": "🎮",
       "title": "Trail Runner: Stormbreak V4 — Milestone 2",
+      "displayTitle": "Stormbreak",
       "desc": "Portable V4 Milestone 2 sends a fast reflex runner through a curved storm corridor. Dodge hazards, build Momentum and challenge a local ghost run in one offline file.",
       "href": "/trailrunner/",
       "tag": "Reflex",
@@ -484,8 +501,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/trail-runner.svg",
-      "sub_genre": "THREE-LANE HAZARD RUNNER",
-      "pitch": "Steer, climb and drop through a curved three-lane course; spin through crates and blast mines.",
+      "sub_genre": "Three-lane hazard runner",
+      "pitch": "Three lanes, one storm, no brakes. Dodge everything.",
       "what_you_do": [
         "Steer across three lanes, then climb or drop to clear obstacles.",
         "Spin through crates and blast mines.",
@@ -501,6 +518,7 @@
     {
       "icon": "🧱",
       "title": "VoxelCraft",
+      "displayTitle": "VoxelCraft",
       "desc": "The original prototype — a localized 3D block builder exploring spatial coordinates, geometry, and structural placement. Superseded by Voxel Frontier, the full engine.",
       "href": "/Lessons/Games/voxelcraft.html",
       "tag": "Sandbox",
@@ -508,8 +526,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/voxelcraft.svg",
-      "sub_genre": "3D SURVIVAL BUILDING",
-      "pitch": "Mine blocks, craft tools and build shelter, or race to gather ores in a 60-second arcade round.",
+      "sub_genre": "3D survival building",
+      "pitch": "Dig, build and survive the night in a block world.",
       "what_you_do": [
         "Mine materials and craft tools or decorative blocks.",
         "Place blocks to build a roof, then light a campfire before dark.",
@@ -536,6 +554,7 @@
     {
       "icon": "🌀",
       "title": "Vortex",
+      "displayTitle": "Vortex",
       "desc": "A high-intensity tunnel-dodging experience testing rapid peripheral processing and predictive tracking accuracy.",
       "href": "/Lessons/Games/Vortex.html",
       "tag": "Reflex",
@@ -543,8 +562,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/vortex.webp",
-      "sub_genre": "TUNNEL RACING TIME-TRIAL",
-      "pitch": "Race a seeded tunnel, skim obstacles for boost and collect relays to absorb a hit.",
+      "sub_genre": "Tunnel racing time trial",
+      "pitch": "Hit the tunnel at full speed and shave tenths off your best time.",
       "what_you_do": [
         "Steer through the tube and hold boost when you need speed.",
         "Near-miss obstacles or thread gold rings to refill boost.",
@@ -561,6 +580,7 @@
     {
       "icon": "🌐",
       "title": "Globe Snake",
+      "displayTitle": "Globe Snake",
       "desc": "Snake, but wrapped around a planet. Steer around the globe, stretch your tail longer and hold to sprint — and unlock new skins as you clear planets.",
       "href": "/Lessons/Games/Globe_Snake (1).html",
       "tag": "Classic",
@@ -568,8 +588,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/globe-snake.webp",
-      "sub_genre": "SPHERICAL SNAKE CHASE",
-      "pitch": "Steer around a sphere, eat orbs and rescue crews while managing your sprint.",
+      "sub_genre": "Snake on a sphere",
+      "pitch": "Snake, but the board is a planet and the ends wrap around.",
       "what_you_do": [
         "Turn left or right and eat orbs to grow and score.",
         "Rescue two crews from cyan rings on each planet; release dash to dock.",
@@ -585,6 +605,7 @@
     {
       "icon": "⚡",
       "title": "Neon Snake Overdrive",
+      "displayTitle": "Neon Snake Overdrive",
       "desc": "A neon snake arena. Steer with the arrow keys, WASD or a swipe, eat to get longer and pick up speed, then put your initials on the high-score table.",
       "href": "/Lessons/Games/Neon_Snake_Overdrive.html",
       "tag": "Classic",
@@ -592,8 +613,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/neon-snake-overdrive.svg",
-      "sub_genre": "GRID SNAKE SURVIVAL",
-      "pitch": "Steer for food, avoid collisions and carry energy to three relays.",
+      "sub_genre": "Grid snake survival",
+      "pitch": "Neon snake on a tight grid: grow long, stay alive.",
       "what_you_do": [
         "Steer with arrows, letter keys or swipes; avoid walls and your own body.",
         "Carry food energy to three relays in order, spending two cargo at each.",
@@ -628,6 +649,7 @@
     {
       "icon": "🛡️",
       "title": "Neon Siege",
+      "displayTitle": "Neon Siege",
       "desc": "A localized matrix defense challenge requiring calculated tactical placement and rapid prioritization under pressure.",
       "href": "/Lessons/Games/Neon_Siege.html",
       "tag": "Strategy",
@@ -635,8 +657,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/neon-siege.svg",
-      "sub_genre": "TOWER DEFENCE TACTICS",
-      "pitch": "Build and upgrade towers, route reactor power and defend the core through fifteen waves.",
+      "sub_genre": "Tower defence tactics",
+      "pitch": "Place towers, upgrade smart, defend the core wave after wave.",
       "what_you_do": [
         "Pick a tower and build it on a tile to stop enemies reaching the core.",
         "Spend credits from defeated enemies to build or upgrade towers.",
@@ -659,6 +681,7 @@
     {
       "icon": "🌸",
       "title": "Neon Garden",
+      "displayTitle": "Neon Garden",
       "desc": "An ambient, low-arousal pattern-generation loop designed for focus conditioning and cognitive pacing.",
       "href": "/Lessons/Games/Neon_Garden.html",
       "tag": "Calm",
@@ -666,8 +689,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/neon-garden.svg",
-      "sub_genre": "GARDEN PLANTING SANDBOX",
-      "pitch": "Plant glowing seeds, collect motes and discover hybrids in a garden with no clock or losing.",
+      "sub_genre": "Calm planting sandbox",
+      "pitch": "No timer, no enemies. Plant, grow and arrange a glowing garden.",
       "what_you_do": [
         "Tap the ground to plant your selected seed.",
         "Collect motes from blooming plants to buy seeds and water.",
@@ -686,6 +709,7 @@
     {
       "icon": "🛰️",
       "title": "Orbital",
+      "displayTitle": "Orbital",
       "desc": "A physics-based gravitational simulation mapping kinetic momentum, planetary vectors, and circular mechanics.",
       "href": "/Lessons/Games/Orbital.html",
       "tag": "Physics",
@@ -693,8 +717,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/orbital.webp",
-      "sub_genre": "GRAVITY SLINGSHOT GOLF",
-      "pitch": "Slingshot a probe around gravity wells, collect stars and reach each goal in as few shots as possible.",
+      "sub_genre": "Gravity slingshot golf",
+      "pitch": "Sling your ball round planets and drop it in the hole.",
       "what_you_do": [
         "Drag from the probe to set aim and power, then release to launch.",
         "Read the dotted trajectory preview as gravity bends your shot.",
@@ -711,6 +735,7 @@
     {
       "icon": "🏁",
       "title": "Grid Chase",
+      "displayTitle": "Grid Chase",
       "desc": "A high-speed coordinate grid maze testing rapid directional corrections and immediate geometric mapping layout transitions.",
       "href": "/Lessons/Games/Grid_Chase.html",
       "tag": "Reflex",
@@ -718,8 +743,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/grid-chase.webp",
-      "sub_genre": "MAZE PURSUIT SURVIVAL",
-      "pitch": "Collect every pip in a hunted maze, use power cores and dodge shockwaves before striking the boss.",
+      "sub_genre": "Maze pursuit survival",
+      "pitch": "Trapped in a maze with something chasing you. Find the exit.",
       "what_you_do": [
         "Move through the maze and collect every pip while four hunters close in.",
         "Grab power cores to turn the tables and eat the hunters.",
@@ -736,6 +761,7 @@
     {
       "icon": "🔺",
       "title": "Prism",
+      "displayTitle": "Prism",
       "desc": "A perspective-shifting puzzle manipulating light angles, alignment paths, and spatial refraction lines.",
       "href": "/Lessons/Games/Prism.html",
       "tag": "Puzzle",
@@ -743,8 +769,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/prism.svg",
-      "sub_genre": "COLOURED LASER LOGIC",
-      "pitch": "Place and rotate mirrors and splitters to light every target with matching coloured beams.",
+      "sub_genre": "Coloured laser logic",
+      "pitch": "Bend coloured lasers through mirrors to light every target.",
       "what_you_do": [
         "Pick a piece from the tray and tap a cell to place it.",
         "Tap a placed mirror or splitter to rotate it; remove pieces to try another route.",
@@ -761,6 +787,7 @@
     {
       "icon": "🪝",
       "title": "Grapple",
+      "displayTitle": "Grapple",
       "desc": "A momentum-centric physics playground focusing on vector hook connections and conservation of kinetic energy.",
       "href": "/Lessons/Games/Grapple.html",
       "tag": "Physics",
@@ -768,8 +795,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/grapple.webp",
-      "sub_genre": "ROPE SWING TIME-TRIAL",
-      "pitch": "Hook anchors, release into flight and collect sparks to cut your time across six stages.",
+      "sub_genre": "Rope-swing time trial",
+      "pitch": "Swing on the rope, build speed, beat the clock.",
       "what_you_do": [
         "Hold to hook the highlighted anchor, then release at the top of your arc.",
         "Collect sparks to cut 0.3 seconds each from your time and chain swings for combos.",
@@ -786,6 +813,7 @@
     {
       "icon": "⚪",
       "title": "Marble",
+      "displayTitle": "Marble",
       "desc": "A tilt-and-gravity simulator testing meticulous physical adjustment, balancing thresholds, and micro-coordination.",
       "href": "/Lessons/Games/Marble.html",
       "tag": "Physics",
@@ -793,8 +821,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/marble.webp",
-      "sub_genre": "TILT MAZE RACING",
-      "pitch": "Tilt a sky maze, roll to the beacon and chase gems and par times while staying clear of the edges.",
+      "sub_genre": "Tilt-maze racing",
+      "pitch": "Tilt the maze, roll the marble, race the clock.",
       "what_you_do": [
         "Tilt the maze with keys, dragging or device tilt to roll toward the beacon.",
         "Pass through checkpoint rings and collect gems on side paths.",
@@ -811,6 +839,7 @@
     {
       "icon": "⚪",
       "title": "Slipstream",
+      "displayTitle": "Slipstream",
       "series": "Slipstream",
       "desc": "A streamlined rhythmic velocity test tracking uninterrupted forward momentum and rapid gap synchronization.",
       "href": "/Lessons/Games/Slipstream.html",
@@ -819,8 +848,8 @@
       "featured": true,
       "hero": false,
       "art": "/assets/cards/slipstream.webp",
-      "sub_genre": "DRAFT BOOST RACING",
-      "pitch": "Draft behind rivals, charge your boost and deliver three signal packets through gates each lap.",
+      "sub_genre": "Draft-boost racing",
+      "pitch": "Tuck in behind rivals, draft, then pull out and boost past them.",
       "what_you_do": [
         "Steer, brake and boost through a three-lap race.",
         "Draft behind rivals to charge boost, then slingshot past on a straight.",
@@ -839,6 +868,7 @@
     {
       "icon": "⚪",
       "title": "Slipstream - GP",
+      "displayTitle": "Slipstream GP",
       "series": "Slipstream",
       "desc": "Climb the eight-rival ladder — draft, slingshot, overtake. Touch controls with a brake, garage upgrades, daily sprint, and a velocity–time graph in school mode.",
       "href": "/Lessons/Games/Slipstream_GP.html",
@@ -847,8 +877,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/slipstream-gp.svg",
-      "sub_genre": "RIVAL LADDER RACING",
-      "pitch": "Climb a rival ladder, draft for boost and manage a speed wing that heats up on straights.",
+      "sub_genre": "Rival ladder racing",
+      "pitch": "Climb the rival ladder one race at a time.",
       "what_you_do": [
         "Beat each rival on their home track to climb the ladder.",
         "Hold the aero wing open on straights; close it before turns.",
@@ -864,6 +894,7 @@
     {
       "icon": "🔨",
       "title": "Wrecking Crew",
+      "displayTitle": "Wrecking Crew",
       "desc": "A destructive physics environment evaluating structural integrity, mass distributions, and center-of-gravity impacts.",
       "href": "/Lessons/Games/Wrecking_Crew.html",
       "tag": "Physics",
@@ -871,8 +902,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/wrecking-crew.svg",
-      "sub_genre": "PRECISION DEMOLITION PLANNING",
-      "pitch": "Inspect structures, place charges and bring them down while keeping protected assets clear.",
+      "sub_genre": "Precision demolition planning",
+      "pitch": "Plan the charges, drop the building, keep the neighbours standing.",
       "what_you_do": [
         "Orbit the structure and inspect load paths before choosing an intervention.",
         "Tap blocks to place charges, or tap a charge to remove it.",
@@ -891,6 +922,7 @@
     {
       "icon": "✨",
       "title": "Lumins",
+      "displayTitle": "Lumins",
       "desc": "A Lemmings-style rescue puzzle: assign roles to your Lumins to dig, build and bridge them safely to the exit — complete with a full level editor.",
       "href": "/Lessons/Games/Lumins.html",
       "tag": "Puzzle",
@@ -898,8 +930,8 @@
       "featured": true,
       "hero": false,
       "art": "/assets/cards/lumins.webp",
-      "sub_genre": "TOOL-PLACEMENT RESCUE PUZZLE",
-      "pitch": "Place bridges, tunnels and turning fields to guide walkers safely to the exit.",
+      "sub_genre": "Tool-placement rescue puzzle",
+      "pitch": "Place the right tools in the right order to bring everyone home.",
       "what_you_do": [
         "Place a bridge across gaps so walkers can reach the portal.",
         "Carve shafts or sideways tunnels to open a route.",
@@ -916,6 +948,7 @@
     {
       "icon": "📺",
       "title": "Static",
+      "displayTitle": "Static",
       "desc": "The newest addition to the arcade — a fresh reflex-and-focus challenge for quick brain-break sessions.",
       "href": "/Lessons/Games/Static.html",
       "tag": "Reflex",
@@ -923,8 +956,8 @@
       "featured": true,
       "hero": false,
       "art": "/assets/cards/static.webp",
-      "sub_genre": "EVIDENCE BOARD DEDUCTION",
-      "pitch": "Examine clues, test accounts and assemble a case backed by evidence.",
+      "sub_genre": "Evidence-board deduction",
+      "pitch": "Pin the clues, link the threads, name the culprit.",
       "what_you_do": [
         "Examine clues and play recordings to inspect the evidence.",
         "Link a clue to an account to test whether it confirms or contradicts the claim.",
@@ -947,6 +980,7 @@
     {
       "icon": "👻",
       "title": "One Guy",
+      "displayTitle": "One Guy",
       "desc": "A solo ghost-runner: each attempt races the recorded 'ghost' of the last run on this device, so you race your own past best rather than anyone else. Shareable ghost codes let a run be passed on.",
       "href": "/Lessons/Games/OneGuy.html",
       "tag": "Reflex",
@@ -954,8 +988,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/one-guy.webp",
-      "sub_genre": "ONE-BUTTON GHOST RUNNER",
-      "pitch": "Time short hops and high jumps to outrun a recorded ghost and return boss projectiles.",
+      "sub_genre": "One-button ghost runner",
+      "pitch": "One button, one ghost, one chance per run.",
       "what_you_do": [
         "Tap to jump; hold for height or release early for a short hop.",
         "Pass the spot where the recorded ghost fell to take the crown.",
@@ -978,6 +1012,7 @@
     {
       "icon": "🗼",
       "title": "The Last Lighthouse",
+      "displayTitle": "The Last Lighthouse",
       "desc": "A keeper survival game: hold the last lighthouse watch by watch, guiding vessels safely through storms and Tempest conditions. Earn Keeper Marks, build your Keeper Record, and explore the new archipelago map — now updated to v1.1 with portable backup codes so progress can move between devices.",
       "href": "/Lessons/Games/The_Last_Lighthouse_v1_1_The_Archipelago_Update_FINAL.html",
       "tag": "Strategy",
@@ -985,8 +1020,8 @@
       "featured": true,
       "hero": false,
       "art": "/assets/cards/the-last-lighthouse.svg",
-      "sub_genre": "LIGHT ROUTE RESCUE",
-      "pitch": "Paint remembered light routes and manage lamp wear to guide vessels safely home.",
+      "sub_genre": "Light-route rescue strategy",
+      "pitch": "Guide every ship home through the rocks with the last working light.",
       "what_you_do": [
         "Aim and hold to paint glowing routes that vessels remember and follow.",
         "Switch wide and focused lenses to charge stones and light old glass.",
@@ -1005,6 +1040,7 @@
     {
       "icon": "🏆",
       "title": "Kids vs Staff: Showdown",
+      "displayTitle": "Kids vs Staff: Showdown",
       "desc": "Whole-class team quiz: your class takes on the staff across scored rounds. Teams score, not individuals — no individual leaderboard.",
       "href": "/Lessons/Games/KidsVsStaff_Showdown (3).html",
       "tag": "Class game",
@@ -1012,8 +1048,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/kids-vs-staff-showdown.webp",
-      "sub_genre": "TEAM QUIZ CHALLENGES",
-      "pitch": "Choose quiz, drawing and challenge rounds, then score two competing teams.",
+      "sub_genre": "Team quiz challenges",
+      "pitch": "Team quiz rounds where the kids take on the staff.",
       "what_you_do": [
         "Pick at least thirty minutes of rounds for the show.",
         "Guess a number before the reveal; the closest team wins the point.",
@@ -1032,6 +1068,7 @@
     {
       "icon": "⚽",
       "title": "World Cup: Road to the Three Lions Final",
+      "displayTitle": "World Cup: Road to the Final",
       "series": "World Cup",
       "desc": "An end-of-term tournament your teacher runs: three nations, possession and steals, stadium codes, a VAR twist and a cooperative England final. Auto-tallied scoring and evidence print included.",
       "href": "/Lessons/Games/WorldCup_ThreeLions_Final.html",
@@ -1040,8 +1077,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/world-cup-road-to-the-three-lions-final.webp",
-      "sub_genre": "TEAM QUIZ TOURNAMENT",
-      "pitch": "Answer team challenges, steal points and join forces for three final missions.",
+      "sub_genre": "Team quiz tournament",
+      "pitch": "Quiz tournament: win every round on the road to the final.",
       "what_you_do": [
         "Answer for the squad in possession; other squads can steal after a miss.",
         "Arrange the tactics cards in order and discard the two decoys.",
@@ -1070,8 +1107,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/world-cup-v3-match-director.webp",
-      "sub_genre": "TEAM QUIZ DIRECTING",
-      "pitch": "Direct team challenges, award goals and guide the class through a cooperative final.",
+      "sub_genre": "Team quiz directing",
+      "pitch": "Direct the match: pick the rounds, set the pace, call the scores.",
       "what_you_do": [
         "Reveal answers, judge the quiz and award a goal for each correct response.",
         "Order the six tactics cards and discard the decoys.",
@@ -1100,8 +1137,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/world-cup-v5-showdown.webp",
-      "sub_genre": "TEAM CHALLENGE SHOWDOWN",
-      "pitch": "Pit attackers against defenders, choose a challenge and contest team goals and clean sheets.",
+      "sub_genre": "Team challenge showdown",
+      "pitch": "Team challenge showdown: settle it round by round.",
       "what_you_do": [
         "Choose the attacking and defending squads for a head-to-head challenge.",
         "Let the defenders choose a challenge and an optional pressure condition.",
@@ -1145,6 +1182,7 @@
     {
       "icon": "⛏️",
       "title": "Voxel Frontier: Beaconfall — V4 Milestone 2",
+      "displayTitle": "Voxel Frontier: Beaconfall",
       "desc": "V4 Roadmap Milestone 2 adds greedy-meshed terrain, bounded flowing water, adaptive visuals and Arcade Passport feats while preserving Creative mode, procedural caves, trees, swimming and per-world saves. Runs offline in the browser.",
       "href": "/voxel/",
       "tag": "Sandbox",
@@ -1152,8 +1190,8 @@
       "featured": true,
       "hero": false,
       "art": "/assets/cards/voxel-frontier.webp",
-      "sub_genre": "3D BLOCK BUILDING",
-      "pitch": "Build and explore an unlimited block sandbox, or complete contracts to earn marks.",
+      "sub_genre": "3D block building",
+      "pitch": "Build in blocks, raise the beacons, light up the frontier.",
       "what_you_do": [
         "Break and place blocks to reshape your world.",
         "Fly, sprint, jump and swim as you explore.",
@@ -1170,6 +1208,7 @@
     {
       "icon": "⚽",
       "title": "Apex Kick: World Stage",
+      "displayTitle": "Apex Kick",
       "desc": "Nine modes in one offline free-kick game: World Tour, Pro Free Kicks, 60s Time Attack, Corner Kick Whip, Keeper Glove Mode, Top Bins Blitz, Cross & Volley, Woodwork and a 2P pass-and-play shootout. Swipe to strike and bend the ball past the wall and keeper.",
       "href": "/apexkick/",
       "tag": "Physics",
@@ -1179,8 +1218,8 @@
       "spotlight": true,
       "art": "/assets/cards/apex-kick.webp",
       "collection": "Sports",
-      "sub_genre": "AIMED FREE-KICK SHOOTING",
-      "pitch": "Swipe to strike and bend free kicks, corners and volleys in nine modes.",
+      "sub_genre": "Aimed free-kick shooting",
+      "pitch": "Line it up, bend it round the wall, find the corner.",
       "what_you_do": [
         "Swipe up from the ball to take your shot.",
         "Flick to strike, bowing the gesture to bend the ball.",
@@ -1200,6 +1239,7 @@
     {
       "icon": "🎱",
       "title": "Apex Pool",
+      "displayTitle": "Apex Pool",
       "desc": "Call the cue ball's leave, then prove you can read the table. Offline 8-ball with genuine spin, position play, AI, trick shots and an honest Leave Rating.",
       "href": "/apexpool/",
       "tag": "Physics",
@@ -1208,8 +1248,8 @@
       "hero": false,
       "art": "/assets/cards/apex-pool.svg",
       "collection": "Sports",
-      "sub_genre": "8-BALL SPIN TACTICS",
-      "pitch": "Call where the cue ball will finish, then use aim and spin to play the table.",
+      "sub_genre": "8-ball spin tactics",
+      "pitch": "Read the table, add the spin, clear the balls.",
       "what_you_do": [
         "Call where the cue ball will finish before you take the shot.",
         "Adjust draw, follow and sidespin to control the cue ball.",
@@ -1233,6 +1273,7 @@
     {
       "icon": "⛳",
       "title": "Apex Golf",
+      "displayTitle": "Apex Golf",
       "desc": "A top-down golf game about reading the hole and knowing your own game. Call your stroke count, play nine seeded holes with honest wind and slope, then earn a Call Rating. Works offline.",
       "href": "/apexgolf/",
       "tag": "Physics",
@@ -1241,8 +1282,8 @@
       "hero": false,
       "art": "/assets/cards/apex-golf.svg",
       "collection": "Sports",
-      "sub_genre": "WIND SLOPE GOLF",
-      "pitch": "Read wind and slope, call your stroke count and play nine seeded golf holes.",
+      "sub_genre": "Wind-and-slope golf",
+      "pitch": "Read the wind and the slope before every swing.",
       "what_you_do": [
         "Study the hole and call how many strokes you will need.",
         "Choose one of four clubs, then set your aim and power.",
@@ -1259,6 +1300,7 @@
     {
       "icon": "🎾",
       "title": "Apex Tennis",
+      "displayTitle": "Apex Tennis",
       "desc": "Call the point before the serve, then build it on court. A complete offline tennis game with real rules, three rival styles and an honest Plan Rating.",
       "href": "/apextennis/",
       "tag": "Physics",
@@ -1267,8 +1309,8 @@
       "hero": false,
       "art": "/assets/cards/apex-tennis.svg",
       "collection": "Sports",
-      "sub_genre": "SHOT-PLANNING TENNIS RALLIES",
-      "pitch": "Call how a tennis point will unfold, then move, aim and choose shots to follow your plan.",
+      "sub_genre": "Shot-planning rallies",
+      "pitch": "Plan each shot two moves ahead and win the rally.",
       "what_you_do": [
         "Call how the point will unfold and earn a rating for following the plan.",
         "Move, aim and choose from drive, slice, lob, drop and smash shots.",
@@ -1285,6 +1327,7 @@
     {
       "icon": "🔷",
       "title": "Neon Sync",
+      "displayTitle": "Neon Sync",
       "desc": "A 3v3 neon point-control arena where the score is not your aim — what counts is whether you were the teammate everyone wants. Hold the point, back your squad and get endorsed by AI teammates who state their reasons. Bots have human reaction times and cannot out-track you, so matches are decided by reading the fight rather than by twitch.",
       "href": "/neonsync/",
       "tag": "Strategy",
@@ -1292,8 +1335,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/neon-sync.svg",
-      "sub_genre": "3V3 OBJECTIVE TACTICS",
-      "pitch": "Hold a point or escort a payload, combining abilities with your team.",
+      "sub_genre": "3v3 objective tactics",
+      "pitch": "Three on three: hold the objectives and move as one.",
       "what_you_do": [
         "Capture the point and race the opposing team to one hundred percent.",
         "Escort the payload to delivery, or defend until the five-minute horn.",
@@ -1310,6 +1353,7 @@
     {
       "icon": "🧬",
       "title": "Biopunk Hive",
+      "displayTitle": "Biopunk Hive",
       "desc": "A single-file biopunk incremental game: grow a forbidden containment hive, harvest cadence, manage toxicity and stabilise breaches before they spread, then distil cryo-stasis condensate and prestige into a stronger run.",
       "href": "/biopunkhive/",
       "tag": "Strategy",
@@ -1317,8 +1361,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/biopunk-hive.svg",
-      "sub_genre": "CADENCE IDLE MANAGEMENT",
-      "pitch": "Harvest to a steady rhythm, manage toxicity and purge the hive for permanent upgrades.",
+      "sub_genre": "Cadence idle management",
+      "pitch": "Keep the hive's cadence steady and watch it grow.",
       "what_you_do": [
         "Keep harvest taps between 220 and 450 milliseconds to amplify yield.",
         "Spend credits to reduce toxicity and contamination risk.",
@@ -1335,6 +1379,7 @@
     {
       "icon": "🎯",
       "title": "Neon Breach",
+      "displayTitle": "Neon Breach",
       "desc": "Survive escalating drone waves in a procedural neon arena. Three weapons — Pulse Rifle, Arc Scattergun and Ion Rail — each want a different range, and eight perks are drafted after every wave clear into a build you choose rather than one you unlock. Full touch controls, and it pauses itself when you switch away.",
       "href": "/neonbreach/",
       "tag": "Reflex",
@@ -1342,8 +1387,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/neon-breach.svg",
-      "sub_genre": "FIRST-PERSON WAVE SHOOTING",
-      "pitch": "Survive drone waves, switch weapons and draft a tactical upgrade after every clear.",
+      "sub_genre": "First-person wave shooting",
+      "pitch": "Breach the doors and hold out against every wave.",
       "what_you_do": [
         "Move, aim, fire, jump and crouch to survive escalating drone waves.",
         "Switch between three weapons and reload during combat.",
@@ -1360,6 +1405,7 @@
     {
       "icon": "⚔️",
       "title": "Apex Rally",
+      "displayTitle": "Apex Rally",
       "desc": "Read the court before the ball arrives. A rally duel against opponents who adapt as you learn them — aim, time and spin every shot, bank Apex Focus by reading the bounce early, then finish the point from the baseline or at the net. Works offline.",
       "href": "/apexrally/",
       "tag": "Physics",
@@ -1368,8 +1414,8 @@
       "hero": false,
       "art": "/assets/cards/apex-rally.svg",
       "collection": "Sports",
-      "sub_genre": "SPIN TENNIS DUELS",
-      "pitch": "Read the court, choose a landing target and time spin shots against adaptive opponents.",
+      "sub_genre": "Spin tennis duels",
+      "pitch": "Serve with spin, read the bounce, win the duel.",
       "what_you_do": [
         "Move early to the predicted landing area to charge your focus meter.",
         "Choose a target, hold to charge, then release as the ball enters racket range.",
@@ -1386,6 +1432,7 @@
     {
       "icon": "✈️",
       "title": "Medevac Frontier",
+      "displayTitle": "Medevac Frontier",
       "desc": "Train with Unit 734, then fly Twilight and Night Canyon medevac runs. Land in the green zone, guide the litter teams out under a running clock — three litters a trip — then decide how many supply crates to risk before you clear the rim. Every completed mission tightens the canyon, and your service record carries over. Works offline.",
       "href": "/medevac/",
       "tag": "Physics",
@@ -1393,8 +1440,8 @@
       "featured": false,
       "hero": false,
       "art": "/medevac/medevac_frontier_banner.png",
-      "sub_genre": "CANYON RESCUE FLIGHT",
-      "pitch": "Land in a canyon, time the patient extraction and take off before the weather window closes.",
+      "sub_genre": "Canyon rescue flights",
+      "pitch": "Fly into the canyon, pick up the injured, get out alive.",
       "what_you_do": [
         "Control pitch and centreline to land gently on the strip.",
         "Tap when the marker crosses the green zone to move each patient quickly.",
@@ -1413,6 +1460,7 @@
     {
       "icon": "🪴",
       "title": "Lumina Haven",
+      "displayTitle": "Lumina Haven",
       "desc": "A low-pressure sanctuary game about arranging a beautiful room, nurturing unusual plants, collecting gems and crafting luminous new décor. Set the greenhouse weather, repaint the walls and resize the room, then take two materials to the Botanical & Gem Fusion bench — known pairings unlock rare living décor, dyes and lights, and experimental ones still make essence. The Soundscape Mixer is generated live by Web Audio with no sound files, and Photo Mode exports the room only, no interface.",
       "href": "/luminahaven/",
       "tag": "Calm",
@@ -1420,8 +1468,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/lumina-haven.svg",
-      "sub_genre": "ROOM DECORATING SANDBOX",
-      "pitch": "Arrange a room, care for plants and combine collected materials to unlock new décor.",
+      "sub_genre": "Room decorating sandbox",
+      "pitch": "Furnish and decorate rooms exactly how you like them.",
       "what_you_do": [
         "Choose furniture, drag it into place, then rotate or recolour it.",
         "Water plants, let them grow and prune them for rewards.",
@@ -1440,7 +1488,7 @@
     {
       "icon": "🌌",
       "title": "Aurora Links: Northern Lights Tour — AAA V4",
-      "displayTitle": "Aurora Links: Northern Lights Tour",
+      "displayTitle": "Aurora Links",
       "desc": "AAA V4 is a standalone WebGL2-enhanced golf simulation with RK4 aerodynamics, dynamic lies, weekly cups, an earn-only career, a shared Sports Passport and private local-network House Cup play. Canvas gameplay remains available when WebGL2 is unavailable.",
       "href": "/auroralinks/",
       "tag": "Physics",
@@ -1449,8 +1497,8 @@
       "hero": false,
       "art": "/assets/cards/aurora-links-3d.svg",
       "collection": "Sports",
-      "sub_genre": "GOLF SHOT SIMULATION",
-      "pitch": "Read the course, call your score and use a three-tap swing to play each hole.",
+      "sub_genre": "Northern-lights golf tour",
+      "pitch": "Sink putts under the northern lights, hole after hole.",
       "what_you_do": [
         "Aim your shot and control the swing with three timed taps.",
         "Read wind, lies and greens before choosing your shot.",
@@ -1472,6 +1520,7 @@
     {
       "icon": "🌃",
       "title": "Neon Meridian: Open Drive",
+      "displayTitle": "Neon Meridian",
       "desc": "Free driving in Meridian Bay, a dense original coastal city built for landmarks, traffic and discovery. Take delivery runs, checkpoint runs and circuit races, bank the credits, then spend them in the garage on engine, tyres and brakes. Twelve landmarks across seven districts, weather and a day-night sky, holdable on one phone. Offline, single file, no account.",
       "href": "/neonmeridian/",
       "tag": "Sandbox",
@@ -1479,8 +1528,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/neon-meridian.webp",
-      "sub_genre": "CITY DRIVING SANDBOX",
-      "pitch": "Explore a city by car, complete delivery and checkpoint runs, then upgrade your vehicle.",
+      "sub_genre": "City driving sandbox",
+      "pitch": "A neon city, an open road and nowhere you have to be.",
       "what_you_do": [
         "Drive through traffic and discover landmarks around the city.",
         "Start a delivery, checkpoint run or three-lap circuit race.",
@@ -1497,6 +1546,7 @@
     {
       "icon": "🏁",
       "title": "Rally Vector 3D — Championship Edition",
+      "displayTitle": "Rally Vector 3D",
       "desc": "A six-stage rally season on tarmac, sand, snow, wet coast, forest gravel and canyon shale. Read the holographic pace notes, keep it out of the fords and the breakable props, then spend your service-park minutes on the damage that matters. Every stage records a ghost you can race yourself against. Offline, single file, touch controls.",
       "href": "/rallyvector3d/",
       "tag": "Physics",
@@ -1504,8 +1554,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/rally-vector-3d.webp",
-      "sub_genre": "3D RALLY RACING",
-      "pitch": "Race mixed-surface rally stages, compare your ghost and choose repairs between championship stages.",
+      "sub_genre": "Championship rally racing",
+      "pitch": "Drift every stage and chase the championship.",
       "what_you_do": [
         "Steer, brake and handbrake through stages with different grip and weather.",
         "Challenge your local best ghost in a time attack.",
@@ -1522,6 +1572,7 @@
     {
       "icon": "🏎️",
       "title": "Slipstream GP: Hyperdraft",
+      "displayTitle": "Hyperdraft",
       "series": "Slipstream",
       "desc": "Drafting rebuilt as three zones you can feel: a turbulent fringe, a vacuum pocket that charges your boost, and dirty air that takes your grip and cooks the engine. Pull sideways out of the pocket and the slingshot fires. Four circuits including Stormline, where standing water, hydroplaning and lightning fight you the whole way round. Four rival personalities — the Blocker, the Apex Purist, the Leech and the Wildcard — and any of them will hold a grudge after contact. Offline, no account, nothing uploaded.",
       "href": "/hyperdraft/",
@@ -1530,8 +1581,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/slipstream-hyperdraft.svg",
-      "sub_genre": "SLIPSTREAM CIRCUIT RACING",
-      "pitch": "Draft rivals, charge boost and pull sideways for slingshot passes in three-lap races.",
+      "sub_genre": "Slipstream circuit racing",
+      "pitch": "Draft through the corners and win the circuit.",
       "what_you_do": [
         "Hold the slipstream to charge boost, then slingshot past a rival.",
         "Choose a circuit for a three-lap race.",
@@ -1547,6 +1598,7 @@
     {
       "icon": "🥌",
       "title": "Apex Curl",
+      "displayTitle": "Apex Curl",
       "desc": "Call the shot, then throw it. A deterministic curling sheet where ice temperature, pebble wear and the scratch left by earlier stones all move the rock, and sweeping is a real decision rather than a button. Read the draw, judge the weight, and watch the predictor line against what the stone actually does. Works offline.",
       "href": "/apexcurl/",
       "tag": "Physics",
@@ -1555,8 +1607,8 @@
       "hero": false,
       "art": "/assets/cards/apex-curl.svg",
       "collection": "Sports",
-      "sub_genre": "CURLING SHOT SIMULATION",
-      "pitch": "Call a curling shot, set its speed and angle, then sweep ahead of the moving stone.",
+      "sub_genre": "Curling shot simulation",
+      "pitch": "Weight, line and sweep: slide the stone to the button.",
       "what_you_do": [
         "Choose release speed, angle and the direction of spin.",
         "Sweep left and right ahead of the stone to reduce drag.",
@@ -1575,6 +1627,7 @@
     {
       "icon": "🚴",
       "title": "Apex Velodrome",
+      "displayTitle": "Apex Velodrome",
       "desc": "Track racing where the match you have is the one you spend. Ride the bankings with real aerodynamics, draft that you can feel arriving, and an anaerobic reserve that does not come back. Points races, the Madison hand-sling, keirin and pursuit, against riders who read the race as you do. Works offline.",
       "href": "/apexvelodrome/",
       "tag": "Physics",
@@ -1583,8 +1636,8 @@
       "hero": false,
       "art": "/assets/cards/apex-velodrome.svg",
       "collection": "Sports",
-      "sub_genre": "TACTICAL TRACK CYCLING",
-      "pitch": "Choose a track race, manage power and sprint while judging draft and lane position.",
+      "sub_genre": "Tactical track cycling",
+      "pitch": "Sit in, save your legs, then launch the sprint.",
       "what_you_do": [
         "Choose a sprint duel, keirin, team pursuit or a 1 km ghost.",
         "Adjust power and lane to manage drag and your energy reserve.",
@@ -1603,6 +1656,7 @@
     {
       "icon": "🔧",
       "title": "Micro-Tinkerer: The Giant's Study",
+      "displayTitle": "Micro-Tinkerer",
       "desc": "Shrunk to thumb height in a giant's study, with three AA batteries to recover — one down in the Lowlands, one on the desktop, one along a bookshelf. A Seeker hunts you the whole time, and you carry an exposure meter that fills when you are in the open and a stamina meter that empties when you run. The room is your other move: an angle lamp, a tub of PVA, a desk fan, a line of hardcover books stood on end. Hiders prevail if one of them is still loose at the end. Up to four players share a six-character room code, and single player runs fully offline.",
       "href": "/micro-tinkerer/",
       "tag": "Hide & seek",
@@ -1610,8 +1664,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/micro-tinkerer.svg",
-      "sub_genre": "FLASHLIGHT HIDE-AND-SEEK ESCAPE",
-      "pitch": "Hide from a searching light, recover three batteries or explore the room without a timer.",
+      "sub_genre": "Flashlight hide-and-seek escape",
+      "pitch": "You're tiny, the study is huge and the torch is looking for you.",
       "what_you_do": [
         "Break the searching light’s sightline and survive the four-minute hunt.",
         "Find three batteries to power the toy plane at the window.",
@@ -1640,6 +1694,7 @@
     {
       "icon": "🏘",
       "title": "Town Life",
+      "displayTitle": "Town Life",
       "desc": "A whole town to live in. Claim a plot, furnish a home and wire its electrical grid, buy and upgrade businesses, tune a car, and take any of seven roles — Resident, Courier, Paramedic, Officer, Builder, Mayor or Mischief. Day and night, weather, police patrols, a civic budget the town votes on, and a save that keeps everything between visits. One file, no install, offline. Gold Master v1.0 preview — verified in Chromium, Firefox and WebKit. Physical device checks (Chromebook, phone) are still pending.",
       "href": "/townlife/",
       "tag": "Sandbox",
@@ -1647,8 +1702,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/town-life.svg",
-      "sub_genre": "TOWN ROLEPLAY SANDBOX",
-      "pitch": "Choose a town role, complete its jobs, furnish a home and manage businesses and utilities.",
+      "sub_genre": "Town role-play sandbox",
+      "pitch": "Pick a role, run the town, see what a day brings.",
       "what_you_do": [
         "Walk or drive around town and interact with people and buildings.",
         "Complete role jobs using cargo handling, pulse timing or evidence scans.",
@@ -1665,6 +1720,7 @@
     {
       "icon": "📋",
       "title": "Touchline Dynasty",
+      "displayTitle": "Touchline Dynasty",
       "desc": "A complete football management career in one file. Take Harbour FC through seasons of transfers, contracts, board expectations and a dressing room that remembers how you treat it — then watch every fixture play out in a live 3D broadcast you can pause, replay from any angle and analyse. Tactics, substitutions and press conferences all move the simulation. Saves stay on your device. Offline, phone-first, no install.",
       "href": "/touchline/",
       "tag": "Management Sim",
@@ -1673,8 +1729,8 @@
       "hero": false,
       "art": "/assets/cards/touchline-dynasty.svg",
       "collection": "Sports",
-      "sub_genre": "FOOTBALL CLUB MANAGEMENT",
-      "pitch": "Manage a football club across seasons, from recruitment and finances to tactics and substitutions.",
+      "sub_genre": "Football club management",
+      "pitch": "Pick the squad, set the tactics, build a football dynasty.",
       "what_you_do": [
         "Recruit players, develop youth and manage contracts and facilities.",
         "Change mentality, pressing and player roles during a match.",
@@ -1691,6 +1747,7 @@
     {
       "icon": "🛩️",
       "title": "Skybreak Vector",
+      "displayTitle": "Skybreak Vector",
       "desc": "Fly beneath a hostile radar floor, dismantle an offshore cruiser under flak and CIWS fire, then defeat Strider Squadron's prototype ace. Three airframes, a Hydra special-weapon armoury, medals and liveries to unlock, and a phone you can pair as a HOTAS over local Wi-Fi with no cloud relay. WebGL 2 cinematic 3D in one file: no install, offline.",
       "href": "/skybreak/",
       "tag": "Flight combat",
@@ -1698,8 +1755,8 @@
       "featured": false,
       "hero": false,
       "art": "/assets/cards/skybreak-vector.svg",
-      "sub_genre": "3D FLIGHT COMBAT",
-      "pitch": "Fly below radar, attack a cruiser and fight an ace across three combat phases.",
+      "sub_genre": "3D flight combat",
+      "pitch": "Roll, climb and fight in open 3D skies.",
       "what_you_do": [
         "Control pitch, roll, yaw and throttle to fly beneath the radar floor.",
         "Fire cannon, lock missiles and use equipped special weapons.",
