@@ -24,6 +24,8 @@ jobs:
     name: Assemble all games independently
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    outputs:
+      pages_artifact: ${{ steps.sources.outputs.pages_artifact }}
     permissions:
       contents: read
       pages: read
@@ -40,8 +42,9 @@ jobs:
           c=json.load(open('play-publication.json'))
           assert c['domain']=='madebymatt-play.uk'
           assert all(re.fullmatch('[0-9a-f]{40}',c[k]) for k in ['site_commit','lessons_commit'])
+          pages_artifact='github-pages-'+os.environ['GITHUB_RUN_ID']+'-'+os.environ['GITHUB_RUN_ATTEMPT']
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:
-              f.write('site='+c['site_commit']+'\nlessons='+c['lessons_commit']+'\n')
+              f.write('site='+c['site_commit']+'\nlessons='+c['lessons_commit']+'\npages_artifact='+pages_artifact+'\n')
           PY
       - uses: actions/checkout@v4
         with:
@@ -132,6 +135,7 @@ jobs:
         if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish))
         uses: actions/upload-pages-artifact@v3
         with:
+          name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
           path: .sources/Site/domain-split/output/games
   deploy:
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish))
@@ -147,6 +151,8 @@ jobs:
       - name: Publish the verified games artifact
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ needs.build.outputs.pages_artifact }}
   verify-published:
     needs: deploy
     runs-on: ubuntu-24.04
@@ -198,7 +204,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: published-play-completion-${{ github.run_id }}
+          name: published-play-completion-${{ github.run_id }}-${{ github.run_attempt }}
           path: .sources/Site/.play-review/qa/
           if-no-files-found: error
           retention-days: 30
