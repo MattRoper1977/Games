@@ -348,7 +348,7 @@
       "href": "/offbrand/",
       "tag": "Whodunnit",
       "hue": "#A78BFA",
-      "featured": true,
+      "featured": false,
       "hero": true,
       "art": "/assets/cards/off-brand.svg",
       "sub_genre": "Stealth deduction tasks",
@@ -373,7 +373,7 @@
       "href": "/Lessons/Games/Axiom_Shift.html",
       "tag": "Rhythm",
       "hue": "#5EEAD4",
-      "featured": true,
+      "featured": false,
       "hero": false,
       "art": "/assets/cards/axiom-shift.svg",
       "sub_genre": "One-button rhythm runner",
@@ -398,7 +398,7 @@
       "href": "/Lessons/Games/Charcoal.html",
       "tag": "Hide & seek",
       "hue": "#D9B44A",
-      "featured": true,
+      "featured": false,
       "hero": false,
       "art": "/assets/cards/charcoal.svg",
       "sub_genre": "Hidden-role chase rounds",
@@ -425,7 +425,7 @@
       "href": "/Lessons/Games/Hold_the_Mark.html",
       "tag": "Strategy",
       "hue": "#F6AD55",
-      "featured": true,
+      "featured": false,
       "hero": false,
       "art": "/assets/cards/hold-the-mark.webp",
       "sub_genre": "Tower defence tactics",
@@ -452,7 +452,7 @@
       "href": "/Lessons/Games/Glitch_Clash.html",
       "tag": "Card battle",
       "hue": "#A78BFA",
-      "featured": true,
+      "featured": false,
       "hero": false,
       "art": "/assets/cards/glitch-clash.webp",
       "sub_genre": "Turn-based card battles",
@@ -825,7 +825,7 @@
       "href": "/Lessons/Games/Slipstream.html",
       "tag": "Reflex",
       "hue": "#5EEAD4",
-      "featured": true,
+      "featured": false,
       "hero": false,
       "art": "/assets/cards/slipstream.webp",
       "sub_genre": "Draft-boost racing",
@@ -905,7 +905,7 @@
       "href": "/Lessons/Games/Lumins.html",
       "tag": "Puzzle",
       "hue": "#F687B3",
-      "featured": true,
+      "featured": false,
       "hero": false,
       "art": "/assets/cards/lumins.webp",
       "sub_genre": "Tool-placement rescue puzzle",
@@ -930,7 +930,7 @@
       "href": "/Lessons/Games/Static.html",
       "tag": "Reflex",
       "hue": "#63B3ED",
-      "featured": true,
+      "featured": false,
       "hero": false,
       "art": "/assets/cards/static.webp",
       "sub_genre": "Evidence-board deduction",
@@ -992,7 +992,7 @@
       "href": "/Lessons/Games/The_Last_Lighthouse_v1_1_The_Archipelago_Update_FINAL.html",
       "tag": "Strategy",
       "hue": "#5EEAD4",
-      "featured": true,
+      "featured": false,
       "hero": false,
       "art": "/assets/cards/the-last-lighthouse.svg",
       "sub_genre": "Light-route rescue strategy",
@@ -1040,96 +1040,6 @@
       ]
     },
     {
-      "icon": "⚽",
-      "title": "World Cup: Road to the Three Lions Final",
-      "displayTitle": "World Cup: Road to the Final",
-      "series": "World Cup",
-      "desc": "An end-of-term tournament your teacher runs: three nations, possession and steals, stadium codes, a VAR twist and a cooperative England final. Auto-tallied scoring and evidence print included.",
-      "href": "/Lessons/Games/WorldCup_ThreeLions_Final.html",
-      "tag": "Class game",
-      "hue": "#F6AD55",
-      "featured": false,
-      "hero": false,
-      "art": "/assets/cards/world-cup-road-to-the-three-lions-final.webp",
-      "sub_genre": "Team quiz tournament",
-      "pitch": "Quiz tournament: win every round on the road to the final.",
-      "what_you_do": [
-        "Answer for the squad in possession; other squads can steal after a miss.",
-        "Arrange the tactics cards in order and discard the two decoys.",
-        "Consult your squad, then choose a goal zone for the final penalty."
-      ],
-      "controls": [
-        "touch",
-        "keyboard",
-        "mouse"
-      ],
-      "session_band": "short",
-      "classroom_facets": [
-        "whole-class",
-        "versus"
-      ]
-    },
-    {
-      "icon": "🎮",
-      "title": "World Cup v3 — Match Director",
-      "displayTitle": "World Cup: Match Director",
-      "series": "World Cup",
-      "desc": "Run a match as director — Made by Matt arcade.",
-      "href": "/Lessons/Games/WorldCup_v3_MatchDirector.html",
-      "tag": "Class game",
-      "hue": "#F687B3",
-      "featured": false,
-      "hero": false,
-      "art": "/assets/cards/world-cup-v3-match-director.webp",
-      "sub_genre": "Team quiz directing",
-      "pitch": "Direct the match: pick the rounds, set the pace, call the scores.",
-      "what_you_do": [
-        "Reveal answers, judge the quiz and award a goal for each correct response.",
-        "Order the six tactics cards and discard the decoys.",
-        "Describe a word without using its banned words before the card vanishes."
-      ],
-      "controls": [
-        "touch",
-        "keyboard",
-        "mouse"
-      ],
-      "session_band": "unstated",
-      "classroom_facets": [
-        "whole-class",
-        "versus"
-      ]
-    },
-    {
-      "icon": "🎮",
-      "title": "World Cup v5 — Showdown",
-      "displayTitle": "World Cup: Showdown",
-      "series": "World Cup",
-      "desc": "Head-to-head showdown — Made by Matt arcade.",
-      "href": "/Lessons/Games/WorldCup_v5_Showdown.html",
-      "tag": "Class game",
-      "hue": "#63B3ED",
-      "featured": false,
-      "hero": false,
-      "art": "/assets/cards/world-cup-v5-showdown.webp",
-      "sub_genre": "Team challenge showdown",
-      "pitch": "Team challenge showdown: settle it round by round.",
-      "what_you_do": [
-        "Choose the attacking and defending squads for a head-to-head challenge.",
-        "Let the defenders choose a challenge and an optional pressure condition.",
-        "Earn goals as attackers or aim for a clean sheet as defenders."
-      ],
-      "controls": [
-        "touch",
-        "keyboard",
-        "mouse"
-      ],
-      "session_band": "unstated",
-      "classroom_facets": [
-        "whole-class",
-        "versus"
-      ]
-    },
-    {
       "icon": "🎮",
       "title": "Trekkers Trail Runner — Tees Coast",
       "desc": "Five legs of the real AQA Walking Unit route, from Eston Rec to South Gare — set a bearing at the Rec, climb to Eston Nab, then take the dunes and loose sand at the coast. Glide the route, dodge the bog and beat the Storm; Calm Mode is there if you want the walk without the weather.",
@@ -1161,7 +1071,7 @@
       "href": "/voxel/",
       "tag": "Sandbox",
       "hue": "#87CEEB",
-      "featured": true,
+      "featured": false,
       "hero": false,
       "art": "/assets/cards/voxel-frontier.webp",
       "sub_genre": "3D block building",
