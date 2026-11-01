@@ -59,7 +59,14 @@ assert.equal(findTrackingIssue(open).number, 4);
 console.log('PASS HC4 §5.2 denial classified / unrelated errors stay red / staged pin read / tracking issue exact and single');
 
 // Post-merge deployment skips are valid only with authenticated PR evidence.
+const crypto = require('node:crypto');
+const fs = require('node:fs');
+const path = require('node:path');
 const {publicationRunIds, PUBLICATION_POLICY_SHA} = require('./pin_release_evidence.cjs');
+const policyBytes = fs.readFileSync(path.join(__dirname, '..', '.github', 'workflows', 'play-domain-publication.yml'));
+const policyBlobSha = crypto.createHash('sha1').update(`blob ${policyBytes.length}\0`).update(policyBytes).digest('hex');
+assert.equal(PUBLICATION_POLICY_SHA, policyBlobSha,
+  `PUBLICATION_POLICY_SHA (${PUBLICATION_POLICY_SHA}) does not match play-domain-publication.yml git blob (${policyBlobSha})`);
 const repository = 'MattRoper1977/Games', sha = 'a'.repeat(40), publicationId = 71, suiteId = 91;
 const row = (name, id, conclusion) => ({name, id, status: 'completed', conclusion,
   head_sha: sha, app: {id: 15368, slug: 'github-actions'}, check_suite: {id: suiteId},

@@ -23,6 +23,18 @@ def errors(workflow):
     publication_steps = [step for step in steps if step.get('uses', '').startswith(('actions/configure-pages@', 'actions/upload-pages-artifact@'))]
     if len(publication_steps) != 2 or any(step.get('if') != DEPLOY_IF for step in publication_steps):
         problems.append('PRs must not prepare a Pages publication')
+    upload_pages = [step for step in steps if step.get('uses', '').startswith('actions/upload-pages-artifact@')]
+    deploy_steps = [step for step in jobs.get('deploy', {}).get('steps', []) if step.get('uses', '').startswith('actions/deploy-pages@')]
+    build_output = jobs.get('build', {}).get('outputs', {}).get('pages_artifact', '')
+    upload_name = upload_pages[0].get('with', {}).get('name', '') if len(upload_pages) == 1 else ''
+    deploy_name = deploy_steps[0].get('with', {}).get('artifact_name', '') if len(deploy_steps) == 1 else ''
+    if ('github.run_attempt' not in upload_name or not build_output
+            or deploy_name != '${{ needs.build.outputs.pages_artifact }}'):
+        problems.append('Pages deployment artifact name must be unique per attempt and bound from build to deploy')
+    verify_uploads = [step for step in jobs.get('verify-published', {}).get('steps', [])
+                      if step.get('uses', '').startswith('actions/upload-artifact@')]
+    if not verify_uploads or any('github.run_attempt' not in step.get('with', {}).get('name', '') for step in verify_uploads):
+        problems.append('Published browser evidence artifact name must be unique per attempt')
     if jobs.get('verify-published', {}).get('needs') != 'deploy':
         problems.append('Live proof must follow deployment')
     if not any(step.get('run', '').strip() == 'python tools/check_publication_trigger.py --self-test' for step in steps):
@@ -44,6 +56,14 @@ def self_test(real):
     scratch['jobs']['deploy']['if'] = real['jobs']['deploy']['if']
     assert not errors(scratch)
     print('CONTROL PR-deployment guard mutation FAIL / restored PASS')
+    scratch = copy.deepcopy(real)
+    for step in scratch['jobs']['deploy']['steps']:
+        if step.get('uses', '').startswith('actions/deploy-pages@'):
+            step['with'] = {'artifact_name': 'github-pages'}
+    assert errors(scratch), 'Non-attempt-bound Pages artifact escaped the control'
+    scratch['jobs']['deploy']['steps'] = copy.deepcopy(real['jobs']['deploy']['steps'])
+    assert not errors(scratch)
+    print('CONTROL attempt-unique Pages artifact mutation FAIL / restored PASS')
 
 
 if __name__ == '__main__':
