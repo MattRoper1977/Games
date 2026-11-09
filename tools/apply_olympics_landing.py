@@ -70,7 +70,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 MANIFEST = REPO / 'games.json'
 
-HREF = '/olympics/'
+HREF = '/worldstage/'
 TITLE = 'Global Games: Championship Simulator'
 MARKER = 'NEW · '
 PREV_HOLDER_HREF = '/fracture/'
