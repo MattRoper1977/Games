@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "91115119370ed9db46ca2f79be98e4aa202b2ab0",
+  "site_commit": "f3992d8aa94ec422fe55d82cb5c459ae9791175f",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "357d841fbb3e7da9fb6bde1eab2e18e0650637b4",
   "canonical_games": 62,
   "additional_activities": 7,
-  "notes": "Site pin move for the Lumins opening picture and complete reviews at the published revisions (Site #625, #626). Lessons pin unchanged. Previous site pin: 0dafadae7d96f69548899a009f21c2711b89a93c. Publication preserves the existing destination, Pages configuration and DNS."
+  "notes": "Site pin move for the Apex Pool aim view fix (Site #640): the whole table stays in view while aiming; evidence rebound and the game screen recaptured at the new bytes. Lessons pin unchanged. Previous site pin: 91115119370ed9db46ca2f79be98e4aa202b2ab0. Publication preserves the existing destination, Pages configuration and DNS."
 }
