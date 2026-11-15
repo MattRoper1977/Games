@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "ec0b1c675d403b69b581cbef6904e9abf44508d2",
+  "site_commit": "a1dc8475e6f302b6bd5dbc44812daeedd05d1b05",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "357d841fbb3e7da9fb6bde1eab2e18e0650637b4",
   "canonical_games": 62,
   "additional_activities": 7,
-  "notes": "Site pin move for the Micro-Tinkerer and Crown & Badge upgrades and phone gameplay improvements (Site #643): evidence, discovery review and preservation digests rebound and both game screens recaptured at the new bytes. Lessons pin unchanged. Previous site pin: f3992d8aa94ec422fe55d82cb5c459ae9791175f. Publication preserves the existing destination, Pages configuration and DNS."
+  "notes": "Site pin move for the Made by Matt Play storefront upgrade, smart search, dark utility pages and Phase 2 live gameplay card posters (Site #644): Obsidian-Aurora console shell, self-hosted Space Grotesk display font, isometric hero motif, cinema Spotlight with playlist rail, two-column Game Hub dialog, punctuation/synonym-aware search, cohesive dark /privacy/, /game-saves/, /stats/ and /404.html pages, and 57 full-bleed 640x360 gameplay screen captures bound in screens/manifest.json. All 69 game payloads and the Lessons pin remain byte-identical. Previous site pin: ec0b1c675d403b69b581cbef6904e9abf44508d2."
 }
