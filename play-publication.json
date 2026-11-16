@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "592a8a5d3fd0f68493c5d163e9cbef1e379e8e8b",
+  "site_commit": "1be89f4593d187ce1b3a82caf2ac4e4a20245507",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "357d841fbb3e7da9fb6bde1eab2e18e0650637b4",
   "canonical_games": 62,
   "additional_activities": 7,
-  "notes": "Site pin move to 592a8a5d (Site #644 + #645): Made by Matt Play console storefront, smart search, dark utility pages, Phase 2 full-bleed 640x360 gameplay card posters, and desktop 200% text-enlargement sidebar block-flow fix. All 69 game payloads and the Lessons pin remain byte-identical. Previous site pin: ec0b1c675d403b69b581cbef6904e9abf44508d2."
+  "notes": "Pin release: site 592a8a5d -> 1be89f45 (World Stage desktop anti-stutter overhaul, 120 Hz render interpolation, zero-GC snapshot ring, HUD dirty-checking, Single Event Practice, gamepad & pointer controls, and recaptured storefront poster). Lessons pin remains 357d841fbb."
 }
