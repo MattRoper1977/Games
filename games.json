@@ -1798,6 +1798,33 @@
       "classroom_facets": [
         "solo"
       ]
+    },
+    {
+      "icon": "🐕",
+      "title": "Hill Hound",
+      "desc": "Herd striped and spotted flocks across five sunlit 3D fields. Run wide behind the sheep to push the flock uphill, stalk quietly through gates, bark to wake the horned rams and whistle to regroup strays, then sort striped sheep into the left pen and spotted sheep into the right before the 3:00 clock runs out. Earn up to three stars a field to unlock the next, from Clover Fold to Sunset Summit. Calm Mode and Golden Hour skies. One file: no install, offline.",
+      "href": "/hillhound/",
+      "tag": "Reflex",
+      "hue": "#F4B942",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/hill-hound.svg",
+      "sub_genre": "3D sheepdog herding",
+      "pitch": "Sweep behind, bark, and pen the flock.",
+      "what_you_do": [
+        "Run wide behind the sheep to steer the flock uphill towards the pens.",
+        "Stalk through gates, bark to wake horned rams and whistle to regroup strays.",
+        "Sort striped sheep left and spotted sheep right to earn up to three stars a field."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "quick",
+      "classroom_facets": [
+        "solo"
+      ]
     }
   ],
   "session_band_labels": {
