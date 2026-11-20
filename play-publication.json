@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "47d29a2aa571c4559f7aff9a86240e8126347eb7",
+  "site_commit": "a6ee0af323adc7aebc8ccbdd78575478eea1e187",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "357d841fbb3e7da9fb6bde1eab2e18e0650637b4",
   "canonical_games": 66,
   "additional_activities": 7,
-  "notes": "Pin release: site 1ee77147 -> 47d29a2a (Hill Hound added as the 66th canonical game at /hillhound/, Site #712: 3D sheepdog herding, one self-contained file, mbm_hillhound_ saves, 44px controls, shared inline exit, layout-only HUD padding so the top pills clear the exit). Play publication now 73 payloads = 66 games + 7 activities; the two workflow count asserts and PINS.md move 72 -> 73 in step, each still exact. #712 is the only Site change in the range."
+  "notes": "Pin release: site 47d29a2a -> a6ee0af3 (Apex Pool updated in place to the 3D version at /apexpool/, Site #713: the owner's file replaces r3, same saves, same exit region, same controls; its landing verify pin, Play evidence and preservation digests and shelf screen moved with it). No new game: Play publication stays 73 payloads = 66 games + 7 activities, and no count assert changes. #713 is the only Site change in the range."
 }
