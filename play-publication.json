@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "1be89f4593d187ce1b3a82caf2ac4e4a20245507",
+  "site_commit": "45a6d8bd2b296535380a76a9192dff6a754602d1",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "357d841fbb3e7da9fb6bde1eab2e18e0650637b4",
   "canonical_games": 62,
   "additional_activities": 7,
-  "notes": "Pin release: site 592a8a5d -> 1be89f45 (World Stage desktop anti-stutter overhaul, 120 Hz render interpolation, zero-GC snapshot ring, HUD dirty-checking, Single Event Practice, gamepad & pointer controls, and recaptured storefront poster). Lessons pin remains 357d841fbb."
+  "notes": "Pin release: site 1be89f45 -> 45a6d8bd (Apex Pool and World Stage owner-reported bug fixes, Site #706: World Stage setup scroll no longer jumps when adding a point; Apex Pool aim guide is one cue path and one object-ball path, steady table, Space shoots after button focus, 44px Sound toggle). The other Site changes in the range are education-only (admission rows and registries)."
 }
