@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "80b98b0e101406a1bf9fddd864bf7863a8894052",
+  "site_commit": "31cfb93a848140cfd2c4696b73d83365e2547971",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "357d841fbb3e7da9fb6bde1eab2e18e0650637b4",
   "canonical_games": 63,
   "additional_activities": 7,
-  "notes": "Pin release: site 45a6d8bd -> 80b98b0e (Signal Heist added as the 63rd canonical game at /signalheist/, Site #707: neon stealth heist runner, one self-contained file, mbm_signalheist_ saves, 44px controls, shared inline exit). Play publication now 70 payloads = 63 games + 7 activities; the two workflow count asserts and PINS.md move 69 -> 70 in step, each still exact. The only other Site change in the range, #708, is education-only (one admission record for the class tools pages)."
+  "notes": "Pin release: site 45a6d8bd -> 31cfb93a (Signal Heist added as the 63rd canonical game at /signalheist/, Site #707: neon stealth heist runner, one self-contained file, mbm_signalheist_ saves, 44px controls, shared inline exit). Play publication now 70 payloads = 63 games + 7 activities; the two workflow count asserts and PINS.md move 69 -> 70 in step, each still exact. The other Site changes in the range: #708 is education-only (one admission record for the class tools pages), and #709 moves the Play check's published total to 70 to match, so verify-published holds after deploy."
 }
