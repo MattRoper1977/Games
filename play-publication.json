@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "1ee77147bb6aa2f3c031a8ef72a02a302d0540ea",
+  "site_commit": "47d29a2aa571c4559f7aff9a86240e8126347eb7",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "357d841fbb3e7da9fb6bde1eab2e18e0650637b4",
-  "canonical_games": 65,
+  "canonical_games": 66,
   "additional_activities": 7,
-  "notes": "Pin release: site 7b5fc3dd -> 1ee77147 (Magnet Mates added as the 65th canonical game at /magnetmates/, Site #711: co-op magnet band bounce, one self-contained file, mbm_magnetmates_ saves, 44px controls, shared inline exit, layout-only HUD fit so the canvas pills clear the exit; Signal Heist replaces Charcoal in the Play spotlight). Play publication now 72 payloads = 65 games + 7 activities; the two workflow count asserts and PINS.md move 71 -> 72 in step, each still exact. #711 is the only Site change in the range."
+  "notes": "Pin release: site 1ee77147 -> 47d29a2a (Hill Hound added as the 66th canonical game at /hillhound/, Site #712: 3D sheepdog herding, one self-contained file, mbm_hillhound_ saves, 44px controls, shared inline exit, layout-only HUD padding so the top pills clear the exit). Play publication now 73 payloads = 66 games + 7 activities; the two workflow count asserts and PINS.md move 72 -> 73 in step, each still exact. #712 is the only Site change in the range."
 }
