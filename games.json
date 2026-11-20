@@ -1771,6 +1771,33 @@
       ],
       "session_band": "unstated",
       "classroom_facets": []
+    },
+    {
+      "icon": "🧲",
+      "title": "Magnet Mates",
+      "desc": "Stretch the magnetic band and bounce scrap into matching chutes. Two magnet pods share one band: spread them under the drop shadows to catch falling scrap, tilt to match Star, Coil or Hex, hold the magnet to grip and aim, then snap the pods closer mid-bounce to launch into the 2x chutes. Two players on one keyboard, or one player with an AI mate. Five foundry bays, 2:30 shifts, stars to earn and band colours to unlock. One file: no install, offline.",
+      "href": "/magnetmates/",
+      "tag": "Physics",
+      "hue": "#22D3EE",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/magnet-mates.svg",
+      "sub_genre": "Co-op magnet band bounce",
+      "pitch": "Stretch the band, bounce the scrap, snap it home.",
+      "what_you_do": [
+        "Spread your two pods under the drop shadows to catch falling scrap on the band.",
+        "Tilt and hold the magnet to send Star, Coil and Hex scrap into matching chutes.",
+        "Snap the pods closer mid-bounce to launch scrap into the 2x chutes for big scores."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "quick",
+      "classroom_facets": [
+        "solo"
+      ]
     }
   ],
   "session_band_labels": {
