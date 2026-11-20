@@ -156,7 +156,7 @@ jobs:
           import json
           from pathlib import Path
           out = Path('.after/out'); r = json.loads((out/'build-report.json').read_text())
-          assert r['counts']['game_payloads'] == 71, r['counts']
+          assert r['counts']['game_payloads'] == 72, r['counts']
           assert r['counts']['missing_initial_load_refs'] == 0, r['counts']
           assert r['counts']['external_initial_load_refs'] == 0, r['counts']
           assert (out/'games/games.json').read_bytes() == Path('games.json').read_bytes(), 'games.json is not the shelf'
@@ -314,7 +314,7 @@ jobs:
               '',
               `Source: https://github.com/${SRC_REPO}/compare/${CURRENT.slice(0,10)}...${HEAD.slice(0,10)}`,
               '',
-              `Gates run on the proposed tree before this PR opened: publication contract (71 payloads, 0 missing / 0 external initial-load refs, shelf byte-identical), save boundaries, shelf contracts against the proposed Lessons tree, Play browser acceptance (all widths, all 70 start surfaces), idle-repaint and frame-rate gate (${perf.routes} routes measured against the current pin on the same runner, ${perf.red.length} regressed${perf.inconclusive.length ? `, ${perf.inconclusive.length} inconclusive: ${perf.inconclusive.join(', ')}` : ''}).`,
+              `Gates run on the proposed tree before this PR opened: publication contract (72 payloads, 0 missing / 0 external initial-load refs, shelf byte-identical), save boundaries, shelf contracts against the proposed Lessons tree, Play browser acceptance (all widths, all 72 start surfaces), idle-repaint and frame-rate gate (${perf.routes} routes measured against the current pin on the same runner, ${perf.red.length} regressed${perf.inconclusive.length ? `, ${perf.inconclusive.length} inconclusive: ${perf.inconclusive.join(', ')}` : ''}).`,
               '',
               `Game payloads whose bytes move with this pin: ${moved.length}${moved.length ? '\n' + moved.map(r => `- \`${r}\``).join('\n') : ''}`,
               '',
