@@ -16,14 +16,14 @@ is why a merged game fix can be "on main" and still not "served".
 3. **The gates run BEFORE the PR opens, on the tree the pin would publish**,
    and the current pin's tree is built beside it on the same runner so every
    judgement is "did this pin make a route worse", never "is this game fast":
-   - the publication build itself: 69 payloads, 0 missing and 0 external
+   - the publication build itself: 71 payloads, 0 missing and 0 external
      initial-load references, `games.json` byte-identical to the shelf, CNAME;
    - `check_game_saves.cjs` (save-transfer boundaries);
    - this repository's shelf contracts: `validate_games_json.sh` against the
      proposed Lessons tree and every `tools/verify_*_shelf.js` / sports rail;
    - the Play browser acceptance (`domain-split/play/check.cjs`) served from the
      proposed tree: layout at four widths, search, favourites, saves, dialog
-     focus, no-JS links, and all 69 rendered start surfaces;
+     focus, no-JS links, and all 71 rendered start surfaces;
    - the idle-repaint and frame-rate gate (`tools/play_perf_gate.mjs`): RED when
      a route paints more than max(1.5×, +10) frames at idle, drops below 70 % of
      a ≥30 fps rate, or starts throwing. It proves itself on two planted

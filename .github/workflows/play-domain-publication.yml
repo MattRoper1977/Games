@@ -80,7 +80,7 @@ jobs:
           from pathlib import Path
           out=Path('.sources/Site/domain-split/output')
           r=json.loads((out/'build-report.json').read_text())
-          assert r['counts']['game_payloads']==69
+          assert r['counts']['game_payloads']==71
           assert r['counts']['missing_initial_load_refs']==0
           assert r['counts']['external_initial_load_refs']==0
           assert (out/'games/games.json').read_bytes()==Path('games.json').read_bytes()
@@ -124,9 +124,21 @@ jobs:
             }
             if (response.status !== 200) throw new Error('The HTTPS games catalogue did not return 200.');
             const catalogue = await response.json();
-            if (!Array.isArray(catalogue.games) || !Array.isArray(catalogue.activities) || !Array.isArray(catalogue.staff) || catalogue.games.length !== config.canonical_games || catalogue.activities.length + catalogue.staff.length !== config.additional_activities) {
+            // Live must serve EXACTLY the population of the base commit (a pull request's base, or a
+            // push's before) or the proposed one, nothing else. A pin that grows the shelf is checked
+            // against the live site before it deploys, so live still serves the base population;
+            // verify-published then requires the proposed population once the deploy lands.
+            const populations = [config];
+            const baseSha = context.eventName === 'pull_request' ? context.payload.pull_request.base.sha : (context.eventName === 'push' ? context.payload.before : '');
+            if (/^[0-9a-f]{40}$/.test(baseSha || '') && !/^0+$/.test(baseSha)) {
+              const {data: file} = await github.rest.repos.getContent({owner: context.repo.owner, repo: context.repo.repo, path: 'play-publication.json', ref: baseSha});
+              populations.push(JSON.parse(Buffer.from(file.content, 'base64').toString('utf8')));
+            }
+            const serves = c => catalogue.games.length === c.canonical_games && catalogue.activities.length + catalogue.staff.length === c.additional_activities;
+            if (!Array.isArray(catalogue.games) || !Array.isArray(catalogue.activities) || !Array.isArray(catalogue.staff) || !populations.some(serves)) {
               throw new Error('The secure destination does not serve the configured games population.');
             }
+            core.info('Live population ' + catalogue.games.length + ' + ' + (catalogue.activities.length + catalogue.staff.length) + ' accepted as ' + (serves(config) ? 'the proposed' : 'the base') + ' population.');
             core.info('Verified HTTPS games catalogue at ' + probe.href);
       - name: Read the configured Pages site
         if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish))
@@ -200,6 +212,16 @@ jobs:
         env:
           PLAY_REVIEW_URL: https://www.madebymatt-play.uk
         run: node domain-split/play/check.cjs
+      - name: Require the live catalogue to serve exactly the proposed population
+        run: |
+          python - <<'PY'
+          import json,urllib.request
+          c=json.load(open('play-publication.json'))
+          live=json.load(urllib.request.urlopen('https://www.madebymatt-play.uk/data/domain-catalogue.json',timeout=30))
+          games=len(live['games']); extra=len(live['activities'])+len(live['staff'])
+          assert (games,extra)==(c['canonical_games'],c['additional_activities']),f'live serves {games} + {extra}, proposed {c["canonical_games"]} + {c["additional_activities"]}'
+          print(f'live serves the proposed population: {games} + {extra}')
+          PY
       - name: Preserve published browser evidence
         if: always()
         uses: actions/upload-artifact@v4
