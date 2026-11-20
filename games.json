@@ -1723,6 +1723,30 @@
       ],
       "session_band": "short",
       "classroom_facets": []
+    },
+    {
+      "icon": "📡",
+      "title": "Signal Heist",
+      "desc": "Slip in, grab the signal, get out before the beat drops. Sneak a glowing runner through neon vault rooms past guards, lasers and turrets, grab loot to open the exit and bank your pot before the heat catches you. Daily seeds, ghost races and unlockable hulls and trails. One file: no install, offline.",
+      "href": "/signalheist/",
+      "tag": "Reflex",
+      "hue": "#0891B2",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/signal-heist.svg",
+      "sub_genre": "Neon stealth heist runner",
+      "pitch": "Slip in, grab the signal, get out before the beat drops.",
+      "what_you_do": [
+        "Sneak past guard sight cones, lasers and turrets to grab loot.",
+        "Use blink and decoys to escape when the heat rises.",
+        "Reach the exit ring to bank your pot, or push on for a bigger multiplier."
+      ],
+      "controls": [
+        "touch",
+        "keyboard"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     }
   ],
   "session_band_labels": {
