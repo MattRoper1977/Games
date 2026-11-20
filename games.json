@@ -1747,6 +1747,30 @@
       ],
       "session_band": "unstated",
       "classroom_facets": []
+    },
+    {
+      "icon": "👕",
+      "title": "Layer Press",
+      "desc": "Mask it, roll ink, peel it crisp. Print streetwear at a calm studio bench: tape off the blank, cut stencils, roll pattern inks in the right order, then peel back to match the lookbook piece. Four studio drops with stars to earn, a free studio and your own rail of finished prints. No timers. One file: no install, offline.",
+      "href": "/layerpress/",
+      "tag": "Puzzle",
+      "hue": "#E5484D",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/layer-press.svg",
+      "sub_genre": "Streetwear print studio puzzle",
+      "pitch": "Mask it, roll ink, peel it crisp.",
+      "what_you_do": [
+        "Tape off and stencil the blank so ink lands only where you want it.",
+        "Roll pattern inks in the right order to build up the design.",
+        "Peel back to reveal the print and match the lookbook piece for stars."
+      ],
+      "controls": [
+        "touch",
+        "keyboard"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": []
     }
   ],
   "session_band_labels": {
