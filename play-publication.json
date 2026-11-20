@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "45a6d8bd2b296535380a76a9192dff6a754602d1",
+  "site_commit": "31cfb93a848140cfd2c4696b73d83365e2547971",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "357d841fbb3e7da9fb6bde1eab2e18e0650637b4",
-  "canonical_games": 62,
+  "canonical_games": 63,
   "additional_activities": 7,
-  "notes": "Pin release: site 1be89f45 -> 45a6d8bd (Apex Pool and World Stage owner-reported bug fixes, Site #706: World Stage setup scroll no longer jumps when adding a point; Apex Pool aim guide is one cue path and one object-ball path, steady table, Space shoots after button focus, 44px Sound toggle). The other Site changes in the range are education-only (admission rows and registries)."
+  "notes": "Pin release: site 45a6d8bd -> 31cfb93a (Signal Heist added as the 63rd canonical game at /signalheist/, Site #707: neon stealth heist runner, one self-contained file, mbm_signalheist_ saves, 44px controls, shared inline exit). Play publication now 70 payloads = 63 games + 7 activities; the two workflow count asserts and PINS.md move 69 -> 70 in step, each still exact. The other Site changes in the range: #708 is education-only (one admission record for the class tools pages), and #709 moves the Play check's published total to 70 to match, so verify-published holds after deploy."
 }
