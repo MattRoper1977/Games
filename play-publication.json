@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "8fe87a2e5757e98f7970e4d6ee75108096f4ba00",
+  "site_commit": "9524a9727110ea4265b6fd938b8eaf5e0cd7d502",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "357d841fbb3e7da9fb6bde1eab2e18e0650637b4",
   "canonical_games": 66,
   "additional_activities": 7,
-  "notes": "Pin release: site 301bad45 -> 8fe87a2e (Lumina Haven upgraded in place at /luminahaven/, Site #721, games upgrade batch 01: gated against live, same saves and script sources, its self-test now ok; Play evidence, discovery review, preservation digests and shelf screen moved with it). No new game: Play publication stays 73 payloads = 66 games + 7 activities, and no count assert changes. The other Site change in the range (#720) touches only Education admission records."
+  "notes": "Pin release: site 8fe87a2e -> 9524a972 (Apex Curl, Relicforge Fracture Engine, Neon Meridian and Neon Turf upgraded in place, Site #722, games upgrade batch 02: gated against live; Play evidence, discovery review, preservation digests and shelf screens moved with them). No new game: Play publication stays 73 payloads = 66 games + 7 activities, and no count assert changes."
 }
