@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "a6ee0af323adc7aebc8ccbdd78575478eea1e187",
+  "site_commit": "301bad457c9cebbfe067b32eb7ffc7ff978abc61",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "357d841fbb3e7da9fb6bde1eab2e18e0650637b4",
   "canonical_games": 66,
   "additional_activities": 7,
-  "notes": "Pin release: site 47d29a2a -> a6ee0af3 (Apex Pool updated in place to the 3D version at /apexpool/, Site #713: the owner's file replaces r3, same saves, same exit region, same controls; its landing verify pin, Play evidence and preservation digests and shelf screen moved with it). No new game: Play publication stays 73 payloads = 66 games + 7 activities, and no count assert changes. #713 is the only Site change in the range."
+  "notes": "Pin release: site a6ee0af3 -> 301bad45 (Hill Hound and Magnet Mates phone layout fix v3, Site #719: both files swapped in place at /hillhound/ and /magnetmates/, same saves and same exit region; Magnet Mates plays portrait phones with a top bar above the arena; Play evidence, discovery review, preservation digests and both shelf screens moved with them). No new game: Play publication stays 73 payloads = 66 games + 7 activities, and no count assert changes. The other Site changes in the range (#714 to #718) touch only Education admission records, nothing the Play publication reads."
 }
