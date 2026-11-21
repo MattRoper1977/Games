@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "e3c7cc87f900a4341037a40d7b9c1302f4598e9b",
+  "site_commit": "169e41a2cfb38b8575cb092e15c799b5bec66633",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "357d841fbb3e7da9fb6bde1eab2e18e0650637b4",
   "canonical_games": 66,
   "additional_activities": 7,
-  "notes": "Pin release: site 9524a972 -> e3c7cc87. Takes three merged Site PRs live on Play: #723 (lesson pages and help stubs, no Play payload), #724 (the new Play front page, PLAY-D2) and #725 (Hyper Draft, Layer Press, Apex Velodrome, Apex Rally, Ouroboros, Apex Tennis and Neon Sync upgraded in place, games upgrade batch 01 fixes and batch 04: gated against live; Play evidence, discovery review, preservation digests and shelf screens moved with them). No new game: Play publication stays 73 payloads = 66 games + 7 activities, and no count assert changes."
+  "notes": "Pin release: site e3c7cc87 -> 169e41a2. Takes four merged Site PRs live on Play: #726 (Play front page covers for the other 54 games), #727 (lesson swap batch 63 admission, no Play payload), #728 (front page: the Updated ribbon never touches its mood chip, measured with the page font and with DejaVu Sans and Verdana) and #729 (Apex Kick, Echo Vault, Skybreak, Apex Golf, Off-Brand and Apex Pool upgraded in place, games upgrade batches 03, 04 and 05 and the golf and pool fixes: gated against live; Play evidence, discovery review, preservation digests, shelf screens and the Off-Brand and Apex Kick gameplay clips moved with them). No new game: Play publication stays 73 payloads = 66 games + 7 activities, and no count assert changes."
 }
