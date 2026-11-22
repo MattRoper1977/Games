@@ -2,7 +2,7 @@
 // This exact reviewed workflow permits deploy and verify-published only after
 // a main push or an explicit publish dispatch. Its PR build cannot deploy.
 // Any workflow change requires a fresh review before this exception can apply.
-const PUBLICATION_POLICY_SHA = '24dc13f621b9bf1df1938dae62f903728d750347';
+const PUBLICATION_POLICY_SHA = 'a037693152dd1507c41ff639b1cc4a4c6e573aa5';
 const POST_MERGE_JOBS = ['deploy', 'verify-published'];
 function publicationRunId(run, context = {}) {
   if (!/^[^/]+\/[^/]+$/.test(context.repository || '') ||

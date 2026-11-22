@@ -80,7 +80,7 @@ jobs:
           from pathlib import Path
           out=Path('.sources/Site/domain-split/output')
           r=json.loads((out/'build-report.json').read_text())
-          assert r['counts']['game_payloads']==73
+          assert r['counts']['game_payloads']==75
           assert r['counts']['missing_initial_load_refs']==0
           assert r['counts']['external_initial_load_refs']==0
           assert (out/'games/games.json').read_bytes()==Path('games.json').read_bytes()
