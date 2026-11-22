@@ -1825,6 +1825,61 @@
       "classroom_facets": [
         "solo"
       ]
+    },
+    {
+      "icon": "🌱",
+      "title": "Sky Seeder",
+      "desc": "Glide over floating sky islands and bring them back to life. Drop seed pods on bare rock to grow forests, ride the wind ribbons that rise from each greened island, and light the summit beacons across five archipelagos. Rock never crashes you, it just slides you along, and a cloud updraft lifts you back up. Calm Mode takes away the clock. One file: no install, offline.",
+      "href": "/skyseeder/",
+      "tag": "Calm",
+      "hue": "#4FB3D9",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/sky-seeder.svg",
+      "sub_genre": "3D sky glider",
+      "pitch": "Glide, seed the islands, ride the wind.",
+      "what_you_do": [
+        "Steer a glider over floating islands with the keys, the mouse or a thumb pad.",
+        "Drop seed pods on bare rock to grow trees and wake rising wind ribbons.",
+        "Ride the thermals up to light every summit beacon and earn stars."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "solo",
+        "calm"
+      ]
+    },
+    {
+      "icon": "🛗",
+      "title": "Lift Shift",
+      "desc": "Run the cable lift in a gadget mill. Load heavy iron bots and floaty helium crates, balance the cab against its counterweight, and brake to land flush at each shape-marked floor for streak bonuses. Four workshop shifts with stars to earn, plus a free shift, and no fail states. One file: no install, offline.",
+      "href": "/liftshift/",
+      "tag": "Puzzle",
+      "hue": "#2BD39A",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/lift-shift.svg",
+      "sub_genre": "Counterweight lift puzzle",
+      "pitch": "Balance the lift and stop at each floor.",
+      "what_you_do": [
+        "Ride the cab up and down the shaft and brake to land flush at each floor.",
+        "Load heavy bots and floaty crates so their weights cancel out for a bonus.",
+        "Deliver every rider to the floor whose shape they show to earn stars."
+      ],
+      "controls": [
+        "touch",
+        "keyboard",
+        "mouse"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "solo"
+      ]
     }
   ],
   "session_band_labels": {
