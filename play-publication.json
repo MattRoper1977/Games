@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "169e41a2cfb38b8575cb092e15c799b5bec66633",
+  "site_commit": "7cfd4d8bbb9cd7da92edd1d556e04aa8fa9e4330",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "357d841fbb3e7da9fb6bde1eab2e18e0650637b4",
-  "canonical_games": 66,
+  "canonical_games": 68,
   "additional_activities": 7,
-  "notes": "Pin release: site e3c7cc87 -> 169e41a2. Takes four merged Site PRs live on Play: #726 (Play front page covers for the other 54 games), #727 (lesson swap batch 63 admission, no Play payload), #728 (front page: the Updated ribbon never touches its mood chip, measured with the page font and with DejaVu Sans and Verdana) and #729 (Apex Kick, Echo Vault, Skybreak, Apex Golf, Off-Brand and Apex Pool upgraded in place, games upgrade batches 03, 04 and 05 and the golf and pool fixes: gated against live; Play evidence, discovery review, preservation digests, shelf screens and the Off-Brand and Apex Kick gameplay clips moved with them). No new game: Play publication stays 73 payloads = 66 games + 7 activities, and no count assert changes."
+  "notes": "Pin release: site 169e41a2 -> 7cfd4d8b. Takes the merged Site PRs since 169e41a2 live on Play: #730, #731, #732 and #733 (help pages, search fix and the names fix flights: no Play game payload; the names fix reaches /assets/domain-site.js) and #734 (Sky Seeder added as the 67th canonical game at /skyseeder/ and Lift Shift as the 68th at /liftshift/: one self-contained file each, mbm_skyseeder_ and mbm_liftshift_ saves, 44px controls, shared inline exit, one layout-only CSS rule each so the top bar clears the home control; gated sources d967df7c and a7dc6d6e, published e7b64e3b and 896db5e2). Play publication now 75 payloads = 68 games + 7 activities; the two workflow count asserts and PINS.md move 73 -> 75 and the policy sha is re-pinned."
 }
