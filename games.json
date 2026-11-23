@@ -4,7 +4,7 @@
   "games": [
     {
       "icon": "⚡",
-      "title": "NEW · CyberPulse: Blackout",
+      "title": "CyberPulse: Blackout",
       "displayTitle": "Blackout Pulse",
       "desc": "Skim a rain-black megacity at terminal speed. Parry lethal fire, weaponise collapsing infrastructure, and break the Null Warden in a seamless neon assault. WebGL2 rendering with a Canvas fallback, so it still runs where the GPU path is refused. One file, no install, offline. AAA V6.",
       "href": "/cyberpulse/",
@@ -1883,7 +1883,7 @@
     },
     {
       "icon": "🏍️",
-      "title": "Rutline",
+      "title": "NEW · Rutline",
       "desc": "Ride a dirt bike around an open valley with a motocross park, forest trails, a quarry and a small town. Follow the eight-chapter Trail Crew story, try time trials, deliveries, a hill-climb and Park Patrol tag chases, and find hidden parts to fit in the workshop garage. Rider Assist is on by default, so a rough landing is a wobble and not a crash, and every job can be retried or skipped. Offline, single file, no account.",
       "href": "/rutline/",
       "tag": "Sandbox",
