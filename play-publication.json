@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "3e15997ba8426e0999f86cecb035bec4316afeb3",
+  "site_commit": "77dffc1132372735c50305eae88a1d5b80c3cc84",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "357d841fbb3e7da9fb6bde1eab2e18e0650637b4",
-  "canonical_games": 68,
+  "canonical_games": 69,
   "additional_activities": 7,
-  "notes": "Pin release: site 7cfd4d8b -> 3e15997b. Takes Site #735 live on Play: loader L2, one Made by Matt screen per game (the full animation on the first game each day and a quick screen on every other game). Ten games carry the re-rendered generated region only (Apex Kick, CyberPulse, Echo Vault, Neon Meridian, Rally Vector 3D, Relicforge, Skybreak, Touchline, Town Life and World Stage); five own-screen games lose the generated region and keep their own screen (Aurora Links, House Games, Hyper Draft, Medevac and Trail Runner). Play evidence, preservation, discovery review, source revisions, shelf screens, the Apex Kick clip and the coverage record moved with the bytes. No new game: Play publication stays 75 payloads = 68 games + 7 activities, and no count assert changes."
+  "notes": "Pin release: site 3e15997b -> 77dffc11. Takes Site #743 live on Play: Rutline, the 69th game, a new motocross game at /rutline/ with its own checker, and the NEW shelf marker moves to it from CyberPulse: Blackout. Play evidence, preservation, discovery review, catalogue, shelf screen and the route census moved with the bytes. Play publication becomes 76 payloads = 69 games + 7 activities; each exact count moves by one and none is loosened."
 }
