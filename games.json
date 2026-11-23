@@ -1477,10 +1477,10 @@
       ]
     },
     {
-      "icon": "🌃",
-      "title": "Neon Meridian: Open Drive",
-      "displayTitle": "Neon Meridian",
-      "desc": "Free driving in Meridian Bay, a dense original coastal city built for landmarks, traffic and discovery. Take delivery runs, checkpoint runs and circuit races, bank the credits, then spend them in the garage on engine, tyres and brakes. Twelve landmarks across seven districts, weather and a day-night sky, holdable on one phone. Offline, single file, no account.",
+      "icon": "🌴",
+      "title": "Meridian Bay: Open Drive",
+      "displayTitle": "Meridian Bay",
+      "desc": "Free driving in Meridian Bay, a sunny coastal city with a beach boardwalk, traffic and thirteen landmarks across seven districts. Open the Jobs board for near, medium and far deliveries, checkpoint runs and a circuit race, with a relaxed no-timer setting. Hop out to explore on foot, start a Civic Patrol tag chase, and bank credits for the garage. Offline, single file, no account.",
       "href": "/neonmeridian/",
       "tag": "Sandbox",
       "hue": "#58f2cf",
@@ -1488,11 +1488,11 @@
       "hero": false,
       "art": "/assets/cards/neon-meridian.webp",
       "sub_genre": "City driving sandbox",
-      "pitch": "A neon city, an open road and nowhere you have to be.",
+      "pitch": "A sunny coast city, an open road and nowhere you have to be.",
       "what_you_do": [
-        "Drive through traffic and discover landmarks around the city.",
-        "Start a delivery, checkpoint run or three-lap circuit race.",
-        "Spend challenge credits on engine, tyre and brake upgrades."
+        "Drive through traffic and discover landmarks around the bay.",
+        "Pick a delivery, checkpoint run or circuit race from the Jobs board.",
+        "Hop out to explore on foot, then spend credits in the garage."
       ],
       "controls": [
         "touch",
