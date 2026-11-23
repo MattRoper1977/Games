@@ -1880,6 +1880,32 @@
       "classroom_facets": [
         "solo"
       ]
+    },
+    {
+      "icon": "🏍️",
+      "title": "Rutline",
+      "desc": "Ride a dirt bike around an open valley with a motocross park, forest trails, a quarry and a small town. Follow the eight-chapter Trail Crew story, try time trials, deliveries, a hill-climb and Park Patrol tag chases, and find hidden parts to fit in the workshop garage. Rider Assist is on by default, so a rough landing is a wobble and not a crash, and every job can be retried or skipped. Offline, single file, no account.",
+      "href": "/rutline/",
+      "tag": "Sandbox",
+      "hue": "#E8A33D",
+      "featured": false,
+      "hero": false,
+      "art": "/assets/cards/rutline.svg",
+      "sub_genre": "Open-valley motocross",
+      "pitch": "A dirt bike, a whole valley and jumps to land.",
+      "what_you_do": [
+        "Ride trails, ramps and roads around the valley on any of twenty bikes.",
+        "Start a story chapter, time trial, delivery or jump job from the title or the world.",
+        "Earn credits and find hidden parts to tune your bike in the workshop."
+      ],
+      "controls": [
+        "touch",
+        "keyboard"
+      ],
+      "session_band": "unstated",
+      "classroom_facets": [
+        "solo"
+      ]
     }
   ],
   "session_band_labels": {
