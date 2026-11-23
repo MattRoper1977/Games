@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "a85fc2c02fd4457d5852f10a31c64149f9c8834c",
+  "site_commit": "fab6318e4158ca653eb7e44b172d2a703e9bf3f8",
   "lessons_repository": "MattRoper1977/Lessons",
-  "lessons_commit": "357d841fbb3e7da9fb6bde1eab2e18e0650637b4",
+  "lessons_commit": "3e77198424a8df35f8c5c250ae38dfb715c37900",
   "canonical_games": 69,
   "additional_activities": 7,
-  "notes": "Pin release: site 77dffc11 -> a85fc2c0. Takes Site #744 live on Play: the driving game at /neonmeridian/ is upgraded and now shows as Meridian Bay: Open Drive. The route and saved progress keys are unchanged. Play evidence, preservation, discovery review, catalogue and shelf wording moved with the bytes. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
+  "notes": "Pin release: site a85fc2c0 -> fab6318e, lessons 357d841f -> 3e771984. Takes games round 2 batch 6 live on Play: World Stage (/worldstage/, Site #753), Voxel Frontier (/voxel/, Site #754, fresh clip) and Static (Lessons #941, admitted by Site #755) gain the kit v1.0.1 settings gear, daily goal, streak, one-hand and graphics tier layer. Routes are unchanged and existing saves are kept. The Lessons move changes only Games/Static.html. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
 }
