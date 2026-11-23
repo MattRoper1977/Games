@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "fab6318e4158ca653eb7e44b172d2a703e9bf3f8",
+  "site_commit": "c7d8049a807b94c95f000210ac67d3e3b04253d4",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "3e77198424a8df35f8c5c250ae38dfb715c37900",
   "canonical_games": 69,
   "additional_activities": 7,
-  "notes": "Pin release: site a85fc2c0 -> fab6318e, lessons 357d841f -> 3e771984. Takes games round 2 batch 6 live on Play: World Stage (/worldstage/, Site #753), Voxel Frontier (/voxel/, Site #754, fresh clip) and Static (Lessons #941, admitted by Site #755) gain the kit v1.0.1 settings gear, daily goal, streak, one-hand and graphics tier layer. Routes are unchanged and existing saves are kept. The Lessons move changes only Games/Static.html. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
+  "notes": "Pin release: site fab6318e -> c7d8049a. Takes Site #761 live on Play: the front page gains the game of the week spotlight hero (domain-split/play hero-week.json, build.py, index.html, play.css, play.js; check.cjs and the shelf navigation check learn it). No game file changes; games.json and the shelf mirror are unchanged; Lessons stays at 3e771984. The Site moves in between (#757 to #760) are education-side lesson swap admissions. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
 }
