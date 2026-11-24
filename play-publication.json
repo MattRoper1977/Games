@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "caeecf5049505c33e21861fa83010391ddc878e5",
+  "site_commit": "bfe2e1cf77094449138a04555f5554306a2c0c86",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "3e77198424a8df35f8c5c250ae38dfb715c37900",
   "canonical_games": 69,
   "additional_activities": 7,
-  "notes": "Pin release: site c7d8049a -> caeecf50. Takes Site #764 live on Play: the House Games teacher board shows a board callsign (from the Passport node id) with House and scores, never the typed name or class; the Passport card shows the pupil their own callsign (housegames/index.html f88b78d6, new reviewed source revision, screen recaptured). The Site move in between (#751) is an education-side class tools admission. games.json and the shelf mirror are unchanged; Lessons stays at 3e771984. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
+  "notes": "Pin release: site caeecf50 -> bfe2e1cf. Takes Site #762 live on Play: the front page gains a Safe for schools strip under the game of the week (No login, No adverts, Saves stay on this device, Plays in the browser, and a link to the free lessons) and a Start here shelf of six touch-ready games after More to play; Sky Seeder and Lift Shift get their gated covers. domain-split/play only (build.py, index.html, play.css, discovery-moods.json, two covers; check.cjs and the shelf navigation check learn them). No game file changes; games.json and the shelf mirror are unchanged; Lessons stays at 3e771984. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
 }
