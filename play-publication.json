@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "c7d8049a807b94c95f000210ac67d3e3b04253d4",
+  "site_commit": "caeecf5049505c33e21861fa83010391ddc878e5",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "3e77198424a8df35f8c5c250ae38dfb715c37900",
   "canonical_games": 69,
   "additional_activities": 7,
-  "notes": "Pin release: site fab6318e -> c7d8049a. Takes Site #761 live on Play: the front page gains the game of the week spotlight hero (domain-split/play hero-week.json, build.py, index.html, play.css, play.js; check.cjs and the shelf navigation check learn it). No game file changes; games.json and the shelf mirror are unchanged; Lessons stays at 3e771984. The Site moves in between (#757 to #760) are education-side lesson swap admissions. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
+  "notes": "Pin release: site c7d8049a -> caeecf50. Takes Site #764 live on Play: the House Games teacher board shows a board callsign (from the Passport node id) with House and scores, never the typed name or class; the Passport card shows the pupil their own callsign (housegames/index.html f88b78d6, new reviewed source revision, screen recaptured). The Site move in between (#751) is an education-side class tools admission. games.json and the shelf mirror are unchanged; Lessons stays at 3e771984. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
 }
