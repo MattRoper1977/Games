@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "03342a65799031b7ba154068f9eb3afc5f5ee9cc",
+  "site_commit": "53c577823801b13b4248826dcb3f705cc401d4be",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "3e77198424a8df35f8c5c250ae38dfb715c37900",
   "canonical_games": 69,
   "additional_activities": 7,
-  "notes": "Pin release: site f3efa9f0 -> 03342a65. Takes Site #793 (Meridian Bay / neonmeridian vehicle and building OBB collision engine, traffic/pursuit/circuit-race AI, road-free landmarks, reachable Coastal Stars, Meridian Pier driving, Summit Green terrain, stunt ramp back-wall, and gameplay fixes; published sha256 727029d1) live on Play. games.json and the shelf mirror are unchanged; Lessons stays at 3e771984. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
+  "notes": "Pin release: site 03342a65 -> 53c57782. Takes Site #794 (Rutline /rutline/ timber creek bridges, parked & traffic OBB collisions, Lite-mode traffic sync, town traffic reroute clear of stunt ramp, patrol spawn/building/traffic/roadblock collisions, ramp back-wall anti-teleport, Ghost Run drone cone alignment & LOS, Garage/Chase camera wall pull-in, and modal/audio lifecycle fixes; published sha256 e354a7ab) live on Play. games.json and the shelf mirror are unchanged; Lessons stays at 3e771984. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
 }
