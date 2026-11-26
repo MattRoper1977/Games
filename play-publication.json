@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "f3efa9f0a6da829e97aab6f7e004e7280973b332",
+  "site_commit": "03342a65799031b7ba154068f9eb3afc5f5ee9cc",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "3e77198424a8df35f8c5c250ae38dfb715c37900",
   "canonical_games": 69,
   "additional_activities": 7,
-  "notes": "Pin release: site bfe2e1cf -> f3efa9f0. Takes Site #791 (Signal Heist camera spawn, DDA vision cone alignment, 3D wall X-ray, portal clearance, and gameplay fixes; sha256 159351b1) and Site #766 (Biopunk Hive games round 2 batch 7 upgrade; published sha256 b43039fd) live on Play. games.json and the shelf mirror are unchanged; Lessons stays at 3e771984. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
+  "notes": "Pin release: site f3efa9f0 -> 03342a65. Takes Site #793 (Meridian Bay / neonmeridian vehicle and building OBB collision engine, traffic/pursuit/circuit-race AI, road-free landmarks, reachable Coastal Stars, Meridian Pier driving, Summit Green terrain, stunt ramp back-wall, and gameplay fixes; published sha256 727029d1) live on Play. games.json and the shelf mirror are unchanged; Lessons stays at 3e771984. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
 }
