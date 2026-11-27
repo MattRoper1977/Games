@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "8f35b844c85ca6fa21820b11df2096949cf47bfd",
+  "site_commit": "41971477176687c3730f9619caa4a50b73b7e2e4",
   "lessons_repository": "MattRoper1977/Lessons",
   "lessons_commit": "3e77198424a8df35f8c5c250ae38dfb715c37900",
   "canonical_games": 69,
   "additional_activities": 7,
-  "notes": "Pin release: site 53c57782 -> 8f35b844. Takes Site #795 (Apex Pool /apexpool/ WPA-regulation corner & side pocket geometry with tangent jaws & 12 angled cushion facings, back-pocket containment preventing off-table escapes, legal 8-ball rack corners, ball-in-hand pocket/overlap guards, fixed 2D stripe balls, embedded CC0 Poly Haven wood/baize/leather/parquet textures, rebuilt 3D table & lounge floor, 512x256 pro-cup balls, 14-sided cue, and velocity-scaled WebAudio Foley; published sha256 63bd75f0) live on Play. games.json and the shelf mirror are unchanged; Lessons stays at 3e771984. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
+  "notes": "Pin release: site 8f35b844 -> 41971477. Takes Site #796 (Apex Kick /apexkick/ AAA graphical & gameplay overhaul: embedded zero-network CC0 Poly Haven grass, leather, concrete, roof steel, night & day sky domes; FIFA-accurate 2048x1024 pitch markings & inward corner flags; volumetric 3D plasma tracers & spin vortex rings; 3D predictive goal-plane reticle & live swipe telemetry; sculpted articulated footballers; cantilevered stadium roofs, volumetric floodlights, woven football net & back stanchions; smooth wall landing, realistic keeper reaction delay, knuckleball physics, interpolated goal-line crossings, sweeping replay crane orbit, and upgraded stadium Foley; published sha256 433e5adf) live on Play. games.json and the shelf mirror are unchanged; Lessons stays at 3e771984. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
 }
