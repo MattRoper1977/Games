@@ -1,10 +1,10 @@
 {
   "domain": "madebymatt-play.uk",
   "site_repository": "MattRoper1977/mattroper1977.github.io",
-  "site_commit": "41971477176687c3730f9619caa4a50b73b7e2e4",
+  "site_commit": "76dd3fbc2105395121ad64b0421364ce2e3aae7a",
   "lessons_repository": "MattRoper1977/Lessons",
-  "lessons_commit": "3e77198424a8df35f8c5c250ae38dfb715c37900",
+  "lessons_commit": "494c2dffbd2b3e51d6cbb8b0f68636536f3b8444",
   "canonical_games": 69,
   "additional_activities": 7,
-  "notes": "Pin release: site 8f35b844 -> 41971477. Takes Site #796 (Apex Kick /apexkick/ AAA graphical & gameplay overhaul: embedded zero-network CC0 Poly Haven grass, leather, concrete, roof steel, night & day sky domes; FIFA-accurate 2048x1024 pitch markings & inward corner flags; volumetric 3D plasma tracers & spin vortex rings; 3D predictive goal-plane reticle & live swipe telemetry; sculpted articulated footballers; cantilevered stadium roofs, volumetric floodlights, woven football net & back stanchions; smooth wall landing, realistic keeper reaction delay, knuckleball physics, interpolated goal-line crossings, sweeping replay crane orbit, and upgraded stadium Foley; published sha256 433e5adf) live on Play. games.json and the shelf mirror are unchanged; Lessons stays at 3e771984. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
+  "notes": "Pin release: site 41971477 -> 76dd3fbc, lessons 3e771984 -> 494c2dff. Takes Lessons #964 + Site #798 (Grid Chase /Lessons/Games/Grid_Chase.html AAA graphical & gameplay overhaul: embedded zero-network CC0 Poly Haven metal_plate_02, blue_metal_plate, hexagonal_concrete_paving & rogland_clear_night sky textures; floating beveled 2.5D megagrid with unobstructed relays and power cores; NIX Cyber-Runner with Overdrive volumetric ribbon trail; instant 180-degree reversal, corner-cut turn grace, wait-for-first-input launch pad & Phase Dash invulnerable surge; 4 distinct cyber-hunter drone classes; Cyber-Leviathan Warden boss with breachable 72-degree shockwave safe gaps and STUN overcharge nodes; upgraded Synthwave WebAudio engine; published sha256 7a46e0e5; refreshed Play shelf preview JPG e73693f7) live on Play. games.json, storage allowlist (mbm_grid_chase_v6_profile unchanged), and the shelf mirror are unchanged. Play publication stays 76 payloads = 69 games + 7 activities; no count moves and none is loosened."
 }
